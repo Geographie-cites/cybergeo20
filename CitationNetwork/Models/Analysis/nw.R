@@ -19,4 +19,13 @@ cyb[which(indeg==max(indeg)),]
 hist(indeg,breaks=100)
 
 quantile(cyb$Degré.Entrant,0.95)
-mean(cyb$Degré.Entrant[cyb$Degré.Entrant<quantile(cyb$Degré.Entrant,0.99)])
+mean(cyb$Degré.Entrant[cyb$Degré.Entrant<quantile(cyb$Degré.Entrant,0.10)])
+
+# plot quantile vs contributed impact factor (NAME ?)
+quantiles = (50:100)/100
+impactFactor=mean(cyb$Degré.Entrant)
+contrQuantile = sapply(quantiles,function(q){mean(cyb$Degré.Entrant[cyb$Degré.Entrant<=quantile(cyb$Degré.Entrant,q)])/impactFactor})
+# 'Gini' curve ?
+plot(quantiles,contrQuantile,type="l")
+
+
