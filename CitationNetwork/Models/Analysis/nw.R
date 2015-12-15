@@ -1,31 +1,27 @@
 
-library(rgexf)
+# citation network
 
-graph_gexf <- read.gexf(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/Data/processed/networks/test_citingNW_Wed-Oct-28-23:35:42-CET-2015.gexf'))
-summary(graph_gexf)
-check.dpl.edges(graph_gexf)
+library(igraph)
 
-graph = gexf.to.igraph(graph_gexf)
+setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/CitationNetwork/Data/nw'))
 
 
-measures <- read.csv(
-  paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/Data/processed/networks/test_citingNW_Wed-Oct-28-23:35:42-CET-2015_Nodes.csv'),
-  sep=';'
-)
+edges <- read.csv('provnw_links.csv',header=FALSE,sep=";",colClasses=c("character","character"))
+nodes <- read.csv('provnw_nodes.csv',header=FALSE,sep=";",colClasses=c("character","character","character","character"))
+colnames(nodes)=c("name","title","year","cyb")
+colnames(edges)=c("from","to")
+vedges = unique(c(edges[,1],edges[,2]))
+vertices = merge(x=data.frame(v=vedges),y=nodes[!duplicated(nodes[,1]),],by.x=1,by.y=1,all.x=TRUE)
 
-cyb = measures[!is.na(measures$cybergeo),]
-indeg = measures$Degré.Entrant[!is.na(measures$cybergeo)]
-cyb[which(indeg==max(indeg)),]
-hist(indeg,breaks=100)
+# construct the graph
+g = graph.data.frame(edges,vertices=vertices)
 
-quantile(cyb$Degré.Entrant,0.95)
-mean(cyb$Degré.Entrant[cyb$Degré.Entrant<quantile(cyb$Degré.Entrant,0.10)])
+# first analysis
 
-# plot quantile vs contributed impact factor (NAME ?)
-quantiles = (50:100)/100
-impactFactor=mean(cyb$Degré.Entrant)
-contrQuantile = sapply(quantiles,function(q){mean(cyb$Degré.Entrant[cyb$Degré.Entrant<=quantile(cyb$Degré.Entrant,q)])/impactFactor})
-# 'Gini' curve ?
-plot(quantiles,contrQuantile,type="l")
-
-
+# impact factor
+V(g)$cyb[is.na(V(g)$cyb)]=0
+d = degree(g,v=V(g)[V(g)$cyb==1],mode="in")
+hist(d,breaks=100,main="Degree distribution")
+r=log(1:length(d));s=log(sort(d+1,decreasing=TRUE))
+coefs=lm(s~r,data.frame(r=r[r<4],s=s[r<4]))$coefficients
+plot(r,s,pch='+',xlab='log(r)',ylab='log(s)',main=paste0("rank-citations, alpha=",coefs[2]));points(r[r<4],coefs[1]+coefs[2]*r[r<4],type='l',col="red")
