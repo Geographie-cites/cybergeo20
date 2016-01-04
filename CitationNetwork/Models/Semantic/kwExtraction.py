@@ -1,7 +1,8 @@
-import nltk,MySQLdb,time,locale
+import nltk,MySQLdb,time,locale,sys
+from treetagger import TreeTagger
 
 
-def run :
+def run():
     run_kw_extraction()
 
 
@@ -30,13 +31,13 @@ def run_kw_extraction() :
     password = conf['password']
     while True :
         # get data from mysql
-        conn = MySQLdb.connect("localhost",user,password,"cybergeo")
+        conn = MySQLdb.connect("localhost",user,password,"cybergeo",charset="utf8")
         cursor = conn.cursor()
         cursor.execute('SELECT id,abstract FROM refdesc WHERE abstract_keywords IS NULL;')
         data=cursor.fetchall()
 
         for ref in data:
-            keywords = extract_keywords(ref[0],ref[1])
+            keywords = extract_keywords(ref[1],ref[0])
             # insert
             cursor.execute("INSERT INTO refdesc (abstract_keywords) VALUES (\'"+reduce(lambda s1,s2 : s1+';'+s2,keywords)+"\') ON DUPLICATE KEY UPDATE abstract_keywords = VALUES(abstract_keywords);")
             conn.commit()
@@ -60,12 +61,19 @@ def extract_keywords(raw_text,id):
     # Construct text
 
     # Tokens
-    tokens = nltk.word_tokenize(raw_text)
+    #tokens = nltk.word_tokenize(raw_text)
     # filter undesirable words and format
-    words = [w.replace('\'','') for w in tokens if len(w)>=3]
-    text = nltk.Text(words)
+    #words = [w.replace('\'','') for w in tokens if len(w)>=3]
+    #text = nltk.Text(words)
 
-    tagged_text = nltk.pos_tag(text)
+    #tagged_text = nltk.pos_tag(text)
+    tt = TreeTagger(encoding='utf-8',language='french')
+    tagged_text = tt.tag(raw_text)
+
+    print(tagged_text)
+    
+    # TODO : detect language using stop words, adapt filtering/stemming technique in function
+
     #nouns = [tg[0] for tg in tagged_text if tg[1]=='NN' or tg[1]=='NNP' ]
     #print(nouns)
 
@@ -89,6 +97,9 @@ def main():
 
     # import utils
     # execfile('../Utils/utils.py')
+
+    #sys.setdefaultencoding('utf8')
+    # deprecated in python 2.6
 
     start = time.time()
 
