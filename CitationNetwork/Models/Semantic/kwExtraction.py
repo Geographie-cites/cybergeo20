@@ -18,7 +18,6 @@ def read_conf(file):
         if len(t) != 2 : raise Exception('error in conf file')
         res[t[0]]=t[1]
         currentLine = conf.readline().replace('\n','')
-        #print(t[0]+' : '+t[1])
     return(res)
 
 
@@ -26,14 +25,23 @@ def read_conf(file):
 
 def run_kw_extraction() :
     start = time.time()
+    conf=read_conf('conf/mysql.conf')
+    user = conf['user']
+    password = conf['password']
     while True :
         # get data from mysql
-        conf=read_conf('conf/mysql.conf')
-        user = conf['user']
-        password = conf['password']
-        db = MySQLdb.connect("localhost",user,password,"cybergeo")
+        conn = MySQLdb.connect("localhost",user,password,"cybergeo")
+        cursor = conn.cursor()
+        cursor.execute('SELECT id,abstract FROM refdesc WHERE abstract_keywords IS NULL;')
+        data=cursor.fetchall()
 
+        for ref in data:
+            keywords = extract_keywords(ref[0],ref[1])
+            # insert
+            cursor.execute("INSERT INTO refdesc (abstract_keywords) VALUES (\'"+reduce(lambda s1,s2 : s1+';'+s2,keywords)+"\') ON DUPLICATE KEY UPDATE abstract_keywords = VALUES(abstract_keywords);")
+            conn.commit()
 
+        conn.close()
 
 
 def potential_multi_term(tagged) :
