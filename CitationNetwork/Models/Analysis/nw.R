@@ -5,17 +5,32 @@ library(igraph)
 
 setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/CitationNetwork/Data/nw'))
 
+
 # issue in csv file with semicolon delimiter -> use tabulation instead.
-edges <- read.csv('provnw2_edges.csv',header=FALSE,sep="\t",colClasses=c("character","character"))
-nodes <- read.csv('provnw2_nodes.csv',header=FALSE,sep="\t",colClasses=c("character","character","numeric","numeric"),blank.lines.skip=FALSE)
-colnames(nodes)=c("name","title","year","cyb")
-colnames(edges)=c("from","to")
-#vedges = unique(c(edges[,1],edges[,2]))
+#edges <- read.csv('provnw2_edges.csv',header=FALSE,sep="\t",colClasses=c("character","character"))
+#nodes <- read.csv('provnw2_nodes.csv',header=FALSE,sep="\t",colClasses=c("character","character","numeric","numeric"),blank.lines.skip=FALSE)
+#colnames(nodes)=c("name","title","year","cyb")
+#colnames(edges)=c("from","to")
+vedges = unique(c(edges[,1],edges[,2]))
 #vertices = merge(x=data.frame(v=vedges),y=nodes[!duplicated(nodes[,1]),],by.x=1,by.y=1,all.x=FALSE,all.y=TRUE)
 #colnames(vertices)=c("name","title","year","cyb")
 
+edges <- read.csv('full_edges.csv',header=FALSE,sep="\t",colClasses=c("character","character"))
+nodes <- read.table('full_nodes.csv',header=FALSE,sep="\t",colClasses=c("character","character","numeric","numeric"),fileEncoding="latin1",encoding="latin1")
+colnames(edges)=c("from","to");colnames(nodes)=c("name","cyb")
+
+s=scan(file='full_nodes.csv',what="character",sep='\n')
+nodes = strsplit(s,'\t')
+nodes<- data.frame(name=sapply(nodes,function(c){c[1]}),title=sapply(nodes,function(c){c[2]}),year=sapply(nodes,function(c){as.numeric(c[3])}),cyb=sapply(nodes,function(c){as.numeric(c[4])}))
+
+# need to filter ? -> one failed ref
+length(setdiff(nodes$name,vedges))
+setdiff(vedges,nodes$name)
+
+
 library(dplyr)
 e = as.tbl(edges) %>% filter(from %in% nodes$name & to %in% nodes$name)
+# filters 36 edges
 
 #e = merge(x=edges,y=data.frame(vertices$name),by.x=1,by.y=1,all.x=FALSE,all.y=TRUE)
 #e = merge(x=data.frame(e$to,e$from),y=data.frame(vertices$name),by.x=1,by.y=1,all.x=FALSE,all.y=TRUE)
@@ -25,9 +40,15 @@ g = graph.data.frame(as.data.frame(e),vertices=nodes)
 
 # first analysis
 
+cybnodes=V(g)[V(g)$cyb==1]
+citingcyb <- incident(g,v=which(V(g)$cyb==1),mode="all")
+
+
+
+
 # impact factor
 #V(g)$cyb[is.na(V(g)$cyb)]=0
-cybnodes=V(g)[V(g)$cyb==1]
+
 d = degree(g,v=cybnodes,mode="in")
 nodes[which(nodes$name==cybnodes[242]$name),]
 hist(d,breaks=100,main="Degree distribution, mean (impact factor) = 1.4");abline(v=mean(d),col='red')
@@ -63,9 +84,23 @@ g = induced.subgraph(g,which(clust$membership==cmax))
 #com <- walktrap.community(g)
 
 # cliques
-#clic = cliques(g,min=3)
-#clic_lengths = sapply(clic,length)
+gc = induced.subgraph(g,v=which(degree(g,mode="all")>=3))
+clic = cliques(gc,min=4)
+clic_lengths = sapply(clic,length)
 #hist(clic_lengths,breaks=20)
+
+# write cliques to file to avoid recomputation
+clicmat = matrix("0",length(clic),8)
+for(r in 1:length(clic)){currentclic = V(gc)$name[clic[[r]]];clicmat[r,1:length(currentclic)]=currentclic}
+write.table(clicmat,file='clics_ids.csv',row.names = FALSE,col.names = FALSE,sep=";")
+cyb = which(V(g)$cyb==1)
+cybclics = which(sapply(clic,function(c){length(intersect(c,cyb))>0}))
+for(i in cybclics){
+  sc = induced.subgraph(gc,V(gc)[clic[[i]]])
+  plot(sc,vertex.label=V(sc)$title)
+}
+
+
 
 ## Graph too big ?
 
@@ -86,16 +121,21 @@ path.length.hist(g)
 barplot(path.length.hist(g)$res,main="path length distribution",ylab="count")
 
 # example from vertex 1
-paths = get.shortest.paths(g,from=V(g)[1],mode="all")
+paths = get.shortest.paths(g,from=V(g)[22],mode="all")
 vs=c();pathnum=1000;for(i in 2:pathnum){vs=append(vs,paths$vpath[[i]])}
 s=induced.subgraph(g,V(g)[vs])
 write.graph(s,"test.gml","gml")
 
 centrality = centralization.betweenness(s,directed=FALSE)$res
-plot(s,layout=layout.kamada.kawai,vertex.size=10*centrality/max(centrality),
+plot(s,layout=layout.reingold.tilford#layout.kamada.kawai
+     ,vertex.size=10*centrality/max(centrality),
      vertex.label=NA,#1:length(V(s)),vertex.label.cex=1,
      edge.arrow.size=0.1)
 
+
+clics = cliques(s,min=4)
+sc = induced.subgraph(s,V(s)[clics[[1]]])
+plot(sc,vertex.label=V(sc)$title)
 
 v1 = V(g)[V(g)$title=="Dynamique de la mangrove de l’estuaire du Saloum (Sénégal) entre 1972 et 2010"]
 v2 = V(g)[V(g)$title=="Les conceptions initiales des élèves turcs de CM2 relatives aux séismes"]
