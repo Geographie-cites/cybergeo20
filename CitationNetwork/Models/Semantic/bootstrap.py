@@ -2,10 +2,10 @@
 
 # bootstrap for relevant terms extraction
 
-import numpy
+import numpy,kwFunctions,utils
 
 def test_bootstrap() :
-    corpus = get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;')
+    corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;')
     bootstrap_subcorpuses(corpus,100,100,100)
 
 
@@ -15,7 +15,7 @@ def bootstrap_subcorpuses(corpus,kwLimit,subCorpusSize,bootstrapSize):
 
     print('Bootstrapping on corpus of size '+str(N))
 
-    occurence_dicos = import_kw_dico()
+    occurence_dicos = utils.import_kw_dico('../../Data/dumps/20160125_cybergeo.sqlite3')
 
     # generate bSize extractions
     #   -> random subset of 1:N of size subCorpusSize
@@ -28,7 +28,7 @@ def bootstrap_subcorpuses(corpus,kwLimit,subCorpusSize,bootstrapSize):
         print("bootstrap : run "+str(eind))
         extraction = extractions[eind]
         subcorpus = [corpus[i] for i in extraction]
-        [keywords,ref_kw_local_dico] = extract_relevant_keywords(subcorpus,kwLimit,occurence_dicos)
+        [keywords,ref_kw_local_dico] = kwFunctions.extract_relevant_keywords(subcorpus,kwLimit,occurence_dicos)
 
         # add termhoods
         for kw in keywords.keys() :
@@ -42,4 +42,4 @@ def bootstrap_subcorpuses(corpus,kwLimit,subCorpusSize,bootstrapSize):
 		       ref_kw_dico[ref].add(kw)
 
     # sort on termhoods (no need to normalize) adn returns
-    return(extract_from_termhood(mean_termhoods,ref_kw_dico,kwLimit))
+    return(kwFunctions.extract_from_termhood(mean_termhoods,ref_kw_dico,kwLimit))

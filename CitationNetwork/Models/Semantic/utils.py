@@ -2,7 +2,7 @@
 
 # utils Functions
 
-import MySQLdb
+import MySQLdb,sqlite3
 
 # read a conf file under the format key:value
 # , returns a dictionary
@@ -17,6 +17,7 @@ def read_conf(file):
         currentLine = conf.readline().replace('\n','')
     return(res)
 
+# return the mysql connection
 def configure_sql():
     # conf mysql
     conf=read_conf('conf/mysql.conf')
@@ -25,10 +26,17 @@ def configure_sql():
     conn = MySQLdb.connect("localhost",user,password,"cybergeo",charset="utf8")
     return(conn)
 
+# returns sqlite connection
+def configure_sqlite(database):
+    return(sqlite3.connect(database))
 
 
-def get_data(query):
-    conn = configure_sql()
+
+def get_data(query,source):
+    if source='mysql' :
+        conn = configure_sql()
+    else :
+        conn = configure_sqlite(source)
     cursor = conn.cursor()
     cursor.execute(query)
     data=cursor.fetchall()
@@ -36,9 +44,9 @@ def get_data(query):
 
 ##
 # usage : [ref_kw_dico,kw_ref_dico] = import_kw_dico()
-def import_kw_dico():
+def import_kw_dico(source):
     # import extracted keywords from database
-    data = get_data('SELECT id,abstract_keywords FROM refdesc WHERE abstract_keywords IS NOT NULL;')
+    data = get_data('SELECT id,abstract_keywords FROM refdesc WHERE abstract_keywords IS NOT NULL;',source)
 
     ref_kw_dico = dict() # dictionnary refid -> keywords as list
     kw_ref_dico = dict() # dictionnary keywords -> refs as list

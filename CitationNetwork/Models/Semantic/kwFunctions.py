@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import nltk
+import utils
 
 # kw extraction functions common to kw Extraction and Bootstrap
 #  -> for separation TreeTagger/other (necessites server installation)
@@ -9,7 +10,7 @@ import nltk
 def extract_relevant_keywords(corpus,kwLimit,occurence_dicos):
     print('Extracting relevant keywords...')
 
-    [ref_kw_dico,kw_ref_dico] = extract_sub_dicos(corpus,occurence_dicos)
+    [ref_kw_dico,kw_ref_dico] = utils.extract_sub_dicos(corpus,occurence_dicos)
 
     # compute unithoods
     print('Compute unithoods...')
