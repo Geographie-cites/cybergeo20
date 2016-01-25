@@ -1,54 +1,28 @@
 # -*- coding: utf-8 -*-
-import nltk,MySQLdb,time,locale,sys
+import nltk,time,locale,sys
 from treetagger import TreeTagger
 
-
-def run():
-    run_kw_extraction()
-
-
-
-
-# read a conf file under the format key:value
-# , returns a dictionary
-def read_conf(file):
-    conf = open(file,'r')
-    res=dict()
-    currentLine = conf.readline().replace('\n','')
-    while currentLine != '' :
-        t=str.split(currentLine,':')
-        if len(t) != 2 : raise Exception('error in conf file')
-        res[t[0]]=t[1]
-        currentLine = conf.readline().replace('\n','')
-    return(res)
 
 
 
 
 def run_kw_extraction() :
-    start = time.time()
-    conf=read_conf('conf/mysql.conf')
-    user = conf['user']
-    password = conf['password']
+    #start = time.time()
+
+    # dirty
     while True :
         # get data from mysql
-        conn = MySQLdb.connect("localhost",user,password,"cybergeo",charset="utf8")
-        cursor = conn.cursor()
-        cursor.execute('SELECT id,abstract FROM refdesc WHERE abstract_keywords IS NULL;')
-        data=cursor.fetchall()
+
+        data = get_data('SELECT id,abstract FROM refdesc WHERE abstract_keywords IS NULL;')
 
         for ref in data:
             language = get_language(ref[1])
-	    keywords = extract_keywords(ref[1],ref[0],language)
-            #print(language)
-	    #print(keywords)
-	    # insert
-	    #kwtext = reduce(lambda l1,l2 : reduce(lambda s1,s2 : s1+' '+s2,l1)+';'+reduce(lambda s1,s2 : s1+' '+s2,l2),keywords)
+	        keywords = extract_keywords(ref[1],ref[0],language)
             kwtext = ""
-	    for multistem in keywords:
-		kwtext=kwtext+reduce(lambda s1,s2 : s1+' '+s2,multistem)+";"
-	    print(kwtext)
-	    cursor.execute("INSERT INTO refdesc (id,language,abstract_keywords) VALUES (\'"+ref[0].encode('utf8')+"\',\'"+language.encode('utf8')+"\',\'"+kwtext+"\') ON DUPLICATE KEY UPDATE language = VALUES(language),abstract_keywords=VALUES(abstract_keywords);")
+	        for multistem in keywords:
+		        kwtext=kwtext+reduce(lambda s1,s2 : s1+' '+s2,multistem)+";"
+	            print(kwtext)
+	        cursor.execute("INSERT INTO refdesc (id,language,abstract_keywords) VALUES (\'"+ref[0].encode('utf8')+"\',\'"+language.encode('utf8')+"\',\'"+kwtext+"\') ON DUPLICATE KEY UPDATE language = VALUES(language),abstract_keywords=VALUES(abstract_keywords);")
             conn.commit()
 
         conn.close()
@@ -82,34 +56,28 @@ def get_language(text):
 def extract_keywords(raw_text,id,language):
 
     print("Extracting keywords for "+id)
-  #  print(raw_text)
- #   print(get_language(raw_text))
 
     stemmer = nltk.PorterStemmer()
 
     # Construct text
 
-
     # Tokens
-    
-    if language == 'english': 
+
+    if language == 'english':
         tokens = nltk.word_tokenize(raw_text)
-    # filter undesirable words and format
+        # filter undesirable words and format
         words = [w.replace('\'','') for w in tokens if len(w)>=3]
         text = nltk.Text(words)
 
         tagged_text = nltk.pos_tag(text)
-    
+
     else:
        tt = TreeTagger(encoding='utf-8',language='french')
        tagged_text =tt.tag(raw_text.replace('\'',' ').replace(u'\u2019',' ').replace(u'\xab',' ').replace(u'\xbb',' '))
 
     print(tagged_text)
-    
-    # detect language using stop words, adapt filtering/stemming technique in function
 
-    #nouns = [tg[0] for tg in tagged_text if tg[1]=='NN' or tg[1]=='NNP' ]
-    #print(nouns)
+    # detect language using stop words, adapt filtering/stemming technique in function
 
     # multi-term
     multiterms = []
@@ -122,7 +90,7 @@ def extract_keywords(raw_text,id,language):
                 #        print(tags)
 		#	print(potential_multi_term(tags,language))
 		if potential_multi_term(tags,language) :
-                    multistem = [] 
+                    multistem = []
 		    if language == 'english':
 			#print(tags)
 			#for k in range(i,i+l):
@@ -146,19 +114,79 @@ def extract_keywords(raw_text,id,language):
 
 
 
-def main():
+# extract relevant keywords, using unithood and termhood
+#  @returns [tselected,p_tsel_dico] : dico kw -> termhood ; dico patent -> kws
+def extract_relevant_keywords(corpus,kwLimit,occurence_dicos):
+    print('Extracting relevant keywords...')
 
-    # import utils
-    # execfile('../Utils/utils.py')
+    [ref_kw_dico,kw_ref_dico] = extract_sub_dicos(corpus,occurence_dicos)
 
-    #sys.setdefaultencoding('utf8')
-    # deprecated in python 2.6
+    # compute unithoods
+    print('Compute unithoods...')
+    unithoods = dict()
+    for k in kw_ref_dico.keys():
+        l = len(k.split(' '))
+        unithoods[k]=math.log(l+1)*len(kw_ref_dico[k])
 
-    start = time.time()
+    # sort and keep K*N keywords ; K = 4 for now ?
+    selected_kws = dict() # dictionary : kw -> index in matrix
+    sorted_unithoods = sorted(unithoods.items(), key=operator.itemgetter(1),reverse=True)
+    for i in range(4*kwLimit):
+        selected_kws[sorted_unithoods[i][0]] = i
 
-    run()
+    # computing cooccurrences
+    print('Computing cooccurrences...')
+    # compute termhoods :: coocurrence matrix -> in \Theta(16 N^2) - N must thus stay 'small'
+    coocs = []
+    for i in range(len(selected_kws.keys())):
+        coocs.append(([0]*len(selected_kws.keys())))
+    # fill the cooc matrix
+    # for each patent : kws are coocurring if selected.
+    # Beware to filter BEFORE launching O(n^2) procedure
+    #
+    #  Quick implementation using dict ? -> ¡ already optimized !
 
-    print('Ellapsed Time : '+str(time.time() - start))
+    for ref in ref_kw_dico.keys() :
+        sel = []
+        for k in ref_kw_dico[ref] :
+            if k in selected_kws : sel.append(k)
+        for i in range(len(sel)-1):
+            for j in range(i+1,len(sel)):
+                ii = selected_kws[sel[i]] ; jj= selected_kws[sel[j]] ;
+                coocs[ii][jj] = coocs[ii][jj] + 1
+                coocs[jj][ii] = coocs[jj][ii] + 1
+
+    # compute termhoods
+    colSums = [sum(row) for row in coocs]
+
+    termhoods = [0]*len(coocs)
+    for i in range(len(coocs)):
+        s = 0;
+        for j in range(len(coocs)):
+            if j != i : s = s + (coocs[i][j]-colSums[i]*colSums[j])^2/(colSums[i]*colSums[j])
+        termhoods[i]=s
+
+    # sort and filter on termhoods
+    sorting_termhoods = dict()
+    for k in selected_kws.keys():
+        sorting_termhoods[k]=termhoods[selected_kws[k]]
+
+    return(extract_from_termhood(sorting_termhoods,ref_kw_dico,kwLimit))
 
 
-main()
+def extract_from_termhood(termhoods,ref_kw_dico,kwLimit):
+    sorted_termhoods = sorted(termhoods.items(), key=operator.itemgetter(1),reverse=True)
+
+    tselected = dict()
+    for i in range(kwLimit):
+        tselected[sorted_termhoods[i][0]] = sorted_termhoods[i][1]
+
+    # reconstruct the ref -> tselected dico, finally necessary to build kw nw
+    ref_tsel_dico = dict()
+    for ref in ref_kw_dico.keys() :
+        sel = []
+        for k in ref_kw_dico[ref] :
+            if k in tselected and k not in sel : sel.append(k)
+        ref_tsel_dico[ref] = sel
+
+    return([tselected,ref_tsel_dico])
