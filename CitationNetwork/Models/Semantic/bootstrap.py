@@ -5,8 +5,13 @@
 import numpy,kwFunctions,utils
 
 def test_bootstrap() :
+    kwLimit=1000
+    subCorpusSize=10000
+    bootstrapSize=10000
     corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160125_cybergeo.sqlite3')
-    bootstrap_subcorpuses(corpus,100,100,100)
+    [relevantkw,relevant_dico] = bootstrap_subcorpuses(corpus,kwLimit,subCorpusSize,bootstrapSize)
+    utils.export_dico_csv(relevant_dico,'res/bootstrap_relevantDico_kwLimit'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_bootstrapSize'+str(bootstrapSize))
+    utils.export_list(relevantkw,'res/relevantkw_kwLimit'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_bootstrapSize'+str(bootstrapSize))
 
 
 

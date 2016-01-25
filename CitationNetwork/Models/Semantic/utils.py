@@ -2,7 +2,7 @@
 
 # utils Functions
 
-import MySQLdb,sqlite3
+import MySQLdb,sqlite3,datetime
 
 # read a conf file under the format key:value
 # , returns a dictionary
@@ -94,3 +94,18 @@ def mysql2sqlite(sqlitedatabase):
     cursor.executemany('INSERT INTO refdesc VALUES (?,?,?,?,?,?)', data)
     conn.commit()
     conn.close()
+
+
+
+def export_dico_csv(dico,fileprefix):
+    outfile=open(fileprefix+str(datetime.datetime.now())+'.csv','w')
+    for k in dico.keys():
+        outfile.write(k+";")
+        for kw in dico[k]:
+            outfile.write(kw+";")
+        outfile.write('\n')
+
+def export_list(l,fileprefix):
+    outfile=open(fileprefix+str(datetime.datetime.now())+'.csv','w')
+    for k in l :
+        outfile.write(k+'\n')
