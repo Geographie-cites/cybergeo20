@@ -33,7 +33,7 @@ def configure_sqlite(database):
 
 
 def get_data(query,source):
-    if source='mysql' :
+    if source=='mysql' :
         conn = configure_sql()
     else :
         conn = configure_sqlite(source)

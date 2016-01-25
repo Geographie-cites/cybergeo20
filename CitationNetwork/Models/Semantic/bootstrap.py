@@ -5,7 +5,7 @@
 import numpy,kwFunctions,utils
 
 def test_bootstrap() :
-    corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;')
+    corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','mysql')
     bootstrap_subcorpuses(corpus,100,100,100)
 
 
@@ -15,7 +15,7 @@ def bootstrap_subcorpuses(corpus,kwLimit,subCorpusSize,bootstrapSize):
 
     print('Bootstrapping on corpus of size '+str(N))
 
-    occurence_dicos = utils.import_kw_dico('../../Data/dumps/20160125_cybergeo.sqlite3')
+    occurence_dicos = utils.import_kw_dico('mysql')
 
     # generate bSize extractions
     #   -> random subset of 1:N of size subCorpusSize
