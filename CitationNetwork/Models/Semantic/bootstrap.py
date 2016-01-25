@@ -4,7 +4,7 @@
 
 import numpy
 
-def test_bootstrap :
+def test_bootstrap() :
     corpus = get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;')
     bootstrap_subcorpuses(corpus,100,100,100)
 
