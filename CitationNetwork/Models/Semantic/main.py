@@ -9,7 +9,7 @@ import bootstrap
 
 def run():
     #run_kw_extraction()
-    test_bootstrap()
+    bootstrap.test_bootstrap()
 
 
 
