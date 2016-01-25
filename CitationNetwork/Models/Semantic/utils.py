@@ -69,7 +69,7 @@ def extract_sub_dicos(corpus,occurence_dicos) :
     for ref in corpus :
         ref_id = ref[0].encode('ascii','ignore')
         keywords = []
-	    if ref_id in ref_kw_dico_all :
+        if ref_id in ref_kw_dico_all :
             keywords = ref_kw_dico_all[ref_id]
             ref_kw_dico[ref_id] = keywords
             for k in keywords :
@@ -77,5 +77,3 @@ def extract_sub_dicos(corpus,occurence_dicos) :
                 kw_ref_dico[k].append(ref_id)
 
     return([ref_kw_dico,kw_ref_dico])
-
-    
