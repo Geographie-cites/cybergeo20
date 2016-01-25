@@ -85,3 +85,12 @@ def extract_sub_dicos(corpus,occurence_dicos) :
                 kw_ref_dico[k].append(ref_id)
 
     return([ref_kw_dico,kw_ref_dico])
+
+
+def mysql2sqlite(sqlitedatabase):
+    data = get_data('SELECT * FROM refdesc WHERE abstract_keywords IS NOT NULL','mysql')
+    conn = configure_sqlite(sqlitedatabase)
+    cursor = conn.cursor()
+    cursor.executemany('INSERT INTO refdesc VALUES (?,?,?,?,?,?)', data)
+    conn.commit()
+    conn.close()
