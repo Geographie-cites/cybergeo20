@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import nltk
+import nltk,math,operator
 import utils
 
 # kw extraction functions common to kw Extraction and Bootstrap
