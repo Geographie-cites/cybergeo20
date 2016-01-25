@@ -26,7 +26,7 @@ def bootstrap_subcorpuses(corpus,kwLimit,subCorpusSize,bootstrapSize):
 
     for eind in range(len(extractions)) :
         print("bootstrap : run "+str(eind))
-	    extraction = extractions[eind]
+        extraction = extractions[eind]
         subcorpus = [corpus[i] for i in extraction]
         [keywords,ref_kw_local_dico] = extract_relevant_keywords(subcorpus,kwLimit,occurence_dicos)
 
