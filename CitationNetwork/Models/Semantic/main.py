@@ -1,7 +1,17 @@
 # -*- coding: utf-8 -*-
 import time
 
+def imports():
+    # import files - beware of order
+    execfile('utils.py')
+    execfile('kwFunctions.py')
+    #execfile('kwExtraction.py')
+    execfile('bootstrap.py')
+
+
 def run():
+    imports()
+
     #run_kw_extraction()
     test_bootstrap()
 
@@ -17,12 +27,6 @@ def main():
 
     #sys.setdefaultencoding('utf8')
     # deprecated in python 2.6
-
-    # import files - beware of order
-    execfile('utils.py')
-    execfile('kwFunctions.py')
-    #execfile('kwExtraction.py')
-    execfile('bootstrap.py')
 
     start = time.time()
 
