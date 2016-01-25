@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
 import time
 
-import utils
-import kwFunctions
-# import kwExtraction
 import bootstrap
 
 
 def run():
     #run_kw_extraction()
-    test_bootstrap()
+    bootstrap.test_bootstrap()
 
 
 
