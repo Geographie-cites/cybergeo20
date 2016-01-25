@@ -5,7 +5,7 @@
 import numpy,kwFunctions,utils
 
 def test_bootstrap() :
-    corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;')
+    corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160125_cybergeo.sqlite3')
     bootstrap_subcorpuses(corpus,100,100,100)
 
 
