@@ -1,17 +1,13 @@
 # -*- coding: utf-8 -*-
 import time
 
-def imports():
-    # import files - beware of order
-    execfile('utils.py')
-    execfile('kwFunctions.py')
-    #execfile('kwExtraction.py')
-    execfile('bootstrap.py')
+import utils
+import kwFunctions
+# import kwExtraction
+import bootstrap
 
 
 def run():
-    imports()
-
     #run_kw_extraction()
     test_bootstrap()
 
