@@ -34,7 +34,7 @@ def run_kw_extraction() :
         # get data from mysql
         conn = MySQLdb.connect("localhost",user,password,"cybergeo",charset="utf8")
         cursor = conn.cursor()
-        cursor.execute('SELECT id,abstract FROM refdesc;')# WHERE abstract_keywords IS NULL;')
+        cursor.execute('SELECT id,abstract FROM refdesc WHERE abstract_keywords IS NULL;')
         data=cursor.fetchall()
 
         for ref in data:
@@ -57,15 +57,16 @@ def run_kw_extraction() :
 def potential_multi_term(tagged,language):
     res = True
     for tag in tagged :
-        if language=='english':
-	    res = res and (tag[1]=="NN" or tag[1]=="NNP" or tag[1] == "VBG" or tag[1] =="NNS" or tag[1] =="JJ" or tag[1] =="JJR")
-            #print(tagged)
-	    #print(res)
-	else:
-            if language=='french' :
-	        res = res and (tag[1]=='NOM' or tag[1]=='ADJ') and len(tag[0]) >= 3 #and tag[2]!="<unknown>"
-            else :
-	        res = False
+	if len(tag)>=2 :
+            if language=='english':
+	        res = res and (tag[1]=="NN" or tag[1]=="NNP" or tag[1] == "VBG" or tag[1] =="NNS" or tag[1] =="JJ" or tag[1] =="JJR")
+            else:
+                if language=='french' :
+	            res = res and (tag[1]=='NOM' or tag[1]=='ADJ') and len(tag[0]) >= 3 #and tag[2]!="<unknown>"
+                else :
+	            res = False
+	else :
+	    res=False
     return res
 
 
