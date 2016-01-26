@@ -16,7 +16,7 @@ def test_bootstrap() :
             utils.export_list(relevantkw,'res/conv_kw/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize),False)
 	    for i in range(len(allkw)) :
 		local_kw = allkw[i]
-		utils.export_list(relevantkw,'res/conv_kw/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_run'+str(i),False)
+		utils.export_list(local_kw,'res/conv_kw/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_run'+str(i),False)
 
 
 def run_bootstrap() :
