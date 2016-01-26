@@ -97,15 +97,19 @@ def mysql2sqlite(sqlitedatabase):
 
 
 
-def export_dico_csv(dico,fileprefix):
-    outfile=open(fileprefix+str(datetime.datetime.now())+'.csv','w')
+def export_dico_csv(dico,fileprefix,withDate):
+    datestr = ''
+    if withDate : datestr = str(datetime.datetime.now())
+    outfile=open(fileprefix+datestr+'.csv','w')
     for k in dico.keys():
         outfile.write(k+";")
         for kw in dico[k]:
             outfile.write(kw+";")
         outfile.write('\n')
 
-def export_list(l,fileprefix):
-    outfile=open(fileprefix+str(datetime.datetime.now())+'.csv','w')
+def export_list(l,fileprefix,withDate):
+    datestr = ''
+    if withDate : datestr = str(datetime.datetime.now())
+    outfile=open(fileprefix+datestr+'.csv','w')
     for k in l :
         outfile.write(k+'\n')
