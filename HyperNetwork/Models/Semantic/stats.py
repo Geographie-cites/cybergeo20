@@ -18,7 +18,7 @@ def export_secondaryref_info(request,outfile):
     # iterate on ids - slow ?
     for i in ids :
         print(i[0])
-        ref = utils.get_data('SELECT id,year,language,keywords FROM refdesc WHERE id='+i[0]+';','mysql')
+        ref = utils.get_data('SELECT refdesc.id,year,language,keywords FROM refdesc INNER JOIN refs ON refs.id=refdesc.id WHERE refdesc.id='+i[0]+';','mysql')
         res.append(ref[0])
     export_matrix_csv(data,outfile,False)
 
