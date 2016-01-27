@@ -15,11 +15,14 @@ def export_ref_info():
 def export_secondaryref_info(request,outfile):
     ids = utils.get_data(request,'mysql')
     res=[]
-    # iterate on ids - slow ?
+    data = utils.get_data('SELECT refdesc.id,year,language,keywords FROM refdesc INNER JOIN refs ON refs.id=refdesc.id WHERE keywords IS NOT NULL;','mysql')
+    # put in dico
+    data_dico = dict()
+    for row in data :
+        data_dico[row[0]]=[row[i] for i in range(1,len(row))]
     for i in ids :
         print(i[0])
-        ref = utils.get_data('SELECT refdesc.id,year,language,keywords FROM refdesc INNER JOIN refs ON refs.id=refdesc.id WHERE refdesc.id='+i[0]+';','mysql')
-        res.append(ref[0])
+        res.append(data_dico)
     export_matrix_csv(data,outfile,False)
 
 
