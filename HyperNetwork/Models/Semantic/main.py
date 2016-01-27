@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 import time
 
-import bootstrap,utils
+import bootstrap,utils,stats
 
 
 def run():
     #run_kw_extraction()
     #bootstrap.test_bootstrap()
     #utils.mysql2sqlite('../../Data/dumps/20160126_cybergeo.sqlite3')
-    bootstrap.test_bootstrap()
-
+    #bootstrap.test_bootstrap()
+    stats.export_ref_info()
 
 def main():
 

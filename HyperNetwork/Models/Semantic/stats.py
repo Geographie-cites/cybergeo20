@@ -5,8 +5,8 @@ import utils
 
 
 def export_ref_info():
-    data = get_data('SELECT id,year,language FROM refdesc;','mysql')
-    export_matrix_csv(data,'stats/ref_info',False)
+    data = utils.get_data('SELECT id,year,language FROM refdesc;','mysql')
+    export_matrix_csv(data,'stats/ref_info.csv',False)
 
 
 
