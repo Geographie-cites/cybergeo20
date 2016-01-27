@@ -7,8 +7,24 @@ import utils
 def export_ref_info():
     data = utils.get_data('SELECT refs.id,refs.year,language FROM refdesc INNER JOIN refs ON refs.id=refdesc.id;','mysql')
     #for r in data : print(r)
-    export_matrix_csv(data,'stats/ref_info.csv',False)
+    export_matrix_csv(data,'stats/ref_info',False)
 
+
+##
+#  export infos for refs whose od is obtain from a primary request (parameter)
+def export_secondaryref_info(request,outfile):
+    ids = utils.get_data(request,'mysql')
+    res=[]
+    # iterate on ids - slow ?
+    for i in ids :
+        print(i[0])
+        ref = utils.get_data('SELECT id,year,language,keywords FROM refdesc WHERE id='+i[0]+';','mysql')
+        res.append(ref[0])
+    export_matrix_csv(data,outfile,False)
+
+
+export_secondaryref_info('SELECT citing FROM links INNER JOIN cybergeo on cybergeo.id=links.cited;','stats/citing_info')
+export_secondaryref_info('SELECT cited FROM links INNER JOIN cybergeo on cybergeo.id=links.citing;','stats/cited_info')
 
 
 def export_matrix_csv(m,fileprefix,withDate):

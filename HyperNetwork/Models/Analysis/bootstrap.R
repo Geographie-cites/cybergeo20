@@ -5,7 +5,12 @@
 
 setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Models/Semantic'))
 
-kwdir = 'res/conv_kw'
+
+# basic stats
+stats <- read.csv('stats/ref_info.csv.csv',header=FALSE,sep=";")
+
+
+kwdir = 'res/conv_tm'
 
 # test setdiff
 x = c("kw1","ngram az","kw2")
@@ -17,9 +22,10 @@ y = c("kw1","ngram az")
 # ref corpus is x
 corpusDistance<- function(x,y){
   res=0;s=0;
-  for(xx in x){
+  for(xx in names(x)){
     s=s+(x[[xx]]^2)
-    if(xx %in% y){res=res+((x[[xx]]-y[[xx]])^2)}else{res=res++(x[[xx]]^2)}
+    if(xx %in% names(y)){
+      res=res+((x[[xx]]-y[[xx]])^2)}else{res=res+(x[[xx]]^2)}
   }
   return(res/s)
   #return(1 - (length(intersect(x,y)))/length(y))
@@ -27,20 +33,21 @@ corpusDistance<- function(x,y){
 
 corpusUnion<-function(x,y){
   res=list()
-  for(xx in x){
+  for(xx in names(x)){
     if(xx %in% res){
       res[[xx]]=res[[xx]]+x[[xx]]
     }else{
       res[[xx]]=x[[xx]]
     }
   }
-  for(xx in y){
+  for(xx in names(y)){
     if(xx %in% res){
       res[[xx]]=res[[xx]]+y[[xx]]
     }else{
       res[[xx]]=y[[xx]]
     }
   }
+  return(res)
 }
 
 getCorpus<-function(csize,kw,b){
@@ -53,6 +60,9 @@ getCorpus<-function(csize,kw,b){
   res
 }
 
+a=getCorpus(500,100,sample.int(n=bootstrapSize,size=1)-1);b=getCorpus(500,100,sample.int(n=bootstrapSize,size=1)-1)
+corpusDistance(a,b)
+corpusDistance(getCorpus(500,100,sample.int(n=bootstrapSize,size=1)-1),getCorpus(500,100,sample.int(n=bootstrapSize,size=1)-1))
 #show(intersect(getCorpus(fullsize,kw,sample.int(n=bootstrapSize,size=1)-1),getCorpus(fullsize,kw,sample.int(n=bootstrapSize,size=1)-1)))
 
 fullsize = 2000
@@ -73,7 +83,7 @@ for(csize in corpusSizes){
       allkw=list();p=k
       for(b in 1:bootstrapSize){
         allkw=corpusUnion(allkw,getCorpus(csize,kw,sampling[b]))
-        mdata[i,] = c(csize,kw,b,corpusDistance(lapply(allkw,function(x){x/b}),getCorpus(fullsize,kw,0)),p)
+        mdata[i,] = c(csize,kw,b,corpusDistance(getCorpus(fullsize,kw,0),lapply(allkw,function(x){x/b})),p)
         i=i+1
         p=p+1
       }

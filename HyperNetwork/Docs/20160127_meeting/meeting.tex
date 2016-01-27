@@ -14,6 +14,23 @@
 \date{R{\'e}union 27/01/2016}
 
 
+\usebackgroundtemplate{%
+  \AddToShipoutPicture*{
+    \put(0,0){
+        \parbox[b][\paperheight]{\paperwidth}{%
+            \vfill
+            \centering
+            \includegraphics[width=\paperwidth]{figures/nw}%
+            \vfill
+        }
+    }
+    \put(0,0){%
+        \transparent{0.9}\textcolor{white}{\rule{\paperwidth}{\paperheight}}
+    }
+}
+  %\includegraphics[width=1.5\paperwidth,height=1.5\paperheight]{figures/nw}
+} 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \titlepage
@@ -25,34 +42,43 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+\usebackgroundtemplate{}
 
 
 \section{Réseaux Sémantique}
 
 
-\jframe{Réseaux Sémantique}{
-Collection des résumés/années/auteurs pour les 400000 références via l'API Mendeley
-$\rightarrow$ $\sim 215000$ références avec texte.
-% TODO hist per year ?
+\jframe{Collection des donn{\'e}es}{
+
+\textbf{Retour sur le r{\'e}seau de citations.} apr{\`e}s raffinement, $\simeq$ 947 r{\'e}f{\'e}rences de cybergeo exploitables, sur $\simeq 1200$ ; certaines inexistantes, d'autres mal enregistr{\'e}es sur scholar $\rightarrow$ possibilit{\'e} de compl{\'e}ter {\`a} la main (long...).
+
+\bigskip
+
+\textbf{R{\'e}seau s{\'e}mantique.} Collection des r{\'e}sum{\'e}s/ann{\'e}es/auteurs/mots-cl{\'e}s pour les 400000 r{\'e}f{\'e}rences via l'API Mendeley
+$\rightarrow$ $\sim 215000$ r{\'e}f{\'e}rences avec donn{\'e}es compl{\`e}tes.
+
+\textbf{Statistiques}
+
+\textit{Langues :} anglais 206607, francais 4109, espagnol 2029, allemand 892, portugais 891, n{\'e}erlandais 124, autres 182
+
+\textit{Repartitions par ann{\'e}es : }
+\centering
+
+\includegraphics[width=0.3\textwidth,height=0.3\textheight]{figures/years}
+
 }
 
 
 
-\jframe{Caract{\'e}ristiques du r{\'e}seau}{
-\textit{418670 Noeuds et 570352 Liens ; Diam{\'e}tre : 9 ; Densit{\'e} : 3.25E-6 ; degré moyen : 2.724284}
+\jframe{Extraction des mots-cl{\'e}s brute}{
 
-%\includegraphics[width=0.8\textwidth]{figures/degreeDistrib}
-}
-
-\jframe{Extraction des mots-clés brute}{
-
-\textit{Text-mining en python avec nltk}
+\textit{Text-mining en python avec \texttt{nltk}}
 
 \begin{itemize}
-\item Detection de la langue par \emph{stop-words} % TODO language stats
+\item Detection de la langue par \textit{stop-words} % TODO language stats
 \item Parsing/tokenizing/pos-tagging/stemming effectué différemment selon la langue :
 \begin{itemize}
-\item Anglais : pos-tagger intégré à \texttt{nltk}, combiné à un \emph{PorterStemmer}
+\item Anglais : pos-tagger intégré à \texttt{nltk}, combin{\'e} à un \emph{PorterStemmer}
 \item Français ou autre : utilisation de \texttt{TreeTagger}
 \end{itemize}
 \item Selection des \emph{n-grams} potentiels (avec $1 \leq n \leq 4$) : anglais $\bigcap \{NN \cup VBG \cup JJ \}$ ;  français  $\bigcap \{NOM \cup ADJ\}$
@@ -63,8 +89,28 @@ $\rightarrow$ $\sim 215000$ références avec texte.
 
 
 \jframe{Estimation de la pertinence par bootstrap}{
-Estimation exacte de la pertinence en $\Theta (\sum_i N_i^2)$ : impossible sur un corpus où $\sum_i N_i^2 \simeq N <N_i>^2 \simeq 4\cdot 10^6$
+Estimation exacte de la pertinence via la repartition statistique des co-occurrences (score de $\chi^2$) : \textit{termhood} d{\'e}finie comme
+\[
+t_i = \sum_{j\neq i}\frac{\left( M_{ij} - \sum_{k}M_{ik} \sum_{k} M_{jk}\right)^2}{\sum_{k}M_{ik} \sum_{k} M_{jk}}
+\]
+
+
+en $\Theta (\sum_i N_i^2)$ ($N_i$ taille des r{\'e}sum{\'e}s) : impossible sur un corpus o{\`u} $\sum_i N_i^2 \simeq N <N_i>^2 \simeq 4\cdot 10^6$
+
+\bigskip
+
+
+$\rightarrow$ Estimation par \textit{boootstrap} sur des {\'e}chantillons du corpus : moyenne de la termhood sur $B$ {\'e}chantillons de taille $C$, avec nombre de mots cl{\'e}s $K_L$
+
+
 }
+
+
+\jframe{Bootstrap : convergence de l'estimateur}{
+\includegraphics[width=0.55\textwidth,height=0.6\textheight]{figures/kw50}
+\includegraphics[width=0.55\textwidth,height=0.6\textheight]{figures/kw200}
+}
+
 
 
 
@@ -74,19 +120,20 @@ Estimation exacte de la pertinence en $\Theta (\sum_i N_i^2)$ : impossible sur u
 
 \jframe{Suite}{
 \begin{itemize}
-\item D{\'e}tection de disciplines par communaut{\'e}s dans le réseau sémantique.
-\item Croisement des deux couches pour extraire positionnement et importance disciplinaire de cyberg{\'e}o
+\item Bootstrap parallelis{\'e} sur l'ensemble du corpus
+\item Construction du r{\'e}seau : co-occurrences dans les r{\'e}f{\'e}rences\\\textbf{Q : } utilisation des mots-cl{\'e}s des m{\'e}tadonn{\'e}es ? si oui filtrage sur fr{\'e}quence ? test avec/sans
+\item D{\'e}tection de disciplines par communaut{\'e}s dans le r{\'e}seau s{\'e}mantique
+\item Croisement des deux couches pour extraire positionnement et importance disciplinaire de Cyberg{\'e}o
 \end{itemize}
 
 }
 
-\jframe{Résultats attendus}{
+\jframe{R{\'e}sultats attendus}{
 \begin{itemize}
-\item Analyse th{\'e}matique cibl{\'e}e des communaut{\'e}s/cliques
-\item Analyses diachroniques
-\item Collection des textes des \textit{abstract} pour l'ensemble du corpus
-\item Construction du r{\'e}seau s{\'e}mantique ; d{\'e}tection de disciplines par communaut{\'e}s.
-\item Croisement des deux couches pour extraire positionnement et importance disciplinaire de cyberg{\'e}o
+\item Couche des citations : analyse plus fines, cliques et communaut{\'e}s
+\item Interdisciplinarit{\'e} au premier ordre : positionnement de cybergeo dans les cluster s{\'e}mantiques (un article pouvant {\^e}tre vu comme un vecteur de propbabilit{\'e}s d'appartenance aux disciplines)
+\item Interdisciplinarit{\'e} au second ordre : liens de citation autour de cybergeo vers les diff{\'e}rentes disciplines
+\item Comparaison des structures de communaut{\'e} : coefficient de clustering inter-couches ; donne tendance g{\'e}n{\'e}rale
 \end{itemize}
 
 }
