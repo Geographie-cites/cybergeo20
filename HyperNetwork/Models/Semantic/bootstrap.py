@@ -14,9 +14,11 @@ def test_bootstrap() :
             [relevantkw,relevant_dico,allkw] = bootstrap_subcorpuses(corpus,kwLimit,subCorpusSize,bootstrapSize)
             utils.export_dico_csv(relevant_dico,'res/conv_dico/bootstrap_relevantDico_kwLimit'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_bootstrapSize'+str(bootstrapSize),True)
             utils.export_list(relevantkw,'res/conv_kw/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize),False)
+	    utils.export_dico_num_csv(relevantkw,'res/conv_tm/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize),False)
 	    for i in range(len(allkw)) :
 		local_kw = allkw[i]
-		utils.export_list(local_kw,'res/conv_kw/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_run'+str(i),False)
+		utils.export_list(local_kw.keys(),'res/conv_kw/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_run'+str(i),False)
+		utils.export_dico_num_csv(local_kw,'res/conv_tm/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_run'+str(i),False)		
 
 
 def run_bootstrap() :
@@ -41,7 +43,9 @@ def bootstrap_subcorpuses(corpus,kwLimit,subCorpusSize,bootstrapSize):
 
     # generate bSize extractions
     #   -> random subset of 1:N of size subCorpusSize
-    extractions = [numpy.random.random_integers(0,(N-1),subCorpusSize) for b in range(bootstrapSize)]
+    extractions = [map(lambda x : x - 1,numpy.random.choice(N,subCorpusSize,replace=False)) for b in range(bootstrapSize)]
+
+    # numpy.random.choice(N, size, replace=False)
 
     mean_termhoods = dict() # mean termhoods progressively updated
     ref_kw_dico = dict() # ref -> kw dico : cumulated on repetitions. if a kw is relevant a few time, counted as 0 in mean.
@@ -54,7 +58,7 @@ def bootstrap_subcorpuses(corpus,kwLimit,subCorpusSize,bootstrapSize):
         subcorpus = [corpus[i] for i in extraction]
         [keywords,ref_kw_local_dico] = kwFunctions.extract_relevant_keywords(subcorpus,kwLimit,occurence_dicos)
 
-	allkw.append(keywords.keys())
+	allkw.append(keywords)
 
         # add termhoods
         for kw in keywords.keys() :
@@ -92,7 +96,7 @@ def bootstrap_subcorpuses_parallel(corpus,kwLimit,subCorpusSize,bootstrapSize):
 
     # generate bSize extractions
     #   -> random subset of 1:N of size subCorpusSize
-    extractions = [[numpy.random.random_integers(0,(N-1),subCorpusSize),corpus,kwLimit,occurence_dicos] for b in range(bootstrapSize)]
+    # TODO extractions = [[numpy.random.random_integers(0,(N-1),subCorpusSize),corpus,kwLimit,occurence_dicos] for b in range(bootstrapSize)]
 
     mean_termhoods = dict() # mean termhoods progressively updated
     ref_kw_dico = dict() # ref -> kw dico : cumulated on repetitions. if a kw is relevant a few time, counted as 0 in mean.

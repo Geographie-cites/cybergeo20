@@ -47,16 +47,23 @@ def extract_relevant_keywords(corpus,kwLimit,occurence_dicos):
                 coocs[ii][jj] = coocs[ii][jj] + 1
                 coocs[jj][ii] = coocs[jj][ii] + 1
 
+    #print('coocs : ')
+    #print(coocs)
+
     # compute termhoods
     colSums = [sum(row) for row in coocs]
+
+    #print('colsums : ')
+    #print(colSums)
 
     termhoods = [0]*len(coocs)
     for i in range(len(coocs)):
         s = 0;
         for j in range(len(coocs)):
-            if j != i : s = s + (coocs[i][j]-colSums[i]*colSums[j])^2/(colSums[i]*colSums[j])
+            if j != i : s = s + ((coocs[i][j]-(colSums[i]*colSums[j]))*(coocs[i][j]-(colSums[i]*colSums[j])))/(colSums[i]*colSums[j])
         termhoods[i]=s
 
+    #print(termhoods)
     # sort and filter on termhoods
     sorting_termhoods = dict()
     for k in selected_kws.keys():

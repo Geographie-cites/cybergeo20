@@ -107,6 +107,17 @@ def export_dico_csv(dico,fileprefix,withDate):
             outfile.write(kw+";")
         outfile.write('\n')
 
+
+def export_dico_num_csv(dico,fileprefix,withDate):
+    datestr = ''
+    if withDate : datestr = str(datetime.datetime.now())
+    outfile=open(fileprefix+datestr+'.csv','w')
+    for k in dico.keys():
+        outfile.write(k+";")
+        outfile.write(str(dico[k]))
+        outfile.write('\n')
+
+
 def export_list(l,fileprefix,withDate):
     datestr = ''
     if withDate : datestr = str(datetime.datetime.now())
