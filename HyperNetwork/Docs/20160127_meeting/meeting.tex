@@ -1,0 +1,96 @@
+\input{/Users/Juste/Documents/ComplexSystems/CityNetwork/Docs/Headers/PresentationHeader.tex}
+
+
+
+\title{Cybergeo : Bibliom{\'e}trie indirecte par analyse de r{\'e}seau}
+
+
+%\author{J.~Raimbault$^{1,2}$}
+
+%\institute{$^{1}$G{\'e}ographie-cit{\'e}s (UMR 8504 CNRS)\\
+%$^{2}$LVMT (UMR-T 9403 IFSTTAR)}
+
+
+\date{R{\'e}union 27/01/2016}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\titlepage
+\end{frame}
+
+%\begin{frame}
+%\tableofcontents
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\section{Réseaux Sémantique}
+
+
+\jframe{Réseaux Sémantique}{
+Collection des résumés/années/auteurs pour les 400000 références via l'API Mendeley
+$\rightarrow$ $\sim 215000$ références avec texte.
+% TODO hist per year ?
+}
+
+
+
+\jframe{Caract{\'e}ristiques du r{\'e}seau}{
+\textit{418670 Noeuds et 570352 Liens ; Diam{\'e}tre : 9 ; Densit{\'e} : 3.25E-6 ; degré moyen : 2.724284}
+
+%\includegraphics[width=0.8\textwidth]{figures/degreeDistrib}
+}
+
+\jframe{Extraction des mots-clés brute}{
+
+\textit{Text-mining en python avec nltk}
+
+\begin{itemize}
+\item Detection de la langue par \emph{stop-words} % TODO language stats
+\item Parsing/tokenizing/pos-tagging/stemming effectué différemment selon la langue :
+\begin{itemize}
+\item Anglais : pos-tagger intégré à \texttt{nltk}, combiné à un \emph{PorterStemmer}
+\item Français ou autre : utilisation de \texttt{TreeTagger}
+\end{itemize}
+\item Selection des \emph{n-grams} potentiels (avec $1 \leq n \leq 4$) : anglais $\bigcap \{NN \cup VBG \cup JJ \}$ ;  français  $\bigcap \{NOM \cup ADJ\}$
+\item Insertion en base pour extraction quasi-instantanée plus tard (10j $\rightarrow$ 5min)
+\end{itemize}
+
+}
+
+
+\jframe{Estimation de la pertinence par bootstrap}{
+Estimation exacte de la pertinence en $\Theta (\sum_i N_i^2)$ : impossible sur un corpus où $\sum_i N_i^2 \simeq N <N_i>^2 \simeq 4\cdot 10^6$
+}
+
+
+
+
+\section{Suite de l'étude}
+
+
+\jframe{Suite}{
+\begin{itemize}
+\item D{\'e}tection de disciplines par communaut{\'e}s dans le réseau sémantique.
+\item Croisement des deux couches pour extraire positionnement et importance disciplinaire de cyberg{\'e}o
+\end{itemize}
+
+}
+
+\jframe{Résultats attendus}{
+\begin{itemize}
+\item Analyse th{\'e}matique cibl{\'e}e des communaut{\'e}s/cliques
+\item Analyses diachroniques
+\item Collection des textes des \textit{abstract} pour l'ensemble du corpus
+\item Construction du r{\'e}seau s{\'e}mantique ; d{\'e}tection de disciplines par communaut{\'e}s.
+\item Croisement des deux couches pour extraire positionnement et importance disciplinaire de cyberg{\'e}o
+\end{itemize}
+
+}
+
+
+
+\end{document}
