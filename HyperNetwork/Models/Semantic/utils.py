@@ -42,6 +42,40 @@ def get_data(query,source):
     data=cursor.fetchall()
     return(data)
 
+
+def fetchone_sqlite(query,database):
+    conn = configure_sqlite(database)
+    cursor = conn.cursor()
+    cursor.execute(query)
+    res = fetchone()
+    conn.commit()
+    conn.close()
+    return(res)
+
+
+def insert_sqlite(query,database):
+    conn = configure_sqlite(database)
+    cursor = conn.cursor()
+    cursor.execute(query)
+    conn.commit()
+    conn.close()
+
+
+
+
+
+##
+# query formatted with ?
+#    'INSERT INTO table VALUES (?,?,?,?,?)'
+def insertmany_sqlite(query,values,database):
+    conn = configure_sqlite(database)
+    cursor = conn.cursor()
+    cursor.executemany(query)
+    conn.commit()
+    conn.close()
+
+
+
 ##
 # usage : [ref_kw_dico,kw_ref_dico] = import_kw_dico()
 def import_kw_dico(source):
