@@ -75,6 +75,14 @@ def insertmany_sqlite(query,values,database):
     conn.close()
 
 
+def implode(l,delimiter):
+    res=''
+    for k in range(len(l)-1):
+        res = res+str(l[k])+delimiter
+    res = res+l[len(l)-1]
+    return(res)
+
+
 
 ##
 # usage : [ref_kw_dico,kw_ref_dico] = import_kw_dico()
