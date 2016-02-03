@@ -3,11 +3,38 @@ library(tm)
 library(rgeos)
 library(rgdal)
 
+library(RODBC)
+
 path = "/Users/clementinecottineau/Documents/cybergeo20/R_Country_Wordcloud/"
 REG = readOGR(dsn=paste(path, "FRA_adm/FRA_adm1.shp", sep=""),
-                 layer = "FRA_adm1", encoding="utf8")
+              layer = "FRA_adm1", encoding="utf8")
 
+
+world = readOGR(dsn=paste(path, "world/world.shp", sep=""),
+                layer = "world", encoding="utf8")
+plot(world)
+
+REG = world
+
+countries = world@data
+countries$polygonID = rownames(countries)
+countries$polygonID = as.numeric(countries$polygonID) + 1
+write.csv(countries, paste0(path, "countrycodes.csv"))
 REG@bbox
+
+for (i in 1:256){
+print(REG@polygons[[i]]@ID)
+}
+
+plot(REG@polygons[[4]])
+
+dim(REG)
+REG <- REG[4,]
+plot(REG[219,])
+
+REG@data
+t = REG[REG@polygons[[4]]@ID]
+
 
 REG@data[REG@data$ID_1 == 1,]
 
@@ -68,7 +95,7 @@ LOC
 LOC$Random = runif(dim(LOC)[[1]], 0, 1)
 LOC$NewY = ifelse(LOC$RFREQ < 1, LOC$Random * LOC$Ymin + (1-LOC$Random) * LOC$Ymax,LOC$Y)
 LOC
-plot(REG)
+plot(REG, col="grey", border=F)
 x <- LOC[,"X"]
 y <- LOC[,"NewY"]
 w <- LOC[,"WORDS"]
