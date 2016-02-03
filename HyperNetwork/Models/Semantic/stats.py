@@ -26,8 +26,8 @@ def export_secondaryref_info(request,outfile):
     export_matrix_csv(data,outfile,False)
 
 
-export_secondaryref_info('SELECT citing FROM links INNER JOIN cybergeo on cybergeo.id=links.cited;','stats/citing_info')
-export_secondaryref_info('SELECT cited FROM links INNER JOIN cybergeo on cybergeo.id=links.citing;','stats/cited_info')
+#export_secondaryref_info('SELECT citing FROM links INNER JOIN cybergeo on cybergeo.id=links.cited;','stats/citing_info')
+#export_secondaryref_info('SELECT cited FROM links INNER JOIN cybergeo on cybergeo.id=links.citing;','stats/cited_info')
 
 
 def export_matrix_csv(m,fileprefix,withDate):

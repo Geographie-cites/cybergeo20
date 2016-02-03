@@ -47,7 +47,7 @@ def fetchone_sqlite(query,database):
     conn = configure_sqlite(database)
     cursor = conn.cursor()
     cursor.execute(query)
-    res = fetchone()
+    res = cursor.fetchone()
     conn.commit()
     conn.close()
     return(res)

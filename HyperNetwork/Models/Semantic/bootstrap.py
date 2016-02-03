@@ -43,9 +43,9 @@ def run_bootstrap(res_folder,kwLimit,subCorpusSize,bootstrapSize) :
         [relevantkw,relevant_dico,allkw] = bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrapSize)
         # update bases iteratively (ok for concurrency ?)
         for kw in relevantkw.keys():
-            update_kw_tm(kw,relevantkw[kw])
+            update_kw_tm(kw,relevantkw[kw],database)
         for i in relevant_dico.keys():
-            update_kw_dico(i,relevant_dico[i])
+            update_kw_dico(i,relevant_dico[i],database)
 
 
 def update_kw_tm(kw,incr,database):
@@ -103,7 +103,7 @@ def bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrap
         subcorpus = [corpus[i] for i in extraction]
         [keywords,ref_kw_local_dico] = kwFunctions.extract_relevant_keywords(subcorpus,kwLimit,occurence_dicos)
 
-	    allkw.append(keywords)
+	allkw.append(keywords)
 
         # add termhoods
         for kw in keywords.keys() :
