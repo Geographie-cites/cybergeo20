@@ -39,7 +39,8 @@ def run_bootstrap(res_folder,kwLimit,subCorpusSize,bootstrapSize) :
     corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160126_cybergeo.sqlite3')
     occurence_dicos = utils.import_kw_dico('../../Data/dumps/20160125_cybergeo.sqlite3')
     database = res_folder+'/bootstrap.sqlite3'
-    while True :
+    #while True :
+    for i in range(10):
         [relevantkw,relevant_dico,allkw] = bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrapSize)
         # update bases iteratively (ok for concurrency ?)
         for kw in relevantkw.keys():

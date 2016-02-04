@@ -40,13 +40,58 @@ joined = left_join(as.tbl(sqlmerged),prov,by='UNIQID')
 cit <- read.table('raw/cit.csv',sep='\t',header=TRUE,quote="\"",stringsAsFactors=FALSE)
 colnames(cit)=c("SCHID",'numciting','numcited')
 
-final = left_join(joined,cit,by="")
+final = left_join(joined,as.tbl(cit),by="SCHID")
+res=final[,c(1,3:11,15:30)]
+colnames(res)[2:4]=c("schid","title","title_en")
+colnames(res)[25:26]=c("citedby","citing")
 
-write.csv(final,'raw/cybergeo_final.csv')
+write.csv(res,'raw/cybergeo_final.csv',row.names=FALSE)
+
+cybergeo=read.csv('raw/cybergeo.csv',header=TRUE)
+cited=cybergeo$citedby
+mean(cited,na.rm=TRUE)
+sd(cited,na.rm=TRUE)
+cited[is.na(cited)]=0
+mean(cited)
+1-length(which(is.na(cybergeo$citedby)))/length(cybergeo$citedby)
 
 
+#
+# bootstrap with distribution to have an estimate of mean with IC ?
+# -> missing data as mean ~ draw missing data from distrib ?
+#
 
+# Treatment mean imputation
+#cited[is.na(cited)]=mean(cited,na.rm=TRUE)
+#mean(cited)
+# IDIOT !
+# idem if draws from distrib.
 
+cited=cybergeo$citedby
+cited=cited[!is.na(cited)]
+s=0;count=0;for(i in 1:(length(cited)-1)){for(j in (i+1):length(cited)){s=s+(cited[i]-cited[j])^2;count=count+1}}
+sqrt((s/count)/(length(cited)*(length(cybergeo$cited)-length(cited))))
+
+##
+N=length(cited)
+vars=c();ths=c()
+Ks=seq(from=0.5,to=1,by=0.02)*N
+for(K in Ks){
+  show(K)
+B=50000
+v=0;th=0
+for(b in 1:B){
+  s=cited[sample.int(n = N,size = K,replace=FALSE)]
+  v=v+((mean(cited)-mean(s))^2)
+  th=th+(1.96*sd(s))/sqrt(K)
+}
+vars=append(vars,v/B);ths=append(ths,th/B)
+}
+plot(Ks,vars);
+plot(Ks,ths,col='red')
+plot(1/sqrt(Ks),vars)
+
+summary(lm(y~x,data.frame(x=1/sqrt(Ks),y=vars)))
 
 
 
