@@ -3,7 +3,7 @@ setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/Data'))
 
 load('statsvisu//statsvisu.RData')
 #write.csv(statsCyber,'prov.csv')
-write.table(data.frame(statsCyber$UNIQID,statsCyber$Titre),'raw/prov_ids.csv',sep='\t',col.names = FALSE,row.names = FALSE,quote = FALSE)
+write.table(data.frame(statsCyber$UNIQID,statsCyber$Titre),'raw/consolidation/prov_ids.csv',sep='\t',col.names = FALSE,row.names = FALSE,quote = FALSE)
 
 raw <- read.table('raw/cybergeo_withFR.csv',sep='\t',header=TRUE,quote="\"",stringsAsFactors=FALSE)
 
@@ -27,7 +27,11 @@ dim(joined)
 which(is.na(joined$VisuTot))
 data.frame(raw[118,])
 
-sqlmerged <- read.table('raw/merged.csv',sep='\t',header=TRUE,quote="\"",stringsAsFactors=FALSE)
+sqlmerged <- read.table('raw/consolidation/merged.csv',
+                        sep='\t',header=TRUE,quote="\"",
+                        stringsAsFactors=FALSE,
+                        colClasses = rep("character",13)#c("character","character","character","character","character","character","character","character","character","character","character","numeric","numeric")
+                        )
 colnames(sqlmerged)[2]="UNIQID"
 
 # -> 936 : 12 refs beneficied from hashconsing merging -> shit...
@@ -37,7 +41,10 @@ joined = left_join(as.tbl(sqlmerged),prov,by='UNIQID')
 
 
 # now get citations columns
-cit <- read.table('raw/cit.csv',sep='\t',header=TRUE,quote="\"",stringsAsFactors=FALSE)
+cit <- read.table('raw/cit.csv',sep='\t',
+                  header=TRUE,quote="\"",stringsAsFactors=FALSE,
+                  colClasses=c("character","numeric","numeric")
+                  )
 colnames(cit)=c("SCHID",'numciting','numcited')
 
 final = left_join(joined,as.tbl(cit),by="SCHID")
@@ -45,7 +52,11 @@ res=final[,c(1,3:11,15:30)]
 colnames(res)[2:4]=c("schid","title","title_en")
 colnames(res)[25:26]=c("citedby","citing")
 
-write.csv(res,'raw/cybergeo_final.csv',row.names=FALSE)
+sqlmprov=as.tbl(sqlmerged[,c(1,3)])
+sqlmprov$id=as.numeric(sqlmprov$id)
+rejoined = left_join(sqlmprov,cybergeo[,-2],by='id')
+write.csv(rejoined,'raw/cybergeo.csv',row.names=FALSE)
+
 
 cybergeo=read.csv('raw/cybergeo.csv',header=TRUE)
 cited=cybergeo$citedby
