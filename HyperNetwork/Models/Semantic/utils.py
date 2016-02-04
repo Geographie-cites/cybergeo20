@@ -17,6 +17,9 @@ def read_conf(file):
         currentLine = conf.readline().replace('\n','')
     return(res)
 
+
+
+
 # return the mysql connection
 def configure_sql():
     # conf mysql
@@ -60,8 +63,12 @@ def insert_sqlite(query,database):
     conn.commit()
     conn.close()
 
-
-
+def query_mysql(query):
+    conn = configure_sql()
+    cursor = conn.cursor()
+    cursor.execute(query)
+    conn.commit()
+    conn.close()
 
 
 ##
