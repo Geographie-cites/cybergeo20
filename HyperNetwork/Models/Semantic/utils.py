@@ -42,11 +42,53 @@ def get_data(query,source):
     data=cursor.fetchall()
     return(data)
 
+
+def fetchone_sqlite(query,database):
+    conn = configure_sqlite(database)
+    cursor = conn.cursor()
+    cursor.execute(query)
+    res = cursor.fetchone()
+    conn.commit()
+    conn.close()
+    return(res)
+
+
+def insert_sqlite(query,database):
+    conn = configure_sqlite(database)
+    cursor = conn.cursor()
+    cursor.execute(query)
+    conn.commit()
+    conn.close()
+
+
+
+
+
+##
+# query formatted with ?
+#    'INSERT INTO table VALUES (?,?,?,?,?)'
+def insertmany_sqlite(query,values,database):
+    conn = configure_sqlite(database)
+    cursor = conn.cursor()
+    cursor.executemany(query)
+    conn.commit()
+    conn.close()
+
+
+def implode(l,delimiter):
+    res=''
+    for k in range(len(l)-1):
+        res = res+str(l[k])+delimiter
+    res = res+l[len(l)-1]
+    return(res)
+
+
+
 ##
 # usage : [ref_kw_dico,kw_ref_dico] = import_kw_dico()
-def import_kw_dico(source):
+def import_kw_dico_req(source,request):
     # import extracted keywords from database
-    data = get_data('SELECT id,abstract_keywords FROM refdesc WHERE abstract_keywords IS NOT NULL;',source)
+    data = get_data(request,source)
 
     ref_kw_dico = dict() # dictionnary refid -> keywords as list
     kw_ref_dico = dict() # dictionnary keywords -> refs as list
@@ -64,6 +106,8 @@ def import_kw_dico(source):
 
     return([ref_kw_dico,kw_ref_dico])
 
+def import_kw_dico(source):
+    return(import_kw_dico_req(source,'SELECT id,abstract_keywords FROM refdesc WHERE abstract_keywords IS NOT NULL;'))
 
 ##
 # corpus as (id,...)

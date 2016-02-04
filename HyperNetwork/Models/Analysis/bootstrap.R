@@ -83,7 +83,7 @@ for(csize in corpusSizes){
       allkw=list();p=k
       for(b in 1:bootstrapSize){
         allkw=corpusUnion(allkw,getCorpus(csize,kw,sampling[b]))
-        mdata[i,] = c(csize,kw,b,corpusDistance(getCorpus(fullsize,kw,0),lapply(allkw,function(x){x/b})),p)
+        mdata[i,] = c(csize,kw,b,corpusDistance(lapply(getCorpus(fullsize,kw,0),function(x){x/bootstrapSize}),lapply(allkw,function(x){x/b})),p)
         i=i+1
         p=p+1
       }

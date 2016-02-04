@@ -16,30 +16,76 @@ def test_bootstrap() :
             utils.export_list(relevantkw,'res/conv_kw/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize),False)
 	    utils.export_dico_num_csv(relevantkw,'res/conv_tm/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize),False)
 	    for i in range(len(allkw)) :
-		local_kw = allkw[i]
-		utils.export_list(local_kw.keys(),'res/conv_kw/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_run'+str(i),False)
-		utils.export_dico_num_csv(local_kw,'res/conv_tm/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_run'+str(i),False)		
+		    local_kw = allkw[i]
+		    utils.export_list(local_kw.keys(),'res/conv_kw/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_run'+str(i),False)
+		    utils.export_dico_num_csv(local_kw,'res/conv_tm/kw_'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_run'+str(i),False)
 
 
-def run_bootstrap() :
-    kwLimit=200
-    subCorpusSize=10000
-    bootstrapSize=30
-    corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL LIMIT 20000;','../../Data/dumps/20160126_cybergeo.sqlite3')
-    [relevantkw,relevant_dico] = bootstrap_subcorpuses_parallel(corpus,kwLimit,subCorpusSize,bootstrapSize)
-    utils.export_dico_csv(relevant_dico,'res/bootstrapParallel_relevantDico_kwLimit'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_bootstrapSize'+str(bootstrapSize),True)
-    utils.export_list(relevantkw,'res/bootstrapParallel_relevantkw_kwLimit'+str(kwLimit)+'_subCorpusSize'+str(subCorpusSize)+'_bootstrapSize'+str(bootstrapSize),True)
+# creates databases for bootstrap run
+def init_bootstrap(res_folder):
+    conn = utils.configure_sqlite(res_folder+'/bootstrap.sqlite3')
+    c = conn.cursor()
+    c.execute('CREATE TABLE relevant (keyword text, cumtermhood real, ids text);')
+    c.execute('CREATE TABLE params (key text, value real);')
+    c.execute('CREATE TABLE dico (id text, keywords text);')
+    conn.commit()
+    conn.close()
+
+
+##
+#   assumed to be run in //
+#     - run by packet for intermediate filtering -
+def run_bootstrap(res_folder,kwLimit,subCorpusSize,bootstrapSize) :
+    corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160126_cybergeo.sqlite3')
+    occurence_dicos = utils.import_kw_dico('../../Data/dumps/20160125_cybergeo.sqlite3')
+    database = res_folder+'/bootstrap.sqlite3'
+    #while True :
+    for i in range(10):
+        [relevantkw,relevant_dico,allkw] = bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrapSize)
+        # update bases iteratively (ok for concurrency ?)
+        for kw in relevantkw.keys():
+            update_kw_tm(kw,relevantkw[kw],database)
+        for i in relevant_dico.keys():
+            update_kw_dico(i,relevant_dico[i],database)
+
+
+def update_kw_tm(kw,incr,database):
+    prev = utils.fetchone_sqlite('SELECT cumtermhood,ids FROM relevant WHERE keyword=\''+kw+'\';',database)
+    t = 0
+    ids=''
+    if len(prev > 0):
+        t = prev[0][0]
+        ids = prev[0][1]
+    t = t + incr
+    # insert
+    utils.insert_sqlite('INSERT INTO cumtermhood VALUES (\''+kw+'\','+str(t)+',\''+ids+'\');',database)
+
+
+def update_kw_dico(i,kwlist,database):
+    # update id -> kws dico
+    prev = utils.fetchone_sqlite('SELECT keywords FROM relevant WHERE id=\''+i+'\';',database)
+    kws = set()
+    if len(prev > 0):
+        kws = set(prev[0][0].split(";"))
+    for kw in kwlist :
+        kws.add(kw)
+    utils.insert_sqlite('INSERT INTO dico VALUES (\''+i+'\',\''+utils.implode(kws,";")+'\')',database)
+    # update kw -> id
+    prev = utils.fetchone_sqlite('SELECT * FROM relevant WHERE id=\''+i+'\';',database)
+    kws = set()
+    if len(prev > 0):
+        ids = set(prev[0][2].split(";"))
+        ids.add(i)
+        utils.insert_sqlite('INSERT INTO relevant VALUES (\''+prev[0][0]+'\','+str(prev[0,1])+',\''+utils.implode(ids,";")+'\')',database)
 
 
 
 
 
-def bootstrap_subcorpuses(corpus,kwLimit,subCorpusSize,bootstrapSize):
+def bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrapSize):
     N = len(corpus)
 
     print('Bootstrapping on corpus of size '+str(N))
-
-    occurence_dicos = utils.import_kw_dico('../../Data/dumps/20160125_cybergeo.sqlite3')
 
     # generate bSize extractions
     #   -> random subset of 1:N of size subCorpusSize
@@ -127,7 +173,3 @@ def bootstrap_subcorpuses_parallel(corpus,kwLimit,subCorpusSize,bootstrapSize):
 
     # sort on termhoods (no need to normalize) adn returns
     return(kwFunctions.extract_from_termhood(mean_termhoods,ref_kw_dico,kwLimit))
-
-
-
-

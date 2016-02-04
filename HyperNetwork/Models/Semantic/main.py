@@ -9,7 +9,10 @@ def run():
     #bootstrap.test_bootstrap()
     #utils.mysql2sqlite('../../Data/dumps/20160126_cybergeo.sqlite3')
     #bootstrap.test_bootstrap()
-    stats.export_ref_info()
+    #stats.export_ref_info()
+    #bootstrap.init_bootstrap('bootstrap/test')
+    bootstrap.run_bootstrap('bootstrap/test',20,200,20)
+
 
 def main():
 
