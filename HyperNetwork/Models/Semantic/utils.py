@@ -123,4 +123,27 @@ def export_list(l,fileprefix,withDate):
     if withDate : datestr = str(datetime.datetime.now())
     outfile=open(fileprefix+datestr+'.csv','w')
     for k in l :
-        outfile.write(k+'\n')
+        outfile.write(k)
+	outfile.write('\n')
+
+
+
+def export_matrix_csv(m,fileprefix,delimiter,withDate):
+    datestr = ''
+    if withDate : datestr = str(datetime.datetime.now())
+    outfile=open(fileprefix+datestr+'.csv','w')
+    for r in m :
+        #print(len(r))
+	#print(r)
+        for c in range(len(r)) :
+            #print(str(r[c]))
+	    t=''
+	    #print(r[c][0])
+	    if isinstance(r[c],unicode) : t=unicode(r[c]).encode('utf8','ignore')
+	    else : t = str(r[c])
+            outfile.write(t)
+            if c < len(r)-1 : outfile.write(delimiter)
+        outfile.write('\n')
+
+
+

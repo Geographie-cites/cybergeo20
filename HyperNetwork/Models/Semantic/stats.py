@@ -7,7 +7,7 @@ import utils
 def export_ref_info():
     data = utils.get_data('SELECT refs.id,refs.year,language FROM refdesc INNER JOIN refs ON refs.id=refdesc.id;','mysql')
     #for r in data : print(r)
-    export_matrix_csv(data,'stats/ref_info',False)
+    export_matrix_csv(data,'stats/ref_info',';',False)
 
 
 ##
@@ -19,25 +19,18 @@ def export_secondaryref_info(request,outfile):
     # put in dico
     data_dico = dict()
     for row in data :
-        data_dico[row[0]]=[row[i] for i in range(1,len(row))]
+	r = list(row)
+        #print('r : '+r[0].encode('utf8'))
+	data_dico[r[0].encode('utf8')]=[r[i] for i in range(1,len(r))]
     for i in ids :
-        print(i[0])
-        res.append(data_dico)
-    export_matrix_csv(data,outfile,False)
-
+        #print(i[0])
+        if i[0].encode('utf8') in data_dico : 
+	    #print('i : '+i[0].encode('utf8'))
+	    #print(data_dico[i[0].encode('utf8')])
+	    res.append(data_dico[i[0].encode('utf8')])
+    utils.export_matrix_csv(res,outfile,'\t',False)
+    #utils.export_list(ids,outfile+'_id',False)
 
 export_secondaryref_info('SELECT citing FROM links INNER JOIN cybergeo on cybergeo.id=links.cited;','stats/citing_info')
 export_secondaryref_info('SELECT cited FROM links INNER JOIN cybergeo on cybergeo.id=links.citing;','stats/cited_info')
 
-
-def export_matrix_csv(m,fileprefix,withDate):
-    datestr = ''
-    if withDate : datestr = str(datetime.datetime.now())
-    outfile=open(fileprefix+datestr+'.csv','w')
-    for r in m :
-        #print(len(r))
-        for c in range(len(r)) :
-            print(str(r[c]))
-	    outfile.write(str(r[c]))
-            if c < len(r)-1 : outfile.write(";")
-        outfile.write('\n')
