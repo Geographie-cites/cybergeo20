@@ -12,7 +12,8 @@ def run():
     #stats.export_ref_info()
     #bootstrap.init_bootstrap('bootstrap/test')
     #bootstrap.run_bootstrap('bootstrap/test',20,200,20)
-    cybergeo.extract_relevant_cybergeo(2000)
+    #cybergeo.extract_cybergeo_keywords()
+    cybergeo.extract_relevant_cybergeo(100)
 
 def main():
 

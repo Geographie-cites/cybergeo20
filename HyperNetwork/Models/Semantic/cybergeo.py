@@ -1,6 +1,11 @@
-
+import utils,kwExtraction
 # kw extraction for cybergeo corpus alone
 import utils,kwFunctions
+
+
+
+def extract_cybergeo_keywords():
+    kwExtraction.run_kw_extraction('SELECT refdesc.id,abstract FROM refdesc INNER JOIN cybergeo ON cybergeo.id=refdesc.id WHERE abstract_keywords IS NULL;')
 
 
 def extract_relevant_cybergeo (kwLimit) :
