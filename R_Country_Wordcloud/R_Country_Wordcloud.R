@@ -22,9 +22,16 @@ countries$polygonID = as.numeric(countries$polygonID) + 1
 write.csv(countries, paste0(path, "countrycodes.csv"))
 REG@bbox
 
-for (i in 1:256){
+
+par(mfrow=c(4,4))
+for(j in 1:16){
+  e = j * 16
+  b = e-15
+for (i in b:e){
 print(REG@polygons[[i]]@ID)
-}
+  plot(REG[i,], col="grey")
+  title(REG@data[i,"CNTR_ID"])
+}}
 
 plot(REG@polygons[[4]])
 
