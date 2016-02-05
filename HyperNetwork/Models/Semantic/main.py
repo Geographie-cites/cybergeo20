@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import time
 
-import bootstrap,utils,stats
+import bootstrap,utils,stats,cybergeo
 
 
 def run():
@@ -11,8 +11,9 @@ def run():
     #bootstrap.test_bootstrap()
     #stats.export_ref_info()
     #bootstrap.init_bootstrap('bootstrap/test')
-    bootstrap.run_bootstrap('bootstrap/test',20,200,20)
-
+    #bootstrap.run_bootstrap('bootstrap/test',20,200,20)
+    #cybergeo.extract_cybergeo_keywords()
+    cybergeo.extract_relevant_cybergeo(100)
 
 def main():
 
