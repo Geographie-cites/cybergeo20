@@ -37,6 +37,7 @@ def get_data(query,source):
         conn = configure_sql()
     else :
         conn = configure_sqlite(source)
+        conn.text_factory = str
     cursor = conn.cursor()
     cursor.execute(query)
     data=cursor.fetchall()
@@ -77,9 +78,10 @@ def insertmany_sqlite(query,values,database):
 
 def implode(l,delimiter):
     res=''
-    for k in range(len(l)-1):
-        res = res+str(l[k])+delimiter
-    res = res+l[len(l)-1]
+    i=0
+    for k in l:
+        res = res+str(k)
+	if i<len(l)-1 : res=res+delimiter
     return(res)
 
 
@@ -94,10 +96,12 @@ def import_kw_dico_req(source,request):
     kw_ref_dico = dict() # dictionnary keywords -> refs as list
 
     for row in data :
-        ref_id = row[0].encode('ascii','ignore')
-        #print(ref_id)
-        keywords_raw = row[1].encode('ascii','ignore').split(';')
-        keywords = [keywords_raw[i] for i in range(len(keywords_raw)-1)]
+        #ref_id = row[0].encode('utf8','ignore')
+        ref_id=row[0]
+	#print(ref_id)
+        #keywords_raw = row[1].encode('utf8','ignore').split(';')
+        keywords_raw = row[1].split(';') 
+	keywords = [keywords_raw[i] for i in range(len(keywords_raw)-1)]
         # pb with last delimiter in
         ref_kw_dico[ref_id] = keywords
         for kw in keywords :

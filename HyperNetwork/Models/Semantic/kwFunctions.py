@@ -12,6 +12,8 @@ def extract_relevant_keywords(corpus,kwLimit,occurence_dicos):
 
     [ref_kw_dico,kw_ref_dico] = utils.extract_sub_dicos(corpus,occurence_dicos)
 
+    #print(kw_ref_dico)
+
     # compute unithoods
     print('Compute unithoods...')
     unithoods = dict()
