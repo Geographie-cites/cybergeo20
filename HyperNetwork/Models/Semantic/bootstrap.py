@@ -39,14 +39,15 @@ def run_bootstrap(res_folder,kwLimit,subCorpusSize,bootstrapSize) :
     corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160126_cybergeo.sqlite3')
     occurence_dicos = utils.import_kw_dico('../../Data/dumps/20160125_cybergeo.sqlite3')
     database = res_folder+'/bootstrap.sqlite3'
-    #while True :
-    for i in range(10):
+    while True :
+    #for i in range(3):
         [relevantkw,relevant_dico,allkw] = bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrapSize)
         # update bases iteratively (ok for concurrency ?)
         for kw in relevantkw.keys():
             update_kw_tm(kw,relevantkw[kw],database)
         for i in relevant_dico.keys():
             update_kw_dico(i,relevant_dico[i],database)
+	update_count(bootstrapSize,database)
 
 
 def update_kw_tm(kw,incr,database):
@@ -83,9 +84,19 @@ def update_kw_dico(i,kwlist,database):
         if prev is not None :
             ids = set(prev[2].split(";"))
             ids.add(i)
-            utils.insert_sqlite('UPDATE relevant SET keyword=\''+kw+'\',cumtermhood='+prev[1]+',ids=\''+ids+'\' WHERE keyword=\''+kw+'\';',database)
+            utils.insert_sqlite('UPDATE relevant SET keyword=\''+kw+'\',cumtermhood='+str(prev[1])+',ids=\''+utils.implode(ids,";")+'\' WHERE keyword=\''+kw+'\';',database)
         else :
             utils.insert_sqlite('INSERT INTO relevant VALUES (\''+kw+'\',0,\''+i+'\');',database)
+
+
+
+def update_count(bootstrapSize,database):
+    prev = utils.fetchone_sqlite('SELECT value FROM params WHERE key=\'count\'',database)
+    if prev is not None:
+        t=prev[0]+bootstrapSize
+	utils.insert_sqlite('UPDATE params SET value='+str(t)+' WHERE key=\'count\';',database)
+    else :
+	utils.insert_sqlite('INSERT INTO params VALUES (\'count\','+str(bootstrapSize)+')',database)
 
 
 

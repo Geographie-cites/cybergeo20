@@ -10,8 +10,8 @@ def run():
     #utils.mysql2sqlite('../../Data/dumps/20160126_cybergeo.sqlite3')
     #bootstrap.test_bootstrap()
     #stats.export_ref_info()
-    bootstrap.init_bootstrap('bootstrap/test')
-    bootstrap.run_bootstrap('bootstrap/test',10,200,4)
+    #bootstrap.init_bootstrap('bootstrap/run_kw1000_csize2000_b20')
+    bootstrap.run_bootstrap('bootstrap/run_kw1000_csize2000_b20',1000,2000,20)
     #cybergeo.extract_cybergeo_keywords()
     #cybergeo.extract_relevant_cybergeo(2000)
 
