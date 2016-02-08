@@ -55,24 +55,27 @@ def update_kw_tm(kw,incr,database):
     ids=''
     #print(prev)
     if prev is not None:
-        t = prev[0]
+        t = prev[0]+incr
         ids = prev[1]
-    t = t + incr
-    if len(ids)>0 : ids=ids+';'
-    ids=ids+kw
-    # insert
-    utils.insert_sqlite('INSERT INTO relevant VALUES (\''+kw+'\','+str(t)+',\''+ids+'\');',database)
+        utils.insert_sqlite('UPDATE relevant SET keyword=\''+kw+'\',cumtermhood='+str(t)+',ids=\''+ids+'\' WHERE keyword=\''+kw+'\';',database)
+    else :
+        # insert
+        utils.insert_sqlite('INSERT INTO relevant VALUES (\''+kw+'\','+str(incr)+',\'\');',database)
+
+
 
 
 def update_kw_dico(i,kwlist,database):
     # update id -> kws dico
     prev = utils.fetchone_sqlite('SELECT keywords FROM dico WHERE id=\''+i+'\';',database)
     kws = set()
-    if prev is not None:
-        kws = set(prev[0].split(";"))
+    if prev is not None: kws = set(prev[0].split(";"))
     for kw in kwlist :
         kws.add(kw)
-    utils.insert_sqlite('INSERT INTO dico VALUES (\''+i+'\',\''+utils.implode(kws,";")+'\')',database)
+    if prev is not None:
+        utils.insert_sqlite('UPDATE dico SET id=\''+i+'\',keywords=\''+utils.implode(kws,";")+'\' WHERE id=\''+i+'\';',database)
+    else :
+        utils.insert_sqlite('INSERT INTO dico VALUES (\''+i+'\',\''+utils.implode(kws,";")+'\')',database)
     # update kw -> id
     for kw in kwlist :
         prev = utils.fetchone_sqlite('SELECT * FROM relevant WHERE keyword=\''+kw+'\';',database)
@@ -80,8 +83,9 @@ def update_kw_dico(i,kwlist,database):
         if prev is not None :
             ids = set(prev[2].split(";"))
             ids.add(i)
-            utils.insert_sqlite('INSERT INTO relevant VALUES (\''+prev[0]+'\','+str(prev[1])+',\''+utils.implode(ids,";")+'\')',database)
-
+            utils.insert_sqlite('UPDATE relevant SET keyword=\''+kw+'\',cumtermhood='+prev[1]+',ids=\''+ids+'\' WHERE keyword=\''+kw+'\';',database)
+        else :
+            utils.insert_sqlite('INSERT INTO relevant VALUES (\''+kw+'\',0,\''+i+'\');',database)
 
 
 
