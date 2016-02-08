@@ -1,15 +1,15 @@
-import utils,kwExtraction
+#import utils,kwExtraction
 # kw extraction for cybergeo corpus alone
 import utils,kwFunctions
 
 
 
-def extract_cybergeo_keywords():
-    kwExtraction.run_kw_extraction('SELECT refdesc.id,abstract FROM refdesc INNER JOIN cybergeo ON cybergeo.id=refdesc.id WHERE abstract_keywords IS NULL;')
+#def extract_cybergeo_keywords():
+    #kwExtraction.run_kw_extraction('SELECT refdesc.id,abstract FROM refdesc INNER JOIN cybergeo ON cybergeo.id=refdesc.id WHERE abstract_keywords IS NULL;')
 
 
 def extract_relevant_cybergeo (kwLimit) :
-    corpus = utils.get_data('SELECT cybergeo.id FROM refdesc INNER JOIN cybergeo ON cybergeo.id=refdesc.id WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160204_cybergeo.sqlite3')
+    corpus = utils.get_data('SELECT cybergeo.id FROM refdesc INNER JOIN cybergeo ON cybergeo.id=refdesc.id WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160205_cybergeo.sqlite3')
     print(corpus)
     occurence_dicos = utils.import_kw_dico_req('../../Data/dumps/20160204_cybergeo.sqlite3','SELECT cybergeo.id,abstract_keywords FROM refdesc INNER JOIN cybergeo ON cybergeo.id=refdesc.id WHERE abstract_keywords IS NOT NULL;')
     print(occurence_dicos)
