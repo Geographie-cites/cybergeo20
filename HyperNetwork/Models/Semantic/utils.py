@@ -31,7 +31,7 @@ def configure_sql():
 
 # returns sqlite connection
 def configure_sqlite(database):
-    return(sqlite3.connect(database))
+    return(sqlite3.connect(database,600))
 
 
 
