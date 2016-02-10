@@ -6,27 +6,16 @@ from treetagger import TreeTagger
 
 
 # 'SELECT id,abstract FROM refdesc WHERE abstract_keywords IS NULL;'
-def run_kw_extraction(query) :
-    #start = time.time()
-
-    # dirty
-    while True :
-        # get data from mysql
-
-        #data = get_data('SELECT id,abstract FROM refdesc WHERE abstract_keywords IS NULL;')
-	data=utils.get_data(query,'mysql')
-
-        for ref in data:
-            language = get_language(ref[1])
+def run_kw_extraction(data) :
+    for ref in data:
+        clean_abstract =
+        language = get_language(ref[1])
 	    keywords = extract_keywords(ref[1],ref[0],language)
-            kwtext = ""
+        kwtext = ""
 	    for multistem in keywords:
 	        kwtext=kwtext+reduce(lambda s1,s2 : s1+' '+s2,multistem)+";"
 	        print(kwtext)
 	        utils.query_mysql("INSERT INTO refdesc (id,language,abstract_keywords) VALUES (\'"+ref[0].encode('utf8')+"\',\'"+language.encode('utf8')+"\',\'"+kwtext+"\') ON DUPLICATE KEY UPDATE language = VALUES(language),abstract_keywords=VALUES(abstract_keywords);")
-            #conn.commit()
-
-        #conn.close()
 
 
 def potential_multi_term(tagged,language):
