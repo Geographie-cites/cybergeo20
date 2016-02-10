@@ -95,7 +95,7 @@ def implode(l,delimiter):
 
 ##
 # usage : [ref_kw_dico,kw_ref_dico] = import_kw_dico()
-def import_kw_dico_req(source,request):
+def import_kw_dico_req(request,source):
     # import extracted keywords from database
     data = get_data(request,source)
 
@@ -118,7 +118,7 @@ def import_kw_dico_req(source,request):
     return([ref_kw_dico,kw_ref_dico])
 
 def import_kw_dico(source):
-    return(import_kw_dico_req(source,'SELECT id,abstract_keywords FROM refdesc WHERE abstract_keywords IS NOT NULL;'))
+    return(import_kw_dico_req('SELECT id,abstract_keywords FROM refdesc WHERE abstract_keywords IS NOT NULL;',source))
 
 ##
 # corpus as (id,...)
