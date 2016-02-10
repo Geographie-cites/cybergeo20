@@ -96,9 +96,9 @@ def update_count(bootstrapSize,database):
     prev = utils.fetchone_sqlite('SELECT value FROM params WHERE key=\'count\'',database)
     if prev is not None:
         t=prev[0]+bootstrapSize
-	utils.insert_sqlite('UPDATE params SET value='+str(t)+' WHERE key=\'count\';',database)
+	    utils.insert_sqlite('UPDATE params SET value='+str(t)+' WHERE key=\'count\';',database)
     else :
-	utils.insert_sqlite('INSERT INTO params VALUES (\'count\','+str(bootstrapSize)+')',database)
+	    utils.insert_sqlite('INSERT INTO params VALUES (\'count\','+str(bootstrapSize)+')',database)
 
 
 
@@ -125,7 +125,7 @@ def bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrap
         subcorpus = [corpus[i] for i in extraction]
         [keywords,ref_kw_local_dico] = kwFunctions.extract_relevant_keywords(subcorpus,kwLimit,occurence_dicos)
 
-	allkw.append(keywords)
+	    allkw.append(keywords)
 
         # add termhoods
         for kw in keywords.keys() :
