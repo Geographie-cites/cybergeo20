@@ -2,7 +2,7 @@
 
 # bootstrap for relevant terms extraction
 
-import numpy,kwFunctions,utils
+import numpy,os,kwFunctions,utils
 from multiprocessing import Pool
 
 
@@ -23,6 +23,7 @@ def test_bootstrap() :
 
 # creates databases for bootstrap run
 def init_bootstrap(res_folder):
+    if not os.path.isdir(res_folder) : os.makedirs(res_folder)
     conn = utils.configure_sqlite(res_folder+'/bootstrap.sqlite3')
     c = conn.cursor()
     c.execute('CREATE TABLE relevant (keyword text, cumtermhood real, ids text);')
@@ -35,13 +36,14 @@ def init_bootstrap(res_folder):
 ##
 #   assumed to be run in //
 #     - run by packet for intermediate filtering -
-def run_bootstrap(res_folder,kwLimit,subCorpusSize,bootstrapSize) :
+def run_bootstrap(res_folder,kwLimit,subCorpusSize,bootstrapSize,nruns) :
     corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160126_cybergeo.sqlite3')
     occurence_dicos = utils.import_kw_dico('../../Data/dumps/20160125_cybergeo.sqlite3')
     database = res_folder+'/bootstrap.sqlite3'
-    while True :
-    #for i in range(3):
-        [relevantkw,relevant_dico,allkw] = bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrapSize)
+    #while True :
+    for i in range(nruns):
+        print("run "+str(i))
+	[relevantkw,relevant_dico,allkw] = bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrapSize)
         # update bases iteratively (ok for concurrency ?)
         for kw in relevantkw.keys():
             update_kw_tm(kw,relevantkw[kw],database)
