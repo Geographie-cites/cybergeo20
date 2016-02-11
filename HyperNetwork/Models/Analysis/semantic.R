@@ -3,48 +3,56 @@
 
 setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Models/Analysis'))
 
-library(RSQLite)
+library(dplyr)
+library(igraph)
 
-db = dbConnect(SQLite(),"../Semantic/bootstrap/run_kw1000_csize2000_b20/bootstrap.sqlite3")
+#library(RSQLite)
 
-relevant = dbReadTable(db,'relevant')
-dico = dbReadTable(db,'dico')
+#db = dbConnect(SQLite(),"../Semantic/bootstrap/run_kw1000_csize2000_b20/bootstrap.sqlite3")
 
-dim(relevant)
-sort(relevant[,2])
-
-# construct relevant dico : word -> index
-rel = list()
-for(i in 1:nrow(relevant)){rel[[relevant[i,1]]]=i}
-
-cooccs = matrix(0,nrow(relevant),nrow(relevant))
-
-for(i in 1:nrow(dico)){
-  if(i%%1000==0){show(i)}
-  kws = strsplit(dico[i,2],";")[[1]]
-  if(length(kws)>1){
-  for(k in 1:(length(kws)-1)){
-    for(l in (k+1):(length(kws))){
-      if(nchar(kws[k])>0&nchar(kws[l])>0){
-        cooccs[rel[[kws[k]]],rel[[kws[l]]]]=cooccs[rel[[kws[k]]],rel[[kws[l]]]]+1
-      }
-    }
-  }
-  }
-}
+#relevant = dbReadTable(db,'relevant')
+#dico = dbReadTable(db,'dico')
 
 
-# stats on cooccurrences
-length(which(cooccs>100))
-co=c(cooccs)
-hist(co[co<1000],breaks=100)
-sco=sort(co,decreasing=TRUE)
-x=log(1:length(sco[sco>0]));y=log(sco[sco>0])
-m=summary(lm(y~x,data.frame(x=x[x<10],y=y[x<10])))
-plot(x,y,pch='+');
-points(x[x<10],x[x<10]*m$coefficients[2]+m$coefficients[1],col='red',type='l')
 
 
+###########
+# PARAMETERS
+
+kwFile = "2000"
+kwthreshold = 2000
+linkthreshold =15
+connex=FALSE
+
+g=exportNetwork(kwFile,kwthreshold,linkthreshold,connex,TRUE)
+
+for(kwthreshold in c(100,200,500,1000,1500,2000)){
+  for(linkthreshold in c(0,2,5,10,15,50,100)){
+    for(connex in c(TRUE,FALSE)){
+exportNetwork(kwFile,kwthreshold,linkthreshold,connex,TRUE)
+}}}
+
+#communities
+com = cluster_fast_greedy(g)
+com=cluster_louvain(g)
+com=cluster_edge_betweenness(g)
+
+
+## try some plotting ? hazardous with igraph.
+
+
+
+
+############
+## try some hierarchical clustering
+scooccs = (cooccs+t(cooccs))/2
+d = as.dist(m=1-scooccs/max(scooccs))
+clust = hclust(d)
+plot(clust,labels=FALSE)
+
+
+
+#### Interdisciplinarity of papers
 
 
 
