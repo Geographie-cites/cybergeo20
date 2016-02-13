@@ -3,7 +3,7 @@
 
 library(igraph)
 
-setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/CitationNetwork/Data/nw'))
+setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw'))
 
 
 # issue in csv file with semicolon delimiter -> use tabulation instead.
@@ -11,7 +11,7 @@ setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/CitationNetwork/Data/nw
 #nodes <- read.csv('provnw2_nodes.csv',header=FALSE,sep="\t",colClasses=c("character","character","numeric","numeric"),blank.lines.skip=FALSE)
 #colnames(nodes)=c("name","title","year","cyb")
 #colnames(edges)=c("from","to")
-vedges = unique(c(edges[,1],edges[,2]))
+#vedges = unique(c(edges[,1],edges[,2]))
 #vertices = merge(x=data.frame(v=vedges),y=nodes[!duplicated(nodes[,1]),],by.x=1,by.y=1,all.x=FALSE,all.y=TRUE)
 #colnames(vertices)=c("name","title","year","cyb")
 
@@ -24,8 +24,8 @@ nodes = strsplit(s,'\t')
 nodes<- data.frame(name=sapply(nodes,function(c){c[1]}),title=sapply(nodes,function(c){c[2]}),year=sapply(nodes,function(c){as.numeric(c[3])}),cyb=sapply(nodes,function(c){as.numeric(c[4])}))
 
 # need to filter ? -> one failed ref
-length(setdiff(nodes$name,vedges))
-setdiff(vedges,nodes$name)
+#length(setdiff(nodes$name,vedges))
+#setdiff(vedges,nodes$name)
 
 
 library(dplyr)
@@ -41,8 +41,8 @@ g = graph.data.frame(as.data.frame(e),vertices=nodes)
 # first analysis
 
 cybnodes=V(g)[V(g)$cyb==1]
-citingcyb <- incident(g,v=which(V(g)$cyb==1),mode="all")
-
+#citingcyb <- incident(g,v=which(V(g)$cyb==1),mode="all")
+citingcyb <- incident(g,v=cybnodes,mode="in")
 
 
 
@@ -83,21 +83,31 @@ g = induced.subgraph(g,which(clust$membership==cmax))
 #com <- fastgreedy.community(g)
 #com <- walktrap.community(g)
 
-# cliques
+
+
+################
+# Cliques
+#
 gc = induced.subgraph(g,v=which(degree(g,mode="all")>=3))
 clic = cliques(gc,min=4)
 clic_lengths = sapply(clic,length)
 #hist(clic_lengths,breaks=20)
 
 # write cliques to file to avoid recomputation
-clicmat = matrix("0",length(clic),8)
-for(r in 1:length(clic)){currentclic = V(gc)$name[clic[[r]]];clicmat[r,1:length(currentclic)]=currentclic}
-write.table(clicmat,file='clics_ids.csv',row.names = FALSE,col.names = FALSE,sep=";")
-cyb = which(V(g)$cyb==1)
-cybclics = which(sapply(clic,function(c){length(intersect(c,cyb))>0}))
+#clicmat = matrix("0",length(clic),8)
+#for(r in 1:length(clic)){currentclic = V(gc)$name[clic[[r]]];clicmat[r,1:length(currentclic)]=currentclic}
+#write.table(clicmat,file='clics_ids.csv',row.names = FALSE,col.names = FALSE,sep=";")
+clicmat=read.table('clics_ids.csv',header=FALSE,sep=";",colClasses=rep("character",8))
+clic=list();for(i in 1:nrow(clicmat)){clic[[i]]=unlist(clicmat[i,which(clicmat[i,]!="0")])}#reconstruct clics from clicmat
+cyb = V(gc)$name[which(V(gc)$cyb==1)]
+cybclics = which(sapply(clic,function(c){length(intersect(c,cyb))>1&length(c)>4}))
 for(i in cybclics){
   sc = induced.subgraph(gc,V(gc)[clic[[i]]])
-  plot(sc,vertex.label=V(sc)$title)
+  lay=layout_as_tree(sc,circular=FALSE);
+  lay[,2]=degree(sc,mode="in")
+  pdf(paste0(Sys.getenv('CS_HOME'),"/Cybergeo/cybergeo20/HyperNetwork/Results/Networks/Citations/cliques/cybclic_2cyb_",i,".pdf"),width = 9,height=6)
+  plot(sc,vertex.label=V(sc)$title,vertex.color=V(sc)$cyb+4,layout=lay)
+  dev.off()
 }
 
 
