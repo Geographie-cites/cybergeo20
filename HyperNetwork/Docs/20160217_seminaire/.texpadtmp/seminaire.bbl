@@ -1,0 +1,37 @@
+\begin{thebibliography}{}
+
+\bibitem[Bird, 2006]{bird2006nltk}
+Bird, S. (2006).
+\newblock Nltk: the natural language toolkit.
+\newblock In {\em Proceedings of the COLING/ACL on Interactive presentation
+  sessions}, pages 69--72. Association for Computational Linguistics.
+
+\bibitem[Blondel et~al., 2008]{blondel2008fast}
+Blondel, V.~D., Guillaume, J.-L., Lambiotte, R., and Lefebvre, E. (2008).
+\newblock Fast unfolding of communities in large networks.
+\newblock {\em Journal of statistical mechanics: theory and experiment},
+  2008(10):P10008.
+
+\bibitem[Chavalarias and Cointet, 2013]{chavalarias2013phylomemetic}
+Chavalarias, D. and Cointet, J.-P. (2013).
+\newblock Phylomemetic patterns in science evolution---the rise and fall of
+  scientific fields.
+\newblock {\em Plos One}, 8(2):e54847.
+
+\bibitem[Mendeley, 2015]{mendeley}
+Mendeley (2015).
+\newblock Mendeley reference manager.
+\newblock http://www.mendeley.com/.
+
+\bibitem[Noruzi, 2005]{noruzi2005google}
+Noruzi, A. (2005).
+\newblock Google scholar: The new generation of citation indexes.
+\newblock {\em Libri}, 55(4):170--180.
+
+\bibitem[Schmid, 1994]{schmid1994probabilistic}
+Schmid, H. (1994).
+\newblock Probabilistic part-of-speech tagging using decision trees.
+\newblock In {\em Proceedings of the international conference on new methods in
+  language processing}, volume~12, pages 44--49. Citeseer.
+
+\end{thebibliography}
