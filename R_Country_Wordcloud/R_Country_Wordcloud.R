@@ -14,6 +14,17 @@ world = readOGR(dsn=paste(path, "world/world.shp", sep=""),
                 layer = "world", encoding="utf8")
 plot(world)
 
+articles = read.csv(paste0(path, "articles2.csv"), sep=",", dec=".")
+summary(articles)
+
+metaArticles = read.csv("/Users/clementinecottineau/Documents/cybergeo20/Data/raw/cybergeo.csv", sep=",", dec=".")
+summary(metaArticles)
+
+tail(articles)
+
+list(unique(articles$country))
+list(unique(articles$country2))
+
 REG = world
 
 countries = world@data
@@ -22,8 +33,7 @@ countries$polygonID = as.numeric(countries$polygonID) + 1
 write.csv(countries, paste0(path, "countrycodes.csv"))
 REG@bbox
 
-
-par(mfrow=c(4,4))
+par(mfrow=c(4,4), mar = c(0,0,1,0))
 for(j in 1:16){
   e = j * 16
   b = e-15
