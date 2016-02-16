@@ -15,23 +15,80 @@ world = readOGR(dsn=paste(path, "world/world.shp", sep=""),
 plot(world)
 
 articles = read.csv(paste0(path, "articles2.csv"), sep=",", dec=".")
+head(articles)
+
+REG = world
+REGP = gCentroid(REG,byid=TRUE, id = REG@data$CNTR_ID)
+plot(REGP)
+# countries$polygonID = rownames(countries)
+# countries$polygonID = as.numeric(countries$polygonID) + 1
+# write.csv(countries, paste0(path, "countrycodes.csv"))
+# REG@bbox
+
+
+articles$country = as.character(articles$country)
+articles$textCountry = strsplit(articles$country, split = "_")
+articles$country2 = as.character(articles$country2)
+articles$textCountry2 = strsplit(articles$country2, split = "_")
+articles$firstauthor = as.character(articles$firstauthor)
+articles$textfirstauthor = strsplit(articles$firstauthor, split = "_")
+articles$author2 = as.character(articles$author2)
+articles$textauthor2 = strsplit(articles$author2, split = "_")
+
+countries = as.character(REG@data$CNTR_ID)
+
+t = 0
+for (i in 1:dim(articles)[1]){
+  for (c in countries){
+      t = t + 1
+  articles[i,paste0("S_",c)] = ifelse(c %in% articles[i,"textCountry"] == "TRUE" |
+                                c %in% articles[i,"textCountry2"] == "TRUE", 1, 0)
+  articles[i,paste0("A_",c)] = ifelse(c %in% articles[i,"textfirstauthor"] == "TRUE" |
+                                       c %in% articles[i,"textauthor2"] == "TRUE", 1, 0)
+  articles[i,paste0("L_",c)] = ifelse(articles[i,paste0("S_",c)] == 1 && articles[i,paste0("A_",c)] == 1, 1, 0)
+  print(t)
+    }}
+head(articles)
+
+locals = paste0("L_", countries)
+authors = paste0("A_", countries)
+studies = paste0("S_", countries)
+
+for (i in 1:dim(articles)[1]){
+  articles[i,"locals"] = sum(articles[i,locals])
+  articles[i,"LocalStudy"] = ifelse(articles[i,"locals"] >= 1, 1, 0)
+}
 summary(articles)
+sum(articles$LocalStudy)
 
 metaArticles = read.csv("/Users/clementinecottineau/Documents/cybergeo20/Data/raw/cybergeo.csv", sep=",", dec=".")
 summary(metaArticles)
 
-tail(articles)
+Studied = colSums(articles[,studies])
+Authoring = colSums(articles[,authors])
+SelfStudied = colSums(articles[,locals])
+countryBase = data.frame(countries, Studied, Authoring, SelfStudied)
+tail(countryBase, 10)
 
-list(unique(articles$country))
-list(unique(articles$country2))
+REG@data = data.frame(REG@data, countryBase[match(REG@data$CNTR_ID,countryBase$countries), ])
 
-REG = world
+REG@data$StudiedAtAll = ifelse(REG@data$Studied >= 1, "darkblue", NA)
+REG@data$AuthoringAtAll = ifelse(REG@data$Authoring >= 1,  "red", NA)
+REG@data$SelfStudiedAtAll = ifelse(REG@data$SelfStudied >= 1,  "yellow", NA)
+par(mfrow=c(1,1), mar = c(0,0,1,0))
+plot(REG, col=alpha(REG@data$StudiedAtAll, alpha = 0.3), border="black")
+plot(REG, col=alpha(REG@data$AuthoringAtAll, alpha = 0.3), add=T, border=F)
+plot(REG, col=alpha(REG@data$SelfStudiedAtAll, alpha = 0.3), add=T, border=F)
+REGQ = SpatialPointsDataFrame(REGP,REG@data)
+plot(REGQ, cex = 0.1 * REGQ@data$Studied, col=alpha("black", alpha = 0.2), add=T, pch = 16)
 
-countries = world@data
-countries$polygonID = rownames(countries)
-countries$polygonID = as.numeric(countries$polygonID) + 1
-write.csv(countries, paste0(path, "countrycodes.csv"))
-REG@bbox
+
+
+
+
+
+
+
 
 par(mfrow=c(4,4), mar = c(0,0,1,0))
 for(j in 1:16){
