@@ -20,6 +20,16 @@ head(articles)
 REG = world
 REGP = gCentroid(REG,byid=TRUE, id = REG@data$CNTR_ID)
 plot(REGP)
+
+par(mfrow=c(4,4), mar = c(0,0,1,0))
+for(j in 1:16){
+  e = j * 16
+  b = e-15
+  for (i in b:e){
+    print(REG@polygons[[i]]@ID)
+    plot(REG[i,], col="grey")
+    title(REG@data[i,"CNTR_ID"])
+  }}
 # countries$polygonID = rownames(countries)
 # countries$polygonID = as.numeric(countries$polygonID) + 1
 # write.csv(countries, paste0(path, "countrycodes.csv"))
@@ -61,8 +71,6 @@ for (i in 1:dim(articles)[1]){
 summary(articles)
 sum(articles$LocalStudy)
 
-metaArticles = read.csv("/Users/clementinecottineau/Documents/cybergeo20/Data/raw/cybergeo.csv", sep=",", dec=".")
-summary(metaArticles)
 
 Studied = colSums(articles[,studies])
 Authoring = colSums(articles[,authors])
@@ -81,24 +89,126 @@ plot(REG, col=alpha(REG@data$AuthoringAtAll, alpha = 0.3), add=T, border=F)
 plot(REG, col=alpha(REG@data$SelfStudiedAtAll, alpha = 0.3), add=T, border=F)
 REGQ = SpatialPointsDataFrame(REGP,REG@data)
 plot(REGQ, cex = 0.1 * REGQ@data$Studied, col=alpha("black", alpha = 0.2), add=T, pch = 16)
+text(x,y,w, cex = f)
 
-
-
-
-
-
-
-
-
-par(mfrow=c(4,4), mar = c(0,0,1,0))
-for(j in 1:16){
-  e = j * 16
-  b = e-15
-for (i in b:e){
-print(REG@polygons[[i]]@ID)
+head(articles)
+  i = 40
+  print(REG@polygons[[i]]@ID)
   plot(REG[i,], col="grey")
   title(REG@data[i,"CNTR_ID"])
-}}
+
+  wt = table(subcountry)
+  LOC=NULL
+ID = c(1:5)
+WORDS = c("Motor", "Food", "Screen", "Cat", "Concept")
+FREQ = c(2, 9, 1, 2, 1)
+IDREG = c(24, 200, 40, 78, 7) #as.numeric(rownames(REG@data))
+LOC = data.frame(ID, WORDS, IDREG, FREQ)
+LOC$IDPOL = LOC$IDREG + 1
+
+ids = unique(LOC$IDPOL)
+
+x=data.frame()
+y=data.frame()
+z=data.frame()
+for (i in ids) {
+  x[i,"X"] = REG@polygons[[i]]@labpt[[1]] # Barycentre
+  y[i,"Y"] = REG@polygons[[i]]@labpt[[2]]
+  z[i,"Total"] = sum(LOC[LOC$IDPOL == i,]$FREQ)
+}
+x$IDPOL = rownames(x)
+y$IDPOL = rownames(y)
+z$IDPOL = rownames(z)
+
+x= x[complete.cases(x),]
+y= y[complete.cases(y),]
+z= z[complete.cases(z),]
+LOC = merge(LOC, x, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+LOC = merge(LOC, y, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+LOC = merge(LOC, z, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+LOC$RFREQ = LOC$FREQ / LOC$Total
+LOC$Random = runif(dim(LOC)[[1]], 0, 1)
+LOC$NewY = ifelse(LOC$RFREQ < 1, LOC$Random * LOC$Ymin + (1-LOC$Random) * LOC$Ymax,LOC$Y)
+LOC
+plot(REG, col="grey", border=F)
+x <- LOC[,"X"]
+y <- LOC[,"NewY"]
+w <- LOC[,"WORDS"]
+f = LOC[,"RFREQ"]
+text(x,y,w, cex = f  * 0.8)
+
+
+
+cybterms = read.csv("/Users/clementinecottineau/Documents/cybergeo20/Data/raw/terms.csv", sep=";", dec=".")
+head(cybterms)
+#cybtermat = table(cybterms$term, cybterms$id)
+#tail(cybtermat)
+
+lookup = data.frame(countries)
+lookup$polyID = as.numeric(rownames(lookup)) - 1
+
+cybterms$idterm = rownames(cybterms)
+cybterms2 = data.frame(cybterms, articles[match(cybterms$id,articles$id), ])
+cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
+cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
+summary(cybterms4, 20)
+
+
+
+
+
+LOC=NULL
+ID = cybterms2$idterm
+WORDS = cybterms2$term
+FREQ = cybterms2$count
+IDREG = cybterms2$country
+LOC = data.frame(ID, WORDS, IDREG, FREQ)
+LOC$IDPOL = LOC$IDREG + 1
+
+ids = unique(LOC$IDPOL)
+
+x=data.frame()
+y=data.frame()
+z=data.frame()
+for (i in ids) {
+  x[i,"X"] = REG@polygons[[i]]@labpt[[1]] # Barycentre
+  y[i,"Y"] = REG@polygons[[i]]@labpt[[2]]
+  z[i,"Total"] = sum(LOC[LOC$IDPOL == i,]$FREQ)
+}
+x$IDPOL = rownames(x)
+y$IDPOL = rownames(y)
+z$IDPOL = rownames(z)
+
+x= x[complete.cases(x),]
+y= y[complete.cases(y),]
+z= z[complete.cases(z),]
+LOC = merge(LOC, x, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+LOC = merge(LOC, y, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+LOC = merge(LOC, z, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+LOC$RFREQ = LOC$FREQ / LOC$Total
+LOC$Random = runif(dim(LOC)[[1]], 0, 1)
+LOC$NewY = ifelse(LOC$RFREQ < 1, LOC$Random * LOC$Ymin + (1-LOC$Random) * LOC$Ymax,LOC$Y)
+LOC
+plot(REG, col="grey", border=F)
+x <- LOC[,"X"]
+y <- LOC[,"NewY"]
+w <- LOC[,"WORDS"]
+f = LOC[,"RFREQ"]
+text(x,y,w, cex = f  * 0.8)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 plot(REG@polygons[[4]])
 
@@ -175,6 +285,16 @@ y <- LOC[,"NewY"]
 w <- LOC[,"WORDS"]
 f = LOC[,"RFREQ"]
 text(x,y,w, cex = f)
+
+
+
+
+
+
+
+
+
+
 
 
 
