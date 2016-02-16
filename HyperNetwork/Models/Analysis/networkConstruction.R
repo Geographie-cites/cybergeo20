@@ -16,6 +16,9 @@ importDicoCsv<-function(kwFile){
 
 
 
+##
+#  generic function to create and export nw
+#  also compute kws dictionary (used later in originality computation)
 exportNetwork<-function(data,kwthreshold = 2000,linkthreshold =15,connex=TRUE,export=FALSE,exportPrefix="",filterFile="",kwFile="2000"){
   
   relevant = data$relevant
@@ -39,12 +42,17 @@ exportNetwork<-function(data,kwthreshold = 2000,linkthreshold =15,connex=TRUE,ex
   rel = list()
   for(i in 1:length(srel$keyword)){rel[[srel$keyword[i]]]=i}
   
+  res=list()
+  
+  keyword_dico = list()
+  
   cooccs = matrix(0,nrow(srel),nrow(srel))
   
   for(i in 1:nrow(dico)){
     if(i%%100==0){show(i)}
     kws=strsplit(enc2utf8(dico[i,kwCol]),";")[[1]]
-    if(kwCol==1){kws=kws[-1]}
+    id=""
+    if(kwCol==1){id=kws[1];kws=kws[-1];}else{id=dico[i,1]}
     if(length(kws)>1){
       for(k in 1:(length(kws)-1)){
         for(l in (k+1):(length(kws))){
@@ -54,6 +62,7 @@ exportNetwork<-function(data,kwthreshold = 2000,linkthreshold =15,connex=TRUE,ex
         }
       }
     }
+    keyword_dico[[id]]=kws
   }
   
   colnames(cooccs) = names(unlist(rel))
@@ -79,7 +88,11 @@ exportNetwork<-function(data,kwthreshold = 2000,linkthreshold =15,connex=TRUE,ex
     write.graph(g,filename,"gml")
   }
   
-  return(g)
+  res=list()
+  res$g=g
+  res$keyword_dico=keyword_dico
+  
+  return(res)
 }
 
 

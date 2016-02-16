@@ -36,9 +36,10 @@ Mercedi 17 f{\'e}vrier 2016}
 \titlepage
 \end{frame}
 
-\begin{frame}
-\tableofcontents
-\end{frame}
+% NO TOC
+%\begin{frame}
+%\tableofcontents
+%\end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -79,7 +80,7 @@ $\rightarrow$ Donn{\'e}es difficiles d'acc{\`e}s : base {\`a} construire
 
 
 
-\section{Collections des donn{\'e}es}
+\section{Collecte des donn{\'e}es}
 
 
 \jframe{Collecte des donn{\'e}es}{
@@ -89,13 +90,31 @@ $\rightarrow$ Donn{\'e}es difficiles d'acc{\`e}s : base {\`a} construire
 
 Donn{\'e}es de mobilit{\'e} : statuts des stations Vlib en temps r{\'e}el (API)\cite{raimbault2015user}
 
-{\centering
-\includegraphics[width=0.5\textwidth]{figures/velib}
+\bigskip
+
+\centering
+\includegraphics[width=0.7\textwidth]{figures/velib}
+
+
+
 }
+
+\jframe{Collecte des donn{\'e}es}{
+\textit{Exemples en g{\'e}ographie (suite)}
 
 \bigskip
 
-Traffic routier : collecte de \textit{sytadin} (pas d'API)
+Traffic routier : collecte de \textit{sytadin} (pas d'API : \textit{scrapping} n{\'e}c{\'e}ssaire)
+
+
+\bigskip
+
+\centering
+\includegraphics[width=0.8\textwidth]{figures/screen_appli}
+
+
+\bigskip
+
 
 
 }
@@ -111,7 +130,7 @@ Traffic routier : collecte de \textit{sytadin} (pas d'API)
 
 \textbf{Donn{\'e}es de citation} : revue non r{\'e}f{\'e}renc{\'e}e par base ``classiques'' (de plus non libres !)
 
-$\rightarrow$ \textit{crawling} de \texttt{google scholar} par utilisation de l'option \textit{cit{\'e} par} \cite{noruzi2005google}
+$\rightarrow$ \textit{crawling} de \texttt{google scholar} par utilisation de l'option ``\textit{cit{\'e} par}'' \cite{noruzi2005google}
 
 
 \bigskip
@@ -142,13 +161,15 @@ $\rightarrow$ utilisation de l'API Mendeley~\cite{mendeley} (gratuite mais non o
 \jframe{Caract{\'e}ristiques du r{\'e}seau}{
 
 
-Apr{\`e}s raffinement, $\simeq$ 947 r{\'e}f{\'e}rences de cybergeo exploitables, sur $\simeq 1200$ ; certaines inexistantes, d'autres mal enregistr{\'e}es sur scholar% $\rightarrow$ possibilit{\'e} de compl{\'e}ter {\`a} la main (long...).
+$\rightarrow$ Apr{\`e}s raffinement, $\simeq$ 947 r{\'e}f{\'e}rences de cybergeo exploitables, sur $\simeq 1200$ ; certaines inexistantes, d'autres mal enregistr{\'e}es sur scholar% $\rightarrow$ possibilit{\'e} de compl{\'e}ter {\`a} la main (long...).
 
+\smallskip
 
-\textit{418670 Noeuds et 570352 Liens ; Diam{\'e}tre : 9 ; Densit{\'e} : 3.25E-6 ; degr{\'e} moyen : 2.724284}
+$\rightarrow$ \textit{418670 Noeuds et 570352 Liens ; Diam{\'e}tre : 9 ; Densit{\'e} : 3.25E-6 ; degr{\'e} moyen : 2.724284}
 
 \includegraphics[width=0.8\textwidth]{figures/degreeDistrib.png}
 }
+
 
 \jframe{Degr{\'e}s : Loi rang-taille}{
 \includegraphics[width=0.52\textwidth]{figures/rankSize_fit}

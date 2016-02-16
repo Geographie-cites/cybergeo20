@@ -16,8 +16,8 @@ setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw'))
 #colnames(vertices)=c("name","title","year","cyb")
 
 edges <- read.csv('full_edges.csv',header=FALSE,sep="\t",colClasses=c("character","character"))
-nodes <- read.table('full_nodes.csv',header=FALSE,sep="\t",colClasses=c("character","character","numeric","numeric"),fileEncoding="latin1",encoding="latin1")
-colnames(edges)=c("from","to");colnames(nodes)=c("name","cyb")
+#nodes <- read.table('full_nodes.csv',header=FALSE,sep="\t",colClasses=c("character","character","numeric","numeric"),fileEncoding="latin1",encoding="latin1")
+colnames(edges)=c("from","to");#colnames(nodes)=c("name","cyb")
 
 s=scan(file='full_nodes.csv',what="character",sep='\n')
 nodes = strsplit(s,'\t')
@@ -36,14 +36,18 @@ e = as.tbl(edges) %>% filter(from %in% nodes$name & to %in% nodes$name)
 #e = merge(x=data.frame(e$to,e$from),y=data.frame(vertices$name),by.x=1,by.y=1,all.x=FALSE,all.y=TRUE)
 
 # construct the graph
-g = graph.data.frame(as.data.frame(e),vertices=nodes)
+gcitation = graph.data.frame(as.data.frame(e),vertices=nodes)
 
 # first analysis
 
-cybnodes=V(g)[V(g)$cyb==1]
-#citingcyb <- incident(g,v=which(V(g)$cyb==1),mode="all")
-citingcyb <- incident(g,v=cybnodes,mode="in")
-
+cybnodes=V(gcitation)[V(gcitation)$cyb==1]
+cybnames=cybnodes$name
+citingcyb=c();citedbycyb=c()
+for(i in 1:length(cybnodes)){
+  if(i %% 10==0){show(i)}
+  citingcyb = append(citingcyb,neighbors(gcitation,v=cybnodes[i],mode="in")$name)
+  citedbycyb = append(citedbycyb,neighbors(gcitation,v=cybnodes[i],mode="out")$name)
+}
 
 
 # impact factor
@@ -82,7 +86,7 @@ g = induced.subgraph(g,which(clust$membership==cmax))
 #com <- leading.eigenvector.community(g,steps=3)
 #com <- fastgreedy.community(g)
 #com <- walktrap.community(g)
-
+#com <- cluster_louvain(g)
 
 
 ################
@@ -109,6 +113,8 @@ for(i in cybclics){
   plot(sc,vertex.label=V(sc)$title,vertex.color=V(sc)$cyb+4,layout=lay)
   dev.off()
 }
+
+
 
 
 
