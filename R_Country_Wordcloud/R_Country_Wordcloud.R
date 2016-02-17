@@ -5,6 +5,9 @@ library(rgdal)
 library(ggplot2)
 library(RODBC)
 
+Years = 1996:2015
+
+
 path = "/Users/clementinecottineau/Documents/cybergeo20/R_Country_Wordcloud/"
 REG = readOGR(dsn=paste(path, "FRA_adm/FRA_adm1.shp", sep=""),
               layer = "FRA_adm1", encoding="utf8")
@@ -57,14 +60,14 @@ t = 0
 for (i in 1:dim(articles)[1]){
   for (c in countries){
       t = t + 1
-  articles[i,paste0("S_",c)] = ifelse(c %in% articles[i,"textCountry"] == "TRUE" ||
-                                c %in% articles[i,"textCountry2"] == "TRUE", 1, 0)
-  articles[i,paste0("A_",c)] = ifelse(c %in% articles[i,"textfirstauthor"] == "TRUE" ||
-                                       c %in% articles[i,"textauthor2"] == "TRUE", 1, 0)
+  articles[i,paste0("S_",c)] = ifelse(c %in% articles[i,"textCountry"][[1]] == "TRUE" ||
+                                c %in% articles[i,"textCountry2"][[1]] == "TRUE", 1, 0)
+  articles[i,paste0("A_",c)] = ifelse(c %in% articles[i,"textfirstauthor"][[1]] == "TRUE" ||
+                                       c %in% articles[i,"textauthor2"][[1]] == "TRUE", 1, 0)
   articles[i,paste0("L_",c)] = ifelse(articles[i,paste0("S_",c)] == 1 && articles[i,paste0("A_",c)] == 1, 1, 0)
   print(t)
     }}
-head(articles)
+
 # 
  locals = paste0("L_", countries)
  authors = paste0("A_", countries)
@@ -88,6 +91,9 @@ write.csv(articlesToSave, "/Users/clementinecottineau/Documents/cybergeo20/R_Cou
 articles = read.csv("/Users/clementinecottineau/Documents/cybergeo20/R_Country_Wordcloud/articles_Contingency.csv", sep=",", dec=".")
 # head(articles)
 # 
+#Year = 1998
+#articles = articles[as.numeric(substr(articles$date.1)) == Year ,]
+
 Studied = colSums(articles[,studies])
 Authoring = colSums(articles[,authors])
 SelfStudied = colSums(articles[,locals])
@@ -100,11 +106,14 @@ REG@data$StudiedAtAll = ifelse(REG@data$Studied >= 1, "#1C6F91", "lightgrey")
 REG@data$AuthoringAtAll = ifelse(REG@data$Authoring >= 1, "orange", "lightgrey")
 REG@data$SelfStudiedAtAll = ifelse(REG@data$SelfStudied >= 1,  "grey20", "lightgrey")
 
+Year = 1996:2015
 par(mfrow=c(1,1), mar = c(0,0,1,0))
 plot(REG, col=REG@data$StudiedAtAll, border="white")
+title(paste0("Countries studied in Cybergeo articles | ", Year))
 plot(REG, col=REG@data$AuthoringAtAll, border="white")
+title(paste0("Countries authoring Cybergeo articles | ", Year))
 plot(REG, col=REG@data$SelfStudiedAtAll, border="white")
-countries
+title(paste0("Countries studied by locals in Cybergeo articles | ", Year))
 # 
 # plot(REG, col=alpha(REG@data$StudiedAtAll, alpha = 0.3), border="black")
 # plot(REG, col=alpha(REG@data$AuthoringAtAll, alpha = 0.3), add=T, border=F)
@@ -196,8 +205,6 @@ LOC = subset(LOC, !is.na(IDPOL))
 isIDmax <- with(LOC, ave(FREQ, CountryName, FUN=function(x) seq_along(x)==which.max(x)))==1
 LOC = LOC[isIDmax, ] # most common word by country
 
-
-
 ids = unique(LOC$IDPOL)
 
 x=data.frame()
@@ -226,19 +233,103 @@ w <- LOC[,"WORDS"]
 f = LOC[,"FREQ"]
 par(mfrow=c(1,1), mar = c(0,0,1,0))
 plot(REG, col="grey", border=F)
-text(x,y,w, cex = 0.5 * f)
-#f * 0.01 )
+text(x,y,w, cex = 0.001 * f)
+title(paste0("Frequency of the most frequent word | ", Year))
 
 
 
+LOC=NULL
+ID = as.numeric(keywordsPO$idterm)
+WORDS = keywordsPO$term
+FREQ = as.numeric(keywordsPO$count)
+CountryName = keywordsPO$countries
+IDREG = as.numeric(keywordsPO$polyID)
+LOC = data.frame(ID, WORDS, IDREG, FREQ, CountryName)
+LOC$IDPOL = LOC$IDREG + 1
+#LOC
 
-
+LOC = subset(LOC, !is.na(IDPOL))
+isIDmin <- with(LOC, ave(FREQ, CountryName, FUN=function(x) seq_along(x)==which.min(x)))==1
+LOC = LOC[isIDmin, ] # most common word by country
+ids = unique(LOC$IDPOL)
+x=data.frame()
+y=data.frame()
+z=data.frame()
+for (i in ids) {
+  x[i,"X"] = REG@polygons[[i]]@labpt[[1]] # Barycentre
+  y[i,"Y"] = REG@polygons[[i]]@labpt[[2]]
+  z[i,"Total"] = sum(LOC[LOC$IDPOL == i,]$FREQ)
+}
+x$IDPOL = rownames(x)
+y$IDPOL = rownames(y)
+z$IDPOL = rownames(z)
+x= x[complete.cases(x),]
+y= y[complete.cases(y),]
+z= z[complete.cases(z),]
+LOC = merge(LOC, x, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+LOC = merge(LOC, y, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+LOC = merge(LOC, z, by.x = "IDPOL", by.y="IDPOL", all.y=F)
 LOC
+x <- LOC[,"X"]
+y <- LOC[,"Y"]
+w <- LOC[,"WORDS"]
+f = LOC[,"FREQ"]
+par(mfrow=c(1,1), mar = c(0,0,1,0))
+plot(REG, col="grey", border=F)
+text(x,y,w, cex = 0.6)
+title(paste0("The least frequent words | ", Year))
 
 
 
 
 
+#nettoyage des dev
+while( length(dev.list())!=0){
+  dev.off()
+}
+
+article_maps = function(year, articles) {
+  REG = world
+  articles_y = articles[substr(articles$date.1, 1, 4) == as.character(Year),]
+  Studied = colSums(articles[,studies])
+  Authoring = colSums(articles[,authors])
+  SelfStudied = colSums(articles[,locals])
+  countryBase = data.frame(countries, Studied, Authoring, SelfStudied)
+  REG@data = data.frame(REG@data, countryBase[match(REG@data$CNTR_ID,countryBase$countries), ])
+  REG@data$StudiedAtAll = ifelse(REG@data$Studied >= 1, "#1C6F91", "lightgrey")
+  REG@data$AuthoringAtAll = ifelse(REG@data$Authoring >= 1, "orange", "lightgrey")
+  REG@data$SelfStudiedAtAll = ifelse(REG@data$SelfStudied >= 1,  "grey20", "lightgrey")  
+  return(REG)
+}
+map_studied = function(shp, year) {
+  REG = shp
+  plot(REG, col=REG@data$StudiedAtAll, border="white")
+  title(paste0("Countries studied in Cybergeo articles | ", year))
+ # plot(REG, col=REG@data$AuthoringAtAll, border="white")
+#  title(paste0("Countries authoring Cybergeo articles | ", Year))
+ # plot(REG, col=REG@data$SelfStudiedAtAll, border="white")
+#  title(paste0("Countries studied by locals in Cybergeo articles | ", Year))
+}
+make_studied_gif <- function (years, articles) {
+  library(animation)
+  ani.options(interval=.2)
+  saveGIF({
+    layout(matrix(c(1, rep(2, 5)), 6, 1))   
+    # Adjust the margins a little
+    par(mar=c(0,0,1,0) + 0.1)   
+    for (j in Years) {
+      par(fg=1)
+      Year = 2006
+      shp = article_maps(Year, articles) 
+      map_studied(shp, Year)
+    }
+  } 
+  ,movie.name="studied.gif", ani.height=400, ani.width=800
+  ) #SaveGIF 
+}
+make_studied_gif(Years, articles) 
+
+system()
 
 
 
