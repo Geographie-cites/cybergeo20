@@ -41,10 +41,14 @@ exportNetwork(importDicoCsv(kwFile),kwthreshold,linkthreshold,connex,TRUE,"graph
 
 nw=exportNetwork(list(relevant=relevant,dico=dico),
                 kwthreshold=1500,linkthreshold=5,
-                connex=FALSE,export=TRUE,exportPrefix="graphs/all/all",
+                connex=FALSE,export=FALSE,exportPrefix="graphs/all/all",
                 filterFile="graphs/all/filter.csv"
                 )
 g=nw$g;keyword_dico=nw$keyword_dico
+g = filterGraph(g,'graphs/all/filter.csv')
+
+# complexity of cooccs
+#sum(sapply(keyword_dico,function(x){length(x)^2}))
 
 clust = clusters(g);cmax = which(clust$csize==max(clust$csize))
 ggiant = induced.subgraph(g,which(clust$membership==cmax))
@@ -88,19 +92,23 @@ plot(clust,labels=FALSE)
 #     compensate with a mean field approach ? or compute originality only for papers with 
 #     referenced kws ?
 
-kmin = 5
-kmax = 900
-edge_th = 50
+kmin = 0
+kmax = 1000  # max for common ggiant is 1088
+edge_th = 100  # 6218
 
 # filter on degree (work already on giant component ?)
+#max(degree(ggiant))
+#max(E(ggiant)$weight) 
 d=degree(ggiant)
 gg=induced_subgraph(ggiant,which(d>kmin&d<kmax))
 gg=subgraph.edges(gg,which(E(gg)$weight>edge_th))
 
+write.graph(gg,file = paste0('graphs/filt_kmin',kmin,'_kmax',kmax,'_edge',edge_th,'_handFilt','.gml'),format = "gml")
 # filter on edge weight
 
 # communities
 com = cluster_louvain(gg)
+#for(i in unique(com$membership)){}
 # construct kw -> thematic dico
 thematics = list()
 for(i in 1:length(V(gg))){
@@ -122,7 +130,7 @@ for(i in 1:length(names(keyword_dico))){
 # number of articles with originality
 #length(which(rowSums(them_probas)>0))
 originalities=apply(them_probas,MARGIN = 1,FUN = function(r){if(sum(r)==0){return(0)}else{return(1 - sum(r^2))}})
-#hist(originalities,breaks=100)
+hist(originalities[originalities>0.6],breaks=50,main="",xlab="originalities")
 #summary(originalities)
 
 # cyb originalities ? -> needs cyb indexes (from citation network)
@@ -131,8 +139,10 @@ originalities=apply(them_probas,MARGIN = 1,FUN = function(r){if(sum(r)==0){retur
 #as.numeric(cybnames)
 #as.numeric(names(keyword_dico))
 # dirty way -- DIIIIRTYYYY
-cybindexes = c()
-for(cyb in cybnames){indexes = which(names(keyword_dico)==cyb);if(length(indexes)>0){cybindexes=append(cybindexes,indexes[1])}}
+cybindexes = c();cybresnames = c()
+for(cyb in cybnames){
+  indexes = which(names(keyword_dico)==cyb);
+  if(length(indexes)>0){cybindexes=append(cybindexes,indexes[1]);cybresnames=append(cybresnames,cyb)}}
 
 #mean(originalities[cybindexes])
 #hist(originalities[cybindexes],breaks=50)

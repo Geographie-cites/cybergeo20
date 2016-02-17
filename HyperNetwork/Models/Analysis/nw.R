@@ -49,6 +49,18 @@ for(i in 1:length(cybnodes)){
   citedbycyb = append(citedbycyb,neighbors(gcitation,v=cybnodes[i],mode="out")$name)
 }
 
+citingcited=c()
+for(i in 1:length(citedbycyb)){ 
+  if(i %% 10==0){show(i)}
+  citingcited = append(citingcited,neighbors(gcitation,v=citedbycyb[i],mode="in")$name)
+}
+
+# intersections ! -> USE IDS : does not work
+#  sort and setdiff ?
+
+
+
+
 
 # impact factor
 #V(g)$cyb[is.na(V(g)$cyb)]=0

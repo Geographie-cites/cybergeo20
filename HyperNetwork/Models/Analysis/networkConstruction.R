@@ -14,6 +14,18 @@ importDicoCsv<-function(kwFile){
 }
 
 
+# filter nodes : grep -v -f file for nodes names
+filterGraph<-function(graph,file){
+  words<-unlist(read.csv('graphs/all/filter.csv',stringsAsFactors=FALSE,header=FALSE))
+  g=graph
+  for(w in 1:length(words)){
+    #show(words[w])   
+    g=induced.subgraph(g,which(V(g)$name!=words[w]))
+    #show(length(V(g)))
+  }
+  return(g)
+}
+
 
 
 ##

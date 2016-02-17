@@ -8,7 +8,7 @@
 \headcommand {\beamer@framepages {2}{2}}
 \headcommand {\slideentry {1}{0}{2}{3/3}{}{0}}
 \headcommand {\beamer@framepages {3}{3}}
-\headcommand {\sectionentry {2}{Collections des donn{\'e}es}{4}{Collections des donn{\'e}es}{0}}
+\headcommand {\sectionentry {2}{Collecte des donn{\'e}es}{4}{Collecte des donn{\'e}es}{0}}
 \headcommand {\beamer@sectionpages {2}{3}}
 \headcommand {\beamer@subsectionpages {2}{3}}
 \headcommand {\slideentry {2}{0}{1}{4/4}{}{0}}
@@ -19,45 +19,57 @@
 \headcommand {\beamer@framepages {6}{6}}
 \headcommand {\slideentry {2}{0}{4}{7/7}{}{0}}
 \headcommand {\beamer@framepages {7}{7}}
-\headcommand {\sectionentry {3}{M{\'e}thodes et R{\'e}sultats}{8}{M{\'e}thodes et R{\'e}sultats}{0}}
-\headcommand {\beamer@sectionpages {4}{7}}
-\headcommand {\beamer@subsectionpages {4}{7}}
-\headcommand {\beamer@subsectionentry {0}{3}{1}{8}{R{\'e}seau des citations}}\headcommand {\beamer@subsectionpages {8}{7}}
-\headcommand {\slideentry {3}{1}{1}{8/8}{R{\'e}seau des citations}{0}}
+\headcommand {\slideentry {2}{0}{5}{8/8}{}{0}}
 \headcommand {\beamer@framepages {8}{8}}
-\headcommand {\slideentry {3}{1}{2}{9/9}{R{\'e}seau des citations}{0}}
+\headcommand {\slideentry {2}{0}{6}{9/9}{}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\slideentry {3}{1}{3}{10/10}{R{\'e}seau des citations}{0}}
+\headcommand {\sectionentry {3}{M{\'e}thodes et R{\'e}sultats}{10}{M{\'e}thodes et R{\'e}sultats}{0}}
+\headcommand {\beamer@sectionpages {4}{9}}
+\headcommand {\beamer@subsectionpages {4}{9}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{10}{R{\'e}seau des citations}}\headcommand {\beamer@subsectionpages {10}{9}}
+\headcommand {\slideentry {3}{1}{1}{10/10}{R{\'e}seau des citations}{0}}
 \headcommand {\beamer@framepages {10}{10}}
-\headcommand {\slideentry {3}{1}{4}{11/11}{R{\'e}seau des citations}{0}}
+\headcommand {\slideentry {3}{1}{2}{11/11}{R{\'e}seau des citations}{0}}
 \headcommand {\beamer@framepages {11}{11}}
-\headcommand {\slideentry {3}{1}{5}{12/12}{R{\'e}seau des citations}{0}}
+\headcommand {\slideentry {3}{1}{3}{12/12}{R{\'e}seau des citations}{0}}
 \headcommand {\beamer@framepages {12}{12}}
-\headcommand {\beamer@subsectionentry {0}{3}{2}{13}{R{\'e}seau s{\'e}mantique}}\headcommand {\beamer@subsectionpages {8}{12}}
-\headcommand {\slideentry {3}{2}{1}{13/13}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\slideentry {3}{1}{4}{13/13}{R{\'e}seau des citations}{0}}
 \headcommand {\beamer@framepages {13}{13}}
-\headcommand {\slideentry {3}{2}{2}{14/14}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\slideentry {3}{1}{5}{14/14}{R{\'e}seau des citations}{0}}
 \headcommand {\beamer@framepages {14}{14}}
-\headcommand {\slideentry {3}{2}{3}{15/15}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{15}{R{\'e}seau s{\'e}mantique}}\headcommand {\beamer@subsectionpages {10}{14}}
+\headcommand {\slideentry {3}{2}{1}{15/15}{R{\'e}seau s{\'e}mantique}{0}}
 \headcommand {\beamer@framepages {15}{15}}
-\headcommand {\slideentry {3}{2}{4}{16/16}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\slideentry {3}{2}{2}{16/16}{R{\'e}seau s{\'e}mantique}{0}}
 \headcommand {\beamer@framepages {16}{16}}
-\headcommand {\slideentry {3}{2}{5}{17/17}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\slideentry {3}{2}{3}{17/17}{R{\'e}seau s{\'e}mantique}{0}}
 \headcommand {\beamer@framepages {17}{17}}
-\headcommand {\slideentry {3}{2}{6}{18/18}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\slideentry {3}{2}{4}{18/18}{R{\'e}seau s{\'e}mantique}{0}}
 \headcommand {\beamer@framepages {18}{18}}
-\headcommand {\slideentry {3}{2}{7}{19/19}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\slideentry {3}{2}{5}{19/19}{R{\'e}seau s{\'e}mantique}{0}}
 \headcommand {\beamer@framepages {19}{19}}
-\headcommand {\slideentry {3}{2}{8}{20/20}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\slideentry {3}{2}{6}{20/20}{R{\'e}seau s{\'e}mantique}{0}}
 \headcommand {\beamer@framepages {20}{20}}
-\headcommand {\slideentry {3}{2}{9}{21/21}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\slideentry {3}{2}{7}{21/21}{R{\'e}seau s{\'e}mantique}{0}}
 \headcommand {\beamer@framepages {21}{21}}
-\headcommand {\slideentry {3}{2}{10}{22/22}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\slideentry {3}{2}{8}{22/22}{R{\'e}seau s{\'e}mantique}{0}}
 \headcommand {\beamer@framepages {22}{22}}
-\headcommand {\slideentry {3}{2}{10}{22/23}{R{\'e}seau s{\'e}mantique}{0}}
-\headcommand {\beamer@framepages {22}{23}}
-\headcommand {\beamer@partpages {1}{23}}
-\headcommand {\beamer@subsectionpages {13}{23}}
-\headcommand {\beamer@sectionpages {8}{23}}
-\headcommand {\beamer@documentpages {23}}
-\headcommand {\def \inserttotalframenumber {23}}
+\headcommand {\slideentry {3}{2}{9}{23/23}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\beamer@framepages {23}{23}}
+\headcommand {\slideentry {3}{2}{10}{24/24}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\beamer@framepages {24}{24}}
+\headcommand {\slideentry {3}{2}{11}{25/25}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\beamer@framepages {25}{25}}
+\headcommand {\slideentry {3}{2}{12}{26/26}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\beamer@framepages {26}{26}}
+\headcommand {\slideentry {3}{2}{13}{27/27}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\beamer@framepages {27}{27}}
+\headcommand {\slideentry {3}{2}{14}{28/28}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\beamer@framepages {28}{28}}
+\headcommand {\slideentry {3}{2}{14}{28/29}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\beamer@framepages {28}{29}}
+\headcommand {\beamer@partpages {1}{29}}
+\headcommand {\beamer@subsectionpages {15}{29}}
+\headcommand {\beamer@sectionpages {10}{29}}
+\headcommand {\beamer@documentpages {29}}
+\headcommand {\def \inserttotalframenumber {29}}

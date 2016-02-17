@@ -49,7 +49,7 @@ Mercedi 17 f{\'e}vrier 2016}
 \section{Introduction}
 
 \jframe{Donn{\'e}es massives ?}{
-\textit{Caract{\'e}ristiques n{\'e}c{\'e}ssaires possibles}
+\textit{Caract{\'e}ristiques n{\'e}cessaires possibles}
 \bigskip
 \begin{itemize}
 \item \textbf{Taille relative} : algorithmes et/ou structures de stockage non-conventionnels
@@ -88,7 +88,9 @@ $\rightarrow$ Donn{\'e}es difficiles d'acc{\`e}s : base {\`a} construire
 
 \bigskip
 
-Donn{\'e}es de mobilit{\'e} : statuts des stations Vlib en temps r{\'e}el (API)\cite{raimbault2015user}
+Donn{\'e}es de mobilit{\'e} : statuts des stations Vlib en temps r{\'e}el (API)
+
+\cite{raimbault2015user}
 
 \bigskip
 
@@ -121,28 +123,53 @@ Traffic routier : collecte de \textit{sytadin} (pas d'API : \textit{scrapping} n
 
 
 
-\jframe{Collection des donn{\'e}es}{
+\jframe{Collecte des donn{\'e}es}{
 
-\textbf{Donn{\'e}es des articles} : structuration, nettoyage et consolidation (sources diff{\'e}rentes)
-
-\bigskip
-
-
-\textbf{Donn{\'e}es de citation} : revue non r{\'e}f{\'e}renc{\'e}e par base ``classiques'' (de plus non libres !)
-
-$\rightarrow$ \textit{crawling} de \texttt{google scholar} par utilisation de l'option ``\textit{cit{\'e} par}'' \cite{noruzi2005google}
-
+\textbf{Donn{\'e}es des articles} : bases de fonctionnement (production de la revue)
 
 \bigskip
 
+\begin{itemize}
+\item Structuration : r{\'e}tro-ing{\'e}nierie de la base relationelle ; architecture ; extraction.
+\bigskip
+\item Nettoyage : Formatage des textes ; encodage.
+\bigskip
+\item Consolidation : sources diff{\'e}rentes sans id de lien.
+\bigskip
+\end{itemize}
 
-\textbf{Donn{\'e}es textuelles} : besoin des r{\'e}sum{\'e}s pour l'ensemble des r{\'e}f{\'e}rences li{\'e}es
-
-$\rightarrow$ utilisation de l'API Mendeley~\cite{mendeley} (gratuite mais non ouverte).
 
 
 }
 
+
+
+\jframe{Collecte des donn{\'e}es}{
+
+
+\textbf{Donn{\'e}es de citation} : revue non r{\'e}f{\'e}renc{\'e}e par base ``classiques'' (de plus non libres !)
+
+\bigskip
+
+$\rightarrow$ \textit{crawling} de \texttt{google scholar} par utilisation de l'option ``\textit{cit{\'e} par}'' \cite{noruzi2005google}
+
+
+}
+
+
+
+
+\jframe{Collecte des donn{\'e}es}{
+
+
+
+\textbf{Donn{\'e}es textuelles} : besoin des r{\'e}sum{\'e}s pour l'ensemble des r{\'e}f{\'e}rences li{\'e}es
+
+\bigskip
+
+$\rightarrow$ utilisation de l'API Mendeley~\cite{mendeley} (gratuite mais non ouverte).
+
+}
 
 
 \jframe{Architecture de collecte des donn{\'e}es}{
@@ -264,8 +291,8 @@ $\rightarrow$ $\sim 215000$ r{\'e}f{\'e}rences avec donn{\'e}es compl{\`e}tes.
 }
 
 
-\jframe{Estimation de la pertinence par bootstrap}{
-Estimation exacte de la pertinence via la repartition statistique des co-occurrences (score de $\chi^2$) : \textit{termhood} d{\'e}finie comme
+\jframe{Estimation de la pertinence}{
+Estimation exacte de la pertinence via la repartition statistique des co-occurrences (score de $\chi^2$) : \textit{termhood} d{\'e}finie, avec $M_{ij}$ nombre d'articles où $i$ et $j$ apparaissent simultanément,
 \[
 t_i = \sum_{j\neq i}\frac{\left( M_{ij} - \sum_{k}M_{ik} \sum_{k} M_{jk}\right)^2}{\sum_{k}M_{ik} \sum_{k} M_{jk}}
 \]
@@ -273,7 +300,12 @@ t_i = \sum_{j\neq i}\frac{\left( M_{ij} - \sum_{k}M_{ik} \sum_{k} M_{jk}\right)^
 
 en $\Theta (\sum_i N_i^2)$ ($N_i$ taille des r{\'e}sum{\'e}s) : impossible sur un corpus o{\`u} $\sum_i N_i^2 \simeq N <N_i>^2 \simeq 4\cdot 10^6$
 
-\bigskip
+82016802
+
+}
+
+
+\jframe{Estimation de la pertinence par bootstrap}{
 
 
 $\rightarrow$ Estimation par \textit{boootstrap} sur des {\'e}chantillons du corpus : moyenne de la \textit{termhood} sur $B$ {\'e}chantillons de taille $C$, avec nombre de mots cl{\'e}s $K_L$
@@ -282,7 +314,11 @@ $\rightarrow$ Estimation par \textit{boootstrap} sur des {\'e}chantillons du cor
 }
 
 
+
 \jframe{Bootstrap : convergence de l'estimateur}{
+
+\textit{Pas }
+
 \includegraphics[width=0.55\textwidth,height=0.6\textheight]{figures/kw50}
 \includegraphics[width=0.55\textwidth,height=0.6\textheight]{figures/kw200}
 }
@@ -303,11 +339,21 @@ Filtrage des liens en dessous d'un seuil ; ajustement manuel de mots parasites
 
 Detection de communaut{\'e}s par maximisation de modularit{\'e}~\cite{blondel2008fast} apr{\`e}s suppression des \textit{hubs} (\texttt{model}, \texttt{space}, \texttt{structure}, \texttt{process})
 
+\medskip
+
+Spatialisation de \textit{Fruchterman-Reingold}
+
 }
 
 
 
-\jframe{R{\'e}seau s{\'e}mantique : corpus complet}{
+\jframe{R{\'e}seau s{\'e}mantique : r{\'e}seau brut}{
+\includegraphics[height=\textheight]{figures/filt_kmin0_kmax1200_edge200}
+}
+
+
+
+\jframe{R{\'e}seau s{\'e}mantique : corpus complet (avec filtrage)}{
 \includegraphics[height=\textheight]{figures/semanticAll}
 }
 
@@ -317,15 +363,36 @@ Detection de communaut{\'e}s par maximisation de modularit{\'e}~\cite{blondel200
 }
 
 
+\jframe{Retour au corpus complet}{
+%\textit{Importance du r{\`e}glage fin des param{\`e}tres}
+
+\centering
+%\vspace{-2cm}
+\includegraphics[height=0.9\textheight]{figures/all_lesslinks}
+}
+
+\jframe{R{\^o}le des param{\è}tres}{
+\textit{Importance du r{\`e}glage fin des param{\`e}tres}
+
+bla bla openmole.
+
+}
+
+
+
 
 
 \jframe{Application : degr{\'e} d'interdisciplinarit{\'e}}{
-Un article peut être associ{\'e} aux communaut{\'e}s s{\'e}mantiques par ses mots cl{\'e}s : probas $p_i$ pour chaque communaut{\'e}.
+Un article peut {\^e}tre associ{\'e} aux communaut{\'e}s s{\'e}mantiques par ses mots cl{\'e}s : probas $p_i$ pour chaque communaut{\'e}.
 
-Mesure d'interdisciplinarit{\'e} :
+Mesure d'interdisciplinarit{\'e} (pour un article, au premier ordre) :
 \[
 o = 1 - \sum p_i^2
 \]
+
+\centering
+
+\includegraphics[width=0.5\textwidth]{figures/originalities}
 
 }
 
@@ -366,7 +433,7 @@ o = 1 - \sum p_i^2
 \begin{frame}[allowframebreaks]
 \frametitle{References}
 \bibliographystyle{apalike}
-\bibliography{/Users/Juste/Documents/ComplexSystems/CityNetwork/Biblio/Bibtex/CityNetwork,/Users/Juste/Documents/ComplexSystems/CityNetwork/Docs/Papers/Cybergeo/Biblio/cybergeo}
+\bibliography{/Users/Juste/Documents/ComplexSystems/CityNetwork/Biblio/Bibtex/CityNetwork,/Users/Juste/Documents/ComplexSystems/CityNetwork/Docs/Papers/Cybergeo/Biblio/cybergeo,biblio}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
