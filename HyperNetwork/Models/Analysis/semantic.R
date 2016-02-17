@@ -94,7 +94,7 @@ plot(clust,labels=FALSE)
 
 kmin = 0
 kmax = 1000  # max for common ggiant is 1088
-edge_th = 100  # 6218
+edge_th = 200  # 6218
 
 # filter on degree (work already on giant component ?)
 #max(degree(ggiant))
@@ -108,7 +108,7 @@ write.graph(gg,file = paste0('graphs/filt_kmin',kmin,'_kmax',kmax,'_edge',edge_t
 
 # communities
 com = cluster_louvain(gg)
-#for(i in unique(com$membership)){}
+for(i in unique(com$membership)){show(i);show(V(gg)$name[which(com$membership==i)])}
 # construct kw -> thematic dico
 thematics = list()
 for(i in 1:length(V(gg))){
@@ -139,13 +139,25 @@ hist(originalities[originalities>0.6],breaks=50,main="",xlab="originalities")
 #as.numeric(cybnames)
 #as.numeric(names(keyword_dico))
 # dirty way -- DIIIIRTYYYY
-cybindexes = c();cybresnames = c()
+cybindexes = c();cybresnames = c();iscyb=rep(FALSE,length(originalities))
 for(cyb in cybnames){
   indexes = which(names(keyword_dico)==cyb);
-  if(length(indexes)>0){cybindexes=append(cybindexes,indexes[1]);cybresnames=append(cybresnames,cyb)}}
+  if(length(indexes)>0){
+    cybindexes=append(cybindexes,indexes[1]);
+    cybresnames=append(cybresnames,cyb)
+    iscyb[indexes[1]]=TRUE
+  }}
 
 #mean(originalities[cybindexes])
 #hist(originalities[cybindexes],breaks=50)
+length(which(iscyb))
+dat=data.frame(orig=originalities,cyb=iscyb)
+sdat=as.tbl(dat)%>%group_by(cyb)%>%summarise(mean=mean(orig))
+library(ggplot2)
+g=ggplot(dat, aes(x=orig, fill=cyb)) 
+g+ geom_density(alpha=.3)#+geom_vline(data=sdat, aes(xintercept=mean,  colour=cyb),
+                                   linetype="dashed", size=1)
+
 
 # this was PAPER-level originality -> let try JOURNAL-level originality
 cybprobas = them_probas[cybindexes,]
@@ -173,14 +185,25 @@ hist(nulljournalorigs,breaks=1000)
 
 cybsecorigin=c()
 cybsecorigout=c()
-cybsecorigall=c()
-for(i in cybindexes){
-  neighbors(gcitation,v=cybnodes[i],mode="in")
+#cybsecorigall=c()
+for(i in 1:length(cybnodes)){
+   show(i)
+   neigh = neighbors(gcitation,v=cybnodes[i],mode="out")$name
+   show(neigh)
+   probas = rep(0,ncol(them_probas));count=0
+   for(n in 1:length(neigh)){
+     inds = which(names(keyword_dico)==neigh[n])
+     if(length(inds)>0){probas=probas+them_probas[inds[1],];count=count+1}
+   }
+   if(count>0){probas=probas/count}
+   if(sum(probas)>0){cybsecorigout=append(cybsecorigout,1-sum(probas^2))}
 }
 
 
-
-
+####
+dat = data.frame(orig=c(cybsecorigin,cybsecorigout),type=c(rep("in",length(cybsecorigin)),rep("out",length(cybsecorigout)))
+                 sdat=as.tbl(dat)%>%group_by(type)%>%summarise(mean=mean(orig))             
+ggplot(dat, aes(x=orig, fill=type)) + geom_density(alpha=.3)+geom_vline(data=sdat, aes(xintercept=mean,  colour=type),linetype="dashed", size=1)
 
 
 

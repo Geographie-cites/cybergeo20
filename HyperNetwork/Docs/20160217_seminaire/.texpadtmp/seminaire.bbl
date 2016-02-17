@@ -12,11 +12,23 @@ Blondel, V.~D., Guillaume, J.-L., Lambiotte, R., and Lefebvre, E. (2008).
 \newblock {\em Journal of statistical mechanics: theory and experiment},
   2008(10):P10008.
 
+\bibitem[Chavalarias, 2016]{chavalarias2016unlikely}
+Chavalarias, D. (2016).
+\newblock The unlikely encounter between von foerster and snowden: When
+  second-order cybernetics sheds light on societal impacts of big data.
+\newblock {\em Big Data \& Society}, 3(1):2053951715621086.
+
 \bibitem[Chavalarias and Cointet, 2013]{chavalarias2013phylomemetic}
 Chavalarias, D. and Cointet, J.-P. (2013).
 \newblock Phylomemetic patterns in science evolution---the rise and fall of
   scientific fields.
 \newblock {\em Plos One}, 8(2):e54847.
+
+\bibitem[Cottineau et~al., 2015]{cottineau2015revisiting}
+Cottineau, C., Le~N{\'e}chet, F., Le~Texier, M., and Reuillon, R. (2015).
+\newblock Revisiting some geography classics with spatial simulation.
+\newblock In {\em Plurimondi. An International Forum for Research and Debate on
+  Human Settlements}, volume~7.
 
 \bibitem[Mendeley, 2015]{mendeley}
 Mendeley (2015).
@@ -40,5 +52,11 @@ Schmid, H. (1994).
 \newblock Probabilistic part-of-speech tagging using decision trees.
 \newblock In {\em Proceedings of the international conference on new methods in
   language processing}, volume~12, pages 44--49. Citeseer.
+
+\bibitem[Shalizi and Crutchfield, 2001]{shalizi2001computational}
+Shalizi, C.~R. and Crutchfield, J.~P. (2001).
+\newblock Computational mechanics: Pattern and prediction, structure and
+  simplicity.
+\newblock {\em Journal of statistical physics}, 104(3-4):817--879.
 
 \end{thebibliography}

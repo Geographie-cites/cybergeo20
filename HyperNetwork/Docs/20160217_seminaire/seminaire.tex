@@ -60,6 +60,55 @@ Mercedi 17 f{\'e}vrier 2016}
 \end{itemize}
 }
 
+
+\jframe{Donn{\'e}es massives et Syst{\`e}mes Complexes}{
+\textbf{Syst{\`e}me Complexe} : grand nombre d'agents h{\'e}t{\'e}rog{\`e}nes qui interagissent, emergence du comportement macro.
+$\rightarrow$ pas n{\'e}cessairement ``grand'' selon l'epistemologie utilis{\'e}e : cf trois corps de Poincar{\'e}.
+
+\bigskip
+
+Nouveaux moyens d'observation de syst{\`e}mes complexes (sociaux entre autres) ? (cf tweetoscope de l'iscpif) Attention {\`a} ce qu'on observe !
+
+
+\bigskip
+
+
+Impact soci{\'e}taux : \cite{chavalarias2016unlikely} : Retroactions n{\'e}gatives et contre-productivit{\'e} (ex de la d{\'e}pendance au chemin du mod{\`e}les de Polya)
+
+
+}
+
+
+\jframe{P. Bourgine framework for Complex Adaptive Systems}{
+
+\small
+
+Bourgine a r{\'e}cemment propos{\'e} un framework pour extraire des motifs internes aux Syst{\`e}mes complexes adaptatifs. Par un th{\'e}or{\`e}me de repr{\'e}sentation (Knight, 1975), tout processus discret stationnaire est un \textit{Hidden Markov Model}
+
+Etant donn{\'e} la partition du syst{\`e}me en {\'e}tats causaux (tels que $\Pb{future | A} = \Pb{future | B}$), un \emph{R{\'e}seau Bayesien R{\'e}current} permet pr{\'e}dire l'{\'e}tat suivant par le pr{\'e}sent uniquement de \emph{facon d{\'e}terministe}\cite{shalizi2001computational}
+\[
+(x_{t+1},s_{t+1}) = F\left[(x_t,s_t)\right]
+\]
+
+$\rightarrow$ \textit{Estimation des Etats Cach{\'e}s et de la fonction de r{\'e}currence par apprentissage profond fournit l'information compl{\`e}te sur les motifs de la dynamique}
+
+
+\medskip
+
+\textbf{Application en G{\'e}ographie ?}
+
+\begin{itemize}
+\item Hypoth{\`e}se de stationarit{\'e} obtenue par augmentation des etats (cf Bayesian Signal Processing)
+\item Utilisation de donn{\'e}es h{\'e}t{\'e}rog{\`e}nes et asynchrones pour bootstrapper des s{\'e}ries temporelles assez longues pour une convergence correcte de l'estimation ?
+\end{itemize}
+
+
+}
+
+
+
+
+
 \jframe{Cas d'{\'e}tude}{
 Revue scientifique \textit{Cybergeo} : analyse bibliom{\'e}trique par approches vari{\'e}es
 
@@ -70,6 +119,8 @@ $\rightarrow$ Enjeu par rapport au positionnement de la revue : interdisciplinar
 \bigskip
 
 $\rightarrow$ Elaboration d'une approche par \textit{Hyperr{\'e}seau} : croisement du r{\'e}seau de citations au r{\'e}seau s{\'e}mantique.
+
+Gain d'information par croisement des couches (d{\'e}marche transversale, analogie avec construction scientifique : cf CS Roadmap)
 
 \bigskip
 
@@ -154,6 +205,10 @@ Traffic routier : collecte de \textit{sytadin} (pas d'API : \textit{scrapping} n
 $\rightarrow$ \textit{crawling} de \texttt{google scholar} par utilisation de l'option ``\textit{cit{\'e} par}'' \cite{noruzi2005google}
 
 
+\centering
+
+\includegraphics[width=0.7\textwidth]{figures/exCrawling}
+
 }
 
 
@@ -198,6 +253,13 @@ $\rightarrow$ \textit{418670 Noeuds et 570352 Liens ; Diam{\'e}tre : 9 ; Densit{
 }
 
 
+\jframe{Structure du R{\'e}seau}{
+\includegraphics[width=\textwidth]{figures/citnw}
+}
+
+
+
+
 \jframe{Degr{\'e}s : Loi rang-taille}{
 \includegraphics[width=0.52\textwidth]{figures/rankSize_fit}
 \includegraphics[width=0.5\textwidth]{figures/rank-size-all}
@@ -217,18 +279,30 @@ Composante g{\'e}ante : plus de 99\% des noeuds.
 
 
 
+
+
+\jframe{Cliques}{
+
+\includegraphics[height=\textheight]{figures/cybclic_2cyb_12817}
+
+}
+
+
+
+\jframe{Cliques}{
+
+\includegraphics[height=\textheight]{figures/cybclic_2cyb_13761}
+
+}
+
+
+
 \jframe{Centralit{\'e}}{
 
 \includegraphics[width=0.5\textwidth]{figures/betweeness-cyb}
 \includegraphics[width=0.5\textwidth]{figures/betweeness}
 
 \textit{Centralit{\'e}s faibles (rq : impossibilit{\'e} des clusters forts pour des citations car causalit{\'e} temporelle). Gauche : Cyberg{\'e}o ; Droite : Ensemble du r{\'e}seau}
-
-}
-
-\jframe{Cliques}{
-
-\textit{viz cliques}
 
 }
 
@@ -267,7 +341,7 @@ $\rightarrow$ $\sim 215000$ r{\'e}f{\'e}rences avec donn{\'e}es compl{\`e}tes.
 \textit{Repartitions par ann{\'e}es : }
 \centering
 
-\includegraphics[width=0.3\textwidth,height=0.3\textheight]{figures/years}
+\includegraphics[width=0.4\textwidth,height=0.4\textheight]{figures/years}
 
 }
 
@@ -275,7 +349,8 @@ $\rightarrow$ $\sim 215000$ r{\'e}f{\'e}rences avec donn{\'e}es compl{\`e}tes.
 
 \jframe{Extraction des mots-cl{\'e}s brute}{
 
-\textit{Text-mining en python avec \texttt{nltk}~\cite{bird2006nltk}}, m{\'e}thode adapt{\'e}e de~\cite{chavalarias2013phylomemetic}
+\textit{Text-mining en python avec \texttt{nltk}~\cite{bird2006nltk}}, m{\'e}thode adapt{\'e}e de
+\cite{chavalarias2013phylomemetic}
 
 \begin{itemize}
 \item Detection de la langue par \textit{stop-words} (mots vides de sens)
@@ -298,26 +373,18 @@ t_i = \sum_{j\neq i}\frac{\left( M_{ij} - \sum_{k}M_{ik} \sum_{k} M_{jk}\right)^
 \]
 
 
-en $\Theta (\sum_i N_i^2)$ ($N_i$ taille des r{\'e}sum{\'e}s) : impossible sur un corpus o{\`u} $\sum_i N_i^2 \simeq N <N_i>^2 \simeq 4\cdot 10^6$
+en $\Theta (\sum_i N_i^2)$ ($N_i$ taille des r{\'e}sum{\'e}s) : difficile sur un corpus o{\`u} $\sum_i N_i^2 \simeq N <N_i>^2 \simeq 8\cdot 10^7$
 
-82016802
+
 
 }
+
 
 
 \jframe{Estimation de la pertinence par bootstrap}{
 
-
 $\rightarrow$ Estimation par \textit{boootstrap} sur des {\'e}chantillons du corpus : moyenne de la \textit{termhood} sur $B$ {\'e}chantillons de taille $C$, avec nombre de mots cl{\'e}s $K_L$
 
-
-}
-
-
-
-\jframe{Bootstrap : convergence de l'estimateur}{
-
-\textit{Pas }
 
 \includegraphics[width=0.55\textwidth,height=0.6\textheight]{figures/kw50}
 \includegraphics[width=0.55\textwidth,height=0.6\textheight]{figures/kw200}
@@ -371,10 +438,47 @@ Spatialisation de \textit{Fruchterman-Reingold}
 \includegraphics[height=0.9\textheight]{figures/all_lesslinks}
 }
 
-\jframe{R{\^o}le des param{\è}tres}{
+\jframe{Influence des param{\`e}tres}{
 \textit{Importance du r{\`e}glage fin des param{\`e}tres}
 
-bla bla openmole.
+$\rightarrow$ Sensibilit{\'e} des mod{\`e}les \textbf{et} traitements de donn{\'e}es aux parametres. Exploration syst{\'e}matique via OpenMole par exemple.
+
+$\rightarrow$ Importance du jugement d'expert : pas de dichotomie ``quanti-quali''
+
+$\rightarrow$ Sensibilit{\'e} aux conditions initiales : \textit{Space matters}~\cite{cottineau2015revisiting}
+
+}
+
+\jframe{Application}{
+%\textit{Importance du r{\`e}glage fin des param{\`e}tres}
+
+\centering
+%\vspace{-2cm}
+\includegraphics[height=0.9\textheight]{figures/filt_kmin5_kmax900_edge50}
+}
+
+
+\jframe{Domaines extraits}{
+\textit{Comunaut{\'e}s obtenues pour $\theta_V=1000,\theta_E=200$ :}
+\begin{itemize}
+%\item Modeling and simulation : \texttt{model, simul, predict, behavior, pattern}
+%\item Planning : \texttt{use, area, polici, plan, control}
+%\item Decision Making : \texttt{decis, factor, effect, knowledg}
+%\item Biogeography : \texttt
+%\item Political Science : \texttt{state, polit}
+\item Hydrology : \texttt{water, basin, river, capac}
+\item Traffic : \texttt{traffic, road, vehicl}
+\item Biogeography : \texttt{habitat, soil, veget, ecosystem}
+\item Political Science : \texttt{polit, cultur, societi, debat}
+\item Economy : \texttt{market, economi, privat, competit, industri}
+\item Transportation : \texttt{transport, travel}
+\item Teledetection : \texttt{cluster, imag, classif, satellit}
+\item Education : \texttt{educ, age, student, school}
+\item Health : \texttt{diseas, infect}
+\item GIS : \texttt{gi, geograph inform system}
+\item Social geography : \texttt{neighborhood, resid}
+\end{itemize}
+
 
 }
 
@@ -392,40 +496,58 @@ o = 1 - \sum p_i^2
 
 \centering
 
-\includegraphics[width=0.5\textwidth]{figures/originalities}
+\includegraphics[width=0.5\textwidth]{figures/orig_both}
+
+\textit{Mean orig : 0.79}
 
 }
+
+\jframe{Degr{\'e} d'interdisciplinarit{\'e}}{
+
+Aggregation au niveau de la revue : originalit{\'e} des th{\`e}mes abord{\'e}s dans l'ensemble de la revue
+
+\[
+O = 1 - \sum_i \left[\frac{1}{K}\sum_k p_i^{(k)}\right]^2
+\]
+
+$\rightarrow$ 0.890 pour cybergeo (0.8933 pour un mod{\`e}le nul par tirage al{\'e}atoire)
+
+\textit{Besoin d'autres revues pour comparaison : retour {\`a} la collecte de donn{\'e}es}
+
+
+}
+
+\jframe{Interdisciplinarit{\'e} au second ordre}{
+
+\textit{Croisement des couches de l'hyperr{\'e}seau.}
+
+$\rightarrow$ Originalit{\'e} de l'ensemble des voisins (entrants ou sortants) dans le r{\'e}seau de citation
+
+\includegraphics[width=0.7\textwidth]{figures/2ndorderOrig}
+
+
+}
+
 
 
 
 \jframe{Perspectives}{
-\textit{TBW}
+Attention {\`a} la tentation des \textit{big data} et de la simulation {\`a} outrance : garder un ancrage th{\'e}orique (poser les bonnes questions) et m{\'e}thodologique.
+
+\bigskip
+
+Exemple : travail en cours sur interactions Ville/Transports : donn{\'e}es ``simples'' et classiques (densit{\'e} population et OSM), statiques, fournissent de l'information sur processus dynamiques sous-jacents. N{\'e}cessit{\'e} du cadre th{\'e}orique (th{\'e}orie {\'e}volutive des villes) et du travail m{\'e}thodologique pour relier statique-dynamique.
 }
 
-
-
-%
-%\jframe{Suite}{
-%\begin{itemize}
-%\item Bootstrap parallelis{\'e} sur l'ensemble du corpus
-%\item Construction du r{\'e}seau : co-occurrences dans les r{\'e}f{\'e}rences\\\textbf{Q : } utilisation des mots-cl{\'e}s des m{\'e}tadonn{\'e}es ? si oui filtrage sur fr{\'e}quence ? test avec/sans
-%\item D{\'e}tection de disciplines par communaut{\'e}s dans le r{\'e}seau s{\'e}mantique
-%\item Croisement des deux couches pour extraire positionnement et importance disciplinaire de Cyberg{\'e}o
-%\end{itemize}
-%
-%}
-%
-%\jframe{R{\'e}sultats attendus}{
-%\begin{itemize}
-%\item Couche des citations : analyse plus fines, cliques et communaut{\'e}s
-%\item Interdisciplinarit{\'e} au premier ordre : positionnement de cybergeo dans les cluster s{\'e}mantiques (un article pouvant {\^e}tre vu comme un vecteur de propbabilit{\'e}s d'appartenance aux disciplines)
-%\item Interdisciplinarit{\'e} au second ordre : liens de citation autour de cybergeo vers les diff{\'e}rentes disciplines
-%\item Comparaison des structures de communaut{\'e} : coefficient de clustering inter-couches ; donne tendance g{\'e}n{\'e}rale
-%\end{itemize}
-%
-%}
-%
-%
+\jframe{Conclusion ({\`a} retenir)}{
+\begin{itemize}
+\item ``Big Data'' plus que relatif
+\bigskip
+\item Des donn{\'e}es partout, {\`a} vous de les collecter et cr{\'e}er des bases \textbf{ouvertes} (pas de science sans ouverture : multimodeling et open science)
+\bigskip
+\item G{\'e}ographie {\`a} la pointe de par les connaissances d{\'e}j{\`a} pr{\'e}sentes : {\`a} vous de jouer !
+\end{itemize}
+}
 
 
 
