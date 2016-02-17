@@ -2,7 +2,7 @@ library(wordcloud)
 library(tm)
 library(rgeos)
 library(rgdal)
-
+library(ggplot2)
 library(RODBC)
 
 path = "/Users/clementinecottineau/Documents/cybergeo20/R_Country_Wordcloud/"
@@ -13,9 +13,6 @@ REG = readOGR(dsn=paste(path, "FRA_adm/FRA_adm1.shp", sep=""),
 world = readOGR(dsn=paste(path, "world/world.shp", sep=""),
                 layer = "world", encoding="utf8")
 plot(world)
-
-articles = read.csv(paste0(path, "articles2.csv"), sep=",", dec=".")
-head(articles)
 
 REG = world
 REGP = gCentroid(REG,byid=TRUE, id = REG@data$CNTR_ID)
@@ -30,10 +27,19 @@ for(j in 1:16){
     plot(REG[i,], col="grey")
     title(REG@data[i,"CNTR_ID"])
   }}
-# countries$polygonID = rownames(countries)
-# countries$polygonID = as.numeric(countries$polygonID) + 1
-# write.csv(countries, paste0(path, "countrycodes.csv"))
-# REG@bbox
+
+articles = read.csv(paste0(path, "articles2.csv"), sep=",", dec=".")
+head(articles)
+articlesJuste = read.csv("/Users/clementinecottineau/Documents/cybergeo20/Data/raw/cybergeo.csv", sep=",", dec=".")
+summary(articlesJuste)
+articles = data.frame(articles, articlesJuste[match(articles$id,articlesJuste$id), ])
+articles = subset(articles, TypeDocument == "Article")
+dim(articles)
+
+countries$polygonID = rownames(countries)
+countries$polygonID = as.numeric(countries$polygonID) + 1
+write.csv(countries, paste0(path, "countrycodes.csv"))
+REG@bbox
 
 
 articles$country = as.character(articles$country)
@@ -44,25 +50,25 @@ articles$firstauthor = as.character(articles$firstauthor)
 articles$textfirstauthor = strsplit(articles$firstauthor, split = "_")
 articles$author2 = as.character(articles$author2)
 articles$textauthor2 = strsplit(articles$author2, split = "_")
-
-countries = as.character(REG@data$CNTR_ID)
-
+# 
+ countries = as.character(REG@data$CNTR_ID)
+# 
 t = 0
 for (i in 1:dim(articles)[1]){
   for (c in countries){
       t = t + 1
-  articles[i,paste0("S_",c)] = ifelse(c %in% articles[i,"textCountry"] == "TRUE" |
+  articles[i,paste0("S_",c)] = ifelse(c %in% articles[i,"textCountry"] == "TRUE" ||
                                 c %in% articles[i,"textCountry2"] == "TRUE", 1, 0)
-  articles[i,paste0("A_",c)] = ifelse(c %in% articles[i,"textfirstauthor"] == "TRUE" |
+  articles[i,paste0("A_",c)] = ifelse(c %in% articles[i,"textfirstauthor"] == "TRUE" ||
                                        c %in% articles[i,"textauthor2"] == "TRUE", 1, 0)
   articles[i,paste0("L_",c)] = ifelse(articles[i,paste0("S_",c)] == 1 && articles[i,paste0("A_",c)] == 1, 1, 0)
   print(t)
     }}
 head(articles)
-
-locals = paste0("L_", countries)
-authors = paste0("A_", countries)
-studies = paste0("S_", countries)
+# 
+ locals = paste0("L_", countries)
+ authors = paste0("A_", countries)
+ studies = paste0("S_", countries)
 
 for (i in 1:dim(articles)[1]){
   articles[i,"locals"] = sum(articles[i,locals])
@@ -71,7 +77,17 @@ for (i in 1:dim(articles)[1]){
 summary(articles)
 sum(articles$LocalStudy)
 
+colnames(articles)
+articlesToSave = articles
+articlesToSave$textCountry = NULL 
+articlesToSave$textCountry2 = NULL 
+articlesToSave$textfirstauthor = NULL 
+articlesToSave$textauthor2 = NULL 
+write.csv(articlesToSave, "/Users/clementinecottineau/Documents/cybergeo20/R_Country_Wordcloud/articles_Contingency.csv")
 
+articles = read.csv("/Users/clementinecottineau/Documents/cybergeo20/R_Country_Wordcloud/articles_Contingency.csv", sep=",", dec=".")
+# head(articles)
+# 
 Studied = colSums(articles[,studies])
 Authoring = colSums(articles[,authors])
 SelfStudied = colSums(articles[,locals])
@@ -80,62 +96,68 @@ tail(countryBase, 10)
 
 REG@data = data.frame(REG@data, countryBase[match(REG@data$CNTR_ID,countryBase$countries), ])
 
-REG@data$StudiedAtAll = ifelse(REG@data$Studied >= 1, "darkblue", NA)
-REG@data$AuthoringAtAll = ifelse(REG@data$Authoring >= 1,  "red", NA)
-REG@data$SelfStudiedAtAll = ifelse(REG@data$SelfStudied >= 1,  "yellow", NA)
+REG@data$StudiedAtAll = ifelse(REG@data$Studied >= 1, "#1C6F91", "lightgrey")
+REG@data$AuthoringAtAll = ifelse(REG@data$Authoring >= 1, "orange", "lightgrey")
+REG@data$SelfStudiedAtAll = ifelse(REG@data$SelfStudied >= 1,  "grey20", "lightgrey")
+
 par(mfrow=c(1,1), mar = c(0,0,1,0))
-plot(REG, col=alpha(REG@data$StudiedAtAll, alpha = 0.3), border="black")
-plot(REG, col=alpha(REG@data$AuthoringAtAll, alpha = 0.3), add=T, border=F)
-plot(REG, col=alpha(REG@data$SelfStudiedAtAll, alpha = 0.3), add=T, border=F)
-REGQ = SpatialPointsDataFrame(REGP,REG@data)
-plot(REGQ, cex = 0.1 * REGQ@data$Studied, col=alpha("black", alpha = 0.2), add=T, pch = 16)
-text(x,y,w, cex = f)
+plot(REG, col=REG@data$StudiedAtAll, border="white")
+plot(REG, col=REG@data$AuthoringAtAll, border="white")
+plot(REG, col=REG@data$SelfStudiedAtAll, border="white")
+countries
+# 
+# plot(REG, col=alpha(REG@data$StudiedAtAll, alpha = 0.3), border="black")
+# plot(REG, col=alpha(REG@data$AuthoringAtAll, alpha = 0.3), add=T, border=F)
+# plot(REG, col=alpha(REG@data$SelfStudiedAtAll, alpha = 0.3), add=T, border=F)
+# REGQ = SpatialPointsDataFrame(REGP,REG@data)
+# plot(REGQ, cex = 0.1 * REGQ@data$Studied, col=alpha("black", alpha = 0.2), add=T, pch = 16)
+# text(x,y,w, cex = f)
 
-head(articles)
-  i = 40
-  print(REG@polygons[[i]]@ID)
-  plot(REG[i,], col="grey")
-  title(REG@data[i,"CNTR_ID"])
-
-  wt = table(subcountry)
-  LOC=NULL
-ID = c(1:5)
-WORDS = c("Motor", "Food", "Screen", "Cat", "Concept")
-FREQ = c(2, 9, 1, 2, 1)
-IDREG = c(24, 200, 40, 78, 7) #as.numeric(rownames(REG@data))
-LOC = data.frame(ID, WORDS, IDREG, FREQ)
-LOC$IDPOL = LOC$IDREG + 1
-
-ids = unique(LOC$IDPOL)
-
-x=data.frame()
-y=data.frame()
-z=data.frame()
-for (i in ids) {
-  x[i,"X"] = REG@polygons[[i]]@labpt[[1]] # Barycentre
-  y[i,"Y"] = REG@polygons[[i]]@labpt[[2]]
-  z[i,"Total"] = sum(LOC[LOC$IDPOL == i,]$FREQ)
-}
-x$IDPOL = rownames(x)
-y$IDPOL = rownames(y)
-z$IDPOL = rownames(z)
-
-x= x[complete.cases(x),]
-y= y[complete.cases(y),]
-z= z[complete.cases(z),]
-LOC = merge(LOC, x, by.x = "IDPOL", by.y="IDPOL", all.y=F)
-LOC = merge(LOC, y, by.x = "IDPOL", by.y="IDPOL", all.y=F)
-LOC = merge(LOC, z, by.x = "IDPOL", by.y="IDPOL", all.y=F)
-LOC$RFREQ = LOC$FREQ / LOC$Total
-LOC$Random = runif(dim(LOC)[[1]], 0, 1)
-LOC$NewY = ifelse(LOC$RFREQ < 1, LOC$Random * LOC$Ymin + (1-LOC$Random) * LOC$Ymax,LOC$Y)
-LOC
-plot(REG, col="grey", border=F)
-x <- LOC[,"X"]
-y <- LOC[,"NewY"]
-w <- LOC[,"WORDS"]
-f = LOC[,"RFREQ"]
-text(x,y,w, cex = f  * 0.8)
+# head(articles)
+#   i = 40
+#   print(REG@polygons[[i]]@ID)
+#   plot(REG[i,], col="grey")
+#   title(REG@data[i,"CNTR_ID"])
+# 
+#   wt = table(subcountry)
+#   LOC=NULL
+# ID = c(1:5)
+# WORDS = c("Motor", "Food", "Screen", "Cat", "Concept")
+# FREQ = c(2, 9, 1, 2, 1)
+# IDREG = c(24, 200, 40, 78, 7) #as.numeric(rownames(REG@data))
+# LOC = data.frame(ID, WORDS, IDREG, FREQ)
+# LOC$IDPOL = LOC$IDREG + 1
+# 
+# ids = unique(LOC$IDPOL)
+# 
+# x=data.frame()
+# y=data.frame()
+# z=data.frame()
+# for (i in ids) {
+#   x[i,"X"] = REG@polygons[[i]]@labpt[[1]] # Barycentre
+#   y[i,"Y"] = REG@polygons[[i]]@labpt[[2]]
+#   z[i,"Total"] = sum(LOC[LOC$IDPOL == i,]$FREQ)
+# }
+# x$IDPOL = rownames(x)
+# y$IDPOL = rownames(y)
+# z$IDPOL = rownames(z)
+# 
+# x= x[complete.cases(x),]
+# y= y[complete.cases(y),]
+# z= z[complete.cases(z),]
+# LOC = merge(LOC, x, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+# LOC = merge(LOC, y, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+# LOC = merge(LOC, z, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+# LOC$RFREQ = LOC$FREQ / LOC$Total
+# LOC$Random = runif(dim(LOC)[[1]], 0, 1)
+# LOC$NewY = ifelse(LOC$RFREQ < 1, LOC$Random * LOC$Ymin + (1-LOC$Random) * LOC$Ymax,LOC$Y)
+# LOC
+# plot(REG, col="grey", border=F)
+# x <- LOC[,"X"]
+# y <- LOC[,"NewY"]
+# w <- LOC[,"WORDS"]
+# f = LOC[,"RFREQ"]
+# text(x,y,w, cex = f  * 0.8)
 
 
 
@@ -151,19 +173,30 @@ cybterms$idterm = rownames(cybterms)
 cybterms2 = data.frame(cybterms, articles[match(cybterms$id,articles$id), ])
 cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
 cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
-summary(cybterms4, 20)
+#summary(cybterms4, 20)
+cybterms5 = cybterms4[with(cybterms4, order(-count)),]
 
 
 
-
+keywordsPO = cybterms5[,]
+#summary(keywordsPO)
 
 LOC=NULL
-ID = cybterms2$idterm
-WORDS = cybterms2$term
-FREQ = cybterms2$count
-IDREG = cybterms2$country
-LOC = data.frame(ID, WORDS, IDREG, FREQ)
+ID = as.numeric(keywordsPO$idterm)
+WORDS = keywordsPO$term
+FREQ = as.numeric(keywordsPO$count)
+CountryName = keywordsPO$countries
+IDREG = as.numeric(keywordsPO$polyID)
+LOC = data.frame(ID, WORDS, IDREG, FREQ, CountryName)
 LOC$IDPOL = LOC$IDREG + 1
+#LOC
+
+LOC = subset(LOC, !is.na(IDPOL))
+#LOC$RFREQ = LOC$FREQ / LOC$Total
+isIDmax <- with(LOC, ave(FREQ, CountryName, FUN=function(x) seq_along(x)==which.max(x)))==1
+LOC = LOC[isIDmax, ] # most common word by country
+
+
 
 ids = unique(LOC$IDPOL)
 
@@ -185,23 +218,22 @@ z= z[complete.cases(z),]
 LOC = merge(LOC, x, by.x = "IDPOL", by.y="IDPOL", all.y=F)
 LOC = merge(LOC, y, by.x = "IDPOL", by.y="IDPOL", all.y=F)
 LOC = merge(LOC, z, by.x = "IDPOL", by.y="IDPOL", all.y=F)
-LOC$RFREQ = LOC$FREQ / LOC$Total
-LOC$Random = runif(dim(LOC)[[1]], 0, 1)
-LOC$NewY = ifelse(LOC$RFREQ < 1, LOC$Random * LOC$Ymin + (1-LOC$Random) * LOC$Ymax,LOC$Y)
+
 LOC
-plot(REG, col="grey", border=F)
 x <- LOC[,"X"]
-y <- LOC[,"NewY"]
+y <- LOC[,"Y"]
 w <- LOC[,"WORDS"]
-f = LOC[,"RFREQ"]
-text(x,y,w, cex = f  * 0.8)
+f = LOC[,"FREQ"]
+par(mfrow=c(1,1), mar = c(0,0,1,0))
+plot(REG, col="grey", border=F)
+text(x,y,w, cex = 0.5 * f)
+#f * 0.01 )
 
 
 
 
 
-
-
+LOC
 
 
 
