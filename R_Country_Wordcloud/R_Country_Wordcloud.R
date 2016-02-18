@@ -18,8 +18,7 @@ world = readOGR(dsn=paste(path, "world/world.shp", sep=""),
 plot(world)
 
 REG = world
-# REGP = gCentroid(REG,byid=TRUE, id = REG@data$CNTR_ID)
-# plot(REGP)
+ 
 countries = as.character(REG@data$CNTR_ID)
 
 par(mfrow=c(4,4), mar = c(0,0,1,0))
@@ -335,4 +334,84 @@ make_studied_gif <- function (years, articles) {
 Years = 1996:2016
 make_studied_gif(Years, articles) 
 
+
+
+
+
+###### networks author -> study
+head(articles)
+
+country_Mat = data.frame()
+i = 0
+j = 0
+for (c_a in countries) {
+  i =i+1
+  for (c_s in countries) {
+    j = j+1
+    f = 0 
+    if (1 %in% rownames(table(articles[,paste0("A_",c_a)], articles[,paste0("S_",c_s)]))){
+      if (1 %in% colnames(table(articles[,paste0("A_",c_a)], articles[,paste0("S_",c_s)]))){
+    f = table(articles[,paste0("A_",c_a)], articles[,paste0("S_",c_s)])[2,2]
+    }}
+    country_Mat[i,j] = f
+  }
+  j = 0 }
+colnames(country_Mat) = countries
+rownames(country_Mat) = countries
+country_Mat_df = country_Mat
+country_Mat = as.matrix(country_Mat)
+
+
+
+dim(table(articles$A_AD, articles$S_AD))
+[2,2]
+
+
+articlesN = subset(articles ,firstauthor != country)
+articles$N = ifelse(articles$firstauthor == articles$country, 0, 1)
+LOC=NULL
+ID = as.numeric(keywordsPO$idterm)
+WORDS = keywordsPO$term
+FREQ = as.numeric(keywordsPO$count)
+CountryName = keywordsPO$countries
+IDREG = as.numeric(keywordsPO$polyID)
+LOC = data.frame(ID, WORDS, IDREG, FREQ, CountryName)
+LOC$IDPOL = LOC$IDREG + 1
+#LOC
+
+LOC = subset(LOC, !is.na(IDPOL))
+#LOC$RFREQ = LOC$FREQ / LOC$Total
+isIDmax <- with(LOC, ave(FREQ, CountryName, FUN=function(x) seq_along(x)==which.max(x)))==1
+LOC = LOC[isIDmax, ] # most common word by country
+
+ids = unique(LOC$IDPOL)
+
+x=data.frame()
+y=data.frame()
+z=data.frame()
+for (i in ids) {
+  x[i,"X"] = REG@polygons[[i]]@labpt[[1]] # Barycentre
+  y[i,"Y"] = REG@polygons[[i]]@labpt[[2]]
+  z[i,"Total"] = sum(LOC[LOC$IDPOL == i,]$FREQ)
+}
+x$IDPOL = rownames(x)
+y$IDPOL = rownames(y)
+z$IDPOL = rownames(z)
+
+x= x[complete.cases(x),]
+y= y[complete.cases(y),]
+z= z[complete.cases(z),]
+LOC = merge(LOC, x, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+LOC = merge(LOC, y, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+LOC = merge(LOC, z, by.x = "IDPOL", by.y="IDPOL", all.y=F)
+
+LOC
+x <- LOC[,"X"]
+y <- LOC[,"Y"]
+w <- LOC[,"WORDS"]
+f = LOC[,"FREQ"]
+par(mfrow=c(1,1), mar = c(0,0,1,0))
+plot(REG, col="grey", border=F)
+text(x,y,w, cex = 0.001 * f)
+title(paste0("Frequency of the most frequent word | ", Year))
 
