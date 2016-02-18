@@ -4,6 +4,11 @@ library(rgeos)
 library(rgdal)
 library(ggplot2)
 library(RODBC)
+library(reshape2)
+library(maptools)
+library(rCarto)
+library(RColorBrewer)
+library(shape)
 
 Years = 1996:2015
 
@@ -361,57 +366,34 @@ rownames(country_Mat) = countries
 country_Mat_df = country_Mat
 country_Mat = as.matrix(country_Mat)
 
+write.csv(country_Mat_df, paste0(path, "matrix_countryAuthoringToCountryStudied.csv"))
+
+tabflow<-melt(country_Mat)
+names(tabflow)=c("A","S","Articles")
+head(tabflow, 4)
 
 
-dim(table(articles$A_AD, articles$S_AD))
-[2,2]
+lookup = data.frame(countries)
 
-
-articlesN = subset(articles ,firstauthor != country)
-articles$N = ifelse(articles$firstauthor == articles$country, 0, 1)
-LOC=NULL
-ID = as.numeric(keywordsPO$idterm)
-WORDS = keywordsPO$term
-FREQ = as.numeric(keywordsPO$count)
-CountryName = keywordsPO$countries
-IDREG = as.numeric(keywordsPO$polyID)
-LOC = data.frame(ID, WORDS, IDREG, FREQ, CountryName)
-LOC$IDPOL = LOC$IDREG + 1
-#LOC
-
-LOC = subset(LOC, !is.na(IDPOL))
-#LOC$RFREQ = LOC$FREQ / LOC$Total
-isIDmax <- with(LOC, ave(FREQ, CountryName, FUN=function(x) seq_along(x)==which.max(x)))==1
-LOC = LOC[isIDmax, ] # most common word by country
-
-ids = unique(LOC$IDPOL)
-
-x=data.frame()
-y=data.frame()
-z=data.frame()
-for (i in ids) {
-  x[i,"X"] = REG@polygons[[i]]@labpt[[1]] # Barycentre
-  y[i,"Y"] = REG@polygons[[i]]@labpt[[2]]
-  z[i,"Total"] = sum(LOC[LOC$IDPOL == i,]$FREQ)
+x=c()
+y=c()
+for (i in 1:256) {
+  x[[i]] = REG@polygons[[i]]@labpt[[1]] # Barycentre
+  y[[i]] = REG@polygons[[i]]@labpt[[2]]
 }
-x$IDPOL = rownames(x)
-y$IDPOL = rownames(y)
-z$IDPOL = rownames(z)
+lookup$x = x
+lookup$y = y
+tabflow =  data.frame(tabflow, lookup[match(tabflow$A,lookup$countries), ])
+tabflow =  data.frame(tabflow, lookup[match(tabflow$S,lookup$countries), ])
+tabflow= tabflow[complete.cases(tabflow$A),]
+tabflow= tabflow[complete.cases(tabflow$S),]
+colnames(tabflow) = c("Authoring", "Studied", "N", "c1", "X_A", "Y_A", "c2",  "X_S", "Y_S")
+tabflow = subset(tabflow, N > 0)
+tabflow = subset(tabflow, Authoring != Studied)
 
-x= x[complete.cases(x),]
-y= y[complete.cases(y),]
-z= z[complete.cases(z),]
-LOC = merge(LOC, x, by.x = "IDPOL", by.y="IDPOL", all.y=F)
-LOC = merge(LOC, y, by.x = "IDPOL", by.y="IDPOL", all.y=F)
-LOC = merge(LOC, z, by.x = "IDPOL", by.y="IDPOL", all.y=F)
-
-LOC
-x <- LOC[,"X"]
-y <- LOC[,"Y"]
-w <- LOC[,"WORDS"]
-f = LOC[,"FREQ"]
 par(mfrow=c(1,1), mar = c(0,0,1,0))
-plot(REG, col="grey", border=F)
-text(x,y,w, cex = 0.001 * f)
-title(paste0("Frequency of the most frequent word | ", Year))
-
+plot(REG, col="lightgrey", border=F)
+Arrows(tabflow$X_A,tabflow$Y_A,tabflow$X_S,tabflow$Y_S, lwd = 0.5, col = "indianred3", code=2, arr.adj = 1 ,arr.type = "curved")
+title("Who studies who? | 1996-2015")
+  
+  
