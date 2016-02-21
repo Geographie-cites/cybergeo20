@@ -35,6 +35,26 @@ shinyServer(function(input, output) {
     return(articles)   
   })
       
+  output$statArticles = renderDataTable({
+    tab = data.frame()
+    articlesDF = subsetArticles()
+    nPapers = dim(articlesDF)[1]
+    
+    tab[1,1] = "Number of scientific articles"
+    tab[1,2] = nPapers
+    
+    articlesDF$authorsLists = strsplit(articlesDF$authors, split = ",")
+    for (i in 1:dim(articlesDF)[1]) {
+      articlesDF[i,"Nauthors"] = ifelse(is.na(articlesDF[i,"authorsLists"]), 1, length(articlesDF[i,"authorsLists"][[1]]))
+    }
+    Nauthors = sum(articlesDF$Nauthors)
+    
+    tab[2,1] = "Number of authors"
+    tab[2,2] = Nauthors
+    
+    colnames(tab) = c("Indicator", "Value")
+    return(tab)
+  }, options = list(paging = FALSE, searching = FALSE))
   
   output$Npapers = renderText({
     articlesDF = subsetArticles()
