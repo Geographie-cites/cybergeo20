@@ -11,7 +11,7 @@ library(ggplot2)
 library(reshape2)
 library(grid)
 
-AllArticles = read.csv("data/articles_Contingency.csv", sep=",", dec=".")
+AllArticles = read.csv("data/articles_Contingency.csv", sep=",", dec=".", encoding="UTF-8")
 AllArticles$authors = as.character(AllArticles$authors)
 articles = data.frame()
 
