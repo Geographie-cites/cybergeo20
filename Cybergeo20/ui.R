@@ -32,9 +32,13 @@ shinyUI(fluidPage(theme = "darkBlue.css",
     "-----",
     tabPanel("Global Stats",
              fluidRow(h2("Global Stats"),
-                      h4("Number of papers / Authors / Editos / Reviews",br()), 
-                         h4("Number of readers / countries / citations",br()), 
-                            h4("Number of staff")
+                      column(12, sliderInput("dateRange", label = "Time Range",
+                                            min = 1996, max = 2015, value = c(1996,2015), step = 1)),
+                      column(12, dataTableOutput('statArticles'))
+                      #h4("Number of papers / Authors / Editos / Reviews",br()), 
+                      
+                       #  h4("Number of readers / countries / citations",br()), 
+                        #    h4("Number of staff")
              )),
     
     tabPanel("Citation network",
