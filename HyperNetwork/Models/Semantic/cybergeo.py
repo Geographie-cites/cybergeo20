@@ -4,6 +4,17 @@ import utils,kwFunctions
 #from lxml import html,etree
 #import kwExtraction
 
+
+
+def extract_cybergeo_fulltext_keywords():
+    data=get_fulltext_cyb_corpus()
+    for ref in data :
+        print(ref)
+    #kwExtraction.run_fulltext_kw_extraction(data)
+
+extract_cybergeo_fulltext_keywords()
+
+
 def extract_cybergeo_keywords():
     data=utils.get_data('SELECT refdesc.id,refdesc.abstract FROM refdesc INNER JOIN cybergeo ON cybergeo.id=refdesc.id;','mysql') # WHERE abstract IS NOT NULL AND abstract!=\'\';','mysql')
     print(len(data))
@@ -25,7 +36,7 @@ def clean_abstract(abstract):
     else :
         #print('=======================\n=======================')
         #print(abstract)
-        #print('-----------') 
+        #print('-----------')
         #print(tree[0][0][0].text)
         if len(tree.find_class('resume'))>0 : return(tree.find_class('resume')[0].text)
 	#print('-----------')
@@ -44,7 +55,5 @@ def extract_relevant_cybergeo (kwLimit,database) :
     utils.export_dico_num_csv(relevantkw,'res/cybergeo/kw_'+str(kwLimit),False)
 
 
-for kwLimit in [100,200,500,1000,1500,2000]:
-    extract_relevant_cybergeo (kwLimit,'../../Data/dumps/20160210_cybergeo.sqlite3')
-
-
+#for kwLimit in [100,200,500,1000,1500,2000]:
+#    extract_relevant_cybergeo (kwLimit,'../../Data/dumps/20160210_cybergeo.sqlite3')
