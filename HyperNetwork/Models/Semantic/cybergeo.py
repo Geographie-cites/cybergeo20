@@ -5,6 +5,17 @@ import utils,kwFunctions
 #import kwExtraction
 
 
+def extract_relevant_cybergeo_fulltext(kwLimit):
+    resdir = 'res/cybergeo_full/'
+    #
+    corpus = utils.get_data('SELECT id FROM cybergeo WHERE fulltext_keywords IS NOT NULL AND fulltext_keywords!=\'\' LIMIT 10;','mysql')
+    occurence_dicos=utils.import_kw_dico_req('SELECT id,fulltext_keywords FROM cybergeo WHERE fulltext_keywords IS NOT NULL AND fulltext_keywords!=\'\' LIMIT 10;','mysql')
+    [relevantkw,relevant_dico] = kwFunctions.extract_relevant_keywords(corpus,kwLimit,occurence_dicos)
+    # export as csv
+    utils.export_dico_csv(relevant_dico,resdir+'relevantDico_kw'+str(kwLimit),False)
+    export_dico_num_csv(relevantkw,resdir+'termhoods_kw'+str(kwLimit),False)
+
+
 
 def extract_cybergeo_fulltext_keywords():
     data=get_fulltext_cyb_corpus()
@@ -12,7 +23,7 @@ def extract_cybergeo_fulltext_keywords():
         print(ref)
     #kwExtraction.run_fulltext_kw_extraction(data)
 
-extract_cybergeo_fulltext_keywords()
+#extract_cybergeo_fulltext_keywords()
 
 
 def extract_cybergeo_keywords():
