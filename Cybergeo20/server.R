@@ -198,7 +198,7 @@ shinyServer(function(input, output, session) {
     
     VisuComm(SelectComm(), 
              comm = input$commid, 
-             vertcol = "grey40", 
+             vertcol = "#2b3e50", 
              vertsize = vertsize, 
              vfacsize = input$vfacsizecom,
              edgesize = edgesize,
@@ -233,7 +233,7 @@ shinyServer(function(input, output, session) {
       svg(file, width = 20 / 2.54, height = 20 / 2.54, pointsize = 8)
       VisuComm(SelectComm(),
                comm = input$commid, 
-               vertcol = "grey30", 
+               vertcol = "#2b3e50", 
                vertsize = vertsize, 
                vfacsize = input$vfacsizecom,
                edgesize = edgesize,

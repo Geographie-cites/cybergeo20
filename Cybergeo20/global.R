@@ -22,24 +22,25 @@ library(igraph)
 library(dplyr)
 
 
+
 # plot communities ----
 
 VisuComm <- function(g, comm, vertcol, vertsize, vfacsize, edgesize, efacsize, textsize){
+  par(bg = "#4e5d6c")
   # circle layout with sampled coordinates
   oriCoords <- layout_in_circle(g)
   corrCoords <- oriCoords[sample(seq(1, nrow(oriCoords), 1), size = nrow(oriCoords), replace = FALSE), ]
   
   plot(g,
-       main = paste("Communauté \"", comm, "\" - ", sep = ""),
-       edge.color = "grey60",
+       edge.color = "#df691a",
        edge.width = efacsize * edgesize,
        edge.curved = F,
        edge.arrow.mode = "-",
        edge.arrow.size = 0.01,
        vertex.color = vertcol,
-       vertex.frame.color = "white",
+       vertex.frame.color = "#df691a",
        vertex.label = V(g)$name,
-       vertex.label.color = "black",
+       vertex.label.color = "#ebebeb",
        vertex.label.family = "sans-serif",
        vertex.label.cex = textsize / 10,
        vertex.size = vfacsize * vertsize,
@@ -55,18 +56,17 @@ VisuSem <- function(g, kw, textsizemin, textsizemax){
   
   # make theme empty
   theme_empty <- theme_bw() +
-    theme(axis.line = element_blank(),
+    theme(plot.background = element_rect(fill = "#4e5d6c"),
+          axis.line = element_blank(),
           panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(),
           panel.border = element_blank(),
-          panel.background = element_rect(fill = "#e6e6e6"),
+          panel.background = element_rect(fill = "#4e5d6c"),
           axis.title = element_blank(),
           axis.text = element_blank(),
           axis.ticks = element_blank(),
-          legend.position = "bottom")
-  
-  # get title
-  plotTitle <- paste(kw, ": semantic area", sep="")
+          legend.position = "none",
+          legend.background = element_rect(fill = "#4e5d6c"))
   
   # graph layout
   tabPoints <- get.data.frame(x = g, what = "vertices")
@@ -85,20 +85,17 @@ VisuSem <- function(g, kw, textsizemin, textsizemax){
   tabPoints[tabPoints$name == kw, c("XVAL", "DIST")] <- c(0, 0)
   
   # prepare plot
-  tabPoints$RESIDCLASS <- ifelse(tabPoints$DIST == 0, "EGO", 
-                                 ifelse(tabPoints$DIST < 1, "POSITIVE", "NEGATIVE"))
   tabPoints$IDEGO <- ifelse(tabPoints$name == kw, 2, 1)
   tabCircle <- data.frame(XVAL = c(0, 360), DIST = 1)
   
   # draw plot
   circVis <- ggplot() + 
-    geom_line(data = tabCircle, aes(x = XVAL, y = DIST)) + 
-    geom_text(data = tabPoints, aes(x = XVAL, y = DIST, label = name, colour = RESIDCLASS, fontface = IDEGO, size = nbauth)) +
-    scale_colour_manual("Type", values = c("grey28", "firebrick1", "deepskyblue")) +
+    geom_line(data = tabCircle, aes(x = XVAL, y = DIST), color = "#df691a") + 
+    geom_text(data = tabPoints, aes(x = XVAL, y = DIST, label = name, fontface = IDEGO, color = factor(IDEGO), size = nbauth)) +
+    scale_colour_manual("Type", values = c("#ebebeb", "#df691a")) +
     scale_size_continuous("Number of articles", range = c(textsizemin, textsizemax)) +
     coord_polar(theta = "x") +
-    theme_empty +
-    labs(title = plotTitle)
+    theme_empty
   
   return(circVis)
 }
