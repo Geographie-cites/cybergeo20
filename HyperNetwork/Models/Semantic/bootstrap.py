@@ -40,6 +40,7 @@ def run_bootstrap(res_folder,kwLimit,subCorpusSize,bootstrapSize,nruns) :
     corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160224_cybergeo.sqlite3')
     occurence_dicos = utils.import_kw_dico('../../Data/dumps/20160224_cybergeo.sqlite3')
     database = res_folder+'/bootstrap.sqlite3'
+    #database = res_folder # mongodb database
     #while True :
     for i in range(nruns):
         print("run "+str(i))
