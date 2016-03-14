@@ -44,7 +44,7 @@ def extract_relevant_cybergeo (kwLimit,database) :
     utils.export_dico_num_csv(relevantkw,'res/cybergeo/kw_'+str(kwLimit),False)
 
 
-for kwLimit in [100,200,500,1000,1500,2000]:
-    extract_relevant_cybergeo (kwLimit,'../../Data/dumps/20160210_cybergeo.sqlite3')
+#for kwLimit in [100,200,500,1000,1500,2000]:
+#    extract_relevant_cybergeo (kwLimit,'../../Data/dumps/20160210_cybergeo.sqlite3')
 
 

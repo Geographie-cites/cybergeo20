@@ -37,8 +37,8 @@ def init_bootstrap(res_folder):
 #   assumed to be run in //
 #     - run by packet for intermediate filtering -
 def run_bootstrap(res_folder,kwLimit,subCorpusSize,bootstrapSize,nruns) :
-    corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160126_cybergeo.sqlite3')
-    occurence_dicos = utils.import_kw_dico('../../Data/dumps/20160125_cybergeo.sqlite3')
+    corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160210_cybergeo.sqlite3')
+    occurence_dicos = utils.import_kw_dico('../../Data/dumps/20160210_cybergeo.sqlite3')
     database = res_folder+'/bootstrap.sqlite3'
     #while True :
     for i in range(nruns):
@@ -96,9 +96,9 @@ def update_count(bootstrapSize,database):
     prev = utils.fetchone_sqlite('SELECT value FROM params WHERE key=\'count\'',database)
     if prev is not None:
         t=prev[0]+bootstrapSize
-	    utils.insert_sqlite('UPDATE params SET value='+str(t)+' WHERE key=\'count\';',database)
+	utils.insert_sqlite('UPDATE params SET value='+str(t)+' WHERE key=\'count\';',database)
     else :
-	    utils.insert_sqlite('INSERT INTO params VALUES (\'count\','+str(bootstrapSize)+')',database)
+	utils.insert_sqlite('INSERT INTO params VALUES (\'count\','+str(bootstrapSize)+')',database)
 
 
 
@@ -125,7 +125,7 @@ def bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrap
         subcorpus = [corpus[i] for i in extraction]
         [keywords,ref_kw_local_dico] = kwFunctions.extract_relevant_keywords(subcorpus,kwLimit,occurence_dicos)
 
-	    allkw.append(keywords)
+	allkw.append(keywords)
 
         # add termhoods
         for kw in keywords.keys() :
