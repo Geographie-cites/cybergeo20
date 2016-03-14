@@ -4,6 +4,42 @@
 
 import MySQLdb,sqlite3,datetime
 
+
+
+#def findone_mongo():
+
+
+def get_fulltext_cyb_corpus():
+    cybids = read_csv_as_dico('../../../Data/raw/cybergeo.csv',",",2,1)
+    schids = get_data("SELECT id FROM cybergeo",'mysql')
+    res = []
+    for ref in schids:
+        res.append([ref[0],read_file('../../../Data/raw/texts/'+str(cybids[ref[0]])+"_text.txt")])
+    return(res)
+
+
+
+def read_file(f):
+    data = open(f,'r')
+    res=""
+    currentLine = data.readline().replace('\n','')
+    while currentLine != '' :
+        res=res+" "+currentLine
+        currentLine = conf.readline().replace('\n','')
+    return(res)
+
+
+def read_csv_as_dico(f,delimiter,key_column,value_column):
+    data = open(f,'r')
+    res=dict()
+    currentLine = data.readline().replace('\n','')
+    while currentLine != '' :
+        t=str.split(currentLine,delimiter)
+        res[t[key_column].replace("\"","")]=t[value_column].replace("\"","")
+        currentLine = conf.readline().replace('\n','')
+    return(res)
+
+
 # read a conf file under the format key:value
 # , returns a dictionary
 def read_conf(file):
@@ -107,7 +143,7 @@ def import_kw_dico_req(request,source):
         ref_id=row[0]
 	#print(ref_id)
         #keywords_raw = row[1].encode('utf8','ignore').split(';')
-        keywords_raw = row[1].split(';') 
+        keywords_raw = row[1].split(';')
 	keywords = [keywords_raw[i] for i in range(len(keywords_raw)-1)]
         # pb with last delimiter in
         ref_kw_dico[ref_id] = keywords
@@ -199,6 +235,3 @@ def export_matrix_csv(m,fileprefix,delimiter,withDate):
             outfile.write(t)
             if c < len(r)-1 : outfile.write(delimiter)
         outfile.write('\n')
-
-
-

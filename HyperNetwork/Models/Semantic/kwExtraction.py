@@ -5,18 +5,30 @@ from treetagger import TreeTagger
 
 
 
+
+def run_fulltext_kw_extraction(data):
+    kw_extraction(data,'full')
+
+
 # 'SELECT id,abstract FROM refdesc WHERE abstract_keywords IS NULL;'
 def run_kw_extraction(data) :
+    kw_extraction(data,'abstract')
+
+def kw_extraction(data,text_type):
     for ref in data:
         print(ref)
-	if ref[1] is not None:
+	    if ref[1] is not None:
             language = get_language(ref[1])
             keywords = extract_keywords(ref[1],ref[0],language)
             kwtext = ""
-	    for multistem in keywords:
-	        kwtext=kwtext+reduce(lambda s1,s2 : s1+' '+s2,multistem)+";"
-	        print(kwtext)
-	        utils.query_mysql("INSERT INTO refdesc (id,language,abstract_keywords,abstract) VALUES (\'"+ref[0].encode('utf8')+"\',\'"+language.encode('utf8')+"\',\'"+kwtext+"\',\'"+ref[1].encode('utf8')+"\') ON DUPLICATE KEY UPDATE language = VALUES(language),abstract_keywords=VALUES(abstract_keywords),abstract=VALUES(abstract);")
+	        for multistem in keywords:
+	            kwtext=kwtext+reduce(lambda s1,s2 : s1+' '+s2,multistem)+";"
+	            print(kwtext)
+            if text_type=='abstract':
+                utils.query_mysql("INSERT INTO refdesc (id,language,abstract_keywords,abstract) VALUES (\'"+ref[0].encode('utf8')+"\',\'"+language.encode('utf8')+"\',\'"+kwtext+"\',\'"+ref[1].encode('utf8')+"\') ON DUPLICATE KEY UPDATE language = VALUES(language),abstract_keywords=VALUES(abstract_keywords),abstract=VALUES(abstract);")
+            else :
+                utils.query_mysql("INSERT INTO refdesc (id,fulltext_keywords) VALUES (\'"+ref[0].encode('utf8')+"\',\'"+ref[1].encode('utf8')+"\') ON DUPLICATE KEY UPDATE fulltext_keywords = VALUES(fulltext_keywords);")
+
 
 
 def potential_multi_term(tagged,language):
