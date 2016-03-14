@@ -6,6 +6,8 @@ import MySQLdb,sqlite3,datetime
 
 
 
+#def findone_mongo():
+
 
 def get_fulltext_cyb_corpus():
     cybids = read_csv_as_dico('../../../Data/raw/cybergeo.csv',",",2,1)

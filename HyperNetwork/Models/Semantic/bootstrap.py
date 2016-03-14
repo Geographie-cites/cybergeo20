@@ -2,8 +2,8 @@
 
 # bootstrap for relevant terms extraction
 
-import numpy,os,kwFunctions,utils
-from multiprocessing import Pool
+import numpy,os,kwFunctions,utils,butils
+#from multiprocessing import Pool
 
 
 def test_bootstrap() :
@@ -23,15 +23,18 @@ def test_bootstrap() :
 
 # creates databases for bootstrap run
 def init_bootstrap(res_folder):
-    if not os.path.isdir(res_folder) : os.makedirs(res_folder)
-    conn = utils.configure_sqlite(res_folder+'/bootstrap.sqlite3')
-    c = conn.cursor()
-    c.execute('CREATE TABLE relevant (keyword text, cumtermhood real, ids text);')
-    c.execute('CREATE TABLE params (key text, value real);')
-    c.execute('CREATE TABLE dico (id text, keywords text);')
-    conn.commit()
-    conn.close()
-
+    #if not os.path.isdir(res_folder) : os.makedirs(res_folder)
+    #conn = utils.configure_sqlite(res_folder+'/bootstrap.sqlite3')
+    #c = conn.cursor()
+    #c.execute('CREATE TABLE relevant (keyword text, cumtermhood real, ids text);')
+    #c.execute('CREATE TABLE params (key text, value real);')
+    #c.execute('CREATE TABLE dico (id text, keywords text);')
+    #conn.commit()
+    #conn.close()
+    mongo = MongoClient()
+    database = mongo[res_folder]
+    database.relevant.create_index('keyword')
+    database.dico.create_index('id')
 
 ##
 #   assumed to be run in //
@@ -39,67 +42,19 @@ def init_bootstrap(res_folder):
 def run_bootstrap(res_folder,kwLimit,subCorpusSize,bootstrapSize,nruns) :
     corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160126_cybergeo.sqlite3')
     occurence_dicos = utils.import_kw_dico('../../Data/dumps/20160125_cybergeo.sqlite3')
+    mongo = MongoClient()
     #database = res_folder+'/bootstrap.sqlite3'
-    database = res_folder # mongodb database
+    database = mongo[res_folder] # mongodb database
     #while True :
     for i in range(nruns):
         print("run "+str(i))
 	    [relevantkw,relevant_dico,allkw] = bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrapSize)
         # update bases iteratively (ok for concurrency ?)
         for kw in relevantkw.keys():
-            update_kw_tm(kw,relevantkw[kw],database)
+            butils.update_kw_tm(kw,relevantkw[kw],database)
         for i in relevant_dico.keys():
-            update_kw_dico(i,relevant_dico[i],database)
-	update_count(bootstrapSize,database)
-
-
-def update_kw_tm(kw,incr,database):
-    prev = utils.fetchone_sqlite('SELECT cumtermhood,ids FROM relevant WHERE keyword=\''+kw+'\';',database)
-    t = 0
-    ids=''
-    #print(prev)
-    if prev is not None:
-        t = prev[0]+incr
-        ids = prev[1]
-        utils.insert_sqlite('UPDATE relevant SET keyword=\''+kw+'\',cumtermhood='+str(t)+',ids=\''+ids+'\' WHERE keyword=\''+kw+'\';',database)
-    else :
-        # insert
-        utils.insert_sqlite('INSERT INTO relevant VALUES (\''+kw+'\','+str(incr)+',\'\');',database)
-
-
-
-
-def update_kw_dico(i,kwlist,database):
-    # update id -> kws dico
-    prev = utils.fetchone_sqlite('SELECT keywords FROM dico WHERE id=\''+i+'\';',database)
-    kws = set()
-    if prev is not None: kws = set(prev[0].split(";"))
-    for kw in kwlist :
-        kws.add(kw)
-    if prev is not None:
-        utils.insert_sqlite('UPDATE dico SET id=\''+i+'\',keywords=\''+utils.implode(kws,";")+'\' WHERE id=\''+i+'\';',database)
-    else :
-        utils.insert_sqlite('INSERT INTO dico VALUES (\''+i+'\',\''+utils.implode(kws,";")+'\')',database)
-    # update kw -> id
-    for kw in kwlist :
-        prev = utils.fetchone_sqlite('SELECT * FROM relevant WHERE keyword=\''+kw+'\';',database)
-        ids = set()
-        if prev is not None :
-            ids = set(prev[2].split(";"))
-            ids.add(i)
-            utils.insert_sqlite('UPDATE relevant SET keyword=\''+kw+'\',cumtermhood='+str(prev[1])+',ids=\''+utils.implode(ids,";")+'\' WHERE keyword=\''+kw+'\';',database)
-        else :
-            utils.insert_sqlite('INSERT INTO relevant VALUES (\''+kw+'\',0,\''+i+'\');',database)
-
-
-
-def update_count(bootstrapSize,database):
-    prev = utils.fetchone_sqlite('SELECT value FROM params WHERE key=\'count\'',database)
-    if prev is not None:
-        t=prev[0]+bootstrapSize
-	    utils.insert_sqlite('UPDATE params SET value='+str(t)+' WHERE key=\'count\';',database)
-    else :
-	    utils.insert_sqlite('INSERT INTO params VALUES (\'count\','+str(bootstrapSize)+')',database)
+            butils.update_kw_dico(i,relevant_dico[i],database)
+	    butils.update_count(bootstrapSize,database)
 
 
 
