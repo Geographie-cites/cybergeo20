@@ -2,7 +2,8 @@
 
 # bootstrap for relevant terms extraction
 
-import numpy,os,kwFunctions,utils,butils
+import numpy,os,pymongo
+import kwFunctions,utils,butils
 #from multiprocessing import Pool
 
 
@@ -31,7 +32,7 @@ def init_bootstrap(res_folder):
     #c.execute('CREATE TABLE dico (id text, keywords text);')
     #conn.commit()
     #conn.close()
-    mongo = MongoClient()
+    mongo = pymongo.MongoClient()
     database = mongo[res_folder]
     database.relevant.create_index('keyword')
     database.dico.create_index('id')
@@ -42,13 +43,13 @@ def init_bootstrap(res_folder):
 def run_bootstrap(res_folder,kwLimit,subCorpusSize,bootstrapSize,nruns) :
     corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160224_cybergeo.sqlite3')
     occurence_dicos = utils.import_kw_dico('../../Data/dumps/20160224_cybergeo.sqlite3')
-    mongo = MongoClient()
+    mongo = pymongo.MongoClient()
     #database = res_folder+'/bootstrap.sqlite3'
     database = mongo[res_folder] # mongodb database
     #while True :
     for i in range(nruns):
         print("run "+str(i))
-	    [relevantkw,relevant_dico,allkw] = bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrapSize)
+	[relevantkw,relevant_dico,allkw] = bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrapSize)
         # update bases iteratively (ok for concurrency ?)
         for kw in relevantkw.keys():
             butils.update_kw_tm(kw,relevantkw[kw],database)

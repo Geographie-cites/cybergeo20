@@ -15,7 +15,7 @@ def update_kw_tm(kw,incr,database):
         #ids = prev[1]
         #utils.insert_sqlite('UPDATE relevant SET keyword=\''+kw+'\',cumtermhood='+str(t)+',ids=\''+ids+'\' WHERE keyword=\''+kw+'\';',database)
         prev['cumtermhood']=prev['cumtermhood']+incr
-        database.relevant.find_one_and_update({'keyword':kw},prev)
+        database.relevant.replace_one({'keyword':kw},prev)
     else :
         # insert
         #utils.insert_sqlite('INSERT INTO relevant VALUES (\''+kw+'\','+str(incr)+',\'\');',database)
@@ -39,10 +39,10 @@ def update_kw_dico(i,kwlist,database):
         kwset=set(prev['keywords'])
         for kw in kwlist :
             kwset.add(kw)
-        prev['keywords']=kwset
-        database.relevant.find_one_and_update({'id':i},prev)
+        prev['keywords']=list(kwset)
+        database.dico.replace_one({'id':i},prev)
     else :
-        database.relevant.insert_one({'id':i,'keywords':kwlist})
+        database.dico.insert_one({'id':i,'keywords':kwlist})
 
     # update kw -> id
     for kw in kwlist :
@@ -53,9 +53,9 @@ def update_kw_dico(i,kwlist,database):
             #ids = set(prev[2].split(";"))
             ids=set(prev['ids'])
             ids.add(i)
-            prev['ids']=ids
+            prev['ids']=list(ids)
             #utils.insert_sqlite('UPDATE relevant SET keyword=\''+kw+'\',cumtermhood='+str(prev[1])+',ids=\''+utils.implode(ids,";")+'\' WHERE keyword=\''+kw+'\';',database)
-            database.relevant.find_one_and_update({'keyword':kw},prev)
+            database.relevant.replace_one({'keyword':kw},prev)
         else :# this case must never happen
             #utils.insert_sqlite('INSERT INTO relevant VALUES (\''+kw+'\',0,\''+i+'\');',database)
             database.relevant.insert_one({'keyword':kw,'cumtermhood':0,'ids':[i]})
@@ -68,7 +68,7 @@ def update_count(bootstrapSize,database):
         #t=prev[0]+bootstrapSize
 	    #utils.insert_sqlite('UPDATE params SET value='+str(t)+' WHERE key=\'count\';',database)
         prev['value']=prev['value']+bootstrapSize
-        database.params.find_one_and_update({'key':'count'},prev)
+        database.params.replace_one({'key':'count'},prev)
     else :
 	    #utils.insert_sqlite('INSERT INTO params VALUES (\'count\','+str(bootstrapSize)+')',database)
         database.params.insert_one({'key':'count','value':bootstrapSize})
