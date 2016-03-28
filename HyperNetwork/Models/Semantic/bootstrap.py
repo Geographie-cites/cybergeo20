@@ -53,64 +53,9 @@ def run_bootstrap(res_folder,kwLimit,subCorpusSize,bootstrapSize,nruns) :
         # update bases iteratively (ok for concurrency ?)
         for kw in relevantkw.keys():
             butils.update_kw_tm(kw,relevantkw[kw],database)
-        for i in relevant_dico.keys():
-<<<<<<< HEAD
-            update_kw_dico(i,relevant_dico[i],database)
-	update_count(bootstrapSize,database)
-
-
-def update_kw_tm(kw,incr,database):
-    prev = utils.fetchone_sqlite('SELECT cumtermhood,ids FROM relevant WHERE keyword=\''+kw+'\';',database)
-    t = 0
-    ids=''
-    #print(prev)
-    if prev is not None:
-        t = prev[0]+incr
-        ids = prev[1]
-        utils.insert_sqlite('UPDATE relevant SET keyword=\''+kw+'\',cumtermhood='+str(t)+',ids=\''+ids+'\' WHERE keyword=\''+kw+'\';',database)
-    else :
-        # insert
-        utils.insert_sqlite('INSERT INTO relevant VALUES (\''+kw+'\','+str(incr)+',\'\');',database)
-
-
-
-
-def update_kw_dico(i,kwlist,database):
-    # update id -> kws dico
-    prev = utils.fetchone_sqlite('SELECT keywords FROM dico WHERE id=\''+i+'\';',database)
-    kws = set()
-    if prev is not None: kws = set(prev[0].split(";"))
-    for kw in kwlist :
-        kws.add(kw)
-    if prev is not None:
-        utils.insert_sqlite('UPDATE dico SET id=\''+i+'\',keywords=\''+utils.implode(kws,";")+'\' WHERE id=\''+i+'\';',database)
-    else :
-        utils.insert_sqlite('INSERT INTO dico VALUES (\''+i+'\',\''+utils.implode(kws,";")+'\')',database)
-    # update kw -> id
-    for kw in kwlist :
-        prev = utils.fetchone_sqlite('SELECT * FROM relevant WHERE keyword=\''+kw+'\';',database)
-        ids = set()
-        if prev is not None :
-            ids = set(prev[2].split(";"))
-            ids.add(i)
-            utils.insert_sqlite('UPDATE relevant SET keyword=\''+kw+'\',cumtermhood='+str(prev[1])+',ids=\''+utils.implode(ids,";")+'\' WHERE keyword=\''+kw+'\';',database)
-        else :
-            utils.insert_sqlite('INSERT INTO relevant VALUES (\''+kw+'\',0,\''+i+'\');',database)
-
-
-
-def update_count(bootstrapSize,database):
-    prev = utils.fetchone_sqlite('SELECT value FROM params WHERE key=\'count\'',database)
-    if prev is not None:
-        t=prev[0]+bootstrapSize
-	utils.insert_sqlite('UPDATE params SET value='+str(t)+' WHERE key=\'count\';',database)
-    else :
-	utils.insert_sqlite('INSERT INTO params VALUES (\'count\','+str(bootstrapSize)+')',database)
-
-=======
-            butils.update_kw_dico(i,relevant_dico[i],database)
+        #for i in relevant_dico.keys():
+        #    butils.update_kw_dico(i,relevant_dico[i],database)
 	    butils.update_count(bootstrapSize,database)
->>>>>>> 6a86a3fe2a30cc7de8e14289529cee5690c61d57
 
 
 
