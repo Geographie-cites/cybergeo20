@@ -2,7 +2,8 @@
 
 # utils Functions
 
-import MySQLdb,sqlite3,datetime
+#import MySQLdb
+import sqlite3,datetime
 
 
 
