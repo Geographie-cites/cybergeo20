@@ -13,7 +13,7 @@ def sqlite_to_mongo(sqlitedb,mongodb):
     col=db['relevant']
     for row in relevant:
         #col.replace_one({'keyword':row[0],'cumtermhood':row[1],'ids':row[2].split(';')})
-        col.replace_one({'keyword':row[0],'cumtermhood':row[1],'ids':[]})
+        col.replace_one({'keyword':row[0]},{'keyword':row[0],'cumtermhood':row[1],'ids':[]})
     # add index for query efficiency
     col.create_index('keyword')
     #dico = utils.get_data('SELECT * FROM dico;',sqlitedb)
