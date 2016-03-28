@@ -37,4 +37,4 @@ def export_secondaryref_info(request,outfile):
     #utils.export_list(ids,outfile+'_id',False)
 
 
-full_stats()
+#full_stats()

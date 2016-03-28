@@ -69,3 +69,4 @@ def extract_relevant_cybergeo (kwLimit,database) :
 #for kwLimit in [100,200,500,1000,1500,2000]:
 #    extract_relevant_cybergeo (kwLimit,'../../Data/dumps/20160210_cybergeo.sqlite3')
 
+
