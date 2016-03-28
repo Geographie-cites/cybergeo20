@@ -63,12 +63,18 @@ def run_bootstrap(res_folder,kwLimit,subCorpusSize,bootstrapSize,nruns) :
         print("run "+str(i))
 	[relevantkw,relevant_dico,allkw] = bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrapSize)
         # update bases iteratively (ok for concurrency ?)
-        for kw in relevantkw.keys():
-            butils.update_kw_tm(kw,relevantkw[kw],database)
+        n=len(relevantkw)/100;k=0
+	for kw in relevantkw.keys():
+            if k % n == 0 : print('kwinsertion : '+str(k/n)+'%')
+	    butils.update_kw_tm(kw,relevantkw[kw],database)
+	    k = k + 1
+	# rq : we do not need the dico -> - use full dico after -
+	#n=len(relevant_dico)/100;k=0
         #for i in relevant_dico.keys():
+	#    if k % n == 0 : print('dicoinsertion : '+str(k/n)+'%')
         #    butils.update_kw_dico(i,relevant_dico[i],database)
-	    butils.update_count(bootstrapSize,database)
-
+	#    k = k + 1
+	butils.update_count(bootstrapSize,database)
 
 
 def bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrapSize):
