@@ -1,6 +1,75 @@
 
 #  functions for netowrk export
 
+library(rmongodb)
+library(igraph)
+
+##
+#  construct coocs graph and kw dico
+computeNetwork<-function(db,target){
+  mongo <- mongo.create()
+  relevant <-mongo.find.all(mongo,paste0(db,'.relevant'))
+  dico <- mongo.find.all(mongo,'keywords.keywords')
+  relevant = data.frame(keyword=sapply(relevant,function(d){d$keyword}),cumtermhood=sapply(relevant,function(d){d$cumtermhood}))
+  
+  srel = as.tbl(relevant)
+  srel$keyword = as.character(srel$keyword)
+  srel = srel %>% arrange(desc(cumtermhood))
+  
+  srel = srel[1:min(kwthreshold,nrow(srel)),]
+  
+  # construct relevant dico : word -> index
+  rel = list()
+  for(i in 1:length(srel$keyword)){rel[[srel$keyword[i]]]=i}
+  
+  res=list()
+  
+  keyword_dico = list()
+  
+  for(i in 1:length(dico)){
+    if(i%%100==0){show(i)}
+    kws = unique(dico[[i]]$keywords)
+    kws = kws[sapply(kws,function(w){w %in% srel$keyword})]
+    keyword_dico[[dico[[i]]$id]]=kws
+  }
+  
+  keyword_dico_keys = names(keyword_dico)
+  
+  cooccs = matrix(0,nrow(srel),nrow(srel))
+  
+  for(i in 1:length(keyword_dico)){
+    if(i%%100==0){show(i)}
+    #kws=strsplit(enc2utf8(dico[i,kwCol]),";")[[1]]
+    #kws = dicoSplitFunction(dico[i,kwCol])
+    kws = keyword_dico[[i]]
+    #id=keyword_dico_keys[i]
+    #if(kwCol==1){id=kws[1];kws=kws[-1];}else{id=dico[i,1]}
+    if(length(kws)>1){
+      for(k in 1:(length(kws)-1)){
+        for(l in (k+1):(length(kws))){
+          if(nchar(kws[k])>0&nchar(kws[l])>0){
+            cooccs[rel[[kws[k]]],rel[[kws[l]]]]=cooccs[rel[[kws[k]]],rel[[kws[l]]]]+1
+          }
+        }
+      }
+    }
+    #keyword_dico[[id]]=kws
+  }
+  
+  colnames(cooccs) = names(unlist(rel))
+  # filter edges
+  adjacency=cooccs;
+  g = graph_from_adjacency_matrix(adjacency,weighted=TRUE,mode="undirected")
+  
+  res$g=g
+  res$keyword_dico=keyword_dico
+  
+  save(res,file=paste0(target,'.RData'))
+  
+}
+
+
+
 
 importDicoCsv<-function(kwFile){
   res=list()

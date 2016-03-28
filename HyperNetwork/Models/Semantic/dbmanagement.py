@@ -22,4 +22,18 @@ def sqlite_to_mongo(sqlitedb,mongodb):
     #    col.insert_one({'id':row[0],'keywords':row[1].split(';')})
     #col.create_index('id')
 
-sqlite_to_mongo('bootstrap/run_kw1000_csize5000_b20/bootstrap.sqlite3','cyb_kw1000_csize5000_b20')
+
+def keywords_to_mongo(sqlitedb,mongodb):
+    client=pymongo.MongoClient()
+    db=client[mongodb]
+    keywords = utils.import_kw_dico(sqlitedb)
+    col=db['keywords']
+    for i in keywords.keys():
+        col.insert_one({'id':i,'keywords':keywords[i]})
+    # add index for query efficiency
+    col.create_index('id')
+
+
+#sqlite_to_mongo('bootstrap/run_kw1000_csize5000_b20/bootstrap.sqlite3','cyb_kw1000_csize5000_b20')
+
+keywords_to_mongo('../../Data/dumps/20160224_cybergeo.sqlite3','keywords')
