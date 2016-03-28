@@ -38,8 +38,10 @@ def extract_relevant_keywords(corpus,kwLimit,occurence_dicos):
     # Beware to filter BEFORE launching O(n^2) procedure
     #
     #  Quick implementation using dict ? -> ¡ already optimized !
-
+    n=len(ref_kw_dico)/100;pr=0
     for ref in ref_kw_dico.keys() :
+        pr = pr + 1
+        if pr % n == 0 : print('cooccs : '+str(pr/n)+'%')
         sel = []
         for k in ref_kw_dico[ref] :
             if k in selected_kws : sel.append(k)

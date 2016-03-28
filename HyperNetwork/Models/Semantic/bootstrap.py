@@ -35,7 +35,19 @@ def init_bootstrap(res_folder):
     mongo = pymongo.MongoClient()
     database = mongo[res_folder]
     database.relevant.create_index('keyword')
-    database.dico.create_index('id')
+    #database.dico.create_index('id')
+
+
+def relevant_full_corpus(kwLimit):
+    corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160224_cybergeo.sqlite3')
+    occurence_dicos = utils.import_kw_dico('../../Data/dumps/20160224_cybergeo.sqlite3')
+    mongo = pymongo.MongoClient()
+    database = mongo['relevant_full_'+str(kwLimit)]
+    [keywords,dico] = kwFunctions.extract_relevant_keywords(corpus,kwLimit,occurence_dicos)
+    for kw in keywords.keys():
+        butils.update_kw_tm(kw,keywords[kw],database)
+    #for i in dico.keys():
+    #    butils.update_kw_dico(i,dico[i],database)
 
 ##
 #   assumed to be run in //
