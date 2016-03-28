@@ -65,7 +65,6 @@ def run_bootstrap(res_folder,kwLimit,subCorpusSize,bootstrapSize,nruns) :
 	butils.update_count(bootstrapSize,database)
 
 
-
 def bootstrap_subcorpuses(corpus,occurence_dicos,kwLimit,subCorpusSize,bootstrapSize):
     N = len(corpus)
 

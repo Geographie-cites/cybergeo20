@@ -11,7 +11,7 @@ def run():
     #bootstrap.test_bootstrap()
     #stats.export_ref_info()
     #bootstrap.init_bootstrap('test_kw1000_csize5000_b20')
-    bootstrap.run_bootstrap('cyb_kw1000_csize5000_b20',1000,5000,20,10)
+    bootstrap.run_bootstrap('test_kw1000_csize5000_b20',1000,5000,20,1)
     #bootstrap.run_bootstrap('bootstrap/run_kw1000_csize5000_b20',1000,5000,20,10)
     #cybergeo.extract_cybergeo_keywords()
     #cybergeo.extract_relevant_cybergeo(2000)
