@@ -17,7 +17,7 @@ computeNetwork<-function(db,target){
   srel$keyword = as.character(srel$keyword)
   srel = srel %>% arrange(desc(cumtermhood))
   
-  srel = srel[1:min(kwthreshold,nrow(srel)),]
+  #srel = srel[1:min(kwthreshold,nrow(srel)),]
   
   # construct relevant dico : word -> index
   rel = list()
@@ -30,8 +30,11 @@ computeNetwork<-function(db,target){
   for(i in 1:length(dico)){
     if(i%%100==0){show(i)}
     kws = unique(dico[[i]]$keywords)
-    kws = kws[sapply(kws,function(w){w %in% srel$keyword})]
-    keyword_dico[[dico[[i]]$id]]=kws
+    #show(kws)
+    if(length(kws)>0){
+      kws = kws[sapply(kws,function(w){w %in% srel$keyword})]
+      keyword_dico[[dico[[i]]$id]]=kws
+    }
   }
   
   keyword_dico_keys = names(keyword_dico)
