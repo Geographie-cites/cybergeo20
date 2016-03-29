@@ -3,6 +3,7 @@
 
 library(rmongodb)
 library(igraph)
+library(dplyr)
 
 ##
 #  construct coocs graph and kw dico
@@ -57,9 +58,7 @@ computeNetwork<-function(db,target){
   }
   
   colnames(cooccs) = names(unlist(rel))
-  # filter edges
-  adjacency=cooccs;
-  g = graph_from_adjacency_matrix(adjacency,weighted=TRUE,mode="undirected")
+  #g = graph_from_adjacency_matrix(adjacency,weighted=TRUE,mode="undirected")
   
   res$g=g
   res$keyword_dico=keyword_dico

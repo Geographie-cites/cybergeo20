@@ -45,6 +45,17 @@ nw=exportNetwork(list(relevant=relevant,dico=dico),
                 filterFile="graphs/all/filter.csv"
                 )
 g=nw$g;keyword_dico=nw$keyword_dico
+
+
+######################
+######################
+######################
+
+
+db='relevant_full_5000'
+load(paste0('processed/',db,'.RData'))
+g=res$g;keyword_dico=res$keyword_dico
+
 g = filterGraph(g,'graphs/all/filter.csv')
 
 # complexity of cooccs
@@ -93,17 +104,40 @@ plot(clust,labels=FALSE)
 #     referenced kws ?
 
 kmin = 0
-kmax = 1000  # max for common ggiant is 1088
-edge_th = 200  # 6218
+kmax = 4700  # max for common ggiant is 1088
+edge_th = 50  # 6218
 
 # filter on degree (work already on giant component ?)
 #max(degree(ggiant))
 #max(E(ggiant)$weight) 
-d=degree(ggiant)
-gg=induced_subgraph(ggiant,which(d>kmin&d<kmax))
-gg=subgraph.edges(gg,which(E(gg)$weight>edge_th))
+modularities = c();comnumber=c();dmax=c();eth=c();csizes=c();gsizes=c();gdensity=c()
+for(kmax in seq(from=1500,to=4700,by=100)){
+  for(edge_th in seq(from=20,to=250,by=10)){
+    show(paste0('kmax : ',kmax,' e_th : ',edge_th))
+    d=degree(ggiant)
+    gg=induced_subgraph(ggiant,which(d>kmin&d<kmax))
+    gg=subgraph.edges(gg,which(E(gg)$weight>edge_th))
+    com = cluster_louvain(gg)
+    gsizes=append(gsizes,length(V(gg)));gdensity=append(gdensity,2*length(E(gg))/(length(V(gg))*(length(V(gg))-1)))
+    csizes=append(csizes,length(clusters(gg)$csize))
+    modularities = append(modularities,modularity(com))
+    comnumber=append(comnumber,length(communities(com)))
+    dmax=append(dmax,kmax);eth=append(eth,edge_th)
+  }
+}
 
-write.graph(gg,file = paste0('graphs/filt_kmin',kmin,'_kmax',kmax,'_edge',edge_th,'_handFilt','.gml'),format = "gml")
+df = data.frame(dmax,eth,modularities,comnumber,csizes,gsizes,gdensity)
+g = ggplot(df) + scale_fill_gradient(low="yellow",high="red")#+ geom_raster(hjust = 0, vjust = 0) 
+plots=list()
+for(indic in c("modularities","comnumber","csizes","gsizes","gdensity")){
+plots[[indic]] = g+geom_raster(aes_string("dmax","eth",fill=indic))
+}
+multiplot(plotlist = plots,cols=3)
+
+# -> for full_relevant_5000, (4200,90) is a good optimum
+
+
+write.graph(gg,file = paste0('graphs/',db,'/filt_kmin',kmin,'_kmax',kmax,'_edge',edge_th,'_filtered','.gml'),format = "gml")
 # filter on edge weight
 
 # communities
