@@ -27,9 +27,10 @@ def keywords_to_mongo(sqlitedb,mongodb):
     client=pymongo.MongoClient()
     db=client[mongodb]
     keywords = utils.import_kw_dico(sqlitedb)
+    dico = keywords[0]
     col=db['keywords']
-    for i in keywords.keys():
-        col.insert_one({'id':i,'keywords':keywords[i]})
+    for i in dico.keys():
+        col.insert_one({'id':i,'keywords':dico[i]})
     # add index for query efficiency
     col.create_index('id')
 
