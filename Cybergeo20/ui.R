@@ -42,9 +42,22 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                       #    h4("Number of staff")
                              )),
                     
+                    
+                    # JUSTE ----
+                    
                     tabPanel("Citation network",
                              fluidRow(h2("Exploring the citation network"),
-                                      h4("...",br()))
+                                      #h4("...",br())
+                                      forceNetworkOutput("citationNetwork")
+                             )
+                    ),
+                    
+                    
+                    tabPanel("Semantic network",
+                             fluidRow(h2("Exploring the semantic network"),
+                                      #h4("...",br())
+                                      forceNetworkOutput("semanticNetwork")
+                                      )
                     ),
                     
                     # HADRI ----

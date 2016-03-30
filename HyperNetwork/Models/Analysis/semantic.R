@@ -138,6 +138,23 @@ multiplot(plotlist = plots,cols=3)
 
 
 write.graph(gg,file = paste0('graphs/',db,'/filt_kmin',kmin,'_kmax',kmax,'_edge',edge_th,'_filtered','.gml'),format = "gml")
+gg=read.graph(paste0('graphs/',db,'/filt_kmin',kmin,'_kmax',kmax,'_edge',edge_th,'_filtered','.gml'),format='gml')
+save(gg,file=paste0('graphs/',db,'/filt_kmin',kmin,'_kmax',kmax,'_edge',edge_th,'_filtered','.RData'))
+com = cluster_louvain(gg)
+
+# issue in as_data_frame -> by hand
+vdf = data.frame(name=V(gg)$name,community=com$membership)
+erange=1:length(E(gg))#sample.int(n=length(E(gg)),size=300,replace=FALSE)
+edf = data.frame(from=sapply(E(gg)[erange],function(e){head_of(gg,e)$name}),to=sapply(E(gg)[erange],function(e){tail_of(gg,e)$name}),weight=E(gg)$weight[erange])
+vnames = unique(c(as.character(edf$from),as.character(edf$to)))
+vdf = vdf[which(sapply(as.character(vdf$name),function(s){s%in%vnames})),]
+vdf$size=rep(20,nrow(vdf))#sample.int(n=30,size=nrow(vdf),replace=TRUE)+5
+vindexes = list()
+for(i in 1:length(vnames)){vindexes[[vnames[i]]]=i-1}
+edf = data.frame(source=sapply(as.character(edf$from),function(s){vindexes[[s]]}),target=sapply(as.character(edf$to),function(s){vindexes[[s]]}),value=10*edf$weight/max(edf$weight))
+rownames(vdf)<-1:nrow(vdf)
+save(vdf,edf,file='../../../Cybergeo20/data/semanticnw.RData')
+
 # filter on edge weight
 
 # communities

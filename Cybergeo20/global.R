@@ -20,6 +20,18 @@ library(reshape2)
 library(grid)
 library(igraph)
 library(dplyr)
+library(networkD3)
+
+
+
+
+
+
+
+
+### Juste ---
+
+load('data/semanticnw.RData')
 
 
 

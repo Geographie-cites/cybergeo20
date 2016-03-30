@@ -87,7 +87,7 @@ importDicoCsv<-function(kwFile){
 
 # filter nodes : grep -v -f file for nodes names
 filterGraph<-function(graph,file){
-  words<-unlist(read.csv('graphs/all/filter.csv',stringsAsFactors=FALSE,header=FALSE))
+  words<-unlist(read.csv(file,stringsAsFactors=FALSE,header=FALSE))
   g=graph
   for(w in 1:length(words)){
     #show(words[w])   

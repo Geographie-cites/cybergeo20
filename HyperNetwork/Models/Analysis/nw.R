@@ -2,6 +2,7 @@
 # citation network
 
 library(igraph)
+library(dplyr)
 
 setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw'))
 
@@ -27,10 +28,12 @@ nodes<- data.frame(name=sapply(nodes,function(c){c[1]}),title=sapply(nodes,funct
 #length(setdiff(nodes$name,vedges))
 #setdiff(vedges,nodes$name)
 
-
-library(dplyr)
 e = as.tbl(edges) %>% filter(from %in% nodes$name & to %in% nodes$name)
 # filters 36 edges
+vindexes=list()
+for(i in 1:nrow(nodes)){vindexes[[as.character(nodes$name[i])]]=i-1}
+citationedges = data.frame(source=sapply(e$from,function(s){vindexes[[s]]}),target=sapply(e$to,function(s){vindexes[[s]]}),value=rep(1,nrow(e)))
+
 
 #e = merge(x=edges,y=data.frame(vertices$name),by.x=1,by.y=1,all.x=FALSE,all.y=TRUE)
 #e = merge(x=data.frame(e$to,e$from),y=data.frame(vertices$name),by.x=1,by.y=1,all.x=FALSE,all.y=TRUE)
