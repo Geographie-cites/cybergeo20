@@ -29,7 +29,6 @@ lemmes <- lapply(tag.corpus, function(x) {
   ldply() %>%
   tbl_df()
 
-
 ng <- NULL
 system.time({
   ng <<- lemmes %>% 

@@ -30,13 +30,14 @@ sub nettoyage_fichier {
 
 sub nettoyage {
 	my $chaine = shift;
-  	$chaine =~ s/ / /g;           # Espace insécable
-   	$chaine =~ s/<br\s+?\/?>/ /g; # Retour à la ligne
-   	$chaine =~ s/<\/?\w+>//g;     # Balise XML simple
-   	$chaine =~ s/<a\s+[^>]+>//g;  # Balise XML pour une référence
-   	$chaine =~ s/&nbsp;/ /g;      # Espace insécable
-   	$chaine =~ s/&\w+;//g;        # Autres caractères XML
-   	$chaine =~ s/&/et/g;          # Esperluette
-   	$chaine =~ s/\s+/ /g;         # Réduction du nombre d'espaces multiples
+   	$chaine =~ s/´/'/g;            # Apostrophes (normalisation)
+  	$chaine =~ s/ / /g;            # Espace insécable
+   	$chaine =~ s/<br\s+?\/?>/ /g;  # Retour à la ligne
+   	$chaine =~ s/<\/?\w+>/ /g;     # Balise XML simple
+   	$chaine =~ s/<a\s+[^>]+>/ /g;  # Balise XML pour une référence
+   	$chaine =~ s/&nbsp;/ /g;       # Espace insécable
+   	$chaine =~ s/&\w+;/ /g;        # Autres caractères XML
+   	$chaine =~ s/&/et/g;           # Esperluette
+   	$chaine =~ s/\s+/ /g;          # Réduction du nombre d'espaces multiples
 	return $chaine;
 }
