@@ -76,6 +76,59 @@ lemmatize <-
 
 #-- Récupération des lemmes
 
+
+
+#-- NGrams
+
+ngram <- function(tab, max.ngram = 1000) {
+  alls <- NULL
+  id <- NULL
+  deep <- 0
+  for (i in 1:nrow(tab)) {
+    if (is.null(id) || tab$DOCID[i] != id) {
+      deep <- i
+      id <- tab$DOCID[i]
+    }
+    if (tab$wclass[i] == "fullstop") {
+      deep <- i + 1
+    } else {
+      new <- i
+      deep <- max(1, deep, i - max.ngram + 1)
+      for (j in deep:i) {
+        if (tab$wclass[j] != 'punctuation' && tab$wclass[i] != 'punctuation' && j != i) {
+          texte <- paste(tab$token[j:i], collapse = " ")
+          if (is.null(alls)) {
+            alls <- data_frame(docid = id, term = texte)
+          } else {
+            alls <- rbind(alls, data_frame(docid = id, term = texte))
+          }
+        }
+      }
+    }
+  }
+  return(alls)
+}
+
+tfidf <- function(df0) {
+  N <- df0 %>% select(docid) %>% distinct %>% nrow
+  df1 <- df0 %>%
+    select(docid, term) %>%
+    group_by(docid, term) %>%
+    summarise(tf = n()) %>%
+    arrange(-tf)
+  df2 <- df0 %>%
+    select(docid, term) %>%
+    group_by(term) %>%
+    summarise(ndoc = n_distinct(docid)) %>%
+    mutate(idf = log(N / ndoc)) %>%
+    arrange(-ndoc)
+  df3 <- df1 %>%
+    left_join(df2, by = c("term" = "term")) %>%
+    mutate(tfidf = tf * idf) %>%
+    arrange(-tfidf)
+  return(df3)
+}
+
 #-- Validation croisée
 
 validation.croisee <- function(id) {
@@ -130,6 +183,25 @@ distribution <- function(terms, xlab, ylab, title, legend.title) {
 }
 
 #-- Graphiques
+
+series.temporelles.publications <- function() {
+  ts.articles <- get.articles.metadata(articles.metadata) %>%
+    select(date) %>%
+    mutate(date = as.Date(cut(date, breaks = "1 month"))) %>%
+    group_by(date) %>%
+    summarise(counts = n())
+  ggplot(
+    ts.articles, 
+    aes(x = date, y = counts)
+  ) + 
+    geom_line() + 
+    scale_x_date()+
+    labs(
+      y = "Nombre de documents", 
+      x = "Années", 
+      title = "Évolution mensuelle des publications\nde la revue Cybergeo"
+    )
+}
 
 distribution.des.langues <- function(articles) {
   t <- table(articles$langue)
