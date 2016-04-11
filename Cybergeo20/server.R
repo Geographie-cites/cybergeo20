@@ -7,6 +7,12 @@
 # load data ----
 
 load("data/CyberData.RData")
+load("data/themesPO.RData")
+files$name = NULL
+files$path = NULL
+files[,3:22] = document.themes 
+colnames(files)[3:22] = paste0("T_", 1:20)
+themeDescription = read.csv("data/20themes20words.csv", sep=",", dec=".")
 articles = data.frame()
 
 
@@ -26,11 +32,12 @@ shinyServer(function(input, output, session) {
       yearValues$years = dates[[1]] : dates[[length(dates)]]
     }
   })
- 
-   subsetArticles <- reactive({
+
+    subsetArticles <- reactive({
     allArticles <- cyberData$ARTICLES
     years = yearValues$years
     articles = allArticles[substr(allArticles$date.1, 1, 4) %in% as.character(years),]
+    articles = merge(articles, files, by = "id" , all.x = T, all.y = F)
     return(articles)   
   })
   
@@ -86,7 +93,15 @@ shinyServer(function(input, output, session) {
     tab[6,1] = "Top countries studied"
     tab[6,2] = SC5
     
-    
+   themes =  paste0("T_", 1:20)
+   sumsByTheme = colSums(articlesDF[,themes], na.rm = T)
+   names(sumsByTheme) = 
+   sortedThemes = sort(sumsByTheme, decreasing = T)
+   topTheme = themeDescription[as.numeric(substr(names(sortedThemes)[1], 3, 3)),2]
+  
+   tab[7,1] = "Top theme described with 20 words"
+   tab[7,2] = as.character(topTheme)
+   
     colnames(tab) = c("Indicator", "Value")
     
     
