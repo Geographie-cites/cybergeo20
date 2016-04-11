@@ -93,14 +93,22 @@ shinyServer(function(input, output, session) {
     tab[6,1] = "Top countries studied"
     tab[6,2] = SC5
     
+    sumsCitations = colSums(articlesDF[,c("citedby", "citing")], na.rm = T)
+    
+    tab[7,1] = "Number of citations from other articles"
+    tab[7,2] = as.numeric(sumsCitations[1])
+    tab[8,1] = "Number of citations of other articles"
+    tab[8,2] = as.numeric(sumsCitations[2])
+    
+    
    themes =  paste0("T_", 1:20)
    sumsByTheme = colSums(articlesDF[,themes], na.rm = T)
    names(sumsByTheme) = 
    sortedThemes = sort(sumsByTheme, decreasing = T)
    topTheme = themeDescription[as.numeric(substr(names(sortedThemes)[1], 3, 3)),2]
   
-   tab[7,1] = "Top theme described with 20 words"
-   tab[7,2] = as.character(topTheme)
+   tab[9,1] = "Top theme described with 20 words"
+   tab[9,2] = as.character(topTheme)
    
     colnames(tab) = c("Indicator", "Value")
     
