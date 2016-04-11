@@ -1,3 +1,4 @@
 #Data/raw
 *.pyc
 R_Country_Wordcloud/df_countryAuthoringToCountryStudied.csv
+R_Country_Wordcloud/matrix_countryAuthoringToCountryStudied.csv
