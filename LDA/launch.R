@@ -6,6 +6,7 @@ source(file = "functions/lda-functions.R")
 source(file = "functions/lda-initialize.R")
 
 # Transformation des textes en lemmes
+
 tag.corpus <- NULL
 if (file.exists(tag.corpus.file)) {
   message("Loading cache…")
@@ -16,3 +17,19 @@ if (file.exists(tag.corpus.file)) {
   tag.corpus <<- lemmatize.textfiles(files)
   saveRDS(object = tag.corpus, file = tag.corpus.file)
 }
+
+# Récupération des lemmes
+
+lemmes <- lapply(tag.corpus, function(x) {
+  id <- x$id
+  taggedText(x$tagger) %>%
+    tbl_df() %>%
+    mutate(DOCID = id)
+}) %>%
+  ldply() %>%
+  tbl_df()
+
+ng <- lemmes %>% 
+  ngram(max.ngram = 2) %>%
+  tfidf
+saveRDS(object = ng, file = "cache/ng.rds")
