@@ -34,11 +34,11 @@ La carte (fig. n°4), montre que la zone située entre 0 et 100 m d'altitude cor
 Les sondages géophysiques calés sur des logs de référence (Courteaud,1996) laissent à penser que la Plaine des Osmondes a connu un fonctionnement hydrographique permettant le dépôt de formations alluvionnaires. Les perméabilités potentiellement intéressantes des formations alluvionnaires (1.10 -4 m.s-1 selon Folio, 2001) confortent l'intérêt de la plaine des Osmondes comme site d'implantation optimum.
 L'exploitation de nappes par galeries est anecdotique à la Réunion. Pourtant une étude de faisabilité de ce type d'ouvrage (Join, 1989) souligne le fort potentiel de galeries à la Réunion. La comparaison avec les îles volcaniques des Canaries et d'Hawaï, démontre que l'île est à la fois mieux dotée en ressources et moins bien fournie en galeries drainantes. Pour établir une typologie des zones exploitables, il est nécessaire de définir les paramètres permettant de sélectionner un site. Ces paramètres découlent des lois qui décrivent l'hydraulique des galeries (Odon, 2002).
 E. Custodio (1978) a montré qu'il était possible de calculer des lois générales du tarissement pour la prévision et l'estimation des débits en fonction du temps. Il propose entre autre les lois suivantes :
-La loi exponentielle :
-avec :      et
-La loi de la racine inverse :
-avec :          
-Avec 
+La loi exponentielle :
+avec : et
+La loi de la racine inverse :
+avec : 
+Avec 
 Débit à l’instant t
 Débit initial
 Débit final
@@ -54,7 +54,7 @@ Ces lois nécessitent la connaissance des paramètres de la nappe en régime tra
 - Estimation de la longueur de galerie
 Dans l'optique d'une galerie, il est intéressant de pouvoir effectuer le creusement de l'ouvrage en pénétration totale jusqu'au mur de l'aquifère. Ainsi les calculs de longueur totale d'ouvrage prennent en compte toute la zone potentiellement productive jusqu'au substratum. Aussi, la longueur de galerie peut être assimilée à la distance entre la surface et le substrat. Notons que pour les zones situées au-dessus de l'altitude 1900 m, l'information "distance au substrat" n'existe plus, cette altitude correspondant au toit régional du substratum.
 - Estimation de la longueur de galerie saturée
-Disposant maintenant de l'information sur les longueurs de galerie potentielle, il est  possible d'établir la longueur de galerie saturée. Cette information est le résultat de la différence entre longueur de galerie et la distance à la nappe.
+Disposant maintenant de l'information sur les longueurs de galerie potentielle, il est possible d'établir la longueur de galerie saturée. Cette information est le résultat de la différence entre longueur de galerie et la distance à la nappe.
 -Approche d'un Indice de productivité
 Dés lors il possible d'envisager le calcul d'un indice d'estimation du "rendement linéaire de galerie". Cet indice peut être ramené à l'expression simple du rapport de la longueur de galerie saturée sur la longueur de galerie potentielle. Les valeurs calculées correspondent alors au pourcentage de galerie saturée dans l'hypothèse où cette galerie est de la taille maximale. A partir de la sélection des sites propices à l'installation d'une galerie va dépendre des impératifs des aménageurs. Une galerie relativement petite est économiquement intéressante, alors qu'une longue galerie bien implantée permettrait de drainer une nappe sur des longueurs conséquentes et assurer une exploitation avec un débit plus intéressant.
 Une galerie d'une longueur supérieure ou égale à 2500 m constitue un bon compromis au regard des gammes de valeurs disponibles et paraît économiquement viable. La prise en compte de l'indice de productivité permet d'estimer le pourcentage de galerie saturée dans le cadre d'une galerie idéale pour chaque site. Un choix de rendement important (de l'ordre de 80 %) permet de discriminer les sites présentant un intérêt réel. Pour la détermination de la distance à la nappe une même logique de sélection optimum nous conduit à proposer la valeur de 800 m comme la valeur maximum à creuser avant d'atteindre l'aquifère. La requête sur ces critères permet d'obtenir les sites optimums à l'implantation d'une galerie. En effet dans l'hypothèse d'une exploitation d'une galerie sur une longueur maximale, la carte des indices de production devient l'outil de décision.

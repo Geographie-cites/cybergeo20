@@ -1,5 +1,5 @@
 AESC: Annales Économies, Sociétés, Civilisations
-AG : Annales de Géographie,
+AG : Annales de Géographie,
 BAGF: Bulletin de l'Association de Géographes Français
 BGI: Bibliographie Géographique Internationale
 BSLG: Bulletin de la Société Languedocienne de Géographie
@@ -70,7 +70,7 @@ d. Le développement économique de l'Iran, AG, 47: 106-7.
 e. La géographie en URSS, AG, 47: 207-8.
 f. La situation économique de la Transcaucasie, AG, 47: 208-9.
 g. Les grands travaux en URSS, AG, 47: 209-10.
-h. Le problème des matières premières : l'approvisionnement de la France, IG , Paris, 2 , (4): 155-7.
+h. Le problème des matières premières : l'approvisionnement de la France, IG , Paris, 2 , (4): 155-7.
 i. La capacité de peuplement de la Palestine. Aspects géographiques du problème, comptes rendus du Congrès International de Géographie, Amsterdam, Tome II, Sections A-F: 91-7. [Reprinted in 1959b].
 j. Présentation d'une planche de l'Atlas de France avec A. Libault, comptes rendus du Congres International de Géographie, Amsterdam, Tome I, Commission du Peuplement et de l'Habitat rural: 554-7.
 k. L'homme, la route et l'eau en Asie Sud-Occidentale, AG, 47: 575-601. [Reprinted in 1959b].
@@ -114,9 +114,9 @@ e. A review: Europe and Italy's acquisition of Libya 1911-1912, GR.: 522.
 f. France and Europe's Economic Reconstruction, NE, 3 , (9): 16-8.
 g. The Italo-Yugoslav frontier region, GR , 33: 668-9.
 h. Bugeaud, Galliéni Lyautey: The Development of French Colonial Warfare, in: "Makers of Modern strategy: Military Thought from Machiavelli to Hitler" (ed. E.M. Earle), Princeton, Princeton University Press, 1943: 234-59.
-a. Vauban and Modern Geography, GR , 34 : 120-8.
+a. Vauban and Modern Geography, GR , 34 : 120-8.
 b. Recent contributions to the geography of Sahara, GR., 34: 147-50.
-c. A review: La Tunisie Orientale: Sahel et Basse Steppe, GR., 34 : 166-7.
+c. A review: La Tunisie Orientale: Sahel et Basse Steppe, GR., 34 : 166-7.
 d. A quarter of a century of the Earth Sciences in the Soviet Union, GR., 34: 496.
 e. A review: Strany Tikhovo Okeana, GR., 34: 691.
 a. Raw materials in the Western Pacific, Ninth Conference of the Institute of Pacific Relations Hot Springs, Virginia, January 1945, French Paper, N° 1, 15 p. (mimeo.).
@@ -134,12 +134,12 @@ c. Soviet geography at war, GR, 36: 161-3.
 d. Tin under control - a review, GR, 36:166-8.
 e. Les services de l'agriculture du Gouvernement Américain (in collab. avec James C. Foster). In: "Études et Documents". Paris (Centre de Coordination et de Synthèse des Études sur la Reconstruction), 2, (13-14): 119-133. [Reprinted in 1966f].
 f. A review: Osnovy Kartovedemiya obshchaya chast,GR, 36: 695.
-g. L'Essor des États Unis et l'économie d'après-guerre. AESC(Paris). 1 (2) :97-115 (introduction par Ch. Morazé ). [Reprinted in 1966f].
+g. L'Essor des États Unis et l'économie d'après-guerre. AESC(Paris). 1 (2) :97-115 (introduction par Ch. Morazé ). [Reprinted in 1966f].
 a. A review: Vue générale de la Méditerranée, GR, 37: 173-4.
 b. Doctrines géographiques en politique, Les Doctrines Politiques Modernes, Brentano's, New York 1947 (322 p.): 17-40.
 c. De la méthode d'analyse en géographie humaine, AG, Paris, 56: 1-12. [reprinted in 1966f]
 d. Jacques Weulerosse: Obituary. GR, 37: 507.
-e. Review of "La France Économique et Humaine" 1ère partie, GR : 682-4.
+e. Review of "La France Économique et Humaine" 1ère partie, GR : 682-4.
 f. Grandeur et problèmes des transports aériens, AG , 56: 206-9.
 g. La position du Canada en Amérique, AG., 56: 235-6.
 h. La consommation de la houille aux États-Unis, AG , 56: 237-8.
@@ -247,9 +247,9 @@ a. "The Future by Design of New York City - An Interpretive Summary", in: The Fu
 b. "La Géographie Politique", Die moderna Wissenschaften und die Aufgaben der Diplomatie, Wien, Verlag Styria, 1965: 141-60. (Conférence faite au Séminaire Diplomatique de Klessheim bei Salzburg, 1962).
 c. Grandeur et Misères de l'Urbanisation Moderne, UR, Paris, 88, Juin 1965: 40-50.
 a. Review of "Economic Geography of Canada" (by Camu, Weeks and Sametz), GR , 56: 131-3.
-b. The ethics of living at high densities. EK, 21, (123): 141-5. [Originally a paper for the II Symposium in Delo, Greece 1964 ; successively developed for a conference at the Univ. of Wisconsin, Madison, Wis. 1965; Italian translation in 1983f; reprinted in 1990a].
+b. The ethics of living at high densities. EK, 21, (123): 141-5. [Originally a paper for the II Symposium in Delo, Greece 1964 ; successively developed for a conference at the Univ. of Wisconsin, Madison, Wis. 1965; Italian translation in 1983f; reprinted in 1990a].
 c. Megalopolis: the main street of the nation [reprinted from Megalopolis 1961: 3-16]. In Perpectives on the American Community: A book of readings (ed. Roland L. Warren). Chicago, Rand McNally: 117-29.
-d. Why the Skyscraper ?, GR , 54: 190-212.[Reprinted in Taming Megalopolis , Anchor Pub.; German translation: 1967b; New version for Italian translation in 1983f].
+d. Why the Skyscraper ?, GR , 54: 190-212.[Reprinted in Taming Megalopolis , Anchor Pub.; German translation: 1967b; New version for Italian translation in 1983f].
 e. "Géographie Politique". In: Géographie Générale-Encyclopédie de la Pléiade NRF Gallimard, Paris: 1749-65.
 f. Essais sur l'Aménagement de l'Espace habité (École Pratique des Hautes Études - Sorbonne). Paris. Laye, Mouton and Co., 347 p.
 g. "La création de villes neuves". RES , 24, (2): 111-23.
@@ -259,9 +259,9 @@ j. Morphologie et Modes de vie des villes de demain. In: Commerce et Urbanisme: 
 k. "The rising demand for urban amenities. "Planning for a nation of Cities" (ed. Sam B. Warner, Jr.). Cambridge, Mass. and London, The MIT Press (MIT 54): 163-78.
 l. "Environment and ways of life in the modern metropolis". Northern Geographical Essays in honour of G. H. J. Daysh (ed. J.W. House), Dept. of Geography, The University, Newcastle upon Tyne: 3-13. [Italian translation in 1983f].
 a.Metropolis on the Move: geographers look at urban sprawl (ed. Jean Gottmann and Robert Harper). New York, London and Sydney, John Wiley, 203 p.
-b. Que seront les villes de demain ?, RGB (Bruxelles) Jan. 1967: 11-25. [Italian transl. in 1983f].
+b. Que seront les villes de demain ?, RGB (Bruxelles) Jan. 1967: 11-25. [Italian transl. in 1983f].
 c. Water quality and Water consciousness. The Fresh Water of New York State: its conservation an use. A symposium held at the state Univ. of NY, at Buffalo (ed. by Laren B. Hitchcock). Dubuque, Iowa, Wm. C. Brown Book Cy: 235-40.
-d. Warum Wolkenkratzer ?, Der Monat (Berlin). April, Helft 223: 55-65 [translation of "Why the Skyscraper ?"].
+d. Warum Wolkenkratzer ?, Der Monat (Berlin). April, Helft 223: 55-65 [translation of "Why the Skyscraper ?"].
 e. America (translated by Francisco Payarols). Barcelona. Editorian Labor, S.A., 435 p.
 f. Communication au colloque sur l'Organisation départementale et communale à l'épreuve du XXe siècle. Administration (Revue d'Information du Corps Préfectoral, Paris, Ministère de l'Intérieure) 21, (59): 181-3.
 g. Review of "American City: An Urban Geography" by Raymond Murphy, GR 57,(4): 588-9.
@@ -329,14 +329,14 @@ c. The American quest for a New World, In: "Three Europeans look at America" (wi
 d. Articles "Geography" "Density" "Megalopolis", "Urbanization", etc. In: " The Fontana Dictionary of Modern Thought". (ed. A. Bullock and O. Stallybrass) London, Fontana.
 e. The role of capital cities, EK, 44, (264): 240-3.[Italian translation in 1983f; combined with 1983b and reprinted as 1990a, Ch. 3].
 f. Il territorio: un concetto in evoluzione [Originally presented as a paper at the Institut des Études Politiques, Paris 1975, Italian translation by Martin Hérisson in NS, Anno XXIV, Terza Serie, February, 25 ,(267), Naples: 41-63, Italian reprint in 1983f].
-a. Verso una megalopoli della Pianura Padana ? in: "Megalopoli Mediterranea" (ed. C. Muscarà). Milan, Franco Angeli: 19-31.
+a. Verso una megalopoli della Pianura Padana ? in: "Megalopoli Mediterranea" (ed. C. Muscarà). Milan, Franco Angeli: 19-31.
 b. The mutation of the American city: A review of the comparative Metropolitan Analysis Project. GR , 68, (2): 201-8.
 c. Urbanization and employment: towards a general theory, TPR , 49, (3): 393-401. [originally presented as Walter Edge Public Lecture at the University of Priceton in 1977, Italian translation in 1983f, reprinted in 1990a].
 d. How the Central City works: the case of New York, GJ , 144, (2): 201-8.
 e. Originalités apportées dans la croissance par la présence du pouvoir politique, 3e thème in Colloque sur les Capitales et Métropoles méditerranéennes, BAGF, No. 454: 239-45.
 f. New avenues for urban geography. Herbo News, Oxford, School of Geography, No. 20: 2-6.
 g. Forces shaping cities. The University of Newcastle upon Tyne, Fiftieth Anniversary Jubilee Lecture, Department of Geography, 14 p.
-h. How large can cities grow ? Revista da Universidade de Coimbra 26: 3-14. [reprinted in 1990a]
+h. How large can cities grow ? Revista da Universidade de Coimbra 26: 3-14. [reprinted in 1990a]
 i. Terms of employment and urban concentration. In: "Questions for Debate". "Confronto a più voci", Isveimer Bulletin, Naples, No. 7, 15-30 and 51-8
 j. La personalità dell'Europa, L'Europa ( ed. E. Turri), Novara, Ist. Geografico de Agostini. 2-9.
 k. The child in a moving, quaternary oriented society. EK, 45 (272), 348-50.
@@ -378,7 +378,7 @@ c. Review of New York: The Politics of Urban Regional Development, by Danielson 
 d. "Orbits: The Ancient Mediterranean Tradition of Urban Networks" (Twelfth Myres Memorial Lecture, Oxford) London: Leopard Head Press, 15 p., 2pl. h.t.
 e. L'identità dell'Europa, in Lo Spazio Europeo, in series "L'Europa Occidentale" a cura di E. Turri, Banco Popolare di Novara, 1984, in 4°: 1-7.
 f. Urbanisti, intervista a Jean Gottmann verso la megalopoli italiana, by Fortunato Pagano in Costruire, Milano 21, luglio-agosto 1984:84-9 ,112.
-a. Una città museo ? Perché no, interview of J. Gottmann by Luca Muscarà in Marco Polo, Venice, sett 1985: 76-81.
+a. Una città museo ? Perché no, interview of J. Gottmann by Luca Muscarà in Marco Polo, Venice, sett 1985: 76-81.
 b. Il mondo britannico, in "Il cuore industriale" a cura di E. Turri, Banco Popolare di Novara, 1985, n. 4: 59-65.
 c. Renaissance des études de la mer, in colloque Marcel Herubel sur la Circulation Maritime, Cahiers de sociologie économique et culturelle, Le Havre, Dec. 84 - Jan. 85: 39-49.
 d. The Study of Former Capitals. EK , 52, (314/315): 541-46. [reprinted in 1990a]
@@ -395,7 +395,7 @@ b. Conclusion, in "Paris-Londres l'aménagement à l'heure de la compétition", 
 c. Les agglomérations géantes et leurs problèmes" compte rendu de Sogan et Kasarda, "The Metropolis Era", in RFSP, Paris, vol. 39, N° 2, Avril 1989: 204-7.
 d. En travaillant avec André Siegfried, in Études Normandes, Rouen N.2, 1989, (André Siegfried, la politique et la géographie): 13-16.
 e. Past and present of the western city in The Rise and Fall of Great Cities, (ed. by R. Lawton), London, Belhaven Press, 1989: 168-76.
-f. What are Cities becoming Centers of ? Sorting out the Possibilities, in Richard Knight and Gary Gappert (ed.), Cities in a Global Society, Vol. 35Urban Affairs Annual Review, Sage Publications, Newbury Park, 1989: 58-67.
+f. What are Cities becoming Centers of ? Sorting out the Possibilities, in Richard Knight and Gary Gappert (ed.), Cities in a Global Society, Vol. 35Urban Affairs Annual Review, Sage Publications, Newbury Park, 1989: 58-67.
 g. The Great Urban Gamble, in TPR, Liverpool, 60, 1, Jan 1989: 89-94.
 a. Since Megalopolis. The Urban Writings of Jean Gottmann (ed. by Jean Gottmann and Robert A. Harper), Baltimore and London, The John Hopkins University Press, 1990: 294 p.
 b. Review of "Géographie historique de la France" and "La formation des départements", in the EHR, N.415, April 1990: 409-12.
@@ -420,4 +420,4 @@ a. Cities and Health, ST, 3.1, march 1994, p. 8 (published also in Italian: Quel
 b. La vieille ville de Jérusalem (Festschrifte), Dessine moi une carte..., Sylvie Rimbert, Presses Universitaires de Strasbourg, 1994: 36-7.
 c. "Towards a Global Urbanism", ST, 3.3, Nov. 1994: 4-7; 4.1, March 1995: 4-6; 4.2, July 1995:11-13; 4.3, Dec. 1995: 28-9 (published also in Italian: Verso un urbanesimo globale).
 d. "Beyond Megalopolis, Towards a World Community?" The Community Study Foundation, Tokyo [reprinted in ST , 5.1, June 1996: 82-84, and 5.2, Dec. 1996: 4-8].
-Introduction: why metropolitan organization ? In Sharpe L.J. (ed.)The government of world cities: the future of the metro model, London: Wiley.
+Introduction: why metropolitan organization ? In Sharpe L.J. (ed.)The government of world cities: the future of the metro model, London: Wiley.

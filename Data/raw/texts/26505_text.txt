@@ -60,10 +60,10 @@ Los títulos de las ilustraciones deben colocarse encima de ellas y numerados se
 Figura 1: Evolución de los precios de la propiedad inmobiliaria en París entre 1950 y 1990.
 La fuente de la ilustración debe ser indicada con claridad. Se deben precisar las fuentes de los datos que han permitido realizar la ilustración (por ejemplo: US Census, 2001) y la fuente de la propia ilustración en el caso de que el autora haya utilizado una ilustración ya publicada en una obra.
 La bibliografía debe ser agrupada al final de un texto con clasificación alfabética por autores.
-Batty M., 2001, "Polynucleated Urban Landscapes", Urban Studies, vol. 38, No.4, 635-655.
+Batty M., 2001, "Polynucleated Urban Landscapes", Urban Studies, vol. 38, No.4, 635-655.
 Luginbühl Y., Muxart T., 1997, “Place de la géographie dans les recherches sur l’environnement”, Lettre du PIREVS, No.17, 44-63.
 Dematteis G., 1996, "Towards a unified metropolitan urban system in Europe: Core centrality versus network distributed centrality", in Pumain D., Saint-Julien Th. (eds.), Urban networks in Europe, Paris, INED and John Libbey Eurotext.
 Paulus F., Pumain D., 2000, "Trajectoires de villes dans le système urbain", in : Pumain D., Mattei M.-F. (dir.), Données urbaines 3, Anthropos, coll. Villes, 363-372.
 Hagget P., 2001, Geography: a global synthesis, London, Pearson Education.
 Bailly A., Ferras R., Pumain D., 1994, Encyclopédie de la géographie, Paris, Economica.
-Thomas I., 2001, "Cartographie d’aujourd’hui et de demain : rappels et perspectives", Cybergeo : http://cybergeo.revues.org, No.189, 7 mars 2001, 24 p.
+Thomas I., 2001, "Cartographie d’aujourd’hui et de demain : rappels et perspectives", Cybergeo : http://cybergeo.revues.org, No.189, 7 mars 2001, 24 p.

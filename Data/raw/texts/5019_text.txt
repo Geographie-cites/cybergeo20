@@ -1,6 +1,6 @@
 Managing Editor : Arnaud BANOS
 Science Editor : Denise PUMAIN
-Assistant Science Editor : Antoine FLEURY
+Assistant Science Editor : Antoine FLEURY
 Chief Editor : Christine KOSMOPOULOS
 Layout Editor
 Elodie PICARD, CNRS-UMS Cléo
@@ -182,7 +182,7 @@ MARSHALL Anaïs, Université de Paris 13 – Nord, EA2356 CRESC, UMR8586 PRODIG,
 MATHIEU Nicole, Université de Paris 1, France
 MATURANA Francisco, Instituto Chileno de Estudios Municipales-ICHEM, Universidad Autónoma de Chile, Chile
 SIGNOLES Pierre, 'Université François-Rabelais de Tours, France
-TROMEUR Eric, ETEC, Eric Tromeur Energy & Climate Consulting, France
+TROMEUR Eric, ETEC, Eric Tromeur Energy et Climate Consulting, France
 VIGNAL Leila, Marie Curie Fellow, University of Oxford, UK
 ZANIN Christine, Université Paris-Diderot et CNRS/UMR 8504 Géographie-cités, France
 ANTHEAUME Benoît, IRD, France
@@ -332,9 +332,9 @@ POINSOT Yves, Université de Pau, France
 RAOULX Benoît, Université de Caen, Caen, France
 RETAILLE Denis, Université de Haute-Normandie, Rouen, France
 RICAN Stéphane, Université de Nanterre, France
-VAGUET Alain, Université de Haute-Normadie, Rouen, France
+VAGUET Alain, Université de Haute-Normadie, Rouen, France
 USSELMANN Pierre, CNRS/UMR 6012 ESPACE, Montpellier, France
-Edition : Jean-Baptiste Arrault, Ahcène Azieze, Fabien Dugal, Emmanuelle Fleury, Martine Laborde, Elfie Swerts
+Edition : Jean-Baptiste Arrault, Ahcène Azieze, Fabien Dugal, Emmanuelle Fleury, Martine Laborde, Elfie Swerts
 News : Delphine Callen, Anne Clerval, Carine Duplan, Antoine Fleury, Marianne Guérois, Charlène le Neindre, Catherine Masure, Aurélien Morin, Céline Vacchiani
 Delphine Callen, Anne Clerval, Carine Duplan, Antoine Fleury, Marianne Guérois, Charlène le Neindre, Catherine Masure, Aurélien Morin, Pierre Pistre, Clara Schmitt, Céline Vacchiani
 The collection of our favorite websites has been stopped in 2012

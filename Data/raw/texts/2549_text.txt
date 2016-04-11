@@ -216,7 +216,7 @@ Walt Disney
 ABC
 Disney Chanel
 ESPN(**)
-A&E(**)
+AetE(**)
 Eurosport(**)
 Lifetime(**)
 History Channel(*)
@@ -233,7 +233,7 @@ Comedy Central(**)
 UPN
 Eye Mark
 Paramount Pictures
-Simon & Schuster
+Simon et Schuster
 News Corp(***)
 Fox TV
 20th Century Fox
@@ -244,7 +244,7 @@ General Electric(****)
 NBC
 Paxson
 CNBC(**)
-A&E(**)
+AetE(**)
 MSNBC(**)
 History Channel(**)
 National Geographic(**)
@@ -311,12 +311,12 @@ Por un lado, existe un numeroso conjunto de empresas (2.545, el 44,3%), cuyas pl
 Para analizar la distribución territorial de la IC en España se ha recopilado la información proporciona por el directorio de empresas SABI6. En concreto, se han seleccionado 897 sociedades encuadradas en las ramas antes mencionadas que afirman representar una cifra total de negocio en el año 2002 de 9.886 millones de euros y una plantilla total de 50.806 empleados.
 De la misma manera que el empleo en la IC se concentra en un pocas empresas, también la distribución territorial de este tipo de actividad se presenta muy polarizada a favor de un reducido número de localidades (figura 2).
 
-Figura 2 : Distribucion espacial de las empresas de la industria cultural. Empleo 2002
+Figura 2 : Distribucion espacial de las empresas de la industria cultural. Empleo 2002
 A este respecto, sobresalen las áreas metropolitanas de Madrid y Barcelona con 31.252 y 8.869 trabajadores cada una, lo que supone el 79% del cómputo total. Merece también destacarse, si bien a cierta distancia, las concentraciones de empleo en las áreas metropolitanas de Valencia, Bilbao y Sevilla, así como en A Coruña, Santiago de Compostela, Zaragoza y Málaga. Todo ello en contraste con el vacío del interior peninsular (en especial Extremadura y Castilla la Mancha) junto con Cantabria. En definitiva, el mapa de la IC no hace sino reflejar la extrema polarización de estas actividades en una medida muy superior al conjunto del sector servicios.
 Un análisis más detallado en varias de las áreas metropolitanas antes señaladas revela la importante concentración en algunos municipios de la corona metropolitana que albergan polígonos empresariales de nueva factura. Se trata de los municipios de Burjassot en Valencia (en donde tiene su sede la Televisión Autonómica Valenciana), San Juan de Aznalfarache en Sevilla (Canal Sur Televisión SA) y el Prat de Llobregat, Sant Joan Despi y Sant Just Desvern en Barcelona.
 Por lo que respecta al caso madrileño, aunque el municipio capitalino alberga a 16.764 empleos, se observa, así mismo, una polarización en otros municipios limítrofes situados al norte y este de la capital en un grado muy superior a su peso demográfico (figura 3).
 
-Figura 3 : Distribucion del empleo en la industria cultural. Comunidad Autonoma de Madrid. 2002
+Figura 3 : Distribucion del empleo en la industria cultural. Comunidad Autonoma de Madrid. 2002
 En buena medida se debe al emplazamiento en estas localidades de las principales empresas del sector: Antena 3 Televisión en San Sebastián de los Reyes, Sogecable en Tres Cantos o Warner LusoMundo en Alcobendas. Mención especial merece el municipio de Pozuelo de Alarcón que alberga la sede de Televisión Española y de la Televisión Autonómica de Madrid, las cuales ejercen una función de arrastre sobre productoras y distribuidoras privadas de material audiovisual que en algún caso se encuentran instaladas en el polígono industrial de la imagen presente en este municipio.
 Varios son, por lo tanto, los factores que explican estas pautas de localización. En el caso de la IC que genera y difunde información resulta evidente la conveniencia de su proximidad a las sedes de Gobierno, ministerios, instituciones públicas, organismos financieros y mercantiles y aquellas instalaciones en donde se generan eventos deportivos y culturales. En el caso de las productoras y distribuidoras de programas audiovisuales de ocio, éstas buscan la cercanía a aquellas empresas a las que venden casi la totalidad de sus productos (radios y televisiones públicas, autonómicas y privadas). Para un tercer grupo de empresas, las distribuidoras y exhibidoras de cine y productos sonoros, la concentración territorial de los consumidores y de las cadenas de exhibición parece explicar su distribución territorial.
 Un grupo significativo por su capacidad e influencia dentro de la IC lo conforman los grupos multimedia los cuales experimentaron un crecimiento cuantitativo y cualitativo con el inicio del periodo constitucional. Ello se debe tanto al desarrollo de una libertad de opinión y difusión de las ideas antes inexistente como al desmantelamiento de los órganos de prensa del Movimiento. Diarios como El País o El Mundo del siglo XXI verían la luz complementando una oferta ya veterana identificada en los periódicos ABC o La Vanguardia. Por otra parte, algunos grupos empresariales como el Grupo Prensa Ibérica o el Grupo Correo adquirieron las cabeceras de los diarios regionales del régimen. Sin embargo, no será hasta la década de los ochenta cuando se fragüen los grupos multimedia apoyándose en el volumen de negocio que suponen las cadenas de televisión.
@@ -377,9 +377,9 @@ De la misma manera, los grupos multimedia españoles mantienen interdependencias
 Este panorama empresarial de IC española se complementa con otras compañías como el Grupo Planeta, las cuales si bien participan de otras parcelas de negocio como la radio o la televisión (el Grupo Planeta posee el 10% de las acciones de Tele 5), carecen de un diario de referencia y concentran sus esfuerzos en la producción y distribución de obras y documentos más que en la información.
 De la misma manera que en el conjunto de la IC, la distribución territorial de las empresas multimedia presenta una clara concentración en el cuadrante nororiental peninsular incluyendo a las áreas metropolitanas de Madrid, Barcelona, Bilbao y en menor medida Zaragoza. El mapa empresarial de Vocento y Zeta, los grupos que muestran una mayor difusión espacial en el territorio español, muestra de manera clara este panorama (figuras 4 y 5).
 
-Figura 4 : Distribucion territorial de las empresas del Grupo Vocento
+Figura 4 : Distribucion territorial de las empresas del Grupo Vocento
 
-Figura 5 : Distribucion territorial de las empresas del Grupo Zeta
+Figura 5 : Distribucion territorial de las empresas del Grupo Zeta
 La presencia en el resto del territorio es testimonial y prácticamente se reduce a los diarios locales bajo control de estos grupos.
 Por lo que respecta a su conexión exterior, si bien el grado de interdependencia no alcanza el nivel propio del mundo anglosajón, algunos de los grupos nacionales antes mencionados han establecido acuerdos o han formado empresas mixtas con compañías extranjeras. En el caso del Grupo Prisa hay que destacar la formación de CNN+, en el campo de la televisión, o los acuerdos de El País con las empresas que editan el periódico británico The Independent, el norteamericano Wall Street Journal y el portugués Público. En este mismo plano hay que recordar que el 78,9% de las acciones del Grupo Recoletos se encuentra en manos del Grupo británico Pearson y que el 50% de las acciones de la editorial Plaza y Janes las detenta el grupo alemán Bertelsmann.
 (AEDE, 2003).
