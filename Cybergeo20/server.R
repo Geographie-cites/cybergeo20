@@ -26,15 +26,15 @@ shinyServer(function(input, output, session) {
       yearValues$years = dates[[1]] : dates[[length(dates)]]
     }
   })
-  
-  subsetArticles <- reactive({
+ 
+   subsetArticles <- reactive({
     allArticles <- cyberData$ARTICLES
     years = yearValues$years
     articles = allArticles[substr(allArticles$date.1, 1, 4) %in% as.character(years),]
     return(articles)   
   })
   
-  output$statArticles = renderDataTable({
+   output$statArticles = renderDataTable({
     tab = data.frame()
     articlesDF = subsetArticles()
     nPapers = dim(articlesDF)[1]
@@ -51,49 +51,89 @@ shinyServer(function(input, output, session) {
     tab[2,1] = "Number of authors"
     tab[2,2] = Nauthors
     
+     cols = colnames(articlesDF)
+    authoring = cols[substr(cols,1, 2) == "A_"]
+    sumsAByCountry = colSums(articlesDF[,authoring])
+    authoringCountries = sumsAByCountry[sumsAByCountry>0]
+    nAuthoringCountries = length(authoringCountries)
+    
+    tab[3,1] = "Number of countries authoring"
+    tab[3,2] = nAuthoringCountries
+    
+    names(authoringCountries) = substr(names(authoringCountries), 3, 4)
+    AC = sort(authoringCountries, decreasing = T)
+    AC5 = paste0(names(AC[1]), " (", AC[1], "), ", names(AC[2]), " (",  AC[2], "), ", 
+                 names(AC[3]), " (", AC[3], "), ", names(AC[4]), " (",  AC[4], "), ", 
+                 names(AC[4]), " (", AC[4], ")")
+    
+    tab[4,1] = "Top countries authoring"
+    tab[4,2] = AC5
+    
+    studied = cols[substr(cols,1, 2) == "S_"]
+    sumsSByCountry = colSums(articlesDF[,studied])
+    studiedCountries = sumsSByCountry[sumsSByCountry>0]
+    nStudiedCountries = length(studiedCountries)
+    
+    tab[5,1] = "Number of countries studied"
+    tab[5,2] = nStudiedCountries
+    
+    names(studiedCountries) = substr(names(studiedCountries), 3, 4)
+    SC = sort(studiedCountries, decreasing = T)
+    SC5 = paste0(names(SC[1]), " (", SC[1], "), ", names(SC[2]), " (",  SC[2], "), ", 
+                 names(SC[3]), " (", SC[3], "), ", names(SC[4]), " (",  SC[4], "), ", 
+                 names(SC[4]), " (", SC[4], ")")
+    
+    tab[6,1] = "Top countries studied"
+    tab[6,2] = SC5
+    
+    
     colnames(tab) = c("Indicator", "Value")
+    
+    
     return(tab)
   }, options = list(paging = FALSE, searching = FALSE))
   
-  
-  output$statAuthoring = renderDataTable({
-    tab = data.frame()
-    articlesDF = subsetArticles()
-    nPapers = dim(articlesDF)[1]
-    
-    tab[1,1] = "Number of scientific articles"
-    tab[1,2] = nPapers
-    
-    articlesDF$authorsLists = strsplit(articlesDF$authors, split = ",")
-    for (i in 1:dim(articlesDF)[1]) {
-      articlesDF[i,"Nauthors"] = ifelse(is.na(articlesDF[i,"authorsLists"]), 1, length(articlesDF[i,"authorsLists"][[1]]))
-    }
-    Nauthors = sum(articlesDF$Nauthors)
-    
-    tab[2,1] = "Number of authors"
-    tab[2,2] = Nauthors
-    
-    colnames(tab) = c("Indicator", "Value")
-    return(tab)
-  }, options = list(paging = FALSE, searching = FALSE))
-  
-  output$Npapers = renderText({
-    articlesDF = subsetArticles()
-    nPapers = dim(articlesDF)[1]
-    return(nPapers)
-  })
-  output$Nauthors = renderText({
-    articlesDF = subsetArticles()
-    articlesDF$authorsLists = strsplit(articlesDF$authors, split = ",")
-    for (i in 1:dim(articlesDF)[1]) {
-      articlesDF[i,"Nauthors"] = ifelse(is.na(articlesDF[i,"authorsLists"]), 1, length(articlesDF[i,"authorsLists"][[1]]))
-    }
-    Nauthors = sum(articlesDF$Nauthors)
-    return(Nauthors)
-  })
-  
-  
-  
+  # 
+  # output$statAuthoring = renderDataTable({
+  #   tab = data.frame()
+  #   articlesDF = subsetArticles()
+  #   nPapers = dim(articlesDF)[1]
+  #   
+  #   tab[1,1] = "Number of scientific articles"
+  #   tab[1,2] = nPapers
+  #   
+  #   articlesDF$authorsLists = strsplit(articlesDF$authors, split = ",")
+  #   for (i in 1:dim(articlesDF)[1]) {
+  #     articlesDF[i,"Nauthors"] = ifelse(is.na(articlesDF[i,"authorsLists"]), 1, length(articlesDF[i,"authorsLists"][[1]]))
+  #   }
+  #   Nauthors = sum(articlesDF$Nauthors)
+  #   
+  #   tab[2,1] = "Number of authors"
+  #   tab[2,2] = Nauthors
+  #   
+  #   colnames(tab) = c("Indicator", "Value")
+  #   
+  #     
+  #   return(tab)
+  # }, options = list(paging = FALSE, searching = FALSE))
+  # 
+  # output$Npapers = renderText({
+  #   articlesDF = subsetArticles()
+  #   nPapers = dim(articlesDF)[1]
+  #   return(nPapers)
+  # })
+  # output$Nauthors = renderText({
+  #   articlesDF = subsetArticles()
+  #   articlesDF$authorsLists = strsplit(articlesDF$authors, split = ",")
+  #   for (i in 1:dim(articlesDF)[1]) {
+  #     articlesDF[i,"Nauthors"] = ifelse(is.na(articlesDF[i,"authorsLists"]), 1, length(articlesDF[i,"authorsLists"][[1]]))
+  #   }
+  #   Nauthors = sum(articlesDF$Nauthors)
+  #   return(Nauthors)
+  # })
+  # 
+  # 
+  # 
   
   
   ### Juste ----
