@@ -103,12 +103,17 @@ shinyServer(function(input, output, session) {
     
    themes =  paste0("T_", 1:20)
    sumsByTheme = colSums(articlesDF[,themes], na.rm = T)
-   names(sumsByTheme) = 
    sortedThemes = sort(sumsByTheme, decreasing = T)
-   topTheme = themeDescription[as.numeric(substr(names(sortedThemes)[1], 3, 3)),2]
-  
+   topTheme1 = themeDescription[as.numeric(substr(names(sortedThemes)[1], 3, 3)),2]
+   topTheme2 = themeDescription[as.numeric(substr(names(sortedThemes)[2], 3, 3)),2]
+   topTheme3 = themeDescription[as.numeric(substr(names(sortedThemes)[3], 3, 3)),2]
+   
    tab[9,1] = "Top theme described with 20 words"
-   tab[9,2] = as.character(topTheme)
+   tab[9,2] = as.character(topTheme1)
+   tab[10,1] = "2nd Top theme"
+   tab[10,2] = as.character(topTheme2)
+   tab[11,1] = "3rd Top theme"
+   tab[11,2] = as.character(topTheme3)
    
     colnames(tab) = c("Indicator", "Value")
     
@@ -116,47 +121,8 @@ shinyServer(function(input, output, session) {
     return(tab)
   }, options = list(paging = FALSE, searching = FALSE))
   
-  # 
-  # output$statAuthoring = renderDataTable({
-  #   tab = data.frame()
-  #   articlesDF = subsetArticles()
-  #   nPapers = dim(articlesDF)[1]
-  #   
-  #   tab[1,1] = "Number of scientific articles"
-  #   tab[1,2] = nPapers
-  #   
-  #   articlesDF$authorsLists = strsplit(articlesDF$authors, split = ",")
-  #   for (i in 1:dim(articlesDF)[1]) {
-  #     articlesDF[i,"Nauthors"] = ifelse(is.na(articlesDF[i,"authorsLists"]), 1, length(articlesDF[i,"authorsLists"][[1]]))
-  #   }
-  #   Nauthors = sum(articlesDF$Nauthors)
-  #   
-  #   tab[2,1] = "Number of authors"
-  #   tab[2,2] = Nauthors
-  #   
-  #   colnames(tab) = c("Indicator", "Value")
-  #   
-  #     
-  #   return(tab)
-  # }, options = list(paging = FALSE, searching = FALSE))
-  # 
-  # output$Npapers = renderText({
-  #   articlesDF = subsetArticles()
-  #   nPapers = dim(articlesDF)[1]
-  #   return(nPapers)
-  # })
-  # output$Nauthors = renderText({
-  #   articlesDF = subsetArticles()
-  #   articlesDF$authorsLists = strsplit(articlesDF$authors, split = ",")
-  #   for (i in 1:dim(articlesDF)[1]) {
-  #     articlesDF[i,"Nauthors"] = ifelse(is.na(articlesDF[i,"authorsLists"]), 1, length(articlesDF[i,"authorsLists"][[1]]))
-  #   }
-  #   Nauthors = sum(articlesDF$Nauthors)
-  #   return(Nauthors)
-  # })
-  # 
-  # 
-  # 
+   
+   
   
   
   ### Juste ----
