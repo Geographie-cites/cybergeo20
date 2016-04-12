@@ -17,6 +17,21 @@ library(ggplot2)
 library(pdc)
 library(wordcloud)
 
+#-- Gestion du cache
+
+retrieve.or.cache <- function(cache.file, f, force = FALSE) {
+  if (file.exists(cache.file) && force == FALSE) {
+    message("Loading cache…")
+    var <- readRDS(cache.file)
+    return(var)
+  } else {
+    message("Working on the whole corpus…")
+    var <- f()
+    saveRDS(object = var, file = cache.file)
+    return(var)
+  }
+}
+
 #-- Chargement des données
 
 get.articles.metadata <-
@@ -89,17 +104,17 @@ ngram <- function(tab, max.ngram = 1000) {
       deep <- i
       id <- tab$DOCID[i]
     }
-    if (tab$wclass[i] == "fullstop") {
+    if (tab$wclass[i] %in% c("fullstop", "punctuation")) {
       deep <- i + 1
     } else {
       new <- i
       deep <- max(1, deep, i - max.ngram + 1)
       for (j in deep:i) {
         if (
-          nchar(tab$token[i]) >= 3 &&
           nchar(tab$token[j]) >= 3 &&
-          str_sub(tab$tag[i], 1, 3) %in% c("NAM","NOM","ADJ","ABR") &&
+          nchar(tab$token[i]) >= 3 &&
           str_sub(tab$tag[j], 1, 3) %in% c("NAM","NOM","ADJ","ABR") &&
+          str_sub(tab$tag[i], 1, 3) %in% c("NAM","NOM","ADJ","ABR") &&
           j != i
         ) {
           texte <- paste(tab$token[j:i], collapse = " ")
@@ -120,11 +135,12 @@ tfidf <- function(df0) {
   df1 <- df0 %>%
     select(docid, term) %>%
     group_by(docid, term) %>%
-    summarise(tf = n())
+    summarise(tf = n()) %>%
+    mutate(tf = 1 + log10(tf))
   df2 <- df1 %>%
     group_by(term) %>%
     summarise(ndoc = n_distinct(docid)) %>%
-    mutate(idf = log(N / ndoc))
+    mutate(idf = log10(1 + N / ndoc))
   df3 <- df1 %>%
     left_join(df2, by = c("term" = "term")) %>%
     mutate(tfidf = tf * idf)

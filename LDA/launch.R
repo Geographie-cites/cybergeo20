@@ -10,15 +10,10 @@ nbr.textes <- nrow(files)
 
 # Transformation des textes en lemmes
 
-tag.corpus <- NULL
-if (file.exists(tag.corpus.file)) {
-  message("Loading cache…")
-  tag.corpus <<- readRDS(tag.corpus.file)
-} else {
-  message("Working on the whole corpus…")
-  tag.corpus <<- lemmatize.textfiles(files)
-  saveRDS(object = tag.corpus, file = tag.corpus.file)
-}
+tag.corpus <- retrieve.or.cache(
+  cache.file = tag.corpus.file, 
+  f = function() lemmatize.textfiles(files)
+)
 
 treetagger <- lapply(tag.corpus, function(x) {
   id <- x$id
@@ -37,54 +32,45 @@ treetagger <- lapply(tag.corpus, function(x) {
 lemmes0 <- treetagger %>%
   # Récupération des noms communs et propros, ainsi que des verbes
   filter(str_sub(tag,1,3) %in% c("NAM","NOM","ADJ","ABR")) %>%
-  # Suppression des nombres et des points
-  mutate(lemmes = gsub("[0-9.]", "", lemmes, perl = TRUE)) %>%
   # Suppression des termes de moins de 3 caractères
   filter(nchar(lemmes) >= 3) %>%
-  rename(term = lemmes) %>%
-  tfidf()
+  rename(term = lemmes)
 
 #-- NGrams
 
-ngrams0 <- NULL
-if (file.exists(ngrams0.file)) {
-  message("Loading cache…")
-  ngrams0 <<- readRDS(ngrams0.file)
-} else {
-  message("Working on the whole corpus…")
-  ngrams0 <<- mclapply(X = tag.corpus, FUN = function(x) {
+ngrams0 <- retrieve.or.cache(
+  cache.file = ngrams0.file,
+  f = function() mclapply(X = tag.corpus, FUN = function(x) {
     id <- x$id
     taggedText(x$tagger) %>%
       tbl_df() %>%
       mutate(DOCID = id) %>%
-      ngram(max.ngram = nbr.max.ngram)
+      ngram()
   }, mc.cores = nbCores) %>%
-    ldply() %>%
-    tbl_df() %>%
-    tfidf()
-  saveRDS(object = ngrams0, file = ngrams0.file)
-}
+    ldply %>%
+    tbl_df
+) 
 
 # Filtrage
 
-ngrams <- ngrams0 %>%
+lemmes.et.ngrams0 <- lemmes0 %>%
+  bind_rows(ngrams0) %>%
+  tfidf
+
+lemmes.et.ngrams <- lemmes.et.ngrams0 %>%
   filter(ndoc >= 5, ndoc < 0.95*nbr.textes)
 
-lemmes <- lemmes0 %>%
-  filter(ndoc >= 5, ndoc < 0.95*nbr.textes)
-
-lemmes.et.ngrams <- lemmes %>%
-  bind_rows(ngrams)
-
-# length(ngrams$term %>% unique)
+# length(lemmes.et.ngrams$term %>% unique)
+# m <- median(lemmes.et.ngrams$tfidf)
+# quantile(round(lemmes$tfidf,1), probs = seq(0,1,0.01))
+# lemmes.et.ngrams %>% ungroup %>% filter(tfidf > m) %>% select(term) %>% unique %>% sample_n(10) 
+# lemmes.et.ngrams %>% filter(tfidf > m) %>% arrange(-nchar(term))
 # lemmes %>% arrange(ndoc)
 # lemmes  %>% arrange(-ndoc)
 # lemmes$ndoc %>% table
 # lemmes %>% filter(ndoc == 4)
-# quantile(round(lemmes$tfidf,1), probs = seq(0,1,0.01))
-# ngrams %>% ungroup %>% select(term) %>% unique %>% sample_n(10) 
 
-quantile(round(lemmes.et.ngrams$tfidf), probs = seq(0, 1, 0.01))
+quantile(round(ngrams$tfidf), probs = seq(0, 1, 0.01))
 
 ngrams %>% ungroup %>% arrange(-tfidf) %>% select(term) %>% unique %>% as.data.frame() %>% slice(1:1000)
 

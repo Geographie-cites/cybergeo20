@@ -9,9 +9,6 @@ data.path <- "../Data/raw"
 articles.filename <- "cybergeo.csv"
 texts.folder <- "texts"
 
-# Filtrage des lemmes
-nbr.max.ngram <- 3
-
 # Validation croisée
 models <- c("LDA")
 nbrReplications <- 1
@@ -26,7 +23,7 @@ nbr.dimension <- 3         # Évolution déduite sur une fenêtre de 3 temps
 ts.lag <- 8                # Décalage temporel permis
 
 # Cache
-cache.path <- "~/Sync/cache"
+cache.path <- "~/Sync/Shared"
 tag.corpus.filename <- "tag-corpus"
 ngrams0.filename <- "ngrams0"
 
