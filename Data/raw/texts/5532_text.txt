@@ -90,7 +90,7 @@ En pratique, cette démarche revient à découper l’espace selon le diagramme 
 Nous illustrons en Figure 11 le principe de ce chemin sur un exemple simple. Pour plus de détails sur l’algorithme de construction des chemins de Delaunay, nous renvoyons le lecteur à nos travaux antérieurs (Gleyze, 2005).
 
 Source : d’après Gleyze (2005)
-Figure 11 : diagramme de Voronoï et triangulation de Delaunay associée sur un semis de sommets (encadré n°1) et construction du chemin de Delaunay entre deux sommets de ce semis (encadré n°2)
+Figure 11 : diagramme de Voronoï et triangulation de Delaunay associée sur un semis de sommets (encadré n 1) et construction du chemin de Delaunay entre deux sommets de ce semis (encadré n 2)
 Si nous reprenons l’exemple de la Figure 6, nous sommes en mesure d’identifier les sommets successivement rattachés au chemin optimal (cf. Figure 12).
 
 Figure 12 : décomposition du chemin optimal présenté en Figure 6 par la succession des sommets formant le chemin de Delaunay associé

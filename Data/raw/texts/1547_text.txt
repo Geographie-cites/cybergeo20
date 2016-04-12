@@ -43,7 +43,7 @@ where L(b) is the maximised log likelihood value of the fitted model, b being th
 Figure 3: Towards a global model
 
 Table 2: Estimates of the global logit model
-variable: significative at the 1°/ooo level
+variable: significative at the 1 /ooo level
 variable: significative at the 5% level
 variable: not significative at the 10% level
 The results let suppose that hierarchical level, situation and period of creation have explanatory powers of almost comparable intensity, part of it refering to redundant information (many poles being located at an intersection for example), part of it refering to independant rôles: whatever the hierarchical level of a settlement, the location at an intersection will increase its probability to maintain and vice versa; whatever hierarchical level and situation, the most recently created settlements will have the greatest probabilities to exist today. This last relation is quite natural in a study where all settlements are considered together independently from the period when they emerged and shows the necessity to go more deeply into the question of time.

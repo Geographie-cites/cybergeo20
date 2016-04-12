@@ -147,9 +147,9 @@ Pour nos deux scènes SPOT, les valeurs nécessaires sont fournies par les en-t�
 Image SPOT 1 hrv 1 KJ 37-248 92/05/14 :
 Jour : 14 mai 92
 heure T.U. : 10h54mn29s (10.91h)
-Merlimont Latitude : 50° 28' (50.47)
-Longitude : 1° 37’E (1.62)
-—> Angle solaire zénithal : 33.4 °
+Merlimont Latitude : 50 28' (50.47)
+Longitude : 1 37’E (1.62)
+—> Angle solaire zénithal : 33.4 
 Gains d’étalonnage absolu G
 (En-tête de bande ou CD-ROM) :
 XS1 : 0.95036
@@ -163,9 +163,9 @@ XS3 : 1090
 Image SPOT 2 hrv 1 KJ 37-248 92/01/22 :
 Jour 22 janvier 1992
 heure T.U. 11h09mn12s (11.15h)
-Merlimont Latitude : 50° 28' (50.47)
-Longitude : 1° 37’E (1.62)
-—> Angle solaire zénithal 71.2 °
+Merlimont Latitude : 50 28' (50.47)
+Longitude : 1 37’E (1.62)
+—> Angle solaire zénithal 71.2 
 Gains d’étalonnage absolu G
 (En-tête de bande ou CD-ROM) :
 XS1 : 1.75871

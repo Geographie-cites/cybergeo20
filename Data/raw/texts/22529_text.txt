@@ -41,7 +41,7 @@ Dix-sept datations par le radiocarbone ont été effectuées grâce à la métho
  
 Figure 4 : Localisation des sondages (S1 à S8).
 Sondage
-n°
+n 
 Profondeur par rapport au niveau moyen de la mer (m)
 Matériel daté
 Méthode de datation

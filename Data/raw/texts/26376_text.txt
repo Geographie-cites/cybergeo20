@@ -60,14 +60,14 @@ Hovelacque
 départements
 oui
 18
-Proposition parlementaire, n° 589, 29.05.1890.
+Proposition parlementaire, n 589, 29.05.1890.
 Charles-Brun
 Lanjuinais,Allières,Ramel
 1895
 régions
 oui
 23
-Proposition parlementaire, n° 9-4-1895
+Proposition parlementaire, n 9-4-1895
 Charles-Brun
 Leppelletier
 1896
@@ -81,7 +81,7 @@ Cornudet,Lockroy
 régions
 oui
 23
-Proposition parlementaire, n° 25-05-1896.
+Proposition parlementaire, n 25-05-1896.
 Charles-Brun
 P. Foncin
 1898
@@ -151,14 +151,14 @@ H. Mazel
 régions
 oui
 7
-L’Action régionaliste (n° de janvier)
+L’Action régionaliste (n de janvier)
 Miossec
 Lhuillier
 1907
 préfectures
 oui
 21
-L’Action régionaliste (n° de juin)
+L’Action régionaliste (n de juin)
 Charles-Brun
 J.-B. Ruffin
 1908
@@ -193,7 +193,7 @@ E. Rognon
 régions
 oui
 34
-Proposition parlementaire n° 2620 du 24/10/1916.
+Proposition parlementaire n 2620 du 24/10/1916.
 Bazoche
 É. Clementel
 1917
@@ -221,7 +221,7 @@ R. Le Conte
 régions
 oui
 34
-« Les divisions territoriales de la France avant et depuis 1789 », Revue de droit public, n° de juillet.
+« Les divisions territoriales de la France avant et depuis 1789 », Revue de droit public, n de juillet.
 Bazoche
 L. Boucheron
 1938
@@ -284,7 +284,7 @@ Bruyneel
 régions
 oui
 20
-Proposition parlementaire, n° 2 840 du 28/2/1952.
+Proposition parlementaire, n 2 840 du 28/2/1952.
  
 Billères-Médecin
 1954
@@ -347,14 +347,14 @@ DATAR (S. Antoine)
 régions
 non
 7
-Partage des pouvoirs, partage des décisions. Essai sur la participation, autonomie et solidarité, Revue 2000, n° 9.
+Partage des pouvoirs, partage des décisions. Essai sur la participation, autonomie et solidarité, Revue 2000, n 9.
 Laurent
 DATAR (S. Antoine)
 1968
 régions
 non
 11
-Partage des pouvoirs, partage des décisions. Essai sur la participation, autonomie et solidarité, Revue 2000, n° 9.
+Partage des pouvoirs, partage des décisions. Essai sur la participation, autonomie et solidarité, Revue 2000, n 9.
 Laurent
 F. Damette
 1966

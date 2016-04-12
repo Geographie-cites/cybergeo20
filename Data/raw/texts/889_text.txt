@@ -80,7 +80,7 @@ Some planning directions regarding protected areas for instance might be introdu
 The idea here is to integrate different potential surfaces in order to determine the possible development trends according to the initial estate constrains. Here an image composite is obtained combining 3 potential surfaces, urban, vegetation and development constrains realised according the weights of the table 2. It could be more using a multi-criteria decision support for instance. The urban surface potential is represented (Figure 4).
 
 Figure 4 : potential results : urban surface
-N°
+N 
 Name of the categories
 URBAN
 VEGE

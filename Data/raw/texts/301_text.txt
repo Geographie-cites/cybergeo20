@@ -66,6 +66,6 @@ Groleau D., Marenne C., Gadilhe A.," Climatic simulation tools : an application 
 Mestayer P.G., Anquetin S., "Climatology of cities" in Diffusion and transport of Pollutants in Atmospheric meso scale flow fields, Editors Gyr A.,Rysf.S., ERCOFTAC Series, Dordrecht, Boston, London, Kluwer Academic Publishers.
 Groupement de Recherche Atmosphère Urbaine Sub-mesoéchelles.
 Belchun B., "Les sources numériques d'information géographique urbaine", document interne CERMA (mars 94).
-Sacré C., Gandemer J., "Caractérisation microclimatique des espaces extérieurs du point de vue du vent et de la temperature", Annales de la Recherche Urbaine n° 61, mars 1994.
+Sacré C., Gandemer J., "Caractérisation microclimatique des espaces extérieurs du point de vue du vent et de la temperature", Annales de la Recherche Urbaine n 61, mars 1994.
 Ces calculs sont réalisés actuellement par l'équipe Dynamique de l'Atmosphère Habitée sur le CRAY C98 du Centre de Calcul du CNRS et sur le VAX 9420 du Centre de Ressources Informatiques de l'ìÉcole Centrale de Nantes. Ce calculateur est également celui utilisé par le CERMA pour réaliser les simulations présentées dans cet article.
 Mestayer P.G., Sini J.-F., "Aérodynamique et rugosité" document interne D.A.H (mars 94).

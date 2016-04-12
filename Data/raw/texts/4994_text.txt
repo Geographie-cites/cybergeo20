@@ -129,7 +129,7 @@ ambientale
 Sistema sociale-economico
 sistema economico-ambientale
 Per la fase di apprendimento sono stati impostati i seguenti paramentri :
-N° di cicli : 10.000.000
+N di cicli : 10.000.000
 Delta Rate : 1
 Tolleranza : 0.05
 Diagonale dei pesi : attiva

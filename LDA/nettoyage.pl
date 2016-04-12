@@ -31,6 +31,7 @@ sub nettoyage_fichier {
 sub nettoyage {
 	my $chaine = shift;
    	$chaine =~ s/´/'/g;            # Apostrophes (normalisation)
+    $chaine =~ s/°/ /g;             # Caractères spéciaux
   	$chaine =~ s/ / /g;            # Espace insécable
    	$chaine =~ s/<br\s+?\/?>/ /g;  # Retour à la ligne
    	$chaine =~ s/<\/?\w+>/ /g;     # Balise XML simple

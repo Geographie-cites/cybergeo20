@@ -129,7 +129,7 @@ After the training and testing phase the network has learned the weights between
 a training set (80%) used only for the training process (Fig.1.1) ;
 a testing set (20%) used only to verify the result of the network training performance.
 The following parameters values have been chosen for the training phase :
-N° of cycles : 50,000
+N of cycles : 50,000
 Delta Rate : 1
 Tolerance : 0.03
 Diagonal weights : on

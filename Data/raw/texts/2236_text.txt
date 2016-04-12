@@ -12,7 +12,7 @@ Accanto a questa analisi, è stato effettuato il rilevamento del traffico pedona
 Infine, è stata effettuata l’analisi della correlazione fra le serie di valori numerici risultanti dai due studi preliminari.
 L’analisi di regressione lineare della correlazione fra traffico pedonale e integrazione globale ha fornito risultati assolutamente deludenti, con un coefficiente di correlazione R2 = 0.065. Sulla base delle risultanze di esperienze recentemente condotte in anni recenti su città inglesi (Hillier e al., 1993), si è quindi passati ad analizzare la correlazione fra l’indice di integrazione globale il logaritmo dei valori del traffico pedonale, ma anche in tale modo i risultati, ancorché più strettamente correlati che nel caso precedente, rimanevano largamente inferiori alla soglia di significatività (R2 = 0.097).
 La correlazione è risultata invece assai più stretta (R2 = 0.381) analizzando con regressione lineare la corrispondenza fra logaritmo del traffico e indici di integrazione locale, o integrazione di raggio 3. Sulla base di questo risultato, si è quindi ipotizzato di disaggregare l’intero complesso dei tronchi della griglia in 6 sub-sistemi, corrispondenti ad altrettante sub-aree urbane, ognuno dei quali è caratterizzato dalla presenza al suo interno di un forte integratore locale. I risultati dell’analisi della correlazione fra integrazione locale e logaritmo del movimento pedonale sono stati sorprendenti, attestati dai seguenti valori del coefficiente R2, rispettivamente per ciascuno dei 6 sub-sistemi :
-n°sub-sistema
+n sub-sistema
 1
 2
 3
@@ -39,7 +39,7 @@ Inoltre, è stata rilevata un’altra peculiare, inaspettata coincidenza nei ris
 ln M = P + S Ir3
 in cui M è il traffico pedonale (espresso in persone all’ora) e Ir3 è l’indice di integrazione di raggio 3.
 A Grosseto, tali coefficienti assumono i valori riportati nella tabella che segue :
-n° sub-sistema
+n sub-sistema
 P
 S
 1
@@ -61,7 +61,7 @@ S
 2.086
 0.560
 Gli stessi coefficienti sono risultati a Orbetello pari ai seguenti valori :
-n° sub-sistema
+n sub-sistema
 P
 S
 1

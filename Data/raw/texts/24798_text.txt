@@ -527,7 +527,7 @@ We see that the main difference between the advanced States and the backward reg
 The question then becomes one of examining the distribution pattern of agglomerates all over the Indian Territory. Using the Nearest Neighbor Index23 based on the average Euclidian distance from each feature to its nearest neighboring feature, it is possible to have a first approximation of the aggregation level and trend of the urban system at the regional level.
 Fig. 4: Nearest Neighbor Index
 
-Source: C. Brown,Geo Factsheet n°168
+Source: C. Brown,Geo Factsheet n 168
 The aggregation level for all of India has been quite high for all settlements with at least 10,000 inhabitants: 0.60 in 2001 potentially improving to 0.58 in 2011. The estimated 3,197 new agglomerates that will have at least 10,000 inhabitants each in 2011 do not skew the current level of aggregation of settlements, thereby implying that some of them will develop with the existing metropolitan halo and emerging corridors. Of course, the level of aggregation becomes more random as the cohort of towns considered moves up from Class IV to Class I and finally to million cities, which had an index of 0.85 in 2001 for all India.
 Tab. 12: Nearest Neighbor Index for India and selected States in 2001 and 2011
 

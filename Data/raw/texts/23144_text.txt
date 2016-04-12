@@ -95,7 +95,7 @@ Pour le calcul de l’indice d’agglomération, GRUMP et WorldScan accordent un
 La base de données e-Geopolis croise pour sa part deux types d’informations qui proviennent de sources différentes : les images satellites d’une part, les recensements d’autre part. Les agglomérations « possibles » sont repérées ainsi de deux manières complémentaires, ce qui permet d’éviter les omissions ou l’ajout d’agglomérations qui n’existent que sur les tableaux statistiques des publications des recensements. Certaines « villes » ne sont en effet que des périmètres administratifs, ne comptant aucune agglomération morphologique. Au contraire, sont classées comme « rurales » des centaines d’agglomérations qui ne peuvent être repérées que par la télédétection ou les photographies aériennes.
 
 Carte 6 : exemple d’agglomération fictive délimitée par GRUMP
-Coordonnées : 12°25’N / 1°48’W : région de Ouagadougou (Burkina Faso).
+Coordonnées : 12 25’N / 1 48’W : région de Ouagadougou (Burkina Faso).
 Sources : GoogleEarth et GRUMP
 En géographie comme dans les autres sciences, la modélisation vise en principe à simplifier une observation empirique pour la rendre compréhensible et saisir la logique intrinsèque du phénomène étudié. En Afrique, tout comme en Inde ou en Chine, les sources existent ou peuvent être construites, mais elles sont difficiles à rassembler22. En revanche, leur acquisition ne nécessite pas un investissement technologique majeur.
 En s’appuyant sur la base de données GRUMP, le WDR 2009 prend appui sur un matériau expérimental qui abonde dans le sens de la théorie économique. Le problème est qu’elles ne sont pas conformes aux exigences d’une approche expérimentale du point de vue des sciences géographiques.

@@ -120,13 +120,13 @@ PI -> PP : rejet
 PP -> PP :
 - concurrence sur le marché du travail
 - syndicalisation envisagée au XX ème
-Tableaux n° 1a et 1b : Caractère et comportement des différents types d’agents dans la chaîne des Puys au XIX ème siècle.
+Tableaux n 1a et 1b : Caractère et comportement des différents types d’agents dans la chaîne des Puys au XIX ème siècle.
 Ces relations concernent essentiellement :
 l’embauche de travailleurs par les grosses exploitations. Cette opération avait lieu tous les ans au printemps sous la forme d’une foire : la foire à la loue.
 les ventes et les achats de terre, assez peu fréquents peuvent aussi s’apparenter à une mise en relation de l’offre et de la demande.
 Les alliances entre familles par mariages arrangés se décident à cette échelle. Les unions s’accomplissent le plus souvent entre personnes de même niveau économique ayant des terres proches. La stratégie des riches est de limiter les naissances pour éviter le partage. A l’opposé, les pauvres ont une politique nataliste afin d’assurer leur retraite qui conduit en fait au morcellement de leur maigre bien et à l’appauvrissement de leurs descendants. Parmi les grosses exploitations, les paysans se distinguent des bourgeois par un attachement plus marqué à la terre qui les conduit à conserver leur propriété même lorsque leur rentabilité est plus faible que celle des placements industriels.
 En dehors de toute différentiation sociale, l'ensemble des exploitations respecte les règles imposées par la gestion des terres et du troupeau collectif. Les plus riches élisent le conseil municipal qui peut proposer le partage et l’allotissement temporaire d’une partie des terres communes pour les concder aux paysans les plus pauvres et réduire ainsi les tensions sociales.
-Dans un premier temps, nous avons limité dans notre modèle les relations personnelles. Le tableau n°2 explique sous quelles formes nous traitons chaque type de relations entre agents et avec quelle fréquence et à quel moment elles se situent dans le calendrier des événements.
+Dans un premier temps, nous avons limité dans notre modèle les relations personnelles. Le tableau n 2 explique sous quelles formes nous traitons chaque type de relations entre agents et avec quelle fréquence et à quel moment elles se situent dans le calendrier des événements.
 Relation sociale
 type de relation
 fréquence et place dans le calendrier des événements
@@ -143,7 +143,7 @@ régulière une année sur six
 mariage
 communication privée
 ponctuelle
-tableau n°2: Caractérisation des relations sociales au XIX ème siècle
+tableau n 2: Caractérisation des relations sociales au XIX ème siècle
 La figure 4 résume les différentes classes d’agents et leurs intéractions
 
 Figure 4

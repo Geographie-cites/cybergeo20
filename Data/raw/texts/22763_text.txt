@@ -57,7 +57,7 @@ Collecte des localisations cognitives
 À l’aide de points (représentés par une croix sur la page), de lignes et de surfaces, dessinez dans ce cadre les trois lieux cités à la première question. Indiquez à côté de chaque figure le nom ou le numéro du lieu.
 Ainsi obtient-on, à l’issue de la collecte des tracés, l’expression graphique d’un dessin cognitif essentiel composé de trois lieux estimés importants par un sujet sur une thématique donnée. Soixante-quinze croquis ont été ainsi obtenus au format A3, réduits puis scannés au format A4.
 
-Figure 3 : Exemple d’une sketch map (sujet n° 9).
+Figure 3 : Exemple d’une sketch map (sujet n 9).
 Source : enquête personnelle.
 La méthode employée pour résumer des localisations cognitives dans un référentiel spatial est liée au mode de collecte de ces localisations.
 Lorsque les localisations cognitives individuelles sont collectées uniquement sous la forme de points, le résumé des données est obtenu par une agrégation correspondant à un calcul, notamment d’un centre moyen ou d’un centre médian. L’agrégation est appliquée sur des coordonnées obtenues directement à partir de méthodes graphiques (Lloyd, 1989 ; Friedman et Kohler, 2003) ou dérivées de tableaux de distances, traités notamment par MDS17 (Friedman et Montello, 2006).Les centres moyens sont par exemple utilisés pour l’analyse de la variabilité des positions cognitives d’un même lieu (place cognition) par la méthode des ellipses de variabilité (Gale, 1982). Notons qu’après une agrégation, les lieux représentés par des points restent identifiables.

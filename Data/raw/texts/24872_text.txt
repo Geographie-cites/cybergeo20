@@ -243,7 +243,7 @@ Table 4. Head offices, total number of company representations, and commanded co
 City
 Head offices
 Total number of representations
-N° of representations ouside Ho
+N of representations ouside Ho
 Ratio representations/Ho
 Tunis
 100

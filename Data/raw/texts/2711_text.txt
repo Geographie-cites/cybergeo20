@@ -50,7 +50,7 @@ Date d’acquisition
 Path/Row
 184/056
 Centre de l’image
-5,7892748° N ; 13,8858345°E
+5,7892748 N ; 13,8858345 E
 Nombre de canaux (bandes)
 9 (B1, B2, B3, B4, B5, B6.1, B6.2, B7 et B8)
 Taille du pixel (en m)
@@ -64,7 +64,7 @@ Azimut
 Tableau 2 : Caractéristiques de l’image utilisée
 Les algorithmes de détection des surfaces brûlées s’appuient généralement sur deux variations physiques observables sur le couvert végétal après le passage des flammes (Arino et Rosaz, 1999 ; Eva et Lambin, 1998), comme l’indique la figure 2 :
 la diminution substantielle de la réflectance TOAii dans le moyen infrarouge (1,55- 1,75µm). Les surfaces brûlées présentent une réflectance plus faible que la végétation saine dans le moyen infrarouge, en raison de l’absorption des radiations par les cendres (Brustel et al, 1991) ; ceci indépendamment des écosystèmes, même si le signal est plus persistant en savane qu’en forêt. Toutefois, cette réflectance des surfaces brûlées dans le moyen infrarouge est voisine de celles des surfaces très humides et rend les confusions possibles. Ceci justifie la prise en compte d’un deuxième discriminant plus sévère ;
-l’augmentation des températures de surface dans les zones brûlées pendant la journée en raison de la forte absorption des radiations solaires et de l’absence de l’évapotranspiration qui dans les conditions normales, assure le transfert de l’énergie dans l’atmosphère sous forme de chaleur latente, à travers la vapeur d’eau. De plus, la présence des cendres et du charbon décroît l’albédo de surface et en augmente la température d’environ 7 à 8° Kelvin.
+l’augmentation des températures de surface dans les zones brûlées pendant la journée en raison de la forte absorption des radiations solaires et de l’absence de l’évapotranspiration qui dans les conditions normales, assure le transfert de l’énergie dans l’atmosphère sous forme de chaleur latente, à travers la vapeur d’eau. De plus, la présence des cendres et du charbon décroît l’albédo de surface et en augmente la température d’environ 7 à 8 Kelvin.
 
 Figure 2 : Représentation schématique du profil spectral des savanes tropicales (Eva et Lambin, 1998)
 Trois méthodes de traitement ont été appliquées à l’image. Il s’agit notamment de la méthode par seuillage mise au point par Eva et Lambin (1998), de la classification non supervisée par isodata (Ball et Hall, 1965 ; Scholes, 1995) et de la classification supervisée à partir d’une composition colorée.

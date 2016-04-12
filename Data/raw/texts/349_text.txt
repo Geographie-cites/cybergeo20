@@ -11,7 +11,7 @@ External effects, favourable to creation, to location and to firms rooting -lead
 In order to detect innovative milieus, we propose to use the idea of Travel To Work Area (TTWA) that is an area of space delimited by commuting distances. The TTWA does not specifically denote a micro-labour market, but rather the area of a production system based on a central attractive place. The number of TTWA (365) is enough important to allow us to detect the spatial repartition of activities, the diffusion or/and concentration phenomenons in specific areas that catch economic growth.
 By classifying TTWA according to the value of dynamic indicators, with a statistical analysis, we want to point up connections between structural factors and TTWA's evolution. Thereby, we cross the weight of activities, the specialization and the rate of growth to classify TTWA. But, before, we apply a shift-share analysis that shows the existence of a local dynamic especially through the shift deviation.
 Statistical indicators available at this local level are the working population (in 1982 and 1990) for each 38 industrial sectors and the number of establishments in 16 groups corresponding to an agregation of the sectors of NAP 100 which outlines the technological dimension of activities. Two groups particularly represent innovative activities defined from the RetD/turnover ratio. The first one (High Tech 1) had a higher than 15 % ratio, whereas, the second one had a ratio between 5 and 15 % (cf. note 1). The specific evolution of working population indicator permit in a first time to characterize the TTWA situation. Then we pay attention to innovative activities through High Tech 1 and High Tech 2 evolution.
-With the shift-share analysis applied upon the working population of 1982 and 1990's census and with the 365 TTWA, one can obtain six groups and compute different indicators so as to characterize them (table n° 1). The results show that only one third of TTWA knows a higher than mean rate of growth and that only 57 TTWA among the 365 (15,5 %) have three (total, shift, share) positive deviations. This 57 areas (GR6) include 27,6 % of working population : only 15,5 % of TTWA have the qualities required for growth.
+With the shift-share analysis applied upon the working population of 1982 and 1990's census and with the 365 TTWA, one can obtain six groups and compute different indicators so as to characterize them (table n 1). The results show that only one third of TTWA knows a higher than mean rate of growth and that only 57 TTWA among the 365 (15,5 %) have three (total, shift, share) positive deviations. This 57 areas (GR6) include 27,6 % of working population : only 15,5 % of TTWA have the qualities required for growth.
 The average size of this 57 areas is 103 454 against 58 534 for all the TTWA. Two others groups (GR2 and GR4) have a high average size too. For this three groups at once, one can detect the significance of the urban factor by measuring the high service industries share ; which offset partly (GR2) or entirely (GR4) a negative shift deviation.
 Furthermore, the "concentration" factor, which seems correlated with the structural component, is accentuated by the share of both group 2 and 4 in working population with respectively 17,9 % and 5,96 %, that is to say that this 26 areas make use of a fourth of the working population but with opposed trajectories.
 The TTWA list reveals two kinds of areas :
@@ -65,15 +65,15 @@ High Tech 2
 52 Industrie du caoutchouc
 53 Transformation des matières plastiques.
 
-Tableau n° 1 :
+Tableau n 1 :
 SHIFT-SHARE ANALYSIS
 38 INDUSTRIAL ACTIVITIES IN 365 TTWA
 RATE OF WORKING POPULATION BETWEEN 1982 AND 1990
 Source : General Census 1982-1990.
 
-Tableau n° 2 a : HIGH TECH 1
+Tableau n 2 a : HIGH TECH 1
 
-Tableau n° 2 b : HIGH TECH 2
+Tableau n 2 b : HIGH TECH 2
 Source : SIRENE, I.N.S.E.E., France.
 Cell reading :
 * First line : number of TTWA
@@ -168,7 +168,7 @@ analysis
 51
 57
 365
-Tableau n° 3 :
+Tableau n 3 :
 SPECIALIZATION AND LOCATION AND SHIFT-SHARE (82-90)
 ANALYSIS CROSSING
 (Groups : G1, G2, G3, G4).
@@ -248,7 +248,7 @@ Rates of Staff Managerial
 32,95
 34,55
 27,25
-Tableau n° 4 :
+Tableau n 4 :
 SHIFT-SHARE ANALYSIS
 RATES OF SECONDARY-TERTIARY WORKING POPULATION
 AND STAFF MANAGERIAL RATIO
