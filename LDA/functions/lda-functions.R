@@ -96,6 +96,8 @@ ngram <- function(tab, max.ngram = 1000) {
       deep <- max(1, deep, i - max.ngram + 1)
       for (j in deep:i) {
         if (
+          nchar(tab$token[i]) >= 3 &&
+          nchar(tab$token[j]) >= 3 &&
           str_sub(tab$tag[i], 1, 3) %in% c("NAM","NOM","ADJ","ABR") &&
           str_sub(tab$tag[j], 1, 3) %in% c("NAM","NOM","ADJ","ABR") &&
           j != i

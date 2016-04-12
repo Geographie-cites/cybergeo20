@@ -36,7 +36,7 @@ treetagger <- lapply(tag.corpus, function(x) {
 
 lemmes0 <- treetagger %>%
   # Récupération des noms communs et propros, ainsi que des verbes
-  filter(str_sub(tag,1,3) %in% c("NAM","NOM","VER","ADJ","ABR")) %>%
+  filter(str_sub(tag,1,3) %in% c("NAM","NOM","ADJ","ABR")) %>%
   # Suppression des nombres et des points
   mutate(lemmes = gsub("[0-9.]", "", lemmes, perl = TRUE)) %>%
   # Suppression des termes de moins de 3 caractères
@@ -45,9 +45,6 @@ lemmes0 <- treetagger %>%
   tfidf()
 
 #-- NGrams
-
-ngrams0.file <- "cache/ngrams0.rds"
-nbr.max.ngram <- 2
 
 ngrams0 <- NULL
 if (file.exists(ngrams0.file)) {
