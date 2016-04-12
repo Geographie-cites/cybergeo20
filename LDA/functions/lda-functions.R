@@ -95,7 +95,11 @@ ngram <- function(tab, max.ngram = 1000) {
       new <- i
       deep <- max(1, deep, i - max.ngram + 1)
       for (j in deep:i) {
-        if (tab$wclass[j] != 'punctuation' && tab$wclass[i] != 'punctuation' && j != i) {
+        if (
+          str_sub(tab$tag[i], 1, 3) %in% c("NAM","NOM","ADJ","ABR") &&
+          str_sub(tab$tag[j], 1, 3) %in% c("NAM","NOM","ADJ","ABR") &&
+          j != i
+        ) {
           texte <- paste(tab$token[j:i], collapse = " ")
           if (is.null(alls)) {
             alls <- data_frame(docid = id, term = texte)
@@ -114,18 +118,14 @@ tfidf <- function(df0) {
   df1 <- df0 %>%
     select(docid, term) %>%
     group_by(docid, term) %>%
-    summarise(tf = n()) %>%
-    arrange(-tf)
-  df2 <- df0 %>%
-    select(docid, term) %>%
+    summarise(tf = n())
+  df2 <- df1 %>%
     group_by(term) %>%
     summarise(ndoc = n_distinct(docid)) %>%
-    mutate(idf = log(N / ndoc)) %>%
-    arrange(-ndoc)
+    mutate(idf = log(N / ndoc))
   df3 <- df1 %>%
     left_join(df2, by = c("term" = "term")) %>%
-    mutate(tfidf = tf * idf) %>%
-    arrange(-tfidf)
+    mutate(tfidf = tf * idf)
   return(df3)
 }
 
@@ -161,7 +161,7 @@ distribution <- function(terms, xlab, ylab, title, legend.title) {
   terms.frequency <- data_frame(
     term = factor(names(t)),
     tf = as.numeric(t)
-    ) %>%
+  ) %>%
     arrange(tf) %>%
     mutate(
       m = max(tf),
