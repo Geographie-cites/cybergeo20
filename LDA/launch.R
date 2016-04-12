@@ -34,7 +34,8 @@ lemmes0 <- treetagger %>%
   filter(str_sub(tag,1,3) %in% c("NAM","NOM","ADJ","ABR")) %>%
   # Suppression des termes de moins de 3 caractères
   filter(nchar(lemmes) >= 3) %>%
-  rename(term = lemmes)
+  rename(term = lemmes) %>%
+  select(docid, term)
 
 #-- NGrams
 
@@ -53,27 +54,56 @@ ngrams0 <- retrieve.or.cache(
 
 # Filtrage
 
-lemmes.et.ngrams0 <- lemmes0 %>%
-  bind_rows(ngrams0) %>%
-  tfidf
+lemmes.et.ngrams0 <- retrieve.or.cache(
+  cache.file = lemmes.et.ngrams0.file,
+  f = function() lemmes0 %>%
+    bind_rows(ngrams0) %>%
+    tfidf
+)
+
+lemmes.et.ngrams0 %>% nrow
+quantile(round(lemmes.et.ngrams0$tfidf,1), probs = seq(0,1,0.01))
+m <- median(lemmes.et.ngrams0$tfidf)
 
 lemmes.et.ngrams <- lemmes.et.ngrams0 %>%
-  filter(ndoc >= 5, ndoc < 0.95*nbr.textes)
+  ungroup %>%
+  filter(ndoc >= 5, ndoc < 0.95*nbr.textes) %>%
+  filter(tfidf > m)
 
-# length(lemmes.et.ngrams$term %>% unique)
-# m <- median(lemmes.et.ngrams$tfidf)
-# quantile(round(lemmes$tfidf,1), probs = seq(0,1,0.01))
-# lemmes.et.ngrams %>% ungroup %>% filter(tfidf > m) %>% select(term) %>% unique %>% sample_n(10) 
-# lemmes.et.ngrams %>% filter(tfidf > m) %>% arrange(-nchar(term))
-# lemmes %>% arrange(ndoc)
-# lemmes  %>% arrange(-ndoc)
-# lemmes$ndoc %>% table
-# lemmes %>% filter(ndoc == 4)
+lemmes.et.ngrams %>% nrow 
+lemmes.et.ngrams %>% select(term) %>% unique %>% nrow
+lemmes.et.ngrams %>% select(term) %>% unique %>% sample_n(10) 
+lemmes.et.ngrams %>% arrange(-nchar(term)) %>% select(term) %>% unique %>% as.data.frame %>% slice(1:100)
 
-quantile(round(ngrams$tfidf), probs = seq(0, 1, 0.01))
+vocabulaire <- lemmes.et.ngrams$term %>% unique
 
-ngrams %>% ungroup %>% arrange(-tfidf) %>% select(term) %>% unique %>% as.data.frame() %>% slice(1:1000)
+doc0 <- lemmes.et.ngrams %>%
+  select(docid, term, tfidf) %>%
+  mutate(termidx = match(term, vocabulaire) - 1)
 
-tfidf.median <- median(lemmes0$tfidf)
+texts.ids <- lemmes.et.ngrams$docid %>% unique
 
+doc <- lapply(texts.ids, function(id){
+  f0 <- doc0 %>%
+    filter(docid == id) %>%
+    mutate(tfidf = round(tfidf)) %>%
+    select(termidx, tfidf) %>%
+    arrange(termidx)
+  rbind(f0$termidx, f0$tfidf)
+})
 
+texts <- ldaformat2dtm(doc, vocabulaire)
+
+folding <- sample(1:nbrFolds, nrow(texts), replace = TRUE)
+prog <- expand.grid(
+  rep = 1:nbrReplications,
+  model = models,
+  k = k.list, 
+  fold = 1:nbrFolds
+)
+prog$id <- 1:nrow(prog)
+
+simulation.results <- retrieve.or.cache(
+  cache.file = simulation.results.file,
+  f = function() rbind.fill(foreach(id = prog$id) %dopar% validation.croisee(id))
+)

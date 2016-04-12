@@ -13,7 +13,7 @@ texts.folder <- "texts"
 models <- c("LDA")
 nbrReplications <- 1
 nbrFolds <- 10
-k.list <- c(2, 5, 10, 20, seq(25, 36, 2), 50)
+k.list <- c(2, 5, 10, 15, 20, 25, 30, 40, 60, 80, 100)
 
 # Modèle final
 k0 <- 20                   # Sélection du nombre de thématiques après validation croisée
@@ -26,6 +26,8 @@ ts.lag <- 8                # Décalage temporel permis
 cache.path <- "~/Sync/Shared"
 tag.corpus.filename <- "tag-corpus"
 ngrams0.filename <- "ngrams0"
+lemmes.et.ngrams0.filename <- "lemmes-et-ngrams0"
+simulation.results.filename <- "simulation-results"
 
 # Finalisation de l'initialisation
 nbCores <- ceiling(detectCores()/2)
@@ -34,3 +36,5 @@ articles.metadata <- paste(data.path, articles.filename, sep = "/")
 textPath <- paste(data.path, texts.folder, sep = "/")
 tag.corpus.file <- paste(cache.path, "/", tag.corpus.filename, ".rds", sep = "")
 ngrams0.file <- paste(cache.path, "/", ngrams0.filename, ".rds", sep = "")
+lemmes.et.ngrams0.file <- paste(cache.path, "/", lemmes.et.ngrams0.filename, ".rds", sep = "")
+simulation.results.file <- paste(cache.path, "/", simulation.results.filename, ".rds", sep = "")

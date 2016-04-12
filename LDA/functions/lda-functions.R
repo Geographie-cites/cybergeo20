@@ -25,7 +25,7 @@ retrieve.or.cache <- function(cache.file, f, force = FALSE) {
     var <- readRDS(cache.file)
     return(var)
   } else {
-    message("Working on the whole corpus…")
+    message("Computing…")
     var <- f()
     saveRDS(object = var, file = cache.file)
     return(var)
@@ -135,12 +135,11 @@ tfidf <- function(df0) {
   df1 <- df0 %>%
     select(docid, term) %>%
     group_by(docid, term) %>%
-    summarise(tf = n()) %>%
-    mutate(tf = 1 + log10(tf))
+    summarise(tf = n())
   df2 <- df1 %>%
     group_by(term) %>%
     summarise(ndoc = n_distinct(docid)) %>%
-    mutate(idf = log10(1 + N / ndoc))
+    mutate(idf = log(N / ndoc))
   df3 <- df1 %>%
     left_join(df2, by = c("term" = "term")) %>%
     mutate(tfidf = tf * idf)
@@ -154,10 +153,8 @@ validation.croisee <- function(id) {
   k <- prog$k[prog$id == id]
   rep <- prog$rep[prog$id == id]
   fold <- prog$fold[prog$id == id]
-  FILE <- paste("VEM_", k, "_", fold, ".rda", sep = "")
   training <- LDA(texts[folding != fold,], k = k)
-  testing <-
-    LDA(texts[folding == fold,], model = training, control = list(estimate.beta = FALSE))
+  testing <- LDA(texts[folding == fold,], model = training, control = list(estimate.beta = FALSE))
   d <- data.frame(
     id = id,
     rep = rep,
