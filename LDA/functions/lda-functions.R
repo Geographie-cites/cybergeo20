@@ -154,6 +154,7 @@ validation.croisee <- function(id) {
   rep <- prog$rep[prog$id == id]
   fold <- prog$fold[prog$id == id]
   training <- LDA(texts[folding != fold,], k = k)
+  saveRDS(training, file = paste("~/Sync/Shared/training-model-", id, ".rds", sep = ""))
   testing <- LDA(texts[folding == fold,], model = training, control = list(estimate.beta = FALSE))
   d <- data.frame(
     id = id,

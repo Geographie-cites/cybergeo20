@@ -13,7 +13,7 @@ texts.folder <- "texts"
 models <- c("LDA")
 nbrReplications <- 1
 nbrFolds <- 10
-k.list <- c(2, 5, seq(10, 50, 10))
+k.list <- c(2, seq(5, 50, 5), seq(60, 100, 10), 150, 200)
 
 # Modèle final
 k0 <- 20                   # Sélection du nombre de thématiques après validation croisée

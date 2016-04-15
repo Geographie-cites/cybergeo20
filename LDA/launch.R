@@ -70,7 +70,7 @@ lemmes.et.ngrams <- lemmes.et.ngrams0 %>% ungroup %>%
 
 #################
 # Import
-tmp <- read.table(file = "ngrams.csv", header = T, sep = ";", fileEncoding = "UTF-8", stringsAsFactors = FALSE) %>% 
+tmp <- read.table(file = "~/Sync/Shared/ngrams.csv", header = T, sep = ";", fileEncoding = "UTF-8", stringsAsFactors = FALSE) %>% 
   tbl_df() %>%
   rename(term = ngram) %>% 
   arrange(docid, term)%>%
@@ -149,6 +149,7 @@ g.ent <- ggplot(simulation.results, aes(k, entropie)) +
   )
 g.ent + labs(title = "Evolution de l'entropie\nselon le nombre de thématiques\npendant la validation croisée")
 
+k0<-20
 #-- Résultats finaux
 a <- simulation.results %>%
   filter(k == k0) %>%
@@ -156,20 +157,5 @@ a <- simulation.results %>%
   summarise(alpha = mean(alpha))
 alpha <- a$alpha
 model <- LDA(texts, k = k0, control = list(alpha = alpha))
-saveRDS(model, file="model-30.rds")
+saveRDS(model, file=paste("~/Sync/Shared/model-", k0, ".rds", sep = ""))
 
-p <- posterior(model)$terms
-thematiques <- c()
-for (i in seq(1,30)) {
-  terms <- p[i,]
-  terms <- round(sort(terms*100, decreasing = TRUE), digits = 2)
-  words <- names(terms)
-  probs <- as.numeric(terms)
-  d <- data_frame(words, i0=" (", probs, i1=")") %>% unite(names, words, i0, probs, i1, sep = "")
-  thematiques <- rbind(thematiques, paste(d$names, collapse = ", "))
-}
-themes <- as.data.frame(thematiques) %>% tbl_df()
-themes$id <- 1:30
-themes <- themes %>% select(id, V1)
-names(themes) <- c("Thème", "Lemmes inclus dans chaque thématique")
-kable(themes)
