@@ -63,17 +63,32 @@ lemmes.et.ngrams0 <- retrieve.or.cache(
 
 lemmes.et.ngrams0 %>% nrow
 quantile(round(lemmes.et.ngrams0$tfidf,1), probs = seq(0,1,0.01))
-m <- median(lemmes.et.ngrams0$tfidf)
 
-lemmes.et.ngrams <- lemmes.et.ngrams0 %>%
-  ungroup %>%
+lemmes.et.ngrams <- lemmes.et.ngrams0 %>% ungroup %>%
   filter(ndoc >= 5, ndoc < 0.95*nbr.textes) %>%
+  select(docid, term, tfidf)
+
+#################
+# Import
+tmp <- read.table(file = "ngrams.csv", header = T, sep = ";", fileEncoding = "UTF-8", stringsAsFactors = FALSE) %>% 
+  tbl_df() %>%
+  rename(term = ngram) %>% 
+  arrange(docid, term)%>%
+  select(docid, term, tfidf)
+lemmes.et.ngrams <- tmp 
+##################
+
+m <- median(lemmes.et.ngrams$tfidf)
+
+lemmes.et.ngrams <- lemmes.et.ngrams %>%
   filter(tfidf > m)
 
 lemmes.et.ngrams %>% nrow 
 lemmes.et.ngrams %>% select(term) %>% unique %>% nrow
 lemmes.et.ngrams %>% select(term) %>% unique %>% sample_n(10) 
 lemmes.et.ngrams %>% arrange(-nchar(term)) %>% select(term) %>% unique %>% as.data.frame %>% slice(1:100)
+
+################
 
 vocabulaire <- lemmes.et.ngrams$term %>% unique
 
@@ -107,3 +122,54 @@ simulation.results <- retrieve.or.cache(
   cache.file = simulation.results.file,
   f = function() rbind.fill(foreach(id = prog$id) %dopar% validation.croisee(id))
 )
+
+# Perplexity
+ggplot(simulation.results, aes(k, perplexity)) +
+  geom_point() +
+  labs(
+    x = "Nombre de thématiques",
+    y = "Perplexité",
+    title = "Evolution de la perplexité\nselon le nombre de thématiques\npendant la validation croisée"
+  )
+
+# Alpha
+# The lower α the higher is the percentage of documents which are assigned to one single topic with a high probability
+# Cela implique que les documents consistent un nombre limité de thèmes
+ggplot(simulation.results, aes(k, alpha)) +
+  geom_point() + #+ xlim(0,100)
+  facet_wrap(~ rep)
+
+# Entropie
+# Higher values indicate that the topic distributions are more evenly spread over the topics.
+g.ent <- ggplot(simulation.results, aes(k, entropie)) +
+  geom_point() +
+  labs(
+    x = "Nombre de thématiques",
+    y = "Entropie"
+  )
+g.ent + labs(title = "Evolution de l'entropie\nselon le nombre de thématiques\npendant la validation croisée")
+
+#-- Résultats finaux
+a <- simulation.results %>%
+  filter(k == k0) %>%
+  group_by(model) %>%
+  summarise(alpha = mean(alpha))
+alpha <- a$alpha
+model <- LDA(texts, k = k0, control = list(alpha = alpha))
+saveRDS(model, file="model-30.rds")
+
+p <- posterior(model)$terms
+thematiques <- c()
+for (i in seq(1,30)) {
+  terms <- p[i,]
+  terms <- round(sort(terms*100, decreasing = TRUE), digits = 2)
+  words <- names(terms)
+  probs <- as.numeric(terms)
+  d <- data_frame(words, i0=" (", probs, i1=")") %>% unite(names, words, i0, probs, i1, sep = "")
+  thematiques <- rbind(thematiques, paste(d$names, collapse = ", "))
+}
+themes <- as.data.frame(thematiques) %>% tbl_df()
+themes$id <- 1:30
+themes <- themes %>% select(id, V1)
+names(themes) <- c("Thème", "Lemmes inclus dans chaque thématique")
+kable(themes)

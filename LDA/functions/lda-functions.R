@@ -139,7 +139,7 @@ tfidf <- function(df0) {
   df2 <- df1 %>%
     group_by(term) %>%
     summarise(ndoc = n_distinct(docid)) %>%
-    mutate(idf = log(N / ndoc))
+    mutate(idf = log2(N / ndoc))
   df3 <- df1 %>%
     left_join(df2, by = c("term" = "term")) %>%
     mutate(tfidf = tf * idf)
