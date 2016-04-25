@@ -1,5 +1,5 @@
 In the event of an accident producing a toxic cloud, safety guidelines recommend that residents take shelter by staying indoors with the windows closed, wherever the exact location of the accident might be. Nonetheless, rules and regulations have not proven to be very effective (Hale 1990). Individuals’ decisions and collective behaviours render complex the prevention or evacuation in real time as they interact with each other and/or with their environment (Fioretti 2001; Bonnet 2002; Liu 2007). Human behaviour remains the main ambiguous and unpredictable factor in the event of a disaster and this behaviour can have an enormous effect on the aftermath of catastrophes (Chen et al., 2012). Some people run away from the affected zone, ask neighbours what to do, walk towards the scene of the accident to see what has happened or even leave buildings where they could have remained in a safe environment (CIEU 2001). While people must protect themselves, an increased number of victims has been observed because people do not apply the safety regulations in the event of a disaster (CRED 2011). Inadequate behaviours have been observed, notably when the hazardous phenomenon is not well known, when the perception of risk does not correspond with the catastrophe, when safety regulations are unknown, when the alert phase is inefficient, or when panic, unsafe or undesired behaviours due to fear take place (Howarth 1987).
-Individual motivation, local knowledge, abilities (Janssen and de Vries 1998) or possibilities (Zimolong and Duda 1992), risk awareness, and implementation of safety regulations (Bonnet 2002) can strongly reduce the vulnerability of the population and consequently the effects of a major accident. The more people are able to identify the hazardous phenomenon (fire, cloud or explosion) and its features (spread diffusion), the more likely they are to implement appropriate safety measures. This involves a process of assimilation of information delivered by schools, education in the home and official leaflets. Other vectors of education sometimes have a greater impact, such as either experiencing a crisis or participating in a real-time and real-scale exercise simulating a crisis. Moreover, safety measures and risk awareness are not assimilated by people in identical fashion. Social characteristics like gender or age have a strong influence on risk perception (Flynn et al. 1994; Dosman et al. 2001). Conversely, one’s level of education has a strong impact on the knowledge of safety measures (Beck et al. 2012). Thus, internal and external factors influence individual behaviours and people are not equals when faced with a crisis because these behaviours depend on the vectors of assimilation they have been confronted with, amongst others.
+Individual motivation, local knowledge, abilities (Janssen and de Vries 1998) or possibilities (Zimolong and Duda 1992), risk awareness, and implementation of safety regulations (Bonnet 2002) can strongly reduce the vulnerability of the population and consequently the effects of a major accident. The more people are able to identify the hazardous phenomenon (fire, cloud or explosion) and its features (spread diffusion), the more likely they are to implement appropriate safety measures. This involves a process of assimilation of information delivered by schools, education in the home and official leaflets. Other vectors of education sometimes have a greater impact, such as either experiencing a crisis or participating in a real-time and real-scale exercise simulating a crisis. Moreover, safety measures and risk awareness are not assimilated by people in identical fashion. Social characteristics like gender or age have a strong influence on risk perception (Flynn et al. 1994; Dosman et al. 2001). Conversely, one’s level of education has a strong impact on the knowledge of safety measures (Beck et al. 2012). Thus, internal and external factors influence individual behaviours and people are not equals when faced with a crisis because these behaviours depend on the vectors of assimilation they have been confronted with, amongst others.
 Measuring and assessing interactions between these vectors and behaviours still remains difficult. Real observations are limited by the scarcity of events and by the fact that the location, date and gravity of accidents cannot be predicted. Other possibilities consist in observing people during simulation exercises (Johnston et al. 2011). Computer simulation is also a good alternative means of obtaining valuable information.
 In this study, our objective is to develop a specific Agent-Based Model (ABM), named TOXI-CITY, in order: i) to explore the relationship between the global survival rate and the individual behaviour of agents in the event of an accident that produces a toxic cloud; ii) to detect a possible emergent patterns (as the percent of minimum agent with good behaviours to save maximum agents) resulting from the individual interactions (local scale) in a specific configuration; iii) to measure the impacts of the spatial configuration on the global survival rate; iv) see if a minimum number of ″aware″ agents could save a maximum number of people by mimetic for example. Our theoretical model and experiments aim to answer two principal questions:
 Do the survival rates depend on risk awareness and the level of knowledge of a safety plan?
@@ -21,12 +21,12 @@ Patch
 Land cover
 Land-cover category: road or building
 Contamination
-Contaminated or not : Boolean.
+Contaminated or not : Boolean.
 Agent
 Id Agent
 Agent identifier
 Alive
-Alive or not : Boolean
+Alive or not : Boolean
 Behaviour
 The agent’s category of behaviour
 Speed
@@ -34,7 +34,7 @@ Walking or running (meters / second)
 Building
 Id Building
 Building Identifier
-Open ?
+Open ?
 Building open or not to the agents: Boolean
 State variables defined in TOXI-CITY.
 By default, the spatial environment of the model is composed of a regular grid of ten-meter resolution cells, and has an area of 1 km² (assumed to represent a significant part of an urban space). The model’s users can import their own data using the GIS extension existing on the platform. Thus, the predefined environment can refer to real or theoretical situations. The temporal scale (or basic time step) is equal to 4 seconds. It corresponds to the required time for running agents to cover a distance of 10 meters (patch size). The simulation runs until all the road patches are contaminated by the cloud. The duration in time of the model depends on the initial conditions (i.e. the initial location of the accident, the speed of the toxic cloud, the density of buildings and spatial configuration of the environment since the cloud only spreads along roads). It takes 7 to 53 minutes on average. In case of a real toxic cloud, the lethal zone is the area where concentration of a product such as Chlorine is higher than 400 ppm (Parts per million) in the air (death occurs within 30 minutes).
@@ -64,10 +64,10 @@ In the first scenario, the objective was to explore the model, increasing the po
 Table 2
 Experimentnumber #
 Number of Agents*
- % C1
- % C2
- % C3
- % C4
+ % C1
+ % C2
+ % C3
+ % C4
 Spatial Config.
 Speed of Cloud
 Source location of the Cloud
@@ -130,10 +130,10 @@ Survival rates for C3 agents depending on the proportion of C1 agents.
 Table 3
 Experiment number #
 Agents
- % C1
- % C2
- % C3
- % C4
+ % C1
+ % C2
+ % C3
+ % C4
 Spatial Config.
 Speed of Cloud
 Source location of the Cloud
@@ -204,12 +204,12 @@ Parameter values for the second scenario aimed at exploring the influence of the
 The C2 agents, running away from the cloud, greatly increased the chances of survival of the C3 agents because they remained visible longer than the C1 agents, who confined themselves rapidly and so became invisible to the C3 agents (Table 4). Hence, following the majority without respecting the rules of prevention seems an advantage. This is especially true as they are not faced with crowd effects. Their survival rate increased from almost 87% in the S2-c1 scenario (50% of C1) to almost 100% for the intermediate (25% of C1, 25% of C2 and 50% of C3; S2-c3) or for the reverse situation (50% C2 – S2-c2). This result (detailed in Table 4) is certainly due to the fact that the C1 search for the nearest building whatever the direction and that may lead them towards the cloud. On the contrary, the C2 agents run directly away from the cloud in the opposite, safe direction. Moreover, C2 are more frequently located on roads while C1 can enter a building quickly. Consequently, the proportion of C2 agents (among all the visible agents located on the roads and likely to be followed by C3 agents), progressively increased during the simulation, as some C1 agents may enter buildings (and consequently no be longer visible). Thus, a higher proportion of C2 is more favourable to C3 than C1 agents. This result is of course mainly driven by the strong hypothesis made for C2: they know the location and source of the toxic cloud, so they know which direction is safer, and this fact is not the case in reality.
 Table 4
 Experiment number #
- % C1
- % C2
- % C3
- % C4
- %C3 alive (mean)
-Standard deviation ( %C3 alive)
+ % C1
+ % C2
+ % C3
+ % C4
+ %C3 alive (mean)
+Standard deviation ( %C3 alive)
 S2-c1
 50
 0
@@ -265,10 +265,10 @@ Unpaired t-tests were conducted to assess the effects of the cloud velocity (sce
 Table 5
 Experiment number #
 Number of Agents
- % C1
- % C2
- % C3
- % C4
+ % C1
+ % C2
+ % C3
+ % C4
 Spatial Config.
 Speed of Cloud
 Source location of the Cloud
@@ -354,10 +354,10 @@ Predefined spatial configurations of the environment: regular (on the left) and 
 Table 6
 Experiment number #
 Number of Agents
- % C1
- % C2
- % C3
- % C4
+ % C1
+ % C2
+ % C3
+ % C4
 Spatial Config.
 Speed of Cloud
 Source location of the Cloud

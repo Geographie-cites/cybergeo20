@@ -1,7 +1,7 @@
-Directeur de la publication : Arnaud BANOS
-Directrice scientifique : Denise PUMAIN
-Directeur adjoint : Antoine FLEURY
-Rédactrice en chef : Christine KOSMOPOULOS
+Directeur de la publication : Arnaud BANOS
+Directrice scientifique : Denise PUMAIN
+Directeur adjoint : Antoine FLEURY
+Rédactrice en chef : Christine KOSMOPOULOS
 Assistante à l’édition
 Elodie PICARD, CNRS-UMS Cléo
 Correcteurs
@@ -181,7 +181,7 @@ LE GALLO Julie, Université de Franche-Comté, Besançon, France
 MARSHALL Anaïs, Université Paris 13, France
 MATHIEU Nicole, CNRS/ UMR 7533 LADYSS, France
 MATURANA Francisco, Instituto Chileno de Estudios Municipales-ICHEM, Universidad Autónoma de Chile, Chili
-TROMEUR Eric, ETEC², Eric Tromeur Energy & Climate Consulting, France
+TROMEUR Eric, ETEC², Eric Tromeur Energy et Climate Consulting, France
 VIGNAL Leila, Marie Curie Fellow, Université d'Oxford, Royaume-Uni
 ZANIN Christine, Université Paris-Diderot et CNRS, France
 ANTHEAUME Benoît, IRD, France
@@ -331,9 +331,9 @@ POINSOT Yves, Université de Pau, France
 RAOULX Benoît, Université de Caen, Caen, France
 RETAILLE Denis, Université de Haute-Normandie, Rouen, France
 RICAN Stéphane, Université de Nanterre, France
-VAGUET Alain, Université de Haute-Normadie, Rouen, France
+VAGUET Alain, Université de Haute-Normadie, Rouen, France
 USSELMANN Pierre, CNRS/UMR 6012 ESPACE, Montpellier, France
-Edition : Jean-Baptiste Arrault, Ahcène Azieze, Fabien Dugal, Emmanuelle Fleury, Martine Laborde, Elfie Swerts
-Actualités et Signets : Delphine Callen, Anne Clerval, Carine Duplan, Antoine Fleury, Marianne Guérois, Charlène le Neindre, Catherine Masure, Aurélien Morin, Pierre Pistre, Céline Vacchiani
+Edition : Jean-Baptiste Arrault, Ahcène Azieze, Fabien Dugal, Emmanuelle Fleury, Martine Laborde, Elfie Swerts
+Actualités et Signets : Delphine Callen, Anne Clerval, Carine Duplan, Antoine Fleury, Marianne Guérois, Charlène le Neindre, Catherine Masure, Aurélien Morin, Pierre Pistre, Céline Vacchiani
 Les sites favoris ont été arrêtés le 19 septembre 2012
 Revue fondée en 1996 par Denise Pumain, avec la collaboration de Ky Nguyen (webmestre de 1996 à 2005)

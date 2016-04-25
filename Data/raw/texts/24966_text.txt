@@ -1,16 +1,16 @@
-The complex relationships between urban structure and daily mobility are widely discussed in the literature (Camagni, Gibelli, & Rigamonti, 2002; McMillen, 2003; Aguilera, Mignot, and Madre, 2005; Acharya & Morichi, 2007; Milakis et al. 2008; Bertaud et al., 2009). Increased car use raises questions about the negative consequences of urban sprawl. In reaction with that observation, scholars and planners have tried to identify which city structures might be compatible with sustainability. Daily mobility, which is at the heart of sustainability concerns at the city level, is often linked in the discourses with urban form; Cervero (2002), among others, recommends a higher use of public transport system as well as shorter distances to jobs: this is the “compact city” model. In contrast, Breheny and al. (1997) questions the acceptability of this model and emphasize the necessity to conciliate sustainability objectives with individual inclination towards nature and space. More generally, empirical works identify statistical relationships among various attributes of urban shapes and mobility, in different geographical contexts.
-Some approaches emphasize the microscopic interactions among individuals, seeking to identify the individual determinants of mobility (transportation costs, proximity to different transport infrastructures, Massot et al., 2006). Other approaches characterize a city by a small number of attributes (compactness, average household size, number of trips per day), as a way to identify correlations among them. The latter approach is more planning-oriented, because it can more easily be distilled into political actions, even though it is very hard in the complex framework of cities to identify causalities, as Fusco (2004) does. Although these two approaches can be complementary (Wegener & Fürst, 1999), the approach taken in this article is clearly macroscopic, based on the initial results of an analysis of the relationships between urban form and daily mobility in 34 European cities. We demonstrate the contribution of a multivariate quantification of urban form in addition to classical socio-economic indicators, in a context of sprawling cities, and increasing polycentricity. It raises questions about the sustainability of new forms of mobility (increasing distances, heavy use of the automobile, and high energy consumption due to transport).
+The complex relationships between urban structure and daily mobility are widely discussed in the literature (Camagni, Gibelli, et Rigamonti, 2002; McMillen, 2003; Aguilera, Mignot, and Madre, 2005; Acharya et Morichi, 2007; Milakis et al. 2008; Bertaud et al., 2009). Increased car use raises questions about the negative consequences of urban sprawl. In reaction with that observation, scholars and planners have tried to identify which city structures might be compatible with sustainability. Daily mobility, which is at the heart of sustainability concerns at the city level, is often linked in the discourses with urban form; Cervero (2002), among others, recommends a higher use of public transport system as well as shorter distances to jobs: this is the “compact city” model. In contrast, Breheny and al. (1997) questions the acceptability of this model and emphasize the necessity to conciliate sustainability objectives with individual inclination towards nature and space. More generally, empirical works identify statistical relationships among various attributes of urban shapes and mobility, in different geographical contexts.
+Some approaches emphasize the microscopic interactions among individuals, seeking to identify the individual determinants of mobility (transportation costs, proximity to different transport infrastructures, Massot et al., 2006). Other approaches characterize a city by a small number of attributes (compactness, average household size, number of trips per day), as a way to identify correlations among them. The latter approach is more planning-oriented, because it can more easily be distilled into political actions, even though it is very hard in the complex framework of cities to identify causalities, as Fusco (2004) does. Although these two approaches can be complementary (Wegener et Fürst, 1999), the approach taken in this article is clearly macroscopic, based on the initial results of an analysis of the relationships between urban form and daily mobility in 34 European cities. We demonstrate the contribution of a multivariate quantification of urban form in addition to classical socio-economic indicators, in a context of sprawling cities, and increasing polycentricity. It raises questions about the sustainability of new forms of mobility (increasing distances, heavy use of the automobile, and high energy consumption due to transport).
 In this section, we present the issues related to the transformation of the urban structure in European cities in the twentieth century (section 1.1): the possible relationships between configuration of the population distribution within a city and patterns of daily mobility observed are analysed by an extensive interdisciplinary literature, (section 1.2). In the last section we present the detailed objectives of this article (section 1.3).
 Automobiles did facilitate urban sprawl by providing faster travel (EEA, 2006), this encouraging residential decentralization and the intensive urbanization of suburban areas. People can live further from the center, and yet benefit from access to the core business district. According to Gordon and Richardson (1997), these people find more living space and better proximity to nature on the outskirts of cities.
-Wiel (1999) described the historical dynamic of cities as follows: after the industrial revolution, a « walking » city, small and radioconcentric, evolves into a « rail city », organized around rail stations in the suburbs, and then into an « automobile city » which sprawled and filled in the gaps between the rail corridors by lower density urbanisation – a few dozen people per hectare instead of a few hundred a century before, according to Newman and Kenworthy (1999), in the case of American cities. In addition to shorter travel times, the use of cars is almost uniform on the territory, while journeys made by public transport are only possible to and from a small part of today’s cities: transit systems requires a minimum population density to work efficiently (Department for Transport, 2008). It follows that urbanisation now consumes a lot of space, resulting in diffuse urban forms, and causes various problems (soil waterproofing - Djellouli et al., 2010, transformation of the social links, automobile dependence, Dupuy, 1999, high energy consumption related to the heating of detached houses).
+Wiel (1999) described the historical dynamic of cities as follows: after the industrial revolution, a « walking » city, small and radioconcentric, evolves into a « rail city », organized around rail stations in the suburbs, and then into an « automobile city » which sprawled and filled in the gaps between the rail corridors by lower density urbanisation – a few dozen people per hectare instead of a few hundred a century before, according to Newman and Kenworthy (1999), in the case of American cities. In addition to shorter travel times, the use of cars is almost uniform on the territory, while journeys made by public transport are only possible to and from a small part of today’s cities: transit systems requires a minimum population density to work efficiently (Department for Transport, 2008). It follows that urbanisation now consumes a lot of space, resulting in diffuse urban forms, and causes various problems (soil waterproofing - Djellouli et al., 2010, transformation of the social links, automobile dependence, Dupuy, 1999, high energy consumption related to the heating of detached houses).
 The automobile could be a sign of technical progress when we consider its speed and low cost of transport. At the same time, it is now criticized from many perspectives. A combination of arguments questions the extensive use of cars in today’s cities. Mobility patterns and lifestyles (organized nearly exclusively around the car use in some parts of cities) also cause problems. Car emissions are still much higher than those of trains. Furthermore, it may become impossible to use oil energy over the long term, because its price might rise dramatically over the next decades.
 Newman and Kenworthy (1989) have popularized a simplistic curve linking human density and the energy consumption per inhabitant due to transport in 50 cities. Figure 1 shows how energy use varies between low-density U.S. and Asian cities; energy use appears to be correlated with these high densities. These studies are based on a database that excludes cities in Africa and South America, which may hinder the scope of this result.
 Figure 1: Urban density and energy consumption per inhabitant due to transport of 46 world cities
 
-(Based on Newman & Kenworthy, 1999)
+(Based on Newman et Kenworthy, 1999)
 The study by Newman and Kenworthy (1989) was criticized methodologically (Johnson et al., 1997) and from the point of view of the acceptability of urban densification policies (Breheny, 1997). This approach created a space for many other studies of the theoretical or empirical interlinkages between urban form and mobility patterns. The compact city model, which is still highly debated in today’s planning literature (Dempsey, 2010), became for some authors a policy that might respect both people and the environment (Cahn, 2003).
 The transformation of urban spatial structures in the second half of the twentieth century was marked by an increasing mobility and the decentralisation of activities in European cities. Beyond the diminution of residential density, the density of jobs in central cities also decreased, and the monocentric vision of a city may not be relevant anymore (Heikkila et al., 1989). Many studies have emphasized the emergence of employment centers on the outskirts of large cities in the United States (Edge Cities, Garreau, 1991, Edgeless Cities, Lang, 2002) and Europe (Bontje, 2005; Berroir et al., 2005). Knapp et al. (2006) talk about the emergence of polycentric urban regions, after the functional integration of urban centers that were historically functionally distinct. To design and evaluate new forms of urbanization constitutes a scientific challenge: how is it possible to overcome the crude description of the city given by the classical “duet” population and density?
-Empirical approaches to the interactions between land use and mobility patterns are studied on two scales: inter-urban (Newman & Kenworthy, 1999) and intra-urban (Fouchier, 1997; Pouyanne, 2005).
+Empirical approaches to the interactions between land use and mobility patterns are studied on two scales: inter-urban (Newman et Kenworthy, 1999) and intra-urban (Fouchier, 1997; Pouyanne, 2005).
 We present (Figure 2) the classical transport - land use interaction (Wegener and Fürst, 1999). According to the authors, five parameters of land use are likely to have a significant impact on mobility patterns:
 residential density, which, combined with shorter trips, may increase the modal share of public transport.
 density of jobs, which has complex effects on commuting distances:
@@ -24,9 +24,9 @@ Figure 2: Interactions between transport and land use
 Adapted from Wegener and Fürst (1999)
 In the context of emerging polycentric metropolis (Hall, 2006), we explore possible links between polycentricity and car use, and between polycentricity and trip length. According to Schwanen (2001), who studied several Dutch cities, polycentric patterns induce greater use of the car, far from the sustainability aims outlined above. To achieve these objectives, the authors distinguish four types of Dutch cities, depending on the intra-urban flows. The authors distinguished the forms of relationships between places, “centralized” (classical monocentricity), “decentralized” (strong links between all urban centers, even secondary ones), “cross-commuting” (strong links between suburbs) or “exchange-commuting” (monocentric flow with symmetric relationship between center and periphery). Car use appears to be statistically linked with variations of these patterns, contrary to trip length.
 Aguilera (2006) focus on the proportion of local trips, as opposed to metropolitan trips, which is crucial to assess the distance from the urban model of the “self-consistent city” suggested by Korsu and Massot (2004). In addition to an “injunction to densify” (Wiel, 2008), these authors would advocate some “urban consistency” (proximity of houses to workplaces) in accordance with environmental requirements.
-In addition to these forms of “functional polycentricity,” the authors quantify and analyze the forms of “morphological polycentricity ”, the spatial configuration of inhabitants through space. Kutter et al’s (1998) study of several German cities suggests a greater distance for trips in a monocentric city (Hamburg, Munich) than in a polycentric city (Stuttgart, Francfort). It suggests that this model of development may only be sustainable at the cost of significant investments in the transit system, which makes possible the pooling of the energy consumption per kilometer. For the largest cities, it may be impossible to maintain a radio-concentric model, as illustrated by the new-towns policies around London and Paris. In this study, we will only tackle the latter aspect, because we lack disaggregated data on flows of goods and people for the 34 European cities studied.
+In addition to these forms of “functional polycentricity,” the authors quantify and analyze the forms of “morphological polycentricity ”, the spatial configuration of inhabitants through space. Kutter et al’s (1998) study of several German cities suggests a greater distance for trips in a monocentric city (Hamburg, Munich) than in a polycentric city (Stuttgart, Francfort). It suggests that this model of development may only be sustainable at the cost of significant investments in the transit system, which makes possible the pooling of the energy consumption per kilometer. For the largest cities, it may be impossible to maintain a radio-concentric model, as illustrated by the new-towns policies around London and Paris. In this study, we will only tackle the latter aspect, because we lack disaggregated data on flows of goods and people for the 34 European cities studied.
 The city is a complex system and the two following visions of the city, static (where people are) and dynamic (where people go) are certainly not dual. Detailed knowledge of the urban structure cannot completely determine the characteristics of mobility and vice versa. We aim at identifying such links, however weak by construction, partly because of the possibility for the policy maker to influence urban form.
-The literature identifies several key socio-economic indicators. Cameron et al. (2004) show the crucial role of household car ownership and population density to explain the use of private cars in seven cities. The degree of wealth, the history of the city (former presence of public transport infrastructure, for example) are other important factors to explain the distance traveled (Newman & Kenworthy, 1999).
+The literature identifies several key socio-economic indicators. Cameron et al. (2004) show the crucial role of household car ownership and population density to explain the use of private cars in seven cities. The degree of wealth, the history of the city (former presence of public transport infrastructure, for example) are other important factors to explain the distance traveled (Newman et Kenworthy, 1999).
 In this article, we analyze the statistical regularities between urban form specificities and mobility specificities in 34 European cities, based on two databases: UITP1 (2001) for mobility and EEA – European Environment Agency (2002). The focus will be on energy consumption per inhabitant due to transport for intra-metropolitan trips (all purposes). Is energy consumption related, all others things being equal, with a more or less intense degree of sprawl, with more or less hierarchical configuration of densities within a city? The intensity of car use plays an important role in this question. According to figures from RATP (2006), automobile energy consumption is about twice as big per passenger-km as the energy consumption of a bus and almost ten times more than the energy consumption of an underground train, a tramway or a suburban train. Distance of travel is another key dimension of sustainability of mobility patterns.
 The aim of this article is to investigate the contribution of a richer quantification of the urban spatial structure to improve the understanding of the determinants of daily mobility. For instance, the concept of morphological polycentricity has not, to our knowledge, been confronted with the practices of mobility in the city, too often leaving to the density the task of representing alone the concept of “urban spatial structure” (Anas, 1998) or “urban form” (Tsai, 2005). We will in the next two sections describe the mobility indicators available in the UITP database (2001) and the morphological indicators computed for the same urban boundaries from the density grid provided by the European Environment Agency (EEA, 2002; Gallego, 2008). We then try to compare indicators from these two databases in order to highlight correlations and co-productions between forms of urbanization and forms of daily mobility.
 In this section, we present available data for European cities involved in this study (section 2.1). We then raise, as a methodological question, the blurred boundaries of cities and their impact on the analysis of links between urban structure and daily mobility (section 2.2). Finally, we highlight the diversity of daily mobility patterns in European cities (section 2.3) as well as the need for urban indicators to complement the traditional socio-economic and geographic attributes to explain this diversity.
@@ -40,111 +40,111 @@ Studied area
 Population
 Amsterdam
 Amsterdam agglomeration
-850 000
+850 000
 Madrid
 Madrid Community
-5 420 000
+5 420 000
 Barcelona
 Barcelona metropolitan region
-4 390 000
+4 390 000
 Manchester
 Greater Manchester
-2 510 000
+2 510 000
 Berlin
 Berlin district
-3 390 000
+3 390 000
 Marseilles
 Marseille municipality
-800 000
+800 000
 Bilbao
 Biscaye province
-1 120 000
+1 120 000
 Munich
 Landeshauptstadt München
-1 250 000
+1 250 000
 Bologna
 Bologna and two municipalities
-434 000
+434 000
 Nantes
 Nantes agglomeration
-555 000
+555 000
 Brussels
 Brussels-Capital Region
-964 000
+964 000
 Newcastle
 Tyne and Wear County
-1 080 000
+1 080 000
 Budapest
 Budapest municipality
-1 760 000
+1 760 000
 Paris
 Ile-de-France region
-11 100 000
+11 100 000
 Clermont-Ferrand
 Transport Area
-264 000
+264 000
 Praha
 Mesto Praha
-1 160 000
+1 160 000
 Copenhagen
 Greater Copenhagen Region
-1 810 000
+1 810 000
 Rome
 Rome municipality
-2 810 000
+2 810 000
 Glasgow
 Strathclyde TAA
-2 100 000
+2 100 000
 Rotterdam
 Stadsregio Rotterdam
-1 180 000
+1 180 000
 Hamburg
 Transport Area (HVV)
-2 370 000
+2 370 000
 Sevilla
 Transport Area
-1 120 000
+1 120 000
 Helsinki
 Yhteistyovaltuuskunta
-969 000
+969 000
 Stockholm
 Stockholms Lan
-1 840 000
+1 840 000
 Krakow
 Krakow municipality
-759 000
+759 000
 Stuttgart
 Stuttgart and four Kreis
-2 380 000
+2 380 000
 Lille
 Lille metropolitan area
-1 100 000
+1 100 000
 Torino
 Turin and 25 municipalities
-1 470 000
+1 470 000
 Lisbon
 Lisbon metropolitan area
-2 680 000
+2 680 000
 Valencia
 Metropolitan Transport Area
-1 570 000
+1 570 000
 London
 Greater London
-7 170 000
+7 170 000
 Vienna
 Vienna Municipality
-1 550 000
+1 550 000
 Lyons
 Lyon metropolitan area
-1 180 000
+1 180 000
 Warsaw
 Warsaw Municipality
-1 690 000
+1 690 000
 The sample of cities was dictated by the availability of data in both the UITP database (2001) (for instance, three European cities were deleted due to missing mobility data), and the EEA (2002 database) (Swiss cities were not covered by the satellite data). We worked with a heterogeneous distribution of population between 10 million inhabitants (Paris) and less than 300,000 (Clermont-Ferrand). In the following section, we study the specific effect of heterogeneous boundaries on urban form and daily mobility comparison.
 Figure 3: Localisation of 34 European cities of the study
 
 We present a study of the influence of the scale of analysis on the observed relationships between urban form and daily mobility.
-To draw city boundaries is a difficult task (Guérois & Paulus, 2002). In addition to administrative definitions (the borders of Paris have not changed since 1929), two types of definitions are commonly used in urban studies: morphological, based on the spatial distribution of dwellings and functional, taking into account daily mobility of inhabitants. Geographical definitions of cities – morphological and functional areas defined by INSEE in France, “Functional Urban Regions” defined by Hall (2006) - hardly correspond to the boundaries for which mobility data are available.
+To draw city boundaries is a difficult task (Guérois et Paulus, 2002). In addition to administrative definitions (the borders of Paris have not changed since 1929), two types of definitions are commonly used in urban studies: morphological, based on the spatial distribution of dwellings and functional, taking into account daily mobility of inhabitants. Geographical definitions of cities – morphological and functional areas defined by INSEE in France, “Functional Urban Regions” defined by Hall (2006) - hardly correspond to the boundaries for which mobility data are available.
 The delimitation of cities from UITP database (2001) often corresponds to the jurisdiction of public transportation agencies, which permitted the collection of a set of indicators from the metropolitan bodies. In some cases, including the Ile-de-France (Paris region), the transport area is simultaneously an administrative division. The territories in this study do not have the same geographical meaning; London is represented in the database by the Greater London Authority territory, which only corresponds to the 7 million people in the most central part of the bigger metropolis described by Hall and al. (2006). At the same time, Paris is represented by the Ile-de-France region, with size around 10 million inhabitants (Figure 7). The work of Appert (2005) attests, however, that the two regions have much closer population sizes.
 However, UITP has attempted to harmonize the data: administrative boundaries of suburban towns were included in Turin, Bologna and Stuttgart, for instance. It might also be argued that comparing areas of public transport authorities makes sense, because it does correspond to one among many metropolitan functions (at least for users of these networks).
 Figure 4: Boundaries of Paris and London, at the same spatial scale according to the density grid of the European Environment Agency (2002)
@@ -152,10 +152,10 @@ Figure 4: Boundaries of Paris and London, at the same spatial scale according to
 To illustrate this problem, we show on Figure 5 a curve similar to the curve of Kenworthy and Laube (1996), comparing the use of cars and urban density, for 46 cities. For Paris and London, three nested scales were used (see Figure 4): the core area (respectively central Paris and within the “ring-road” of London); the dense area (Paris and the three contiguous departments, the most central boroughs in the case of London); and the largest areas are respectively the Ile-de-France region and Greater London.
 Figure 5: Use of private vehicles and urban density of 46 world cities
 
-(Based on Newman & Kenworthy, 1999, Courel et al. 2005, Mayor of London 2006)
-We acknowledge the high sensitivity of data with respect to the scale of study. In the case of Paris, the assumption of Kenworthy and Laube (1996) is met: a higher density tends to indicate a greater use of public transport. For London the results show less regularity: the London « Central Area » (within the ring-road) is a business center with low residential density. If the dots corresponding to “Greater London” and “Inner London” also follow the curve of Kenworthy and Laube (1996), the Central London dot do not (the scale might be too small to be relevant to the study of daily mobility).
-With this sensitivity analysis, we want to relativize the importance of the error due to the scale of analysis. In the case of Paris, the shape of the scatter plot would be little affected by the scale adopted for the study, and this is also true for the most relevant geographical entities that may be called « London ».
-Other databases might have been used for this study: Urban Audit (Eurostat) for instance provides harmonized data for about 350 functional areas in 30 European countries (the « Larger Urban Zones » are conceptually close to functional urban regions). This interesting database could be subject to work similar to that presented here. However, the available indicators are not the same as in the UITP database (2001), and may be of lesser quality when it comes to mobility data; for instance, it does not include energy consumption caused by transport. Given the objectives of this article, we chose to work with the UITP database (2001), which we found to be a good compromise between availability and quality of data.
+(Based on Newman et Kenworthy, 1999, Courel et al. 2005, Mayor of London 2006)
+We acknowledge the high sensitivity of data with respect to the scale of study. In the case of Paris, the assumption of Kenworthy and Laube (1996) is met: a higher density tends to indicate a greater use of public transport. For London the results show less regularity: the London « Central Area » (within the ring-road) is a business center with low residential density. If the dots corresponding to “Greater London” and “Inner London” also follow the curve of Kenworthy and Laube (1996), the Central London dot do not (the scale might be too small to be relevant to the study of daily mobility).
+With this sensitivity analysis, we want to relativize the importance of the error due to the scale of analysis. In the case of Paris, the shape of the scatter plot would be little affected by the scale adopted for the study, and this is also true for the most relevant geographical entities that may be called « London ».
+Other databases might have been used for this study: Urban Audit (Eurostat) for instance provides harmonized data for about 350 functional areas in 30 European countries (the « Larger Urban Zones » are conceptually close to functional urban regions). This interesting database could be subject to work similar to that presented here. However, the available indicators are not the same as in the UITP database (2001), and may be of lesser quality when it comes to mobility data; for instance, it does not include energy consumption caused by transport. Given the objectives of this article, we chose to work with the UITP database (2001), which we found to be a good compromise between availability and quality of data.
 The UITP database (2001) includes hundreds of aggregate indicators on the cost of travel, frequentation of transport infrastructures, as well as the social and environmental consequences of everyday practices of mobility. We focus on five indicators that we find particularly important to study the sustainability of mobility patterns: the number of trips per day, and the modal shares of travel modes: proportion of trips or proportion of miles achieved by soft modes (walking and cycling) and mechanized modes (by car or public transport).
 We will add to this description two indicators related to the consequences of these practices: energy consumption per inhabitant due to transport (from the political perspective, it could be seen as a source from the perspective of urban ecology) and the number of fatalities due to transport, per million inhabitants.
 The UITP database (2001) also provides geographical indicators such as population or population density. We use classical socio-economic indicators such as GDP per capita and car ownership, as well as an indication of the supply of transport (infrastructure available, by mode2).
@@ -182,9 +182,9 @@ number of trips per day per person
 average length of a mechanized trip5
 LENGTH
 proportion of trips by soft modes6
- %SOFT
+ %SOFT
 proportion of mechanized trips by car6
- %CAR
+ %CAR
 proportion of mechanized kilometers by car6
 kCAR
 Mobility externalities
@@ -201,10 +201,10 @@ The horizontal axis indicates the ratio between the number of kilometers of moto
 The y-axis is the GDP per capita of the city.
 Level of development in itself cannot explain the shape of today’s cities: this can be an illustration of the influence of policy makers in the cases of urban development based mainly on public transport (Budapest) or auto mode (Sevilla).
 These clusters do not form homogeneous subsets (Figure 6). If cities with the least sustainable mobility (Class 1) seem to correspond to higher levels of wealth than the others (Classes 2 and 3), this relationship is weak: Torino, Vienna, Helsinki, Amsterdam and Rotterdam have been able to balance long-term sustainable mobility and a high level of wealth. Glasgow, in contrast, is one of the cities with the most energy use per inhabitant due to transport and the highest car use, even though it has built a strong public transport infrastructure and is not a particularly affluent city.
-Figure 6: Urban development and practices of mobility in 34 European cities
+Figure 6: Urban development and practices of mobility in 34 European cities
 
 This approach highlights the need for a complementary set of indicators which would take into account factors other than level of development and availability of transport network; we focus on morphological indicators in the following section: to what extent can the compact, sprawled and polycentric aspects of a city be linked with the observed mobility patterns?
-“Urban form” of “urban structure” are ambiguous terms, often taken for granted by researcher in ecology and planning engineering; it can be observed from different perspectives, either focusing on the shape of cities as seen from the sky (Guérois & Pumain, 2008), on the urban fabric of the streets (Allain, 2005), or on the inner organization of urban areas (geographical configuration of urban centers) (Anas et al., 1998). We will use the terms “urban form” or “urban structure” for the configuration of inhabitants throughout urban space. This simplification is dictated by the description of the city that we will use, based solely on the population density grid from EEA (2002). Thus, the localisation of activities will be absent. In addition, the UITP database (2001) is macroscopic, therefore it will not be possible to work with detailed patterns of daily mobility.
+“Urban form” of “urban structure” are ambiguous terms, often taken for granted by researcher in ecology and planning engineering; it can be observed from different perspectives, either focusing on the shape of cities as seen from the sky (Guérois et Pumain, 2008), on the urban fabric of the streets (Allain, 2005), or on the inner organization of urban areas (geographical configuration of urban centers) (Anas et al., 1998). We will use the terms “urban form” or “urban structure” for the configuration of inhabitants throughout urban space. This simplification is dictated by the description of the city that we will use, based solely on the population density grid from EEA (2002). Thus, the localisation of activities will be absent. In addition, the UITP database (2001) is macroscopic, therefore it will not be possible to work with detailed patterns of daily mobility.
 In this section, we detail data available to evaluate the inner configuration of densities within European cities (section 3.1); we then provide a family of urban structure indicators, intended to quantify the degree of urban sprawl (section 3.2) or morphological polycentricity (section 3.3). Finally, the correlation among morphological indicators highlights the complementarity of the innovative morphological indicators with respect to more classical ones, total population and population density.
 To quantify the urban structure of a city, we use the population density grid provided by the European Environment Agency (EEA, 2002). This grid is based on satellite observations, categorized as land use typology (Corine Land Cover database), using national census from European countries. Each pixel is assigned a population, depending on the type of land use -- urban continuous, urban discontinuous, among others - and the total population of the NUTS9-5 area in which it is located (Gallego, 2008). Despite the limitations of the methodology (this approach cannot completely solve the problem of heterogeneous geographic entities, but it does smooth it), we found relevant, at the scale of large urban areas, to work with this 100-meters harmonized population density grid-cell.
 Figure 7 illustrates the spatial information given by EEA database. We show in this figure the cities of Stuttgart (with diffused urbanization) and Barcelona (more compact, also with a large spatial extension of the core city center). Note that the maps of Figure 7 correspond to a grid of 100 meters wide, the finest available. For reasons of computing time, we merged these cells into 200-meters ones, from which we computed the indicators of urban structure described below.
@@ -324,7 +324,7 @@ Table 4 suggests that the indicators are complementary with more classical ones 
 In this last section, we compare indicators from the two databases used as a way to identify statistical links between urban forms and mobility patterns. The aim of this approach is not to identify causal links (a pitfall mentioned by Mignot et al., 2004), but instead to provide empirical insights on the complex dynamic processes involved in the production of city.
 We will first detail the methodology used in this study (section 4.1), then we will focus on the correlations between all indicators of daily mobility and urban structure described in the previous two sections (section 4.2). Lastly, multivariate regression will be used to highlight the complementarity between morphological indicators and socio-economic indicators to explain some of the variability of daily mobility between European cities studied (section 4.3).
 Here we compare the traditional socio-economical and geographical indicators used to characterize a city and morphological indicators that we have just presented. We explain first the inter-urban differences in mobility practices from the following five indicators: population [POPU], density [DENS], GDP per capita [GDP], car ownership [MOTOR] and logarithm of the ratio between linear of transit (rail or road) and linear of highways [INFRA].
-Table 5 suggests positive correlation between energy consumption per inhabitant due to transport [ENERGY] and GDP per capita [GDP] (see figure 6). However, the results from Newman & Kenworthy (1989) and Kenworthy & Laube (1996) could not be reproduced in the European context: neither energy per inhabitant due to transport [ENERGY] nor proportion of trips made by car [%CAR] were significantly correlated with the urban density [DENS].
+Table 5 suggests positive correlation between energy consumption per inhabitant due to transport [ENERGY] and GDP per capita [GDP] (see figure 6). However, the results from Newman et Kenworthy (1989) and Kenworthy et Laube (1996) could not be reproduced in the European context: neither energy per inhabitant due to transport [ENERGY] nor proportion of trips made by car [%CAR] were significantly correlated with the urban density [DENS].
 Table 5: Correlation matrix between mobility and socio-economic indicators
 Variables
 RISK
@@ -468,21 +468,21 @@ F
 Pr > F
 #TRIPS
 GDP [+]
- 
+ 
 0,17
 6,71
 0,0143
- %SOFT
+ %SOFT
 OWN [–]
 GDP [+]
- 
+ 
 0,16
 3,04
 0,0625
 ENERGY
 GDP [+]
 INFRA [–]
- 
+ 
 0,38
 9,34
 0,0007
@@ -493,24 +493,24 @@ OWN [+]
 0,49
 9,57
 0,0001
- %CAR
+ %CAR
 INFRA [+]
 GDP [+]
- 
+ 
 0,29
 6,44
 0,0046
 LENGTH
 GDP [+]
- 
- 
+ 
+ 
 0,08
 2,76
 0,1066
 kCAR
 INFRA [+]
- 
- 
+ 
+ 
 0,28
 12,46
 0,0013
@@ -522,12 +522,12 @@ F
 Pr > F
 #TRIPS
 ENTROP [+]
- 
- 
+ 
+ 
 0,13
 4,66
 0,0385
- %SOFT
+ %SOFT
 no explanatory variable was significant
 X
 X
@@ -542,21 +542,21 @@ ENTROP [+]
 RISK
 DIST [–]
 ENTROP [–]
- 
+ 
 0,31
 7,05
 0,0030
- %CAR
+ %CAR
 RSS [–]
- 
- 
+ 
+ 
 0,07
 2,38
 0,1327
 LENGTH
 DIST [+]
- 
- 
+ 
+ 
 0,17
 6,59
 0,0152
@@ -568,21 +568,21 @@ X
 Table 7c: Indicators relevant to the explanation of seven indicators of mobility for 34 European cities studied. The explanatory variables are presented in the order of their entry into the stepwise model regression
 Variable
 Indicators
- 
- 
- 
+ 
+ 
+ 
 R²
 F
 Pr > F
 #TRIPS
 GDP [+]
 ENTROP [+]
- 
- 
+ 
+ 
 0,26
 5,53
 0,0088
- %SOFT
+ %SOFT
 OWN [+]
 GDP [–]
 ENTROP [–]
@@ -606,27 +606,27 @@ INFRA [+]
 0,53
 8,07
 0,0002
- %CAR
+ %CAR
 OWN [+]
 RSS [–]
 INFRA [+]
- 
+ 
 0,40
 6,79
 0,0013
 LENGTH
 DIST [+]
- 
- 
- 
+ 
+ 
+ 
 0,17
 6,59
 0,0152
 kCAR
 RSS [–]
 INFRA [+]
- 
- 
+ 
+ 
 0,38
 9,68
 0,0005

@@ -15,9 +15,9 @@ These preceding findings can be contrasted with spatially adjusting ones. The lo
 which represent orthogonal and independent components of spatial autocorrelation latent in these data (see Griffith, 1984) having means of zero [the matrix (I - 11t/n) appearing in equation (1) reprojects the eigenvectors of matrix C in order to achieve this result]. Three eigenvectors consistently were found to be significant correlates of the log-income data over the five years, and are denoted here by E1, E2, and E21. The percentages of variance accounted for in the log-income data by, as well as the corresponding Moran Coefficients (MC) and Geary Ratios (GR) for, these three eigenvectors are as follows:
 
 On average these three eigenvectors account for approximately 50% of the variation exhibited by log-income across the provinces of Spain. The first two of these eigenvectors represent very strong positive spatial autocorrelation patterns, whereas this third eigenvector represents a weak-to-moderate positive spatial autocorrelation pattern. As depicted in Table 1, the OLS residuals after regressing log-income on these three eigenvectors (i.e., the spatial adjustment) exhibit dramatically less spatial autocorrelation. The single province revealing somewhat aberrant behavior across these time periods is Baleares (comprised of the islands of Mijorca, Minorca, Iviza, and Formentera; see Figure 1). Oddly enough, behavior of the other two island provinces (Las Palmas and Santa Cruz de Tenerife) seems to conform to that of the rest of the country. Meanwhile, the following nine provinces appear to be influential observations in this regression: Ciudad Real, Córdoba, Jaén, León, Navarra, Teruel, Valladolid, Zamora, and Zaragoza. Interestingly, this set of provinces forms three clusters of units that essentially triangulate Madrid. Finally, each of the residual sums of squares are roughly 86% of the PRESS statistic, suggesting a respectable degree of agreement amongst the 50 jackknife-type sub-regressions.
-Results for the mean response spatial adjustment also are reported in Table 1. For every one of the five years the measures of spatial autocorrelation have plummeted while conformance to a normal distribution has markedly improved, whereas displayed variance homogeneity has tended to noticeably but not bothersomely decrease. The percent of variance accounted for in log-income by the three eigenvectors is very similar to that accounted for by the spatial lag variable, WY, appearing in the AR model. Since these three eigenvalues account for only a portion of the variance displayed in the spatial lag variable, WY, the spatially adjusted estimation of ρ must be done sequentially (i.e., on the residuals from the OLS regression of Y on E1, E2, and E3), which places it into a diagnostic mode. The original AR estimates of ρ roughly average 0.72, which intuitively seems significant. The spatially adjusted AR estimates of ρ average roughly 0.26, whose significance is not quite so intuitive. One of the findings of Griffith and Can (1996) is that the value of sρ   computed by SAS may well be a poor estimator of its corresponding standard error. Further exploring this contention within the context of the Spanish data being analyzed in this research has yielded the following estimates (see Upton and Fingleton, 1985):
+Results for the mean response spatial adjustment also are reported in Table 1. For every one of the five years the measures of spatial autocorrelation have plummeted while conformance to a normal distribution has markedly improved, whereas displayed variance homogeneity has tended to noticeably but not bothersomely decrease. The percent of variance accounted for in log-income by the three eigenvectors is very similar to that accounted for by the spatial lag variable, WY, appearing in the AR model. Since these three eigenvalues account for only a portion of the variance displayed in the spatial lag variable, WY, the spatially adjusted estimation of ρ must be done sequentially (i.e., on the residuals from the OLS regression of Y on E1, E2, and E3), which places it into a diagnostic mode. The original AR estimates of ρ roughly average 0.72, which intuitively seems significant. The spatially adjusted AR estimates of ρ average roughly 0.26, whose significance is not quite so intuitive. One of the findings of Griffith and Can (1996) is that the value of sρ computed by SAS may well be a poor estimator of its corresponding standard error. Further exploring this contention within the context of the Spanish data being analyzed in this research has yielded the following estimates (see Upton and Fingleton, 1985):
 
-These results are indicative of several useful implications, namely that (1) the mean squared error rendered by the spatially adjusted OLS results is reasonably precise, (2) the SAS standard error estimator for  ρ tends to be inflated, and (3) individual  ρ s computed with the spatially adjusted OLS residuals may appear to be significantly different from zero ( ρ 1975 is at the 10% level, and  ρ 1983 is at the 5% level, using df = 45). Following a suggestion put forth in Griffith and Can (1996), a "quick and dirty" sρ estimator is given by , which in this case equals  0.09578. This particular approximation appears to underestimate σρ though. Perhaps a much better estimator is the average of this "quick and dirty" estimator and the SAS estimator (a Stein-type shrinkage estimator); the foregoing results for this estimator show that it holds some promise.
+These results are indicative of several useful implications, namely that (1) the mean squared error rendered by the spatially adjusted OLS results is reasonably precise, (2) the SAS standard error estimator for ρ tends to be inflated, and (3) individual ρ s computed with the spatially adjusted OLS residuals may appear to be significantly different from zero ( ρ 1975 is at the 10% level, and ρ 1983 is at the 5% level, using df = 45). Following a suggestion put forth in Griffith and Can (1996), a "quick and dirty" sρ estimator is given by , which in this case equals  0.09578. This particular approximation appears to underestimate σρ though. Perhaps a much better estimator is the average of this "quick and dirty" estimator and the SAS estimator (a Stein-type shrinkage estimator); the foregoing results for this estimator show that it holds some promise.
 Because five years of data are being analyzed simultaneously, then a Bonferroni adjustment should be made to the Type I error rate in order to maintain it at a prespecified "family-wide" level, ideally converting it from, say, 5% to 1%. This adjustment appears to reverse the statistical decisions regarding the 1975 and 1983 estimates of ρ. But a Bonferroni adjustment assumes independence, while these geographic distributions of log-income residuals have the following correlation structure:
 
 Because some of these correlations exceed 0.9, the actual Bonferroni levels will be discernibly greater than 0.01.
@@ -51,60 +51,60 @@ Finally, the data analysis example employed in this paper also furnishes insight
 SAS CODE FOR COMPUTING THE MORAN COEFFICIENT AND THE GEARY RATIO
 FILENAME ATTRIBUT 'C:\SPAIN\SPAIN.DAT'; 1
 FILENAME CONN 'C:\SPAIN\SPAIN.CON'; 2
-OPTIONS LINESIZE=72;                                                 3
+OPTIONS LINESIZE=72; 3
 TITLE 'MC AND GR FOR SPAINISH INCOME DATA'; 4
-DATA STEP1;                                                          5
-INFILE ATTRIBUT;                                                     6
+DATA STEP1; 5
+INFILE ATTRIBUT; 6
 INPUT PROVNUM1 DUM1 DUM2 INCOME1-INCOME5 NAME$; 7
-Y = LOG(INCOME1);                                                    8
-RUN;                                                                 9
-PROC STANDARD MEAN=0 STD=1 OUT=STEP1(REPLACE=YES); VAR Y; RUN;      10
-DATA STEP2 (REPLACE=YES);                                           12
-SET STEP1;                                                          13
-INFILE CONN;                                                        14
-INPUT PROVNUM2 C1-C50;                                              15
-ARRAY CONY{50} CY1-CY50;                                            16
-ARRAY CON{50} C1-C50;                                               17
-CSUM = 0;                                                           18
-DO I=1 TO 50;                                                       19
-CSUM = CSUM + CON{I};                                               20
-CONY{I} = Y*CON{I};                                                 21
-END;                                                                22
-Y2 = CSUM*Y**2;                                                     23
-RUN;                                                                24
-PROC MEANS NOPRINT;                                                 25
-VAR CY1-CY50;                                                       26
+Y = LOG(INCOME1); 8
+RUN; 9
+PROC STANDARD MEAN=0 STD=1 OUT=STEP1(REPLACE=YES); VAR Y; RUN; 10
+DATA STEP2 (REPLACE=YES); 12
+SET STEP1; 13
+INFILE CONN; 14
+INPUT PROVNUM2 C1-C50; 15
+ARRAY CONY{50} CY1-CY50; 16
+ARRAY CON{50} C1-C50; 17
+CSUM = 0; 18
+DO I=1 TO 50; 19
+CSUM = CSUM + CON{I}; 20
+CONY{I} = Y*CON{I}; 21
+END; 22
+Y2 = CSUM*Y**2; 23
+RUN; 24
+PROC MEANS NOPRINT; 25
+VAR CY1-CY50; 26
 OUTPUT OUT=CYOUT1 SUM=CY1-CY50; 27
-RUN;                                                                28
+RUN; 28
 PROC TRANSPOSE DATA=CYOUT1 PREFIX=WY OUT=CYOUT2;29
-VAR CY1-CY50;                                                       30
-RUN;                                                                31
-DATA STEP2 (REPLACE=YES);                                           32
-SET STEP2;                                                          33
-SET CYOUT2;                                                         34
-CY = WY1;                                                           35
-INT=1; INT2=1;                                                      36
-RUN;                                                                37
+VAR CY1-CY50; 30
+RUN; 31
+DATA STEP2 (REPLACE=YES); 32
+SET STEP2; 33
+SET CYOUT2; 34
+CY = WY1; 35
+INT=1; INT2=1; 36
+RUN; 37
 ***********************
 * *
 * COMPUTING MC AND GR *
 * *
 ***********************;
-PROC REG DATA=STEP2 OUTEST=OUTNUM; MODEL CY = Y/NOINT; RUN;         45
-PROC REG DATA=STEP2 OUTEST=OUTDEN; MODEL CSUM = INT/NOINT; RUN;     46
-PROC REG DATA=STEP2 OUTEST=OUTGR; MODEL Y2 = INT2/NOINT; RUN;       47
-DATA STEP3;                                                         49
-SET OUTNUM (KEEP=Y);                                                50
-MCNUM=Y;                                                            51
-SET OUTDEN (KEEP=INT);                                              52
-MC = MCNUM/INT;                                                     53
-SET OUTGR (KEEP=INT2);                                              54
-N = 50;                                                             56
-CSUM = N*INT;                                                       57
-GR = INT2/INT - ((N-1)/N)*MC;                                       59
+PROC REG DATA=STEP2 OUTEST=OUTNUM; MODEL CY = Y/NOINT; RUN; 45
+PROC REG DATA=STEP2 OUTEST=OUTDEN; MODEL CSUM = INT/NOINT; RUN; 46
+PROC REG DATA=STEP2 OUTEST=OUTGR; MODEL Y2 = INT2/NOINT; RUN; 47
+DATA STEP3; 49
+SET OUTNUM (KEEP=Y); 50
+MCNUM=Y; 51
+SET OUTDEN (KEEP=INT); 52
+MC = MCNUM/INT; 53
+SET OUTGR (KEEP=INT2); 54
+N = 50; 56
+CSUM = N*INT; 57
+GR = INT2/INT - ((N-1)/N)*MC; 59
 ZAPP = (MC+1/(N-1))/SQRT(2/CSUM); 61
 PROBMC = 1 - PROBNORM(ZAPP); 62
-RUN;                                                                63
+RUN; 63
 PROC PRINT; VAR N CSUM MC ZAPP PROBMC GR; RUN; 65
 Lines 1-2 define the paths to the digital files housing the attribute data and connectivity matrices.
 Lines 5-9 retrieve the attribute data and compute the logarithm of the first income variable.

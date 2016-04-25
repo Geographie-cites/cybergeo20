@@ -5,7 +5,7 @@ The diffusion of technological innovations, rather than being equated with the p
 In addition, businesses and companies with representations (i.e. branch agencies, industrial plants, high street sites, subsidiaries, retail outlets, etc) are a means of spatial cover in which the different representations or sites are interlinked, enabling head offices and the cities in which they are housed to command genuine networks. These company networks are one quite important component in the urban hierarchy, which is in fact the product of a combination of numerous inter-related, diversified networks of institutions, influences, individuals, organisations and companies, both public and private, ancient and modern, and engaged in both “ordinary” and “out-of-the-ordinary” activities.
 The analysis of the stages in the spatial diffusion of these activities and networks enables diffusion patterns to be apprehended, and a follow-up of the changes that occur in the hierarchy, in particular at the top; it also enables differential dynamics to be observed among cities, by way of alterations in rank, even if only slight, prefiguring the spatial order of the future.
 How does this spatial diffusion of innovation operate, and through what channels? How does the spatial diffusion of company representations occur, and how are their retailers distributed? Is it a hierarchical diffusion percolating downwards, with leaps across the urban system, or is it more a proximity diffusion process, a spreading to the nearest neighbourhood, where distance produces a slowing by friction?
-The notion of diffusion is classically associated with that of innovation, i.e. the introduction of something new, hitherto unknown, in an already established order, an environment that will inevitably be irreversibly affected. There is sufficiently abundant literature in this field for there to be little need to dwell on these issues, from the work by T. Hägerstrand (1953, 1966) to the most recent work in the form of specific case studies (Agossou N, S-A.N 2004, Assalin S 1999, Aydalot Ph 1984, Berry B.J.L. 1992, Dumolard P. 1999, Eliot E. 1999, 2000, Ferderwisch J & Zoller GH, Foltête J.Ch. 2002; Gay J.Ch. 2001, Haggett P. 1973, Hudson J.C. 1972, Planque B. 1984, Rémy G. 2002, and others).
+The notion of diffusion is classically associated with that of innovation, i.e. the introduction of something new, hitherto unknown, in an already established order, an environment that will inevitably be irreversibly affected. There is sufficiently abundant literature in this field for there to be little need to dwell on these issues, from the work by T. Hägerstrand (1953, 1966) to the most recent work in the form of specific case studies (Agossou N, S-A.N 2004, Assalin S 1999, Aydalot Ph 1984, Berry B.J.L. 1992, Dumolard P. 1999, Eliot E. 1999, 2000, Ferderwisch J et Zoller GH, Foltête J.Ch. 2002; Gay J.Ch. 2001, Haggett P. 1973, Hudson J.C. 1972, Planque B. 1984, Rémy G. 2002, and others).
 It is true that numerous aspects are worth exploring, so complex is the question - for instance the nature of the companies concerned and their structure, detailed analysis according to activity, their legal status, the labour involved, or the type of production. This article will be restricted to the study of diffusion processes of modern, recent, and “out-of-the-ordinary” activities, and the establishment of company networks in Tunisia, attempting to capture both the probable future impact, and the inertia of the past within the urban system and its spatial functioning. Before broaching these issues, the methods used to analyse the diffusion process and apprehend the spatial outreach of the towns and cities in Tunisia need to be specified.
 Modern and out-of-the-ordinary activities are characteristic of the space considered, and they prefigure the patterns of the future. They include for instance of ICT, fashion, large retail outlets, cosmetics, haute couture, specialised company outlets, universities and targeted courses, finance and leasing, study advice bureaus, distance education and telecommuting. These activities are both vectors of the emergent spatial order, and strongly linked to the consumer market (concentration of the population and level of urbanisation) and to the standard of living of the population.
 These different activities organise space by way of their system of representations (branch agencies, subsidiaries, company sites, retailers etc), which means that the different sites become parts of a network, polarising the space differentially in favour of certain centres that house the head offices of these networks, or provide relays (branch offices, subsidiaries etc).
@@ -201,9 +201,9 @@ Gafsa
 Mednine
 61705
 -
-  
-  
-  
+ 
+ 
+ 
 Sources: Directories and press, data processing by the author
 An analysis of the 20 main towns and cities, most of which are the seats of the Governorates, tourist centres, or active industrial centres (Zarzis, Ml Bouguiba, Moknine, Msaken) shows that the number of businesses is strongly correlated to the size of the town or city, with a correlation of 0.96 for an explained variance of 93.2%.13 Towns such as Gabès, Kairouan, Gafsa, Mednine, Zarzis or Ml Bouguiba appear under-represented in relation to their populations, while Bizerta, Nabeul, Hammamet and Monastir, tourist centres close to Tunis or Sousse, have a relatively large number in relation to their size. The weakness of Moknine, Ml Bouguiba and Zarzis can probably be explained by the proximity of larger centres, Monastir, Sousse, Jerba, Bizerta.
 This urban concentration is also associated with a marked spatial concentration favouring the coast, both for the location of business and for the type of representation.
@@ -220,7 +220,7 @@ The analysis of the location of company head offices in 1997 (map 8) and in 2003
 Map 8. Head offices of companies with representations in 1997
 
 The east-west divide in reality merely reproduces the historic diffusion patterns for innovation in Tunisia over more than a century, with a dual space demonstrating divergent trends: an extroverted space attached to the coast, and a neglected fringe in the interior (Belhedi A. 1980, 1996c).
-In a study on the railway network (Belhedi A. 1980) we have demonstrated that the routes taken by the railways in 1902 (map 8a) already prefigured the future Tunisian space, and the main road (map 8b) was to follow the same route (Miossec JM. & Signoles P. 1976, Belhedi 1981).
+In a study on the railway network (Belhedi A. 1980) we have demonstrated that the routes taken by the railways in 1902 (map 8a) already prefigured the future Tunisian space, and the main road (map 8b) was to follow the same route (Miossec JM. et Signoles P. 1976, Belhedi 1981).
 The analysis of the different networks, such as the road network and later the motorway network15, shows that the mechanisms of spatial accumulation are markedly in favour of the well-provided, wealthy areas, and underpin the process of spatial divergence between the costal zone and the interior on the one hand, and between the capital Tunis and the rest of the country on the other (Belhedi A. 1992, 2005).
 Map 9. the development of the railways 1880-1930 and the road in 1930 9a. Diffusion of the railway network 1880-1930
 
@@ -243,7 +243,7 @@ Table 4. Head offices, total number of company representations, and commanded co
 City
 Head offices
 Total number of representations
-N° of representations ouside Ho
+N of representations ouside Ho
 Ratio representations/Ho
 Tunis
 100

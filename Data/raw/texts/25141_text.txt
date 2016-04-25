@@ -10,7 +10,7 @@ The crucial role of mobility in women’s efforts to integrate everyday activiti
 From a theoretical perspective, our investigation of changing mobility gaps regards commuting as activity-based and gendered. Mobility is perceived as driven mainly by an individual’s wish or need to take part in activities that are geographically dispersed and thus largely concerns providing access. The resulting travel is influenced by factors related to the individual (e.g., sex, income, age, education, and occupation) and her or his household, to the wider social context of values, norms, and expectations, and to factors related to the physical, built environment (e.g., transportation infrastructure and localization of activities). Gender and gender-based structures affect many, if not all, of the important factors that shape mobility, such as access to mobility resources, social values and expectations, and the urban and regional setting (Gil Solá 2009; Grimsrud 2011, Law 1999; Polk 1998). To this are added the basic time-geographic aspects of where, when, and for how long certain activities must be undertaken to carry out the regular projects of everyday life – i.e., work, household maintenance and care, leisure, and socializing. These projects cannot be accomplished in any random way, are often tied to fixed places (Ellegård and Vilhelmson 2004; Vilhelmson 1999), and are subject to intra-household negotiation and distribution. Accordingly, travel distance, time, and speed (to overcome distance) are central dimensions of processes that link projects scattered in space and as such are important “barometers of equality” (Hjorthol 2008) used for empirical analysis. These three dimensions reflect gender relations played out in a spatial arena. Local and regional variation in gender commuting gap change should therefore be expected and subject to further examination.
 Swedish national travel survey data (Riks RVU 94/95 and RES 05/06) covering the 1994–1995 and 2005–2006 periods are used for the empirical analysis. The data comprise detailed information about the journeys of approximately 19,000 individuals in 1994–1995 and 27,000 individuals in 2005–2006. The data were collected via telephone interviews with members of the Swedish population aged 6–84 years. Response rates were 77 per cent and 67 per cent, respectively, in the two periods. The variables included concern the individual (e.g., gender, age, car access, education, and work), the household (e.g., household income, children, and housing), and the trips made on the day studied (e.g., means of transportation, distance, time, trip purpose, and destination). The database covers 10,600 commuting trips in 1994–1995 and 14,800 in 2005–2006 in Sweden. The analysis of the Göteborg region is based on 890 trips in 1994–1995 and 1070 in 2005–2006, and of the Malmö region on 610 trips in 1994–1995 and 570 in 2005–2006 (see table 1).
 Table 1. Number of individuals (commuters) and work trips used for the analysis
- Unit
+ Unit
 1994-1995
 2005-2006
 Sweden
@@ -149,7 +149,7 @@ The convergence in commuting distance between women and men in the Malmö region
 Table 4. Commuting distance, time, and speed (one way trip averages), Göteborg and Malmö regions, 1994–1995 and 2005–2006
 Commuting, dimension and group
 Göteborg
- Malmö
+ Malmö
 1994–1995
 2005–2006
 1994–1995

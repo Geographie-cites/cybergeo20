@@ -1,11 +1,11 @@
 The southern bank of the river Seine, in the urban area of Rouen, was an important industrial suburb in the 19th century and during the first half of the 20th century up to the urban rehabilitation which began around the seventies. The main industries were foundries and mechanical engineering plants, and later, in the harbour districts, oil factories and naphtha refineries. During the "reconstruction" period, after the second world war, and at the time of the "rehabilitation" , a lot of residential compounds, schools and playgrounds have been established, regardless of the nature of the soils.
-A great amount of the ancient industries were replaced by other plants, or by derelict land ; so the sequence of the different industrial uses and the nature of the chemical products involved, which have been stored or rejected cannot be easily defined.
-The studied area extends on three administrative districts : the left bank of Rouen city area, to the north, and two suburban districts, respectively Petit-Quevilly, to the west, and Sotteville, to the east.
+A great amount of the ancient industries were replaced by other plants, or by derelict land ; so the sequence of the different industrial uses and the nature of the chemical products involved, which have been stored or rejected cannot be easily defined.
+The studied area extends on three administrative districts : the left bank of Rouen city area, to the north, and two suburban districts, respectively Petit-Quevilly, to the west, and Sotteville, to the east.
 The objective cannot go further than a mere estimation of the risks. The level of risk may be estimated on the one hand by the nature of soils, and on the other hand by the former location of the polluting activities (industrial or commercial), by the nature of these activities, and by the migration rate of the pollutants.
 The soil of the studied area is a uniform covering of a clayish and stony alluvial soil about 20 meters deep.
-The nature of the activities may be linked to pollution as shown by the following table :
+The nature of the activities may be linked to pollution as shown by the following table :
 
-Table 1 : Chemical products used by different industries according to their activities
+Table 1 : Chemical products used by different industries according to their activities
 (from BRGM 1995)
 This table 1 allows the creation of a technical data base, affecting a theoretical "index of risk" to the different activities, as shown in table 2.
 A
@@ -134,7 +134,7 @@ ore exploitation
 9
 15
 2
-legend : A hydrocarbons
+legend : A hydrocarbons
 B acid and base
 C alkaline metals
 D cyanide
@@ -144,7 +144,7 @@ G halogenic compounds
 H mineral grease
 I sulphide
 J heavy metals
-Table 2 : Potential risk of different activities
+Table 2 : Potential risk of different activities
 We have used the investigation method initiated by Frederic OGE (1994). The archives of the local administration keep record of all the dangerous activities, declared as such according to a law dating back from 1810. The archives have been studied from 1810 to 1936 - after that date, the preservation of the so-called "industrial secret" forbids public consultation of the archives -, and recorded in a historical data base.
 For each declared activity the name of the operator is given, as well as the nature of the activity, the full address, and the date of the administrative decree giving (or refusing) the licence to carry on the activity.
 From the second half of the 19th century onwards, and increasingly so as one comes nearer to contemporary times, the declarations are accompanied by diagrams and blue-prints showing more precisely the location of the workshops. For some important plants, it is sometimes possible to determine the location of the waste yard - more often a little quarry, at a short distance from the workshops and offices of the firm, which may be, incidentally, mentioned on the plan.
@@ -159,9 +159,9 @@ The main profit of the GIS approach is to allow the overlay of these potential s
 The polluting activities may be differentiated according to their dates of implementation (fig. 2).
 
 The first locations appeared on the main road in the centre of the meander, around the initial villages. In the middle of the 19th century, these activities consisted in transforming animal by-products, mainly grease, for the fabrication of soap and candles. Formerly scalded, this butchery waste was subsequently treated with sulphur acid.
-The textile industry involved the development of industrial chemistry : soda and sulphur acid were employed for the bleaching and dyeing of cloth. An important production of sulphur acid was obtained by the combustion of sulphur with saltpetre (sodium nitrate), which was soon replaced by lead-chambers, which induced an important increase of production.
+The textile industry involved the development of industrial chemistry : soda and sulphur acid were employed for the bleaching and dyeing of cloth. An important production of sulphur acid was obtained by the combustion of sulphur with saltpetre (sodium nitrate), which was soon replaced by lead-chambers, which induced an important increase of production.
 It appears from figure 2 that at the first stages industrialisation was immersed in the dwelling areas, but in later periods (since 1920), it grew mainly outside them, to become concentrated in industrial estates along the river, to the north (sea-harbour) and to the east (river-harbour).
-The target of the first stage of the GIS was the production of a tool for city planners to locate the places where chemical investigations were required before any new implementation of housing or public equipment (mainly for children). The GIS may be useful also at this second stage, provided that a complementary information could be obtained at a narrow scale. A zoom on the surroundings of the main street (fig. 3) offers 4 layers overlaid :
+The target of the first stage of the GIS was the production of a tool for city planners to locate the places where chemical investigations were required before any new implementation of housing or public equipment (mainly for children). The GIS may be useful also at this second stage, provided that a complementary information could be obtained at a narrow scale. A zoom on the surroundings of the main street (fig. 3) offers 4 layers overlaid :
 
 - the "Geo-Routes" network (reference system),
 - the present constructions, according to the cadastral survey, located on the Geo-Routes system,
