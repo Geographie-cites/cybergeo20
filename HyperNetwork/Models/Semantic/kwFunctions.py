@@ -12,7 +12,11 @@ def extract_relevant_keywords(corpus,kwLimit,occurence_dicos):
 
     [ref_kw_dico,kw_ref_dico] = utils.extract_sub_dicos(corpus,occurence_dicos)
 
-    #print(kw_ref_dico)
+    # compute doc frequencies
+    print('Compute frequencies...')
+    docfrequencies = {}
+    for k in kw_p_dico.keys():
+        docfrequencies[k] = len(kw_p_dico[k])
 
     # compute unithoods
     print('Compute unithoods...')
@@ -22,66 +26,77 @@ def extract_relevant_keywords(corpus,kwLimit,occurence_dicos):
         unithoods[k]=math.log(l+1)*len(kw_ref_dico[k])
 
     # sort and keep K*N keywords ; K = 4 for now ?
-    selected_kws = dict() # dictionary : kw -> index in matrix
+    selected_kws = {} # dictionary : kw -> index in matrix
     sorted_unithoods = sorted(unithoods.items(), key=operator.itemgetter(1),reverse=True)
     for i in range(4*kwLimit):
         selected_kws[sorted_unithoods[i][0]] = i
 
     # computing cooccurrences
     print('Computing cooccurrences...')
-    # compute termhoods :: coocurrence matrix -> in \Theta(16 N^2) - N must thus stay 'small'
-    coocs = []
-    for i in range(len(selected_kws.keys())):
-        coocs.append(([0]*len(selected_kws.keys())))
-    # fill the cooc matrix
-    # for each patent : kws are coocurring if selected.
-    # Beware to filter BEFORE launching O(n^2) procedure
-    #
-    #  Quick implementation using dict ? -> ¡ already optimized !
-    n=len(ref_kw_dico)/100;pr=0
-    for ref in ref_kw_dico.keys() :
+    coocs = {}
+    n=len(p_kw_dico)/100;pr=0
+    for p in p_kw_dico.keys() :
         pr = pr + 1
         if pr % n == 0 : print('cooccs : '+str(pr/n)+'%')
         sel = []
-        for k in ref_kw_dico[ref] :
+        for k in p_kw_dico[p] :
             if k in selected_kws : sel.append(k)
         for i in range(len(sel)-1):
+            #ii = selected_kws[sel[i]]
+            ki = sel[i]
+            if ki not in coocs : coocs[ki] = {}
             for j in range(i+1,len(sel)):
-                ii = selected_kws[sel[i]] ; jj= selected_kws[sel[j]] ;
-                coocs[ii][jj] = coocs[ii][jj] + 1
-                coocs[jj][ii] = coocs[jj][ii] + 1
+                kj= sel[j]
+                if kj not in coocs : coocs[kj] = {}
+                if kj not in coocs[ki] :
+                    coocs[ki][kj] = 1
+                else :
+                    coocs[ki][kj] = coocs[ki][kj] + 1
+                if ki not in coocs[kj] :
+                    coocs[kj][ki] = 1
+                else :
+                    coocs[kj][ki] = coocs[kj][ki] + 1
 
-    #print('coocs : ')
-    #print(coocs)
 
     # compute termhoods
-    colSums = [sum(row) for row in coocs]
+    colSums = {}
+    for ki in coocs.keys():
+        colSums[ki] = sum(coocs[ki].values())
 
-    #print('colsums : ')
-    #print(colSums)
-
-    termhoods = [0]*len(coocs)
-    for i in range(len(coocs)):
+    termhoods = {}
+    for ki in coocs.keys():
         s = 0;
-        for j in range(len(coocs)):
-            if j != i : s = s + ((coocs[i][j]-(colSums[i]*colSums[j]))*(coocs[i][j]-(colSums[i]*colSums[j])))/(colSums[i]*colSums[j])
-        termhoods[i]=s
+        for kj in coocs[ki].keys():
+            if kj != ki : s = s + ((coocs[ki][kj]-colSums[ki]*colSums[kj])*(coocs[ki][kj]-colSums[ki]*colSums[kj]))/(colSums[ki]*colSums[kj])
+        termhoods[ki]=s
 
     #print(termhoods)
     # sort and filter on termhoods
-    sorting_termhoods = dict()
-    for k in selected_kws.keys():
-        sorting_termhoods[k]=termhoods[selected_kws[k]]
+    #sorting_termhoods = dict()
+    #for k in selected_kws.keys():
+    #    sorting_termhoods[k]=termhoods[selected_kws[k]]
+    [tselected,dico,freqselected] = extract_from_termhood(termhoods,ref_kw_dico,docfrequencies,kwLimit)
 
-    return(extract_from_termhood(sorting_termhoods,ref_kw_dico,kwLimit))
+    # construct graph edge list (! undirected)
+    edge_list = []
+    for kw in tselected.keys():
+        for ki in coocs[kw].keys():
+            if ki in tselected :
+                if coocs[kw][ki] >= 10 :
+                    edge_list.append({'edge' : kw+";"+ki, 'weight' : coocs[kw][ki]})
+
+    return([tselected,dico,freqselected,edge_list])
+
 
 
 def extract_from_termhood(termhoods,ref_kw_dico,kwLimit):
     sorted_termhoods = sorted(termhoods.items(), key=operator.itemgetter(1),reverse=True)
 
-    tselected = dict()
+    tselected = {}
+    freqselected = {}
     for i in range(kwLimit):
         tselected[sorted_termhoods[i][0]] = sorted_termhoods[i][1]
+        freqselected[sorted_termhoods[i][0]] = frequencies[sorted_termhoods[i][0]]
 
     # reconstruct the ref -> tselected dico, finally necessary to build kw nw
     ref_tsel_dico = dict()
@@ -91,4 +106,4 @@ def extract_from_termhood(termhoods,ref_kw_dico,kwLimit):
             if k in tselected and k not in sel : sel.append(k)
         ref_tsel_dico[ref] = sel
 
-    return([tselected,ref_tsel_dico])
+    return([tselected,ref_tsel_dico,freqselected])

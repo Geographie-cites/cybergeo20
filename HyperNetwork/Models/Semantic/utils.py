@@ -72,6 +72,20 @@ def configure_sqlite(database):
 
 
 
+def get_ids(database,collection):
+    d = get_data_mongo(database,collection,{},{'id':1})
+    ids = []
+    for row in d :
+        ids.append(row['id'])
+    return(ids)
+
+def get_data_mongo(database,collection,query,filt):
+    mongo = pymongo.MongoClient('localhost', 27017)
+    database = mongo[database]
+    col = database[collection]
+    data = col.find(query,filt)
+
+
 def get_data(query,source):
     if source=='mysql' :
         conn = configure_sql()
@@ -129,6 +143,22 @@ def implode(l,delimiter):
     return(res)
 
 
+def import_kw_dico(database,collection):
+    mongo = pymongo.MongoClient('localhost', 27017)
+    database = mongo[database]
+    col = database[collection]
+    data = col.find()
+    ref_kw_dico={}
+    kw_ref_dico={}
+    for row in data:
+        keywords = row['keywords'];ref_id=row['id']
+        ref_kw_dico[ref_id] = keywords
+        for kw in keywords :
+            if kw not in kw_ref_dico : kw_ref_dico[kw] = []
+            kw_ref_dico[kw].append(kw)
+
+    return([ref_kw_dico,kw_ref_dico])
+
 
 ##
 # usage : [ref_kw_dico,kw_ref_dico] = import_kw_dico()
@@ -154,7 +184,7 @@ def import_kw_dico_req(request,source):
 
     return([ref_kw_dico,kw_ref_dico])
 
-def import_kw_dico(source):
+def import_kw_dico_sqlite(source):
     return(import_kw_dico_req('SELECT id,abstract_keywords FROM refdesc WHERE abstract_keywords IS NOT NULL;',source))
 
 ##

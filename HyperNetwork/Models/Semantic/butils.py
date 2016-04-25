@@ -4,22 +4,14 @@
 
 ##
 # mongo version : database is the mongodb object
-def update_kw_tm(kw,incr,database):
-    #prev = utils.fetchone_sqlite('SELECT cumtermhood,ids FROM relevant WHERE keyword=\''+kw+'\';',database)
-    prev = database.relevant.find_one({'keyword':kw})
-    #t = 0
-    #ids=''
-    #print(prev)
+def update_kw_tm(kw,incr,frequency,tidf,database,table):
+    prev = database[table].find_one({'keyword':kw})
     if prev is not None:
-        #t = prev[0]+incr
-        #ids = prev[1]
-        #utils.insert_sqlite('UPDATE relevant SET keyword=\''+kw+'\',cumtermhood='+str(t)+',ids=\''+ids+'\' WHERE keyword=\''+kw+'\';',database)
         prev['cumtermhood']=prev['cumtermhood']+incr
-        database.relevant.replace_one({'keyword':kw},prev)
+        prev['frequency'] = frequency;prev['tidf']=tidf
+        database[table].replace_one({'keyword':kw},prev)
     else :
-        # insert
-        #utils.insert_sqlite('INSERT INTO relevant VALUES (\''+kw+'\','+str(incr)+',\'\');',database)
-        database.relevant.insert_one({'keyword':kw,'cumtermhood':incr,'ids':[]})
+        database[table].insert_one({'keyword':kw,'cumtermhood':incr,'docfrequency':frequency,'tidf':tidf})
 
 
 
