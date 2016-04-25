@@ -40,7 +40,7 @@ def init_bootstrap(res_folder):
 
 def relevant_full_corpus(kwLimit):
     #corpus = utils.get_data('SELECT id FROM refdesc WHERE abstract_keywords IS NOT NULL;','../../Data/dumps/20160224_cybergeo.sqlite3')
-    corpus = utils.get_data_mongo('cybergeo','keywords',{},{'id':1})
+    corpus = utils.get_ids('cybergeo','keywords')
     occurence_dicos = utils.import_kw_dico('cybergeo','keywords')
     mongo = pymongo.MongoClient('localhost',27017)
     database = mongo['relevant']
