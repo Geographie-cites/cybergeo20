@@ -2,7 +2,7 @@
 
 # bootstrap for relevant terms extraction
 
-import numpy,os,pymongo
+import numpy,os,pymongo,math
 import kwFunctions,utils,butils
 #from multiprocessing import Pool
 
@@ -51,7 +51,7 @@ def relevant_full_corpus(kwLimit):
     [keywords,dico,frequencies,edge_list] = kwFunctions.extract_relevant_keywords(corpus,kwLimit,occurence_dicos)
     print('insert relevant...')
     for kw in keywords.keys():
-        butils.update_kw_tm(kw,keywords[kw],frequencies[kw],math.log(rel_kws[kw])*math.log(len(corpus)/frequencies[kw]),database,relevant)
+        butils.update_kw_tm(kw,keywords[kw],frequencies[kw],math.log(keywords[kw])*math.log(len(corpus)/frequencies[kw]),database,relevant)
     print('insert edges...')
     database[network].delete_many({"weight":{"$gt":0}})
     database[network].insert_many(edge_list)

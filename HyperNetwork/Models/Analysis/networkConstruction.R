@@ -36,10 +36,11 @@ importNetwork<-function(relevantcollection,kwcollection,nwcollection,edge_th,tar
   keyword_dico = list()
   for(i in 1:length(dico)){
     if(i%%100==0){show(paste0('dico : ',i/length(dico),'%'))}
-    kws = unique(dico[[i]]$keywords)
+    #kws = unique(dico[[i]]$keywords)
+    kws = dico[[i]]$keywords
     #show(kws)
     if(length(kws)>0){
-      kws = kws[sapply(kws,function(w){w %in% srel$keyword})]
+      #kws = kws[sapply(kws,function(w){w %in% srel$keyword})]
       keyword_dico[[dico[[i]]$id]]=kws
     }
   }
@@ -51,7 +52,7 @@ importNetwork<-function(relevantcollection,kwcollection,nwcollection,edge_th,tar
     if(i%%1000==0){show(paste0('edges : ',i/length(edges),'%'))}
     w=edges[[i]]$weight
     if(w>=edge_th){
-       e = strsplit(edges[[i]]$edge,";")
+       e = strsplit(edges[[i]]$edge,";")[[1]]
        if(e[1]!=e[2]){# avoid self loops, weight info is already contained in doc frequency of nodes
          e1=append(e1,e[1]);e2=append(e2,e[2]);weights=append(weights,w)
        }

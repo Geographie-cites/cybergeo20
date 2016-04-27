@@ -4,7 +4,7 @@
 
 #import MySQLdb
 import sqlite3,datetime
-
+import pymongo
 
 
 #def findone_mongo():
@@ -73,10 +73,11 @@ def configure_sqlite(database):
 
 
 def get_ids(database,collection):
-    d = get_data_mongo(database,collection,{},{'id':1})
+    d = get_data_mongo(database,collection,{'id':{'$gt':'0'}},{'id':1})
     ids = []
     for row in d :
         ids.append(row['id'])
+    print('Raw data : '+str(len(ids)))
     return(ids)
 
 def get_data_mongo(database,collection,query,filt):
@@ -84,6 +85,7 @@ def get_data_mongo(database,collection,query,filt):
     database = mongo[database]
     col = database[collection]
     data = col.find(query,filt)
+    return(data)
 
 
 def get_data(query,source):
@@ -156,7 +158,7 @@ def import_kw_dico(database,collection):
         for kw in keywords :
             if kw not in kw_ref_dico : kw_ref_dico[kw] = []
             kw_ref_dico[kw].append(kw)
-
+    print('dicos : '+str(len(ref_kw_dico))+' ; '+str(len(kw_ref_dico)))
     return([ref_kw_dico,kw_ref_dico])
 
 

@@ -6,17 +6,19 @@ library(dplyr)
 library(igraph)
 source('networkConstruction.R')
 
-db='relevant_full_50000'
+db='relevant_full_50000_eth50_nonfiltdico'
 load(paste0('processed/',db,'.RData'))
 g=res$g;
 #keyword_dico=res$keyword_dico
 
-g = filterGraph(g,'graphs/all/filter.csv')
+g = filterGraph(g,'data/filter.csv')
 
 # Q : work on giant component ?
 # 
 clust = clusters(g);cmax = which(clust$csize==max(clust$csize))
 ggiant = induced.subgraph(g,which(clust$membership==cmax))
+
+kmin=0
 
 modularities = c();
 comnumber=c();
@@ -25,8 +27,8 @@ eth=c();
 csizes=c();
 gsizes=c();
 gdensity=c();
-for(kmax in seq(from=1500,to=4700,by=100)){
-  for(edge_th in seq(from=50,to=250,by=10)){
+for(kmax in seq(from=500,to=6200,by=100)){
+  for(edge_th in seq(from=50,to=300,by=10)){
     show(paste0('kmax : ',kmax,' e_th : ',edge_th))
     d=degree(ggiant)
     gg=induced_subgraph(ggiant,which(d>kmin&d<kmax))
@@ -43,6 +45,6 @@ for(kmax in seq(from=1500,to=4700,by=100)){
 
 d = data.frame(degree_max=dmax,edge_th=eth,vertices=gsizes,components=csizes,modularity=modularities,communities=comnumber,density=gdensity)
 
-save(d,paste0('sensitivity/',db,'.RData'))
+save(d,file=paste0('sensitivity/',db,'.RData'))
 
 

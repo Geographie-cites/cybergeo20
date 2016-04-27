@@ -10,13 +10,17 @@ import utils
 def extract_relevant_keywords(corpus,kwLimit,occurence_dicos):
     print('Extracting relevant keywords...')
 
-    [ref_kw_dico,kw_ref_dico] = utils.extract_sub_dicos(corpus,occurence_dicos)
+    #[ref_kw_dico,kw_ref_dico] = utils.extract_sub_dicos(corpus,occurence_dicos)
+    ref_kw_dico = occurence_dicos[0]
+    kw_ref_dico = occurence_dicos[1]
+
+    print('Refs : '+str(len(ref_kw_dico))+" ; kws : "+str(len(kw_ref_dico)))
 
     # compute doc frequencies
     print('Compute frequencies...')
     docfrequencies = {}
-    for k in kw_p_dico.keys():
-        docfrequencies[k] = len(kw_p_dico[k])
+    for k in kw_ref_dico.keys():
+        docfrequencies[k] = len(kw_ref_dico[k])
 
     # compute unithoods
     print('Compute unithoods...')
@@ -28,18 +32,18 @@ def extract_relevant_keywords(corpus,kwLimit,occurence_dicos):
     # sort and keep K*N keywords ; K = 4 for now ?
     selected_kws = {} # dictionary : kw -> index in matrix
     sorted_unithoods = sorted(unithoods.items(), key=operator.itemgetter(1),reverse=True)
-    for i in range(4*kwLimit):
+    for i in range(min(4*kwLimit,len(kw_ref_dico))):
         selected_kws[sorted_unithoods[i][0]] = i
 
     # computing cooccurrences
     print('Computing cooccurrences...')
     coocs = {}
-    n=len(p_kw_dico)/100;pr=0
-    for p in p_kw_dico.keys() :
+    n=len(ref_kw_dico)/100;pr=0
+    for r in ref_kw_dico.keys() :
         pr = pr + 1
         if pr % n == 0 : print('cooccs : '+str(pr/n)+'%')
         sel = []
-        for k in p_kw_dico[p] :
+        for k in ref_kw_dico[r] :
             if k in selected_kws : sel.append(k)
         for i in range(len(sel)-1):
             #ii = selected_kws[sel[i]]
@@ -89,7 +93,7 @@ def extract_relevant_keywords(corpus,kwLimit,occurence_dicos):
 
 
 
-def extract_from_termhood(termhoods,ref_kw_dico,kwLimit):
+def extract_from_termhood(termhoods,ref_kw_dico,frequencies,kwLimit):
     sorted_termhoods = sorted(termhoods.items(), key=operator.itemgetter(1),reverse=True)
 
     tselected = {}
