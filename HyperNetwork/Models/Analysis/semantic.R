@@ -104,8 +104,8 @@ plot(clust,labels=FALSE)
 #     referenced kws ?
 
 kmin = 0
-kmax = 4700  # max for common ggiant is 1088
-edge_th = 50  # 6218
+kmax = 1900  # max for common ggiant is 1088
+edge_th = 100  # 6218
 
 # filter on degree (work already on giant component ?)
 #max(degree(ggiant))
@@ -114,9 +114,15 @@ modularities = c();comnumber=c();dmax=c();eth=c();csizes=c();gsizes=c();gdensity
 for(kmax in seq(from=1500,to=4700,by=100)){
   for(edge_th in seq(from=20,to=250,by=10)){
     show(paste0('kmax : ',kmax,' e_th : ',edge_th))
-    d=degree(ggiant)
-    gg=induced_subgraph(ggiant,which(d>kmin&d<kmax))
+    #d=degree(ggiant)
+    d = V(ggiant)$docfreq#strength(ggiant)
+    dd = degree(ggiant)#strength(ggiant)/degree(ggiant)
+    #gg=induced_subgraph(ggiant,which(d>kmin&d<kmax))
+    gg=induced_subgraph(ggiant,which(d<10000&d>50&dd<1200))
     gg=subgraph.edges(gg,which(E(gg)$weight>edge_th))
+    # refilter again on connected components
+    clust = clusters(gg);cmax = which(clust$csize==max(clust$csize))
+    gg = induced.subgraph(gg,which(clust$membership==cmax))
     com = cluster_louvain(gg)
     gsizes=append(gsizes,length(V(gg)));gdensity=append(gdensity,2*length(E(gg))/(length(V(gg))*(length(V(gg))-1)))
     csizes=append(csizes,length(clusters(gg)$csize))
@@ -126,17 +132,18 @@ for(kmax in seq(from=1500,to=4700,by=100)){
   }
 }
 
-df = data.frame(dmax,eth,modularities,comnumber,csizes,gsizes,gdensity)
-g = ggplot(df) + scale_fill_gradient(low="yellow",high="red")#+ geom_raster(hjust = 0, vjust = 0) 
+load('sensitivity/relevant_full_50000_eth50_nonfiltdico.RData')
+#df = data.frame(dmax,eth,modularities,comnumber,csizes,gsizes,gdensity)
+g = ggplot(d) + scale_fill_gradient(low="yellow",high="red")#+ geom_raster(hjust = 0, vjust = 0) 
 plots=list()
-for(indic in c("modularities","comnumber","csizes","gsizes","gdensity")){
-plots[[indic]] = g+geom_raster(aes_string("dmax","eth",fill=indic))
+for(indic in c("modularity","communities","components","vertices","density","communities-components")){
+plots[[indic]] = g+geom_raster(aes_string("degree_max","edge_th",fill=indic))
 }
 multiplot(plotlist = plots,cols=3)
 
 # -> for full_relevant_5000, (4200,90) is a good optimum
 
-
+write.graph(gg,file = paste0('graphs/',db,'/test4.gml'),format = "gml")
 write.graph(gg,file = paste0('graphs/',db,'/filt_kmin',kmin,'_kmax',kmax,'_edge',edge_th,'_filtered','.gml'),format = "gml")
 gg=read.graph(paste0('graphs/',db,'/filt_kmin',kmin,'_kmax',kmax,'_edge',edge_th,'_filtered','.gml'),format='gml')
 save(gg,file=paste0('graphs/',db,'/filt_kmin',kmin,'_kmax',kmax,'_edge',edge_th,'_filtered','.RData'))
@@ -160,23 +167,12 @@ save(vdf,edf,file='../../../Cybergeo20/data/semanticnw.RData')
 # communities
 com = cluster_louvain(gg)
 for(i in unique(com$membership)){show(i);show(V(gg)$name[which(com$membership==i)])}
-# construct kw -> thematic dico
-thematics = list()
-for(i in 1:length(V(gg))){
-  thematics[[V(g)$name[i]]]=com$membership[i]
-}
+
+
 
 # compute proba matrix
-them_probas = matrix(0,length(names(keyword_dico)),length(unique(com$membership)))
-for(i in 1:length(names(keyword_dico))){
-  if(i%%100==0){show(i)}
-  kwcount=0
-  for(kw in keyword_dico[[names(keyword_dico)[i]]]){if(kw %in% names(thematics)){
-    j=thematics[[kw]]
-    them_probas[i,j]=them_probas[i,j]+1;kwcount=kwcount+1
-  }}
-  if(kwcount>0){them_probas[i,]=them_probas[i,]/kwcount}
-}
+them_probas = computeThemProbas(gg,com,keyword_dico)
+
 
 # number of articles with originality
 #length(which(rowSums(them_probas)>0))
