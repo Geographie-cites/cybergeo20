@@ -6,6 +6,19 @@ library(igraph)
 library(dplyr)
 
 
+extractSubGraphCommunities<-function(ggiant,kmin,kmax,freqmin,freqmax,edge_th){
+  dd = V(ggiant)$docfreq
+  d = degree(ggiant)
+  gg=induced_subgraph(ggiant,which(d>kmin&d<kmax&dd>freqmin&dd<freqmax))
+  gg=subgraph.edges(gg,which(E(gg)$weight>edge_th))
+  clust = clusters(gg);cmax = which(clust$csize==max(clust$csize))
+  gg = induced.subgraph(gg,which(clust$membership==cmax))
+  com = cluster_louvain(gg)
+  return(list(gg=gg,com=com))
+}
+
+
+
 
 ##
 # Compute thematic probability matrix

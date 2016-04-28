@@ -132,12 +132,13 @@ for(kmax in seq(from=1500,to=4700,by=100)){
   }
 }
 
-load('sensitivity/relevant_full_50000_eth50_nonfiltdico.RData')
+load('sensitivity/relevant_full_50000_eth50_nonfiltdico_ext.RData')
 #df = data.frame(dmax,eth,modularities,comnumber,csizes,gsizes,gdensity)
+names(d)[ncol(d)-2]="balance"
 g = ggplot(d) + scale_fill_gradient(low="yellow",high="red")#+ geom_raster(hjust = 0, vjust = 0) 
 plots=list()
-for(indic in c("modularity","communities","components","vertices","density","communities-components")){
-plots[[indic]] = g+geom_raster(aes_string("degree_max","edge_th",fill=indic))
+for(indic in c("modularity","communities","components","vertices","density","balance")){
+plots[[indic]] = g+geom_raster(aes_string("degree_max","edge_th",fill=indic))+facet_grid(freqmax~freqmin)
 }
 multiplot(plotlist = plots,cols=3)
 

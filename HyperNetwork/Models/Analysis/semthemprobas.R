@@ -1,0 +1,43 @@
+
+setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Models/Analysis'))
+library(dplyr)
+library(igraph)
+source('networkConstruction.R')
+
+db='relevant_full_50000_eth50_nonfiltdico'
+load(paste0('processed/',db,'.RData'))
+g=res$g;
+#keyword_dico=res$keyword_dico
+
+g = filterGraph(g,'data/filter.csv')
+
+# Q : work on giant component ?
+# 
+clust = clusters(g);cmax = which(clust$csize==max(clust$csize))
+ggiant = induced.subgraph(g,which(clust$membership==cmax))
+
+kmin = 0
+freqmax = 10000
+params=data.frame()
+for(freqmin in c(50,100)){
+    for(kmax in c(600,1000)){
+      for(edge_th in c(150,200,240)){
+        params=rbind(params,c(freqmin,kmax,edge_th))
+    }
+  }
+}
+
+
+library(doParallel)
+cl <- makeCluster(12)
+registerDoParallel(cl)
+
+res <- foreach(i=1:nrow(params)) %dopar% {
+  source('networkConstruction.R')
+  sub = extractSubGraphCommunities(ggiant,kmin,params[i,2],params[i,1],freqmax,params[i,3])
+  probas = computeThemProbas(sub$gg,sub$com,res$keyword_dico)
+  save(sub,probas,file=paste0('probas/',db,'_kmin',kmin,'_kmax',params[i,2],'_freqmin',params[i,1],'_freqmax',freqmax,'_eth',params[i,3],'.RData'))
+}
+
+stopCluster(cl)
+
