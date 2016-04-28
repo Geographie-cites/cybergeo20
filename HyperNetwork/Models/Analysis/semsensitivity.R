@@ -27,28 +27,34 @@ eth=c();
 csizes=c();
 gsizes=c();
 gdensity=c();
-for(kmax in seq(from=800,to=4000,by=100)){
-  for(edge_th in seq(from=50,to=250,by=10)){
-    show(paste0('kmax : ',kmax,' e_th : ',edge_th))
-    dd = V(ggiant)$docfreq#strength(ggiant)
-    d = degree(ggiant)
-    gg=induced_subgraph(ggiant,which(d>kmin&d<kmax))
-    gg=subgraph.edges(gg,which(E(gg)$weight>edge_th))
-    clust = clusters(gg);cmax = which(clust$csize==max(clust$csize))
-    gg = induced.subgraph(gg,which(clust$membership==cmax))
-    com = cluster_louvain(gg)
-    # measures
-    gsizes=append(gsizes,length(V(gg)));
-    gdensity=append(gdensity,2*length(E(gg))/(length(V(gg))*(length(V(gg))-1)))
-    csizes=append(csizes,length(clusters(gg)$csize))
-    modularities = append(modularities,modularity(com))
-    comnumber=append(comnumber,length(communities(com)))
-    dmax=append(dmax,kmax);eth=append(eth,edge_th)
+cbalance=c();
+for(freqmax in c(10000,20000)){
+  for(freqmin in c(50,100,200)){
+    for(kmax in seq(from=600,to=6200,by=200)){
+      for(edge_th in seq(from=60,to=300,by=20)){
+        show(paste0('kmax : ',kmax,' e_th : ',edge_th))
+        dd = V(ggiant)$docfreq
+        d = degree(ggiant)
+        gg=induced_subgraph(ggiant,which(d>kmin&d<kmax&dd>freqmin&dd<freqmax))
+        gg=subgraph.edges(gg,which(E(gg)$weight>edge_th))
+        clust = clusters(gg);cmax = which(clust$csize==max(clust$csize))
+        gg = induced.subgraph(gg,which(clust$membership==cmax))
+        com = cluster_louvain(gg)
+        # measures
+        gsizes=append(gsizes,length(V(gg)));
+        gdensity=append(gdensity,2*length(E(gg))/(length(V(gg))*(length(V(gg))-1)))
+        csizes=append(csizes,length(clust$csize))
+        modularities = append(modularities,modularity(com))
+        comnumber=append(comnumber,length(communities(com)))
+        cbalance=append(cbalance,sum((sizes(com)/length(V(gg)))^2))
+        dmax=append(dmax,kmax);eth=append(eth,edge_th)
+      }
+    }
   }
 }
 
-d = data.frame(degree_max=dmax,edge_th=eth,vertices=gsizes,components=csizes,modularity=modularities,communities=comnumber,density=gdensity)
+d = data.frame(degree_max=dmax,edge_th=eth,vertices=gsizes,components=csizes,modularity=modularities,communities=comnumber,density=gdensity,comunitiesbalance=cbalance)
 
-save(d,paste0('sensitivity/',db,'.RData'))
+save(d,file=paste0('sensitivity/',db,'_ext.RData'))
 
 

@@ -8,5 +8,5 @@ library(igraph)
 
 source('networkConstruction.R')
 
-importNetwork('relevant.relevant_full_50000','cybergeo.keywords','network_full_50000_eth10',50,'processed/relevant_full_50000')
+importNetwork('relevant.relevant_full_50000','cybergeo.keywords','relevant.network_full_50000_eth10',50,'processed/relevant_full_50000_eth50_nonfiltdico')
 

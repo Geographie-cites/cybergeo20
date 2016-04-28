@@ -26,7 +26,7 @@ def sqlite_to_mongo(sqlitedb,mongodb):
 def keywords_to_mongo(sqlitedb,mongodb):
     client=pymongo.MongoClient('localhost',27017)
     db=client[mongodb]
-    keywords = utils.import_kw_dico(sqlitedb)
+    keywords = utils.import_kw_dico_sqlite(sqlitedb)
     dico = keywords[0]
     col=db['keywords']
     for i in dico.keys():
