@@ -17,6 +17,14 @@ extractSubGraphCommunities<-function(ggiant,kmin,kmax,freqmin,freqmax,edge_th){
   return(list(gg=gg,com=com))
 }
 
+summarySubGraphCommunities<-function(sub){
+   gg=sub$gg;com=sub$com
+   show(paste0('Vertices : ',length(V(gg))))
+   show(paste0('Communities : ',length(sizes(com))))
+   show(paste0('Modularity : ',modularity(com)))
+   show(paste0('Balance : ',sum((sizes(com)/length(V(gg)))^2)))
+   show(sizes(com))
+}
 
 
 

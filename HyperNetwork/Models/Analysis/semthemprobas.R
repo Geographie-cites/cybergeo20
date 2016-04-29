@@ -41,3 +41,16 @@ res <- foreach(i=1:nrow(params)) %dopar% {
 
 stopCluster(cl)
 
+
+#################
+#################
+
+dbparams = 'relevant_full_50000_eth50_nonfiltdico_kmin0_kmax1000_freqmin100_freqmax10000_eth150'
+load(paste0('probas/',dbparams,'.RData'))
+them_probas = probas
+
+
+
+
+
+

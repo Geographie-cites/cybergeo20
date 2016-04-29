@@ -88,10 +88,10 @@ com=cluster_edge_betweenness(g)
 
 ############
 ## try some hierarchical clustering
-scooccs = (cooccs+t(cooccs))/2
-d = as.dist(m=1-scooccs/max(scooccs))
-clust = hclust(d)
-plot(clust,labels=FALSE)
+#scooccs = (cooccs+t(cooccs))/2
+#d = as.dist(m=1-scooccs/max(scooccs))
+#clust = hclust(d)
+#plot(clust,labels=FALSE)
 
 
 ###############
@@ -104,47 +104,19 @@ plot(clust,labels=FALSE)
 #     referenced kws ?
 
 kmin = 0
-kmax = 1900  # max for common ggiant is 1088
-edge_th = 100  # 6218
+kmax = 1000
+edge_th =150
+freqmin=100
+freqmax=10000
 
-# filter on degree (work already on giant component ?)
-#max(degree(ggiant))
-#max(E(ggiant)$weight) 
-modularities = c();comnumber=c();dmax=c();eth=c();csizes=c();gsizes=c();gdensity=c()
-for(kmax in seq(from=1500,to=4700,by=100)){
-  for(edge_th in seq(from=20,to=250,by=10)){
-    show(paste0('kmax : ',kmax,' e_th : ',edge_th))
-    #d=degree(ggiant)
-    d = V(ggiant)$docfreq#strength(ggiant)
-    dd = degree(ggiant)#strength(ggiant)/degree(ggiant)
-    #gg=induced_subgraph(ggiant,which(d>kmin&d<kmax))
-    gg=induced_subgraph(ggiant,which(d<10000&d>50&dd<1200))
-    gg=subgraph.edges(gg,which(E(gg)$weight>edge_th))
-    # refilter again on connected components
-    clust = clusters(gg);cmax = which(clust$csize==max(clust$csize))
-    gg = induced.subgraph(gg,which(clust$membership==cmax))
-    com = cluster_louvain(gg)
-    gsizes=append(gsizes,length(V(gg)));gdensity=append(gdensity,2*length(E(gg))/(length(V(gg))*(length(V(gg))-1)))
-    csizes=append(csizes,length(clusters(gg)$csize))
-    modularities = append(modularities,modularity(com))
-    comnumber=append(comnumber,length(communities(com)))
-    dmax=append(dmax,kmax);eth=append(eth,edge_th)
-  }
-}
+sub = extractSubGraphCommunities(ggiant,kmin,kmax,freqmin,freqmax,edge_th);com=sub$com;gg=sub$gg
+summarySubGraphCommunities(sub)
 
-load('sensitivity/relevant_full_50000_eth50_nonfiltdico_ext.RData')
-#df = data.frame(dmax,eth,modularities,comnumber,csizes,gsizes,gdensity)
-names(d)[ncol(d)-2]="balance"
-g = ggplot(d) + scale_fill_gradient(low="yellow",high="red")#+ geom_raster(hjust = 0, vjust = 0) 
-plots=list()
-for(indic in c("modularity","communities","components","vertices","density","balance")){
-plots[[indic]] = g+geom_raster(aes_string("degree_max","edge_th",fill=indic))+facet_grid(freqmax~freqmin)
-}
-multiplot(plotlist = plots,cols=3)
+
 
 # -> for full_relevant_5000, (4200,90) is a good optimum
 
-write.graph(gg,file = paste0('graphs/',db,'/test4.gml'),format = "gml")
+write.graph(gg,file = paste0('graphs/',db,'/optim1.gml'),format = "gml")
 write.graph(gg,file = paste0('graphs/',db,'/filt_kmin',kmin,'_kmax',kmax,'_edge',edge_th,'_filtered','.gml'),format = "gml")
 gg=read.graph(paste0('graphs/',db,'/filt_kmin',kmin,'_kmax',kmax,'_edge',edge_th,'_filtered','.gml'),format='gml')
 save(gg,file=paste0('graphs/',db,'/filt_kmin',kmin,'_kmax',kmax,'_edge',edge_th,'_filtered','.RData'))
@@ -173,12 +145,12 @@ for(i in unique(com$membership)){show(i);show(V(gg)$name[which(com$membership==i
 
 # compute proba matrix
 them_probas = computeThemProbas(gg,com,keyword_dico)
-
+# or load from precomputed
 
 # number of articles with originality
 #length(which(rowSums(them_probas)>0))
 originalities=apply(them_probas,MARGIN = 1,FUN = function(r){if(sum(r)==0){return(0)}else{return(1 - sum(r^2))}})
-hist(originalities[originalities>0.6],breaks=50,main="",xlab="originalities")
+hist(originalities[originalities>0.6],breaks=100,main="",xlab="originalities")
 #summary(originalities)
 
 # cyb originalities ? -> needs cyb indexes (from citation network)
@@ -187,24 +159,30 @@ hist(originalities[originalities>0.6],breaks=50,main="",xlab="originalities")
 #as.numeric(cybnames)
 #as.numeric(names(keyword_dico))
 # dirty way -- DIIIIRTYYYY
-cybindexes = c();cybresnames = c();iscyb=rep(FALSE,length(originalities))
+load(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw/citationNetwork.RData'))
+cybergeo <- read.csv(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/Data/raw/cybergeo.csv'),colClasses = c('integer',rep('character',25)))
+
+cybindexes = c();cybresnames = c();iscyb=rep(FALSE,length(originalities));cybid = rep(0,length(originalities))
 for(cyb in cybnames){
+  show(cyb)
   indexes = which(names(keyword_dico)==cyb);
+  id=cybergeo$id[cybergeo$SCHID==cyb]
   if(length(indexes)>0){
     cybindexes=append(cybindexes,indexes[1]);
     cybresnames=append(cybresnames,cyb)
     iscyb[indexes[1]]=TRUE
-  }}
+    cybid[indexes[1]]=id[1]
+  }
+}
 
 #mean(originalities[cybindexes])
 #hist(originalities[cybindexes],breaks=50)
-length(which(iscyb))
+#length(which(iscyb))
 dat=data.frame(orig=originalities,cyb=iscyb)
 sdat=as.tbl(dat)%>%group_by(cyb)%>%summarise(mean=mean(orig))
 library(ggplot2)
 g=ggplot(dat, aes(x=orig, fill=cyb)) 
-g+ geom_density(alpha=.3)#+geom_vline(data=sdat, aes(xintercept=mean,  colour=cyb),
-                                   linetype="dashed", size=1)
+g+ geom_density(alpha=.3)+geom_vline(data=sdat, aes(xintercept=mean,  colour=cyb),linetype="dashed", size=1)
 
 
 # this was PAPER-level originality -> let try JOURNAL-level originality

@@ -9,9 +9,11 @@ source('networkConstruction.R')
 db='relevant_full_50000_eth50_nonfiltdico'
 load(paste0('processed/',db,'.RData'))
 g=res$g;
-#keyword_dico=res$keyword_dico
+keyword_dico=res$keyword_dico
+rm(res);gc()
 
 g = filterGraph(g,'data/filter.csv')
+g = filterGraph(g,'data/french.csv')
 
 # Q : work on giant component ?
 # 
@@ -58,5 +60,19 @@ for(freqmax in c(5000,10000,20000)){
 d = data.frame(degree_max=dmax,edge_th=eth,vertices=gsizes,components=csizes,modularity=modularities,communities=comnumber,density=gdensity,comunitiesbalance=cbalance,freqmin=freqsmin,freqmax=freqsmax)
 
 save(d,file=paste0('sensitivity/',db,'_ext_local.RData'))
+
+#############################
+
+load('sensitivity/relevant_full_50000_eth50_nonfiltdico_ext_local.RData')
+names(d)[ncol(d)-2]="balance"
+g = ggplot(d) + scale_fill_gradient(low="yellow",high="red")#+ geom_raster(hjust = 0, vjust = 0) 
+plots=list()
+for(indic in c("modularity","communities","components","vertices","density","balance")){
+  plots[[indic]] = g+geom_raster(aes_string("degree_max","edge_th",fill=indic))+facet_grid(freqmax~freqmin)
+}
+multiplot(plotlist = plots,cols=3)
+
+
+
 
 
