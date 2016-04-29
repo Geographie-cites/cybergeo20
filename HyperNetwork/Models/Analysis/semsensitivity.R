@@ -28,11 +28,12 @@ csizes=c();
 gsizes=c();
 gdensity=c();
 cbalance=c();
-for(freqmax in c(10000,20000)){
-  for(freqmin in c(50,100,200)){
-    for(kmax in seq(from=600,to=6200,by=200)){
-      for(edge_th in seq(from=60,to=300,by=20)){
-        show(paste0('kmax : ',kmax,' e_th : ',edge_th))
+freqsmin=c();freqsmax=c()
+for(freqmax in c(5000,10000,20000)){
+  for(freqmin in c(50,75,100,125,200)){
+    for(kmax in seq(from=300,to=1500,by=50)){
+      for(edge_th in seq(from=140,to=300,by=20)){
+        show(paste0('kmax : ',kmax,' e_th : ',edge_th,' ; freqmin : ',freqmin,' ; freqmax : ',freqmax))
         dd = V(ggiant)$docfreq
         d = degree(ggiant)
         gg=induced_subgraph(ggiant,which(d>kmin&d<kmax&dd>freqmin&dd<freqmax))
@@ -48,13 +49,14 @@ for(freqmax in c(10000,20000)){
         comnumber=append(comnumber,length(communities(com)))
         cbalance=append(cbalance,sum((sizes(com)/length(V(gg)))^2))
         dmax=append(dmax,kmax);eth=append(eth,edge_th)
+	freqsmin=append(freqsmin,freqmin);freqsmax=append(freqsmax,freqmax)
       }
     }
   }
 }
 
-d = data.frame(degree_max=dmax,edge_th=eth,vertices=gsizes,components=csizes,modularity=modularities,communities=comnumber,density=gdensity,comunitiesbalance=cbalance)
+d = data.frame(degree_max=dmax,edge_th=eth,vertices=gsizes,components=csizes,modularity=modularities,communities=comnumber,density=gdensity,comunitiesbalance=cbalance,freqmin=freqsmin,freqmax=freqsmax)
 
-save(d,file=paste0('sensitivity/',db,'_ext.RData'))
+save(d,file=paste0('sensitivity/',db,'_ext_local.RData'))
 
 
