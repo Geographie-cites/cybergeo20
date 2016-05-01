@@ -139,31 +139,41 @@ shinyServer(function(input, output, session) {
   }, options = list(paging = FALSE, searching = FALSE))
   
    
-  authoringMap = renderPlot({
+  output$cybMap = renderPlot({
     countryBase = mappingData()
     REG = world
     REG@data = data.frame(REG@data, countryBase[match(REG@data$CNTR_ID,countryBase$countries), ])
 
+    REG@data$StudiedAtAll = ifelse(REG@data$Studied >= 1, "#1C6F91", "lightgrey")
     REG@data$AuthoringAtAll = ifelse(REG@data$Authoring >= 1, "orange", "lightgrey")
+    REG@data$SelfStudiedAtAll = ifelse(REG@data$SelfStudied >= 1,  "#df691a", "lightgrey")  
+    years = input$dateRange
+    if(length(years) == 1) {
+      Year = years
+      } else {
+        Year = paste0(years[1], " - ", years[length(years)])
+      }
     
-    Year = input$dateRange
-    par(mfrow=c(1,1), mar = c(0,0,1,0))
-    plot(REG, col=REG@data$AuthoringAtAll, border="white")
-    title(paste0("Countries authoring Cybergeo articles | ", Year))
+    par(mfrow=c(1,1), mar = c(0,0,1,0), bg="#2b3e50")
+    
+    if (input$whatMapped == "A"){
+    plot(REG, col=REG@data$AuthoringAtAll, border="white", lwd=1)
+    title(paste0("Countries authoring Cybergeo articles | ", Year), col.main = "white")
+    }
+    if (input$whatMapped == "S"){
+      plot(REG, col=REG@data$StudiedAtAll, border="white", lwd=1)
+      title(paste0("Countries studied in Cybergeo articles | ", Year), col.main = "white")
+    }
+    if (input$whatMapped == "L"){
+      plot(REG, col=REG@data$SelfStudiedAtAll, border="white", lwd=1)
+        title(paste0("Countries studied by locals in Cybergeo articles | ", Year), col.main = "white") }
    })
   
-  studiedMap = renderPlot({
-    countryBase = mappingData()
-    REG = world
-    REG@data = data.frame(REG@data, countryBase[match(REG@data$CNTR_ID,countryBase$countries), ])
-    
-    REG@data$StudiedAtAll = ifelse(REG@data$Studied >= 1, "#1C6F91", "lightgrey")
-    
-    Year = input$dateRange
-    par(mfrow=c(1,1), mar = c(0,0,1,0))
-    plot(REG, col=REG@data$StudiedAtAll, border="white")
-    title(paste0("Countries studied in Cybergeo articles | ", Year))
-   })
+  
+  
+  
+  
+  
   
   ### Juste ----
   
