@@ -2,7 +2,7 @@
 title: "Untitled"
 author: "Pierre-Olivier Chasset"
 date: "15 avril 2016"
-output: word_document
+output: html_document
 ---
 
 ```{r, message=FALSE, warning=FALSE, echo=FALSE, results='asis'}

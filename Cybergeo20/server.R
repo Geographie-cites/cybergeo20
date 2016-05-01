@@ -15,6 +15,12 @@ colnames(files)[3:22] = paste0("T_", 1:20)
 themeDescription = read.csv("data/20themes20words.csv", sep=",", dec=".")
 articles = data.frame()
 
+world = readOGR(dsn="data/world.shp",
+              layer = "world", encoding="utf8")
+countries = as.character(world@data$CNTR_ID)
+locals = paste0("L_", countries)
+authors = paste0("A_", countries)
+studies = paste0("S_", countries)
 
 # set server ----
 
@@ -40,6 +46,17 @@ shinyServer(function(input, output, session) {
     articles = merge(articles, files, by = "id" , all.x = T, all.y = F)
     return(articles)   
   })
+  
+  mappingData <- reactive({
+    selectedArticles <- subsetArticles()
+    Studied = colSums(selectedArticles[,studies])
+    Authoring = colSums(selectedArticles[,authors])
+    SelfStudied = colSums(selectedArticles[,locals])
+    countryBase = data.frame(countries, Studied, Authoring, SelfStudied)
+    return(countryBase)   
+  })
+  
+  
   
    output$statArticles = renderDataTable({
     tab = data.frame()
@@ -122,8 +139,31 @@ shinyServer(function(input, output, session) {
   }, options = list(paging = FALSE, searching = FALSE))
   
    
-   
+  authoringMap = renderPlot({
+    countryBase = mappingData()
+    REG = world
+    REG@data = data.frame(REG@data, countryBase[match(REG@data$CNTR_ID,countryBase$countries), ])
+
+    REG@data$AuthoringAtAll = ifelse(REG@data$Authoring >= 1, "orange", "lightgrey")
+    
+    Year = input$dateRange
+    par(mfrow=c(1,1), mar = c(0,0,1,0))
+    plot(REG, col=REG@data$AuthoringAtAll, border="white")
+    title(paste0("Countries authoring Cybergeo articles | ", Year))
+   })
   
+  studiedMap = renderPlot({
+    countryBase = mappingData()
+    REG = world
+    REG@data = data.frame(REG@data, countryBase[match(REG@data$CNTR_ID,countryBase$countries), ])
+    
+    REG@data$StudiedAtAll = ifelse(REG@data$Studied >= 1, "#1C6F91", "lightgrey")
+    
+    Year = input$dateRange
+    par(mfrow=c(1,1), mar = c(0,0,1,0))
+    plot(REG, col=REG@data$StudiedAtAll, border="white")
+    title(paste0("Countries studied in Cybergeo articles | ", Year))
+   })
   
   ### Juste ----
   
