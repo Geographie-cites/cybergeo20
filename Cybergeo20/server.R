@@ -22,7 +22,7 @@ countries = as.character(world@data$CNTR_ID)
 lookup = data.frame(countries)
 lookup$polyID = as.numeric(rownames(lookup)) - 1
 
-justeTerms = read.csv("data/docprobasJuste.csv", sep=",", dec=".") 
+justeTerms = read.csv("data/docprobasJuste2.csv", sep=",", dec=".") 
 
 locals = paste0("L_", countries)
 authors = paste0("A_", countries)
@@ -218,15 +218,8 @@ shinyServer(function(input, output, session) {
   
   output$termsXCountriesMap = renderPlot({
     groupsOfCountries = input$nClassifGroups 
-<<<<<<< Updated upstream
-    # groups_Country = cahCountries()
-    # themes_By_country_bf =  clusterCountries()
-    # cahRes = data.frame("ID" = themes_By_country_bf[,1], "group" = groups_Country)
-    cahRes = cahCountries()
 
-=======
       cahRes = cahCountries()
->>>>>>> Stashed changes
      cahRes$groupColour = as.character(cut(cahRes$group, breaks = c(1:groupsOfCountries, groupsOfCountries+1),
                       labels = paletteCybergeo[1:groupsOfCountries],include.lowest = TRUE,right = FALSE))
     REG=world
