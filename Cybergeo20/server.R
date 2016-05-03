@@ -17,7 +17,7 @@ articles = data.frame()
 paletteCybergeo = c("#1C6F91", "#df691a", "#77c5ba", "orange", "#2db92d", "#e1ff2f", "#ff2313", "#bbab61")
 
 world = readOGR(dsn="data/world_SimplifiedGeom.shp",
-              layer = "world_SimplifiedGeom", encoding="utf8")
+              layer = "world_SimplifiedGeom", encoding="utf8", verbose = F)
 countries = as.character(world@data$CNTR_ID)
 
 justeTerms = read.csv("data/docprobasJuste.csv", sep=",", dec=".") 
