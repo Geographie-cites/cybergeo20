@@ -27,8 +27,47 @@ library(networkD3)
 
 
 #### Clem
+aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate){
+  themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
+  themes_By_country_bf[,themes] = NA
+  
+  for (c in countries_to_aggregate){
+    articles_to_aggregate = themesFile[themesFile[,c] == 1,2:13]
+    if (!is.null(articles_to_aggregate)){
+      nArticles = dim(articles_to_aggregate)[1]
+      themes_By_country_bf[themes_By_country_bf$CountryID == c, themes] = colSums(articles_to_aggregate) / nArticles
+    }}
+  
+  themes_By_country_bf = themes_By_country_bf[complete.cases(themes_By_country_bf),]
+  themes_By_country_bf$CountryID = substr(themes_By_country_bf$CountryID, 3,4)
+  return(themes_By_country_bf)
+}
+
+cahCountriesBasedOnTerms = function(themes_By_country_bf, numberOfGroups){
+themesScaled = scale(themes_By_country_bf[,2:13])
+  rownames(themesScaled) = themes_By_country_bf[,1]
+  d.themes = dist(themesScaled)
+  cah.themes = hclust(d.themes, method = "ward.D2")
+  groups_Country = cutree(cah.themes, k=numberOfGroups)
+  return(groups_Country)
+}
 
 
+
+
+
+stat.comp<-  function( x,y){
+K <-length(unique(y))
+n <-length(x)
+m <-mean(x)
+TSS <-sum((x-m)^2)
+nk<-table(y)
+mk<-tapply(x,y,mean)
+ BSS <-sum(nk* (mk-m)^2)
+result<-c(mk,100.0*BSS/TSS)
+names(result) <-c( paste("G",1:K),"% epl.")
+ return(result)
+}
 
 
 ### Juste ---

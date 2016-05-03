@@ -235,13 +235,29 @@ REG=world
 REG@data = data.frame(REG@data, cahRes[match(REG@data$CNTR_ID,cahRes$ID), ])
 plot(REG, col=REG@data$group)
 }
+stat.comp<-  function( x,y){
+  K <-length(unique(y))
+  n <-length(x)
+  m <-mean(x)
+  TSS <-sum((x-m)^2)
+  nk<-table(y)
+  mk<-tapply(x,y,mean)
+  BSS <-sum(nk* (mk-m)^2)
+  result<-c(mk,100.0*BSS/TSS)
+  names(result) <-c( paste("G",1:K),"% epl.")
+  return(result)
+}
 
-
-
+countriesDF = themes_By_country_bf[,2:13]
+rownames(countriesDF) = themes_By_country_bf[,1]
+leg = sapply(countriesDF, stat.comp,y=groups_Country)
 
 clusterCountriesBasedOnTerms(themesFile = cybterms4, themes = colnames(justeTerms)[2:13], 
                              numberOfGroups = 5, countries_to_aggregate = authors)
   
+
+par(mfrow=c(1,1), las=2, mar = c(5,8,4,2), bg="#2b3e50")
+barplot(leg[1,], horiz=TRUE, cex.names=0.8, xlab= "Frequency of themes")
 
 groups = 4
 

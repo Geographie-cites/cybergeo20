@@ -43,17 +43,7 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                       div(dataTableOutput("tableName"), style = "font-size:120%")
                              )),
                     
-                    tabPanel("Geo-semantic Networks",
-                             fluidRow(h2("Geo-semantic Networks"),
-                                      
-                                    column(4, selectInput("semanticMethod", label = "Semantic Method",
-                                                            choices = c("Juste"), multiple = F)),
-                                     column(4, selectInput("aggregationMethod", label = "Countries...",
-                                                                   choices = c("Authoring", "Studied"), multiple = F)),
-                                     column(4, sliderInput("nClassifGroups", label = "Number of Clusters",
-                                          min = 1, max = 8, value = 4, step = 1), animate=T),
-                                      column(12, plotOutput("termsXCountriesMap"))
-                             )),
+                   
                     
                     # JUSTE ----
                     
@@ -71,7 +61,7 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                       forceNetworkOutput("semanticNetwork")
                                       )
                     ),
-                    
+                   
                     # HADRI ----
                     
                     tabPanel("Keyword network",
@@ -158,11 +148,32 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                                    column(9, plotOutput("plotsem", width = "100%", height = "800px")))))
                                ),
                                
+                               
+                               
+                            
+                               
+                               
                                tabPanel("User guide",
                                         withMathJax(), 
                                         includeMarkdown("README.md"))
                              )
                     ),
+                    
+                    
+                    ############## CLEM
+                    tabPanel("Geo-semantic Networks",
+                             fluidRow(h2("Geo-semantic Networks"),
+                                      
+                                      column(4, selectInput("semanticMethod", label = "Semantic Method",
+                                                            choices = c("Juste"), multiple = F)),
+                                      column(4, selectInput("aggregationMethod", label = "Countries...",choices = c("Authoring", "Studied"), 
+                                                            selected = "Studied", multiple = F)),
+                                      column(4, sliderInput("nClassifGroups", label = "Number of Clusters",
+                                                            min = 1, max = 8, value = 4, step = 1), animate=T),
+                                      column(12, plotOutput("termsXCountriesMap")),
+                                      column(12, plotOutput("termsXCountriesLegend"))
+                             )),
+                    ############## 
                     
                     
                     "-----",
