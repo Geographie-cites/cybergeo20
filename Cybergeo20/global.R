@@ -30,12 +30,14 @@ library(networkD3)
 aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate){
   themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
   themes_By_country_bf[,themes] = NA
+  themes_By_country_bf$n = NA
   
   for (c in countries_to_aggregate){
     articles_to_aggregate = themesFile[themesFile[,c] == 1,2:13]
     if (!is.null(articles_to_aggregate)){
       nArticles = dim(articles_to_aggregate)[1]
       themes_By_country_bf[themes_By_country_bf$CountryID == c, themes] = colSums(articles_to_aggregate) / nArticles
+      themes_By_country_bf[themes_By_country_bf$CountryID == c, "n"] = nArticles
     }}
   
   themes_By_country_bf = themes_By_country_bf[complete.cases(themes_By_country_bf),]
@@ -52,7 +54,10 @@ themesScaled = scale(themes_By_country_bf[,2:13])
   return(groups_Country)
 }
 
-
+sumNum = function(x){
+  y = sum(x, na.rm= T)
+  return(y)
+}
 
 
 

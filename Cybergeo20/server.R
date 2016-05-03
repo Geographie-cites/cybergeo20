@@ -19,14 +19,14 @@ paletteCybergeo = c("#1C6F91", "#df691a", "#77c5ba", "orange", "#2db92d", "#e1ff
 world = readOGR(dsn="data/world_SimplifiedGeom.shp",
               layer = "world_SimplifiedGeom", encoding="utf8", verbose = F)
 countries = as.character(world@data$CNTR_ID)
+locals = paste0("L_", countries)
+authors = paste0("A_", countries)
+studies = paste0("S_", countries)
 lookup = data.frame(countries)
 lookup$polyID = as.numeric(rownames(lookup)) - 1
 
 justeTerms = read.csv("data/docprobasJuste2.csv", sep=",", dec=".") 
 
-locals = paste0("L_", countries)
-authors = paste0("A_", countries)
-studies = paste0("S_", countries)
 
 # set server ----
 
@@ -236,15 +236,24 @@ shinyServer(function(input, output, session) {
        if(groupsOfCountries %% 2 == 0) window = c(groupsOfCountries/2,2)
        if(groupsOfCountries %% 2 == 1) window = c(groupsOfCountries/2 + 0.5,2)
  
-     par(mfrow=window, las=2, mar = c(4,10,1,1), bg="#2b3e50")
+     themes_By_country_bf = clusterCountries()
+     themes_By_country_bf$group =  cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries)
+     nArticlesByGroup = aggregate(themes_By_country_bf[,"n"], by = list(themes_By_country_bf$group), FUN = sumNum)
+    colnames(nArticlesByGroup) = c("ID", "n")
+    nArticlesByGroup = nArticlesByGroup[order(nArticlesByGroup$ID),]
+     
+     par(mfrow=window, las=2, mar = c(4,10,2,1), bg="#2b3e50")
      for(i in 1:groupsOfCountries){
      barplot(leg[i,], col=paletteCybergeo[i], horiz=TRUE, cex.names=0.8, xlab= "Frequency of themes", col.lab="white", col.axis="white")
        axis(1, col = "white", col.axis = "white")
+     if(nArticlesByGroup[i, "n"] == 1)  title(paste0(nArticlesByGroup[i, "n"], " article"), col.main = "white")
+     if(nArticlesByGroup[i, "n"] > 1)  title(paste0(nArticlesByGroup[i, "n"], " articles"), col.main = "white")
      }
-  
    })
   
-  
+
+
+
   ### Juste ----
   
   
