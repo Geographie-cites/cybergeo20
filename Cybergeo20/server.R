@@ -225,7 +225,8 @@ shinyServer(function(input, output, session) {
     REG@data = data.frame(REG@data, cahRes[match(REG@data$CNTR_ID,cahRes$ID), ])
     par(mfrow=c(1,1), mar = c(0,0,1,0), bg="#2b3e50")
     plot(REG, col=REG@data$groupColour, border="white", lwd=0.7)
-      })
+    title("Groups of countries based on semantic networks", col.main = "white") 
+})
   
    output$termsXCountriesLegend = renderPlot({
      groupsOfCountries = input$nClassifGroups 
@@ -236,9 +237,10 @@ shinyServer(function(input, output, session) {
  
      par(mfrow=window, las=2, mar = c(4,10,1,1), bg="#2b3e50")
      for(i in 1:groupsOfCountries){
-     barplot(leg[i,], col=paletteCybergeo[i], horiz=TRUE, cex.names=0.8, xlab= "Frequency of themes")
+     barplot(leg[i,], col=paletteCybergeo[i], horiz=TRUE, cex.names=0.8, xlab= "Frequency of themes", col.lab="white", col.axis="white")
+       axis(1, col = "white", col.axis = "white")
      }
-     
+  
    })
   
   
