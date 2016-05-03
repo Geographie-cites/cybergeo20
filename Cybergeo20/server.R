@@ -88,7 +88,7 @@ shinyServer(function(input, output, session) {
     AC = sort(authoringCountries, decreasing = T)
     AC5 = paste0(names(AC[1]), " (", AC[1], "), ", names(AC[2]), " (",  AC[2], "), ", 
                  names(AC[3]), " (", AC[3], "), ", names(AC[4]), " (",  AC[4], "), ", 
-                 names(AC[4]), " (", AC[4], ")")
+                 names(AC[5]), " (", AC[5], ")")
     
     tab[4,1] = "Top countries authoring"
     tab[4,2] = AC5
@@ -105,7 +105,7 @@ shinyServer(function(input, output, session) {
     SC = sort(studiedCountries, decreasing = T)
     SC5 = paste0(names(SC[1]), " (", SC[1], "), ", names(SC[2]), " (",  SC[2], "), ", 
                  names(SC[3]), " (", SC[3], "), ", names(SC[4]), " (",  SC[4], "), ", 
-                 names(SC[4]), " (", SC[4], ")")
+                 names(SC[5]), " (", SC[5], ")")
     
     tab[6,1] = "Top countries studied"
     tab[6,2] = SC5
