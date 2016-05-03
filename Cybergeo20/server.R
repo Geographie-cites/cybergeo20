@@ -18,6 +18,32 @@ articles = data.frame()
 world = readOGR(dsn="data/world_SimplifiedGeom.shp",
               layer = "world_SimplifiedGeom", encoding="utf8")
 countries = as.character(world@data$CNTR_ID)
+
+justeTerms = read.csv("data/docprobasJuste.csv", sep=",", dec=".") 
+
+clusterCountriesBasedOnTerms = function(themesFile, themes, numberOfGroups, countries_to_aggregate){
+  themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
+  themes_By_country_bf[,themes] = NA
+  
+  for (c in countries_to_aggregate){
+    articles_to_aggregate = themesFile[themesFile[,c] == 1,2:13]
+    if (!is.null(articles_to_aggregate)){
+      nArticles = dim(articles_to_aggregate)[1]
+      themes_By_country_bf[themes_By_country_bf$CountryID == c, themes] = colSums(articles_to_aggregate) / nArticles
+    }}
+  
+  themes_By_country_bf = themes_By_country_bf[complete.cases(themes_By_country_bf),]
+  themes_By_country_bf$CountryID = substr(themes_By_country_bf$CountryID, 3,4)
+  themesScaled = scale(themes_By_country_bf[,2:13])
+  rownames(themesScaled) = themes_By_country_bf[,1]
+  d.themes = dist(themesScaled)
+  cah.themes = hclust(d.themes, method = "ward.D2")
+  groups_Country = cutree(cah.themes, k=numberOfGroups)
+  cahRes = data.frame("ID" = themes_By_country_bf[,1], "group" = groups_Country)
+  return(cahRes)
+}
+
+
 locals = paste0("L_", countries)
 authors = paste0("A_", countries)
 studies = paste0("S_", countries)
@@ -171,6 +197,39 @@ shinyServer(function(input, output, session) {
   
   
   
+  
+  output$termsXCountriesMap = renderPlot({
+    
+    termsMethod = input$semanticMethod
+    groupsOfCountries = input$nClassifGroups 
+    termCountryRelation = input$aggregationMethod
+    articles = cyberData$ARTICLES
+    if(termCountryRelation == "Authoring") tcr = authors
+    if(termCountryRelation ==  "Studied") tcr = studies
+   
+     if (termsMethod == "Juste"){
+      cybterms = justeTerms[justeTerms$CYBERGEOID != 0,]
+      cybterms$idterm = rownames(cybterms)
+      cybterms2 = data.frame(cybterms, articles[match(cybterms$CYBERGEOID,articles$id), ])
+      cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
+      cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
+      themeNames = colnames(justeTerms)[2:13]
+    }
+    
+    
+    cahRes = clusterCountriesBasedOnTerms(themesFile = cybterms4, themes = themeNames, numberOfGroups = groupsOfCountries, countries_to_aggregate = tcr)
+    
+    paletteCybergeo = c("#1C6F91", "#df691a", "white", "#77c5ba", "orange", "#2db92d", "#e1ff2f", "#ff2313")
+  
+    cahRes$groupColour = as.character(cut(cahRes$group, breaks = c(1:groupsOfCountries, groupsOfCountries+1),
+                     labels = paletteCybergeo[1:groupsOfCountries],include.lowest = TRUE,right = FALSE))
+    
+    REG=world
+    REG@data = data.frame(REG@data, cahRes[match(REG@data$CNTR_ID,cahRes$ID), ])
+    par(mfrow=c(1,1), mar = c(0,0,1,0), bg="#2b3e50")
+    plot(REG, col=REG@data$groupColour, border="white", lwd=0.7)
+    
+      })
   
   
   

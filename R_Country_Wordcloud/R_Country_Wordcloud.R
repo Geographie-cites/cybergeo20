@@ -210,18 +210,14 @@ studies = paste0("S_", countries)
 
 summary(cybterms4$countries)
 
-countries_to_aggregate = authors
-groups = 4
 
-themes = colnames(justeTerms)[2:13]
-themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
+clusterCountriesBasedOnTerms = function(themesFile, themes, numberOfGroups, countries_to_aggregate){
+  themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
 themes_By_country_bf[,themes] = NA
-
-head(articles_to_aggregate)
 
         for (c in countries_to_aggregate){
  #         cybterms4$currentCountry = cybterms4[,c]
-          articles_to_aggregate = cybterms4[cybterms4[,c] == 1,2:13]
+          articles_to_aggregate = themesFile[themesFile[,c] == 1,2:13]
           if (!is.null(articles_to_aggregate)){
           nArticles = dim(articles_to_aggregate)[1]
           themes_By_country_bf[themes_By_country_bf$CountryID == c, themes] = colSums(articles_to_aggregate) / nArticles
@@ -229,24 +225,28 @@ head(articles_to_aggregate)
 
 themes_By_country_bf = themes_By_country_bf[complete.cases(themes_By_country_bf),]
 themes_By_country_bf$CountryID = substr(themes_By_country_bf$CountryID, 3,4)
-plot(themes_By_country_bf)
-pairs(themes_By_country_bf[2:13])
-
 themesScaled = scale(themes_By_country_bf[,2:13])
 rownames(themesScaled) = themes_By_country_bf[,1]
 d.themes = dist(themesScaled)
 cah.themes = hclust(d.themes, method = "ward.D2")
-par(mfrow=c(1,1), mar = c(0,0,1,0))
-plot(cah.themes)
-rect.hclust(cah.themes, k=groups)
-
-groups_Country = cutree(cah.themes, k=groups)
-print(sort(groups_Country))
+groups_Country = cutree(cah.themes, k=numberOfGroups)
 cahRes = data.frame("ID" = themes_By_country_bf[,1], "group" = groups_Country)
-
 REG=world
 REG@data = data.frame(REG@data, cahRes[match(REG@data$CNTR_ID,cahRes$ID), ])
 plot(REG, col=REG@data$group)
+}
+
+
+
+
+clusterCountriesBasedOnTerms(themesFile = cybterms4, themes = colnames(justeTerms)[2:13], 
+                             numberOfGroups = 5, countries_to_aggregate = authors)
+  
+
+groups = 4
+
+
+
 
 
 

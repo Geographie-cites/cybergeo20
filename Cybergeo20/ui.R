@@ -43,6 +43,17 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                       div(dataTableOutput("tableName"), style = "font-size:120%")
                              )),
                     
+                    tabPanel("Geo-semantic Networks",
+                             fluidRow(h2("Geo-semantic Networks"),
+                                      
+                                    column(4, selectInput("semanticMethod", label = "Semantic Method",
+                                                            choices = c("Juste"), multiple = F)),
+                                     column(4, selectInput("aggregationMethod", label = "Countries...",
+                                                                   choices = c("Authoring", "Studied"), multiple = F)),
+                                     column(4, sliderInput("nClassifGroups", label = "Number of Clusters",
+                                          min = 1, max = 8, value = 4, step = 1), animate=T),
+                                      column(12, plotOutput("termsXCountriesMap"))
+                             )),
                     
                     # JUSTE ----
                     
