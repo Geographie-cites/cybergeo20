@@ -20,7 +20,7 @@ path = "/Users/clementinecottineau/Documents/cybergeo20/R_Country_Wordcloud/"
 
 world = readOGR(dsn=paste(path, "world/world.shp", sep=""),
                 layer = "world", encoding="utf8")
-plot(world)
+#plot(world)
 
 REG = world
  
@@ -173,25 +173,85 @@ title(paste0("Countries studied by locals in Cybergeo articles | ", Year))
 # text(x,y,w, cex = f  * 0.8)
 
 
-
+justeProba = "/Users/clementinecottineau/Documents/cybergeo20/HyperNetwork/Models/Analysis/export/relevant_full_50000_eth50_nonfiltdico_kmin0_kmax1000_freqmin100_freqmax10000_eth150/docprobas.csv"
 cybterms = read.csv("/Users/clementinecottineau/Documents/cybergeo20/Data/raw/terms.csv", sep=";", dec=".")
 head(cybterms)
 #cybtermat = table(cybterms$term, cybterms$id)
 #tail(cybtermat)
+justeTerms =  read.csv(justeProba, sep=",", dec=".") 
+head(justeTerms)
+
 
 lookup = data.frame(countries)
 lookup$polyID = as.numeric(rownames(lookup)) - 1
 
+dim(justeTerms)
+dim(cybterms)
+cybterms = justeTerms[justeTerms$CYBERGEOID != 0,]
 cybterms$idterm = rownames(cybterms)
-cybterms2 = data.frame(cybterms, articles[match(cybterms$id,articles$id), ])
+cybterms2 = data.frame(cybterms, articles[match(cybterms$CYBERGEOID,articles$id), ])
 cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
 cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
+head(cybterms4)
 #summary(cybterms4, 20)
-cybterms5 = cybterms4[with(cybterms4, order(-count)),]
+cybterms5 = cybterms4[with(cybterms4, order(-GIS)),]
+head(cybterms5)
 
 
 
-keywordsPO = cybterms5[,]
+
+
+
+cybterms5
+
+
+authors = paste0("A_", countries)
+studies = paste0("S_", countries)
+
+summary(cybterms4$countries)
+
+countries_to_aggregate = authors
+groups = 4
+
+themes = colnames(justeTerms)[2:13]
+themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
+themes_By_country_bf[,themes] = NA
+
+head(articles_to_aggregate)
+
+        for (c in countries_to_aggregate){
+ #         cybterms4$currentCountry = cybterms4[,c]
+          articles_to_aggregate = cybterms4[cybterms4[,c] == 1,2:13]
+          if (!is.null(articles_to_aggregate)){
+          nArticles = dim(articles_to_aggregate)[1]
+          themes_By_country_bf[themes_By_country_bf$CountryID == c, themes] = colSums(articles_to_aggregate) / nArticles
+        }}
+
+themes_By_country_bf = themes_By_country_bf[complete.cases(themes_By_country_bf),]
+themes_By_country_bf$CountryID = substr(themes_By_country_bf$CountryID, 3,4)
+plot(themes_By_country_bf)
+pairs(themes_By_country_bf[2:13])
+
+themesScaled = scale(themes_By_country_bf[,2:13])
+rownames(themesScaled) = themes_By_country_bf[,1]
+d.themes = dist(themesScaled)
+cah.themes = hclust(d.themes, method = "ward.D2")
+par(mfrow=c(1,1), mar = c(0,0,1,0))
+plot(cah.themes)
+rect.hclust(cah.themes, k=groups)
+
+groups_Country = cutree(cah.themes, k=groups)
+print(sort(groups_Country))
+cahRes = data.frame("ID" = themes_By_country_bf[,1], "group" = groups_Country)
+
+REG=world
+REG@data = data.frame(REG@data, cahRes[match(REG@data$CNTR_ID,cahRes$ID), ])
+plot(REG, col=REG@data$group)
+
+
+
+
+keywordsPO = cybterms5
 #summary(keywordsPO)
 
 LOC=NULL
@@ -338,6 +398,16 @@ make_studied_gif <- function (years, articles) {
 }
 Years = 1996:2016
 make_studied_gif(Years, articles) 
+
+
+
+
+
+
+
+
+
+
 
 
 
