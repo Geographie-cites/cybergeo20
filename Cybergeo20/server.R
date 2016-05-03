@@ -15,8 +15,8 @@ colnames(files)[3:22] = paste0("T_", 1:20)
 themeDescription = read.csv("data/20themes20words.csv", sep=",", dec=".")
 articles = data.frame()
 
-world = readOGR(dsn="data/world.shp",
-              layer = "world", encoding="utf8")
+world = readOGR(dsn="data/world_SimplifiedGeom.shp",
+              layer = "world_SimplifiedGeom", encoding="utf8")
 countries = as.character(world@data$CNTR_ID)
 locals = paste0("L_", countries)
 authors = paste0("A_", countries)
@@ -157,15 +157,15 @@ shinyServer(function(input, output, session) {
     par(mfrow=c(1,1), mar = c(0,0,1,0), bg="#2b3e50")
     
     if (input$whatMapped == "A"){
-    plot(REG, col=REG@data$AuthoringAtAll, border="white", lwd=1)
+    plot(REG, col=REG@data$AuthoringAtAll, border="white", lwd=0.7)
     title(paste0("Countries authoring Cybergeo articles | ", Year), col.main = "white")
     }
     if (input$whatMapped == "S"){
-      plot(REG, col=REG@data$StudiedAtAll, border="white", lwd=1)
+      plot(REG, col=REG@data$StudiedAtAll, border="white", lwd=0.7)
       title(paste0("Countries studied in Cybergeo articles | ", Year), col.main = "white")
     }
     if (input$whatMapped == "L"){
-      plot(REG, col=REG@data$SelfStudiedAtAll, border="white", lwd=1)
+      plot(REG, col=REG@data$SelfStudiedAtAll, border="white", lwd=0.7)
         title(paste0("Countries studied by locals in Cybergeo articles | ", Year), col.main = "white") }
    })
   
