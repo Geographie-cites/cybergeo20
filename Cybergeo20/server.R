@@ -19,6 +19,8 @@ paletteCybergeo = c("#1C6F91", "#df691a", "#77c5ba", "orange", "#2db92d", "#e1ff
 world = readOGR(dsn="data/world_SimplifiedGeom.shp",
               layer = "world_SimplifiedGeom", encoding="utf8", verbose = F)
 countries = as.character(world@data$CNTR_ID)
+lookup = data.frame(countries)
+lookup$polyID = as.numeric(rownames(lookup)) - 1
 
 justeTerms = read.csv("data/docprobasJuste.csv", sep=",", dec=".") 
 
