@@ -1,24 +1,34 @@
 
+
+setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Models/Analysis'))
+
 # export thematics for Clem mappping
 
+list.files("probas")
+list.files("export/comunitiesnames")
+
+db='relevant_full_50000_eth50_nonfiltdico'
+dbparams = 'relevant_full_50000_eth50_nonfiltdico_kmin0_kmax1200_freqmin50_freqmax10000_eth100'
+
+load(paste0('probas/',dbparams,'.RData'))
+load(paste0('processed/',db,'.RData'))
+keyword_dico=res$keyword_dico;g=res$g;rm(res);gc()
+them_probas = probas
 
 # define comunities names
 # com
 thematics = communities(sub$com)
+thematics[[1]]
 # define names by hand
-# names(thematics) =c("climate","NA","socio-economic","NA","agriculture","commerce","NA","NA","health","NA","NA",
-#                      "biology","communication/politics","spatial analysis","NA","GIS","biogeography","physical geography"
-#                      )
 
-names(thematics) = c("NA","NA","GIS","NA","socio-economic","NA","agriculture",
-                     "NA","health","NA","communication/politics","biology","spatial analysis",
-                     "NA","neuroscience","biogeography","NA","climate","commerce","physical geography"
-                     )
+themnames = as.character(read.csv(file=paste0('export/comunitiesnames/',dbparams,'.csv'),header=FALSE,stringsAsFactors = FALSE)[,1])
+
+names(thematics)<-themnames
 
 # construct kws df
 kws=c()
 for(i in 1:length(thematics)){
-  if(names(thematics)[i]!="NA"){
+  if(!is.na(names(thematics)[i])){
     for(kw in thematics[[i]]){
       show(c(kw,names(thematics)[i]))
       kws=append(kws,c(kw,names(thematics)[i]))
@@ -30,8 +40,8 @@ for(i in 1:length(thematics)){
 #  -> precomputed in semthem_probas
 
 # select existing thematics
-export_probas = them_probas[,names(thematics)!="NA"]
-colnames(export_probas) = names(thematics)[names(thematics)!="NA"]
+export_probas = them_probas[,!is.na(names(thematics))]
+colnames(export_probas) = names(thematics)[!is.na(names(thematics))]
 
 # need iscyb and cybindexes
 # -> load from consolidated db
@@ -39,6 +49,10 @@ colnames(export_probas) = names(thematics)[names(thematics)!="NA"]
 #colnames(export_probas)[13]="ID"
 export_probas = cbind(cybid,data.frame(export_probas))
 names(export_probas)[1] = "CYBERGEOID"
+
+cybprobas = as.tbl(export_probas[export_probas$CYBERGEOID>0,])
+cybprobas[cybprobas$cognitive.sciences>0.2,]
+intersect(keyword_dico[[cybergeo$SCHID[cybergeo$id==4994]]],thematics[['cognitive sciences']])
 
 #res = left_join(as.tbl(export_probas),as.tbl(cybergeo),by=c("ID","SCHID"))
 # export into dbparams

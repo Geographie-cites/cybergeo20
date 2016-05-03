@@ -162,7 +162,7 @@ hist(originalities[originalities>0.6],breaks=100,main="",xlab="originalities")
 load(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw/citationNetwork.RData'))
 cybergeo <- read.csv(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/Data/raw/cybergeo.csv'),colClasses = c('integer',rep('character',25)))
 
-cybindexes = c();cybresnames = c();iscyb=rep(FALSE,length(originalities));cybid = rep(0,length(originalities))
+cybindexes = c();cybresnames = c();iscyb=rep(FALSE,nrow(them_probas));cybid = rep(0,nrow(them_probas))
 for(cyb in cybnames){
   show(cyb)
   indexes = which(names(keyword_dico)==cyb);

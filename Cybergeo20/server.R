@@ -219,7 +219,7 @@ shinyServer(function(input, output, session) {
   output$termsXCountriesMap = renderPlot({
     groupsOfCountries = input$nClassifGroups 
     cahRes = cahCountries()
-    cahRes = data.frame("ID" = themes_By_country_bf[,1], "group" = groups_Country)
+    #cahRes = data.frame("ID" = themes_By_country_bf[,1], "group" = groups_Country)
     
     cahRes$groupColour = as.character(cut(cahRes$group, breaks = c(1:groupsOfCountries, groupsOfCountries+1),
                      labels = paletteCybergeo[1:groupsOfCountries],include.lowest = TRUE,right = FALSE))
