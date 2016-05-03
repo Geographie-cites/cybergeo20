@@ -218,15 +218,17 @@ shinyServer(function(input, output, session) {
   
   output$termsXCountriesMap = renderPlot({
     groupsOfCountries = input$nClassifGroups 
+    # groups_Country = cahCountries()
+    # themes_By_country_bf =  clusterCountries()
+    # cahRes = data.frame("ID" = themes_By_country_bf[,1], "group" = groups_Country)
     cahRes = cahCountries()
-    cahRes = data.frame("ID" = themes_By_country_bf[,1], "group" = groups_Country)
-    
-    cahRes$groupColour = as.character(cut(cahRes$group, breaks = c(1:groupsOfCountries, groupsOfCountries+1),
-                     labels = paletteCybergeo[1:groupsOfCountries],include.lowest = TRUE,right = FALSE))
+     cahRes$groupColour = as.character(cut(cahRes$group, breaks = c(1:groupsOfCountries, groupsOfCountries+1),
+                      labels = paletteCybergeo[1:groupsOfCountries],include.lowest = TRUE,right = FALSE))
     REG=world
     REG@data = data.frame(REG@data, cahRes[match(REG@data$CNTR_ID,cahRes$ID), ])
     par(mfrow=c(1,1), mar = c(0,0,1,0), bg="#2b3e50")
     plot(REG, col=REG@data$groupColour, border="white", lwd=0.7)
+  #  plot(REG, col=REG@data$group, border="white", lwd=0.7)
     title("Groups of countries based on semantic networks", col.main = "white") 
 })
   
