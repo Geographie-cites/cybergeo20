@@ -183,9 +183,9 @@ shinyServer(function(input, output, session) {
     groupsOfCountries = input$nClassifGroups 
     termCountryRelation = input$aggregationMethod
     articles = cyberData$ARTICLES
+    
     if(termCountryRelation == "Authoring") tcr = authors
     if(termCountryRelation ==  "Studied") tcr = studies
-    allArticles <- cyberData$ARTICLES
     if (termsMethod == "Citations"){
       colNumbers = 2:13
       cybterms = justeTerms[justeTerms$CYBERGEOID != 0,]
@@ -203,6 +203,18 @@ shinyServer(function(input, output, session) {
       cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
       themeNames = colnames(hadriTerms)[colNumbers]
     }
+    if (termsMethod == "Semantic"){
+      articlesWithThemes = data.frame(articles, files[match(articles$id,files$id), ])
+      #merge(articles, files, by = "id" , all.x = T, all.y = F)
+      
+      colNumbers = 2:21
+      themeNames =  paste0("T_", 1:20)
+      cybterms = articlesWithThemes[,c("id",themeNames)]
+      cybtermsbis = cybterms[complete.cases(cybterms[,themeNames]),]
+      cybterms2 = data.frame(cybtermsbis, articles[match(cybtermsbis$id,articles$id), ])
+      cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
+      cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
+     }
     themes_By_country_bf = aggregateCountriesBasedOnTerms(themesFile = cybterms4, themes = themeNames, countries_to_aggregate = tcr, colNumbers = colNumbers)
     return(themes_By_country_bf)   
   })
@@ -212,6 +224,7 @@ shinyServer(function(input, output, session) {
     termsMethod = input$semanticMethod
     if (termsMethod == "Citations") colNumbers = 2:13
     if (termsMethod == "Keywords") colNumbers = 2:11
+    if (termsMethod == "Semantic") colNumbers = 2:21
     themes_By_country_bf = clusterCountries()
     cahRes = cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries, colNumbers = colNumbers)
     cahResDF = data.frame("ID" = themes_By_country_bf[,1], "group" = cahRes)
@@ -223,6 +236,7 @@ shinyServer(function(input, output, session) {
     termsMethod = input$semanticMethod
     if (termsMethod == "Citations") colNumbers = 2:13
     if (termsMethod == "Keywords") colNumbers = 2:11
+    if (termsMethod == "Semantic") colNumbers = 2:21
     themes_By_country_bf = clusterCountries()
     legcahRes = cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries, colNumbers = colNumbers)
      countriesDF = themes_By_country_bf[,colNumbers]
@@ -253,6 +267,7 @@ shinyServer(function(input, output, session) {
      termsMethod = input$semanticMethod
      if (termsMethod == "Citations") colNumbers = 2:13
      if (termsMethod == "Keywords") colNumbers = 2:11
+     if (termsMethod == "Semantic") colNumbers = 2:21
      themes_By_country_bf = clusterCountries()
      themes_By_country_bf$group =  cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries, colNumbers = colNumbers)
      nArticlesByGroup = aggregate(themes_By_country_bf[,"n"], by = list(themes_By_country_bf$group), FUN = sumNum)
