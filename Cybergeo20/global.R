@@ -27,13 +27,13 @@ library(networkD3)
 
 
 #### Clem
-aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate){
+aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate, colNumbers){
   themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
   themes_By_country_bf[,themes] = NA
   themes_By_country_bf$n = NA
   
   for (c in countries_to_aggregate){
-    articles_to_aggregate = themesFile[themesFile[,c] == 1,2:13]
+    articles_to_aggregate = themesFile[themesFile[,c] == 1,colNumbers]
     if (!is.null(articles_to_aggregate)){
       nArticles = dim(articles_to_aggregate)[1]
       themes_By_country_bf[themes_By_country_bf$CountryID == c, themes] = colSums(articles_to_aggregate) / nArticles
@@ -45,8 +45,8 @@ aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggre
   return(themes_By_country_bf)
 }
 
-cahCountriesBasedOnTerms = function(themes_By_country_bf, numberOfGroups){
-themesScaled = scale(themes_By_country_bf[,2:13])
+cahCountriesBasedOnTerms = function(themes_By_country_bf, numberOfGroups, colNumbers){
+themesScaled = scale(themes_By_country_bf[,colNumbers])
   rownames(themesScaled) = themes_By_country_bf[,1]
   d.themes = dist(themesScaled)
   cah.themes = hclust(d.themes, method = "ward.D2")

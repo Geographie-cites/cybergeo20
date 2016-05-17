@@ -26,7 +26,7 @@ lookup = data.frame(countries)
 lookup$polyID = as.numeric(rownames(lookup)) - 1
 
 justeTerms = read.csv("data/docprobasJuste2.csv", sep=",", dec=".") 
-
+hadriTerms = read.csv("data/kwprop.csv", sep=",", dec=".")
 
 # set server ----
 
@@ -186,31 +186,46 @@ shinyServer(function(input, output, session) {
     if(termCountryRelation == "Authoring") tcr = authors
     if(termCountryRelation ==  "Studied") tcr = studies
     allArticles <- cyberData$ARTICLES
-    if (termsMethod == "Juste"){
+    if (termsMethod == "Citations"){
+      colNumbers = 2:13
       cybterms = justeTerms[justeTerms$CYBERGEOID != 0,]
       cybterms$idterm = rownames(cybterms)
       cybterms2 = data.frame(cybterms, articles[match(cybterms$CYBERGEOID,articles$id), ])
       cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
       cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
-      themeNames = colnames(justeTerms)[2:13]
+      themeNames = colnames(justeTerms)[colNumbers]
     }
-    themes_By_country_bf = aggregateCountriesBasedOnTerms(themesFile = cybterms4, themes = themeNames, countries_to_aggregate = tcr)
+    if (termsMethod == "Keywords"){
+      cybterms = hadriTerms
+      colNumbers = 2:11
+      cybterms2 = data.frame(cybterms, articles[match(cybterms$ID,articles$id), ])
+      cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
+      cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
+      themeNames = colnames(hadriTerms)[colNumbers]
+    }
+    themes_By_country_bf = aggregateCountriesBasedOnTerms(themesFile = cybterms4, themes = themeNames, countries_to_aggregate = tcr, colNumbers = colNumbers)
     return(themes_By_country_bf)   
   })
   
   cahCountries <- reactive({
     groupsOfCountries = input$nClassifGroups 
+    termsMethod = input$semanticMethod
+    if (termsMethod == "Citations") colNumbers = 2:13
+    if (termsMethod == "Keywords") colNumbers = 2:11
     themes_By_country_bf = clusterCountries()
-    cahRes = cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries)
+    cahRes = cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries, colNumbers = colNumbers)
     cahResDF = data.frame("ID" = themes_By_country_bf[,1], "group" = cahRes)
     return(cahResDF)   
   })
   
   legCahCountries <- reactive({
     groupsOfCountries = input$nClassifGroups 
+    termsMethod = input$semanticMethod
+    if (termsMethod == "Citations") colNumbers = 2:13
+    if (termsMethod == "Keywords") colNumbers = 2:11
     themes_By_country_bf = clusterCountries()
-    legcahRes = cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries)
-     countriesDF = themes_By_country_bf[,2:13]
+    legcahRes = cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries, colNumbers = colNumbers)
+     countriesDF = themes_By_country_bf[,colNumbers]
     rownames(countriesDF) = themes_By_country_bf[,1]
     leg = sapply(countriesDF, stat.comp,y=legcahRes)
     return(leg)   
@@ -235,9 +250,11 @@ shinyServer(function(input, output, session) {
     
        if(groupsOfCountries %% 2 == 0) window = c(groupsOfCountries/2,2)
        if(groupsOfCountries %% 2 == 1) window = c(groupsOfCountries/2 + 0.5,2)
- 
+     termsMethod = input$semanticMethod
+     if (termsMethod == "Citations") colNumbers = 2:13
+     if (termsMethod == "Keywords") colNumbers = 2:11
      themes_By_country_bf = clusterCountries()
-     themes_By_country_bf$group =  cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries)
+     themes_By_country_bf$group =  cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries, colNumbers = colNumbers)
      nArticlesByGroup = aggregate(themes_By_country_bf[,"n"], by = list(themes_By_country_bf$group), FUN = sumNum)
     colnames(nArticlesByGroup) = c("ID", "n")
     nArticlesByGroup = nArticlesByGroup[order(nArticlesByGroup$ID),]

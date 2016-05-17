@@ -165,7 +165,7 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                              fluidRow(h2("Geo-semantic Networks"),
                                       
                                       column(4, selectInput("semanticMethod", label = "Semantic Method",
-                                                            choices = c("Juste"), multiple = F)),
+                                                            choices = c("Citations", "Keywords", "Semantic"), multiple = F)),
                                       column(4, selectInput("aggregationMethod", label = "Set of Countries",choices = c("Authoring", "Studied"), 
                                                             selected = "Studied", multiple = F)),
                                       column(4, sliderInput("nClassifGroups", label = "Number of Clusters",
