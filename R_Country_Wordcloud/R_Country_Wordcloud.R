@@ -479,8 +479,8 @@ tabflow = subset(tabflow, Authoring != Studied)
 
 par(mfrow=c(1,1), mar = c(0,0,1,0))
 plot(REG, col="lightgrey", border=F)
-Arrows(tabflow$X_A,tabflow$Y_A,tabflow$X_S,tabflow$Y_S, lwd = 0.5, col = "indianred3", code=2, arr.adj = 1 ,arr.type = "curved")
-title("Who studies who? | 1996-2015")
+Arrows(tabflow$X_A,tabflow$Y_A,tabflow$X_S,tabflow$Y_S, lwd = 0.5, col = "#df691a", code=2, arr.adj = 1 ,arr.type = "curved")
+title("Who studies who? | 1996-2015", col.main = "white")
  
 write.csv(tabflow, paste0(path, "df_countryAuthoringToCountryStudied.csv"))
 

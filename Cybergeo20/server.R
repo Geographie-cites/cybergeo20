@@ -205,8 +205,6 @@ shinyServer(function(input, output, session) {
     }
     if (termsMethod == "Semantic"){
       articlesWithThemes = data.frame(articles, files[match(articles$id,files$id), ])
-      #merge(articles, files, by = "id" , all.x = T, all.y = F)
-      
       colNumbers = 2:21
       themeNames =  paste0("T_", 1:20)
       cybterms = articlesWithThemes[,c("id",themeNames)]
