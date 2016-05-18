@@ -159,21 +159,11 @@ hist(originalities[originalities>0.6],breaks=100,main="",xlab="originalities")
 #as.numeric(cybnames)
 #as.numeric(names(keyword_dico))
 # dirty way -- DIIIIRTYYYY
+
 load(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw/citationNetwork.RData'))
 cybergeo <- read.csv(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/Data/raw/cybergeo.csv'),colClasses = c('integer',rep('character',25)))
-
-cybindexes = c();cybresnames = c();iscyb=rep(FALSE,nrow(them_probas));cybid = rep(0,nrow(them_probas))
-for(cyb in cybnames){
-  show(cyb)
-  indexes = which(names(keyword_dico)==cyb);
-  id=cybergeo$id[cybergeo$SCHID==cyb]
-  if(length(indexes)>0){
-    cybindexes=append(cybindexes,indexes[1]);
-    cybresnames=append(cybresnames,cyb)
-    iscyb[indexes[1]]=TRUE
-    cybid[indexes[1]]=id[1]
-  }
-}
+cyb = getCybindexes(them_probas,cybnames,cybergeo,keyword_dico)
+cybindexes=cyb$cybindexes;iscyb=cyb$iscyb
 
 #mean(originalities[cybindexes])
 #hist(originalities[cybindexes],breaks=50)
@@ -181,7 +171,7 @@ for(cyb in cybnames){
 dat=data.frame(orig=originalities,cyb=iscyb)
 sdat=as.tbl(dat)%>%group_by(cyb)%>%summarise(mean=mean(orig))
 library(ggplot2)
-g=ggplot(dat, aes(x=orig, fill=cyb)) 
+g=ggplot(dat, aes(x=orig, fill=cyb))
 g+ geom_density(alpha=.3)+geom_vline(data=sdat, aes(xintercept=mean,  colour=cyb),linetype="dashed", size=1)
 
 

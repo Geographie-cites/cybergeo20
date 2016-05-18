@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: seminaire.aux
+The style file: apalike.bst
+Database file #1: /Users/Juste/Documents/ComplexSystems/CityNetwork/Biblio/Bibtex/CityNetwork.bib
+Database file #2: /Users/Juste/Documents/ComplexSystems/CityNetwork/Docs/Papers/Cybergeo/Biblio/cybergeo.bib
+Database file #3: ../biblio.bib
+Warning--can't use both volume and number fields in cottineau2015revisiting
+You've used 10 entries,
+            1935 wiz_defined-function locations,
+            543 strings with 5664 characters,
+and the built_in function-call counts, 4074 in all, are:
+= -- 413
+> -- 114
+< -- 13
++ -- 38
+- -- 36
+* -- 325
+:= -- 678
+add.period$ -- 33
+call.type$ -- 10
+change.case$ -- 68
+chr.to.int$ -- 10
+cite$ -- 11
+duplicate$ -- 173
+empty$ -- 321
+format.name$ -- 50
+if$ -- 831
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 9
+newline$ -- 53
+num.names$ -- 30
+pop$ -- 59
+preamble$ -- 1
+purify$ -- 68
+quote$ -- 0
+skip$ -- 131
+stack$ -- 0
+substring$ -- 328
+swap$ -- 33
+text.length$ -- 5
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 60
+warning$ -- 1
+while$ -- 36
+width$ -- 0
+write$ -- 135
+(There was 1 warning)

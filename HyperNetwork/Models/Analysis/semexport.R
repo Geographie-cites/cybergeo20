@@ -2,10 +2,12 @@
 
 setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Models/Analysis'))
 
+source('networkConstruction.R')
+
 # export thematics for Clem mappping
 
-list.files("probas")
-list.files("export/comunitiesnames")
+#list.files("probas")
+#list.files("export/comunitiesnames")
 
 db='relevant_full_50000_eth50_nonfiltdico'
 dbparams = 'relevant_full_50000_eth50_nonfiltdico_kmin0_kmax1200_freqmin50_freqmax10000_eth100'
@@ -18,7 +20,7 @@ them_probas = probas
 # define comunities names
 # com
 thematics = communities(sub$com)
-thematics[[1]]
+#thematics[[1]]
 # define names by hand
 
 themnames = as.character(read.csv(file=paste0('export/comunitiesnames/',dbparams,'.csv'),header=FALSE,stringsAsFactors = FALSE)[,1])
@@ -36,6 +38,12 @@ for(i in 1:length(thematics)){
   }
 }
 
+kwdf = data.frame(matrix(kws,ncol=2,byrow=TRUE))
+
+kws = as.tbl(kwdf)
+kws %>% group_by(X2) %>% summarise(l=length(X1)) %>% arrange(l)
+data.frame(kws[kws[,2]=='crime',])
+
 # load them probas
 #  -> precomputed in semthem_probas
 
@@ -47,20 +55,38 @@ colnames(export_probas) = names(thematics)[!is.na(names(thematics))]
 # -> load from consolidated db
 #export_probas = cbind(data.frame(export_probas),as.character(names(keyword_dico)))
 #colnames(export_probas)[13]="ID"
+load(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw/citationNetwork.RData'))
+cybergeo <- read.csv(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/Data/raw/cybergeo.csv'),colClasses = c('integer',rep('character',25)))
+cyb = getCybindexes(them_probas,cybnames,cybergeo,keyword_dico)
+cybid=cyb$cybid;iscyb=cyb$iscyb
 export_probas = cbind(cybid,data.frame(export_probas))
 names(export_probas)[1] = "CYBERGEOID"
 
-cybprobas = as.tbl(export_probas[export_probas$CYBERGEOID>0,])
-cybprobas[cybprobas$cognitive.sciences>0.2,]
-intersect(keyword_dico[[cybergeo$SCHID[cybergeo$id==4994]]],thematics[['cognitive sciences']])
+citadjacency = get.adjacency(gcitation,sparse=TRUE)[names(keyword_dico),names(keyword_dico)]
+rm(gcitation);gc()
+
+#cybprobas = as.tbl(export_probas[export_probas$CYBERGEOID>0,])
+#cybprobas[cybprobas$crime>0.1,]
+#intersect(keyword_dico[[cybergeo$SCHID[cybergeo$id==4994]]],thematics[['cognitive sciences']])
 
 #res = left_join(as.tbl(export_probas),as.tbl(cybergeo),by=c("ID","SCHID"))
 # export into dbparams
-exdir=paste0('export/',dbparams)
-dir.create(exdir)
+# exdir=paste0('export/',dbparams)
+# dir.create(exdir)
+# 
+# write.table(export_probas,col.names = TRUE,row.names = FALSE,file = paste0(exdir,'/docprobas.csv'),sep=",")
+# write.table(kwdf,col.names = FALSE,row.names = FALSE,file = paste0(exdir,'/thematics.csv'),sep=",")
+# 
+# # export subgraph (for viz)
+# keptvertices = sapply(V(sub$gg)$name,function(s){s%in%kwdf[,1]})
+# gg=induced_subgraph(sub$gg,keptvertices)
+# ind=1:nrow(kwdf);names(ind)=as.character(kwdf[,1]);V(gg)$community = as.character(kwdf[,2])[ind[V(gg)$name]]
+# gg=filterGraph(gg,'export/addfilter.csv')
+# E(gg)$weight = log(E(gg)$weight)
+# write.graph(gg,file = paste0(exdir,'/graph1.gml'),format = "gml")
+# 
 
-write.table(export_probas,col.names = TRUE,row.names = FALSE,file = paste0(exdir,'/docprobas.csv'),sep=",")
-write.table(data.frame(matrix(kws,ncol=2,byrow=TRUE)),col.names = FALSE,row.names = FALSE,file = paste0(exdir,'/thematics.csv'),sep=",")
+
 
 
 

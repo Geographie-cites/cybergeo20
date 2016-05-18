@@ -1,0 +1,58 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: cybergeo.aux
+The style file: apalike.bst
+Database file #1: /Users/Juste/Documents/ComplexSystems/CityNetwork/Biblio/Bibtex/CityNetwork.bib
+Database file #2: /Users/Juste/Documents/ComplexSystems/CityNetwork/Docs/Papers/Cybergeo/Biblio/cybergeo.bib
+Repeated entry---line 113 of file /Users/Juste/Documents/ComplexSystems/CityNetwork/Docs/Papers/Cybergeo/Biblio/cybergeo.bib
+ : @article{noruzi2005google
+ :                          ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 176 of file /Users/Juste/Documents/ComplexSystems/CityNetwork/Docs/Papers/Cybergeo/Biblio/cybergeo.bib
+ : @inproceedings{schmid1994probabilistic
+ :                                       ,
+I'm skipping whatever remains of this entry
+Database file #3: ../biblio.bib
+Warning--can't use both volume and number fields in cottineau2015revisiting
+You've used 7 entries,
+            1935 wiz_defined-function locations,
+            522 strings with 5069 characters,
+and the built_in function-call counts, 2777 in all, are:
+= -- 278
+> -- 87
+< -- 9
++ -- 28
+- -- 28
+* -- 221
+:= -- 471
+add.period$ -- 23
+call.type$ -- 7
+change.case$ -- 49
+chr.to.int$ -- 7
+cite$ -- 8
+duplicate$ -- 120
+empty$ -- 211
+format.name$ -- 37
+if$ -- 561
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 6
+newline$ -- 38
+num.names$ -- 21
+pop$ -- 44
+preamble$ -- 1
+purify$ -- 49
+quote$ -- 0
+skip$ -- 90
+stack$ -- 0
+substring$ -- 193
+swap$ -- 23
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 42
+warning$ -- 1
+while$ -- 24
+width$ -- 0
+write$ -- 95
+(There were 2 error messages)

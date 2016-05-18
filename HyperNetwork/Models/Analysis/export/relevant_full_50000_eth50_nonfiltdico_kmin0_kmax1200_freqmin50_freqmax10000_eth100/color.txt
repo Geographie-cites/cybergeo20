@@ -1,0 +1,16 @@
+complex.systems:204,0,255
+health:255,102,0
+crime:0,153,153
+statistical.methods:255,153,0
+remote.sensing:0,204,102
+political.sciences.critical.geography:255,0,0
+traffic.modeling:153,153,0
+microbiology:102,204,0
+conotive.sciences:0,255,255
+spatial.analysis:255,255,0
+GIS:51,102,255
+biogeography:51,255,51
+environnment.climate:0,102,0
+economic.geography:0,0,255
+physical.geography:102,51,0
+
