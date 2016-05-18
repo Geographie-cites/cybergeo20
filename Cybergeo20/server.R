@@ -19,14 +19,14 @@ paletteCybergeo = c("#1C6F91", "#df691a", "#77c5ba", "orange", "#2db92d", "#e1ff
 world = readOGR(dsn="data/world_SimplifiedGeom.shp",
               layer = "world_SimplifiedGeom", encoding="utf8", verbose = F)
 countries = as.character(world@data$CNTR_ID)
-lookup = data.frame(countries)
-lookup$polyID = as.numeric(rownames(lookup)) - 1
-
-justeTerms = read.csv("data/docprobasJuste.csv", sep=",", dec=".") 
-
 locals = paste0("L_", countries)
 authors = paste0("A_", countries)
 studies = paste0("S_", countries)
+lookup = data.frame(countries)
+lookup$polyID = as.numeric(rownames(lookup)) - 1
+
+justeTerms = read.csv("data/docprobasJuste2.csv", sep=",", dec=".") 
+hadriTerms = read.csv("data/kwprop.csv", sep=",", dec=".")
 
 # set server ----
 
@@ -183,34 +183,61 @@ shinyServer(function(input, output, session) {
     groupsOfCountries = input$nClassifGroups 
     termCountryRelation = input$aggregationMethod
     articles = cyberData$ARTICLES
+    
     if(termCountryRelation == "Authoring") tcr = authors
     if(termCountryRelation ==  "Studied") tcr = studies
-    allArticles <- cyberData$ARTICLES
-    if (termsMethod == "Juste"){
+    if (termsMethod == "Citations"){
+      colNumbers = 2:13
       cybterms = justeTerms[justeTerms$CYBERGEOID != 0,]
       cybterms$idterm = rownames(cybterms)
       cybterms2 = data.frame(cybterms, articles[match(cybterms$CYBERGEOID,articles$id), ])
       cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
       cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
-      themeNames = colnames(justeTerms)[2:13]
+      themeNames = colnames(justeTerms)[colNumbers]
     }
-    themes_By_country_bf = aggregateCountriesBasedOnTerms(themesFile = cybterms4, themes = themeNames, countries_to_aggregate = tcr)
+    if (termsMethod == "Keywords"){
+      cybterms = hadriTerms
+      colNumbers = 2:11
+      cybterms2 = data.frame(cybterms, articles[match(cybterms$ID,articles$id), ])
+      cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
+      cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
+      themeNames = colnames(hadriTerms)[colNumbers]
+    }
+    if (termsMethod == "Semantic"){
+      articlesWithThemes = data.frame(articles, files[match(articles$id,files$id), ])
+      colNumbers = 2:21
+      themeNames =  paste0("T_", 1:20)
+      cybterms = articlesWithThemes[,c("id",themeNames)]
+      cybtermsbis = cybterms[complete.cases(cybterms[,themeNames]),]
+      cybterms2 = data.frame(cybtermsbis, articles[match(cybtermsbis$id,articles$id), ])
+      cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
+      cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
+     }
+    themes_By_country_bf = aggregateCountriesBasedOnTerms(themesFile = cybterms4, themes = themeNames, countries_to_aggregate = tcr, colNumbers = colNumbers)
     return(themes_By_country_bf)   
   })
   
   cahCountries <- reactive({
     groupsOfCountries = input$nClassifGroups 
+    termsMethod = input$semanticMethod
+    if (termsMethod == "Citations") colNumbers = 2:13
+    if (termsMethod == "Keywords") colNumbers = 2:11
+    if (termsMethod == "Semantic") colNumbers = 2:21
     themes_By_country_bf = clusterCountries()
-    cahRes = cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries)
+    cahRes = cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries, colNumbers = colNumbers)
     cahResDF = data.frame("ID" = themes_By_country_bf[,1], "group" = cahRes)
     return(cahResDF)   
   })
   
   legCahCountries <- reactive({
     groupsOfCountries = input$nClassifGroups 
+    termsMethod = input$semanticMethod
+    if (termsMethod == "Citations") colNumbers = 2:13
+    if (termsMethod == "Keywords") colNumbers = 2:11
+    if (termsMethod == "Semantic") colNumbers = 2:21
     themes_By_country_bf = clusterCountries()
-    legcahRes = cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries)
-     countriesDF = themes_By_country_bf[,2:13]
+    legcahRes = cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries, colNumbers = colNumbers)
+     countriesDF = themes_By_country_bf[,colNumbers]
     rownames(countriesDF) = themes_By_country_bf[,1]
     leg = sapply(countriesDF, stat.comp,y=legcahRes)
     return(leg)   
@@ -218,18 +245,14 @@ shinyServer(function(input, output, session) {
   
   output$termsXCountriesMap = renderPlot({
     groupsOfCountries = input$nClassifGroups 
-    # groups_Country = cahCountries()
-    # themes_By_country_bf =  clusterCountries()
-    # cahRes = data.frame("ID" = themes_By_country_bf[,1], "group" = groups_Country)
-    cahRes = cahCountries()
 
+      cahRes = cahCountries()
      cahRes$groupColour = as.character(cut(cahRes$group, breaks = c(1:groupsOfCountries, groupsOfCountries+1),
                       labels = paletteCybergeo[1:groupsOfCountries],include.lowest = TRUE,right = FALSE))
     REG=world
     REG@data = data.frame(REG@data, cahRes[match(REG@data$CNTR_ID,cahRes$ID), ])
     par(mfrow=c(1,1), mar = c(0,0,1,0), bg="#2b3e50")
     plot(REG, col=REG@data$groupColour, border="white", lwd=0.7)
-  #  plot(REG, col=REG@data$group, border="white", lwd=0.7)
     title("Groups of countries based on semantic networks", col.main = "white") 
 })
   
@@ -239,16 +262,28 @@ shinyServer(function(input, output, session) {
     
        if(groupsOfCountries %% 2 == 0) window = c(groupsOfCountries/2,2)
        if(groupsOfCountries %% 2 == 1) window = c(groupsOfCountries/2 + 0.5,2)
- 
-     par(mfrow=window, las=2, mar = c(4,10,1,1), bg="#2b3e50")
+     termsMethod = input$semanticMethod
+     if (termsMethod == "Citations") colNumbers = 2:13
+     if (termsMethod == "Keywords") colNumbers = 2:11
+     if (termsMethod == "Semantic") colNumbers = 2:21
+     themes_By_country_bf = clusterCountries()
+     themes_By_country_bf$group =  cahCountriesBasedOnTerms(themes_By_country_bf = themes_By_country_bf, numberOfGroups = groupsOfCountries, colNumbers = colNumbers)
+     nArticlesByGroup = aggregate(themes_By_country_bf[,"n"], by = list(themes_By_country_bf$group), FUN = sumNum)
+    colnames(nArticlesByGroup) = c("ID", "n")
+    nArticlesByGroup = nArticlesByGroup[order(nArticlesByGroup$ID),]
+     
+     par(mfrow=window, las=2, mar = c(4,10,2,1), bg="#2b3e50")
      for(i in 1:groupsOfCountries){
      barplot(leg[i,], col=paletteCybergeo[i], horiz=TRUE, cex.names=0.8, xlab= "Frequency of themes", col.lab="white", col.axis="white")
        axis(1, col = "white", col.axis = "white")
+     if(nArticlesByGroup[i, "n"] == 1)  title(paste0(nArticlesByGroup[i, "n"], " article"), col.main = "white")
+     if(nArticlesByGroup[i, "n"] > 1)  title(paste0(nArticlesByGroup[i, "n"], " articles"), col.main = "white")
      }
-  
    })
   
-  
+
+
+
   ### Juste ----
   
   
