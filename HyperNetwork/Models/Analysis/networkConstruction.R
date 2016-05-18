@@ -6,6 +6,27 @@ library(igraph)
 library(dplyr)
 
 
+##
+# Gets cybergeo indexes from consolidates data and citation network
+getCybindexes<-function(them_probas,cybnames,cybergeo,keyword_dico){
+  cybindexes = c();cybresnames = c();iscyb=rep(FALSE,nrow(them_probas));cybid = rep(0,nrow(them_probas))
+  for(cyb in cybnames){
+    show(cyb)
+    indexes = which(names(keyword_dico)==cyb);
+    id=cybergeo$id[cybergeo$SCHID==cyb]
+    if(length(indexes)>0){
+      cybindexes=append(cybindexes,indexes[1]);
+      cybresnames=append(cybresnames,cyb)
+      iscyb[indexes[1]]=TRUE
+      cybid[indexes[1]]=id[1]
+    }
+  }
+  return(list(cybid=cybid,iscyb=iscyb,cybindexes=cybindexes,cybresnames=cybresnames))
+}
+
+
+
+
 extractSubGraphCommunities<-function(ggiant,kmin,kmax,freqmin,freqmax,edge_th){
   dd = V(ggiant)$docfreq
   d = degree(ggiant)

@@ -1,0 +1,548 @@
+\input{/Users/Juste/Documents/ComplexSystems/CityNetwork/Docs/Headers/PresentationHeader.tex}
+
+
+
+\title{Bibliom{\'e}trie Indirecte par Analyse de R{\'e}seaux Complexes}
+
+
+\author{J.~Raimbault$^{1,2}$}
+
+\institute{$^{1}$G{\'e}ographie-cit{\'e}s (UMR 8504 CNRS)\\
+$^{2}$LVMT (UMR-T 9403 IFSTTAR)}
+
+\date{Cybergéo : 20 ans d{\'e}j{\`a} !\\
+Jeudi 26 mai 2016}
+
+
+\usebackgroundtemplate{%
+  \AddToShipoutPicture*{
+    \put(0,0){
+        \parbox[b][\paperheight]{\paperwidth}{%
+            \vfill
+            \centering
+            \includegraphics[width=\paperwidth]{figures/nw}%
+            \vfill
+        }
+    }
+    \put(0,0){%
+        \transparent{0.9}\textcolor{white}{\rule{\paperwidth}{\paperheight}}
+    }
+}
+  %\includegraphics[width=1.5\paperwidth,height=1.5\paperheight]{figures/nw}
+} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\titlepage
+\end{frame}
+
+% NO TOC
+%\begin{frame}
+%\tableofcontents
+%\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\usebackgroundtemplate{}
+
+
+\section{Introduction}
+
+
+
+\jframe{Contexte}{
+
+\textit{``You are what you cite''} : \textbf{Quels sont les environnements disciplinaires voisins de Cybergeo ? Sont-ils différents des contenus des articles (PO) et des contenus d{\'e}clar{\'e}s (HC) ?}
+
+
+\bigskip
+
+$\rightarrow$ Enjeu par rapport {\`a} la ligne {\'e}ditoriale de la revue : interdisciplinarit{\'e} et ouverture
+
+\bigskip
+
+$\rightarrow$ Contre une bibliom{\'e}trie quantitative pure en SHS : approche semi-qualitative n{\'e}cessaire
+
+\bigskip
+
+}
+
+\jframe{Objectif}{
+
+\textbf{Question de recherche : }\textit{Dans quelle mesure le croisement des donn{\'e}es de citation et des donn{\'e}es s{\'e}mantiques peut-il permettre d'analyser le contexte disciplinaire de la revue ?}
+
+\bigskip
+
+$\rightarrow$ Elaboration d'une approche par \textit{Hyperr{\'e}seau} : croisement du r{\'e}seau de citations au r{\'e}seau s{\'e}mantique. Gain d'information par croisement des couches (d{\'e}marche transversale) %analogie avec construction scientifique : cf CS Roadmap)
+
+\bigskip
+
+$\rightarrow$ Donn{\'e}es difficiles d'acc{\`e}s : base {\`a} construire
+ 
+
+
+}
+
+
+
+\section{Collecte des donn{\'e}es}
+
+
+
+\jframe{Collecte des donn{\'e}es}{
+
+\textbf{Donn{\'e}es des articles} : bases de fonctionnement (production de la revue)
+
+$\rightarrow$ Structuration et Consolidation
+
+\bigskip
+
+\textbf{Donn{\'e}es de citation} : revue non r{\'e}f{\'e}renc{\'e}e par base ``classiques'' (de plus non libres !) 
+
+$\rightarrow$ \textit{crawling} de \texttt{google scholar} par utilisation de l'option ``\textit{cit{\'e} par}'' \cite{noruzi2005google}
+
+\bigskip
+
+\textbf{Donn{\'e}es textuelles} : besoin des r{\'e}sum{\'e}s pour l'ensemble des r{\'e}f{\'e}rences li{\'e}es 
+
+$\rightarrow$ utilisation de l'API Mendeley~\cite{mendeley} (gratuite mais non ouverte).
+
+}
+
+
+\jframe{Architecture de collecte des donn{\'e}es}{
+\includegraphics[width=\textwidth]{figures/archi}
+}
+
+
+
+
+
+\section{M{\'e}thodes et R{\'e}sultats}
+
+\subsection{R{\'e}seau des citations}
+
+
+\jframe{Caract{\'e}ristiques du r{\'e}seau}{
+
+
+$\rightarrow$ Apr{\`e}s raffinement, $\simeq$ 947 r{\'e}f{\'e}rences de cybergeo exploitables, sur $\simeq 1200$% ; certaines inexistantes, d'autres mal enregistr{\'e}es sur scholar% $\rightarrow$ possibilit{\'e} de compl{\'e}ter {\`a} la main (long...).
+
+\smallskip
+
+$\rightarrow$ \textit{418670 Noeuds et 570352 Liens ; Diam{\'e}tre : 9 ; Densit{\'e} : 3.25E-6 ; degr{\'e} moyen : 2.724284}
+
+\includegraphics[width=0.8\textwidth]{figures/degreeDistrib.png}
+}
+
+
+\jframe{Structure du R{\'e}seau}{
+\includegraphics[width=\textwidth]{figures/citnw}
+}
+
+
+
+
+\jframe{Degr{\'e}s : Loi rang-taille}{
+\includegraphics[width=0.52\textwidth]{figures/rankSize_fit}
+\includegraphics[width=0.5\textwidth]{figures/rank-size-all}
+
+\textit{Gauche : Cyberg{\'e}o ; Droite : Ensemble du r{\'e}seau}
+
+}
+
+
+
+
+\jframe{Cliques}{
+\vspace{-1cm}
+\hspace{-2.3cm}\includegraphics[height=\textheight]{figures/cybclic_2cyb_13761}
+
+}
+
+
+
+
+
+
+
+\subsection{R{\'e}seau s{\'e}mantique}
+
+
+\jframe{R{\'e}seau s{\'e}mantique}{
+
+
+\textbf{R{\'e}seau s{\'e}mantique.} Collection des r{\'e}sum{\'e}s/ann{\'e}es/auteurs/mots-cl{\'e}s pour les 400000 r{\'e}f{\'e}rences via l'API Mendeley
+$\rightarrow$ $\sim 215000$ r{\'e}f{\'e}rences avec donn{\'e}es compl{\`e}tes.
+
+\bigskip
+
+\textbf{Statistiques}
+
+\textit{Langues :} anglais 206607, francais 4109, espagnol 2029, allemand 892, portugais 891, n{\'e}erlandais 124, autres 182
+
+\textit{Repartitions par ann{\'e}es : }
+\centering
+
+\includegraphics[width=0.4\textwidth,height=0.4\textheight]{figures/years}
+
+}
+
+
+
+\jframe{Extraction des mots-cl{\'e}s}{
+
+\textit{Text-mining en python avec \texttt{nltk}~\cite{bird2006nltk}}, m{\'e}thode adapt{\'e}e de
+
+\cite{chavalarias2013phylomemetic}
+
+\begin{itemize}
+\item Detection de la langue par \textit{stop-words} (mots vides de sens)
+\item Parsing et tokenizing (isolation des mots) /pos-tagging (fonction des mots) /stemming (extraction de la racine) effectu{\'e}s diff{\'e}remment selon la langue :
+\begin{itemize}
+\item Anglais : pos-tagger int{\'e}gr{\'e} {\`a} \texttt{nltk}, combin{\'e} {\`a} un \emph{PorterStemmer}
+\item Fran\c{c}ais ou autre : utilisation de \texttt{TreeTagger}~\cite{schmid1994probabilistic}
+\end{itemize}
+\item Selection des \textit{n-grams} potentiels (avec $1 \leq n \leq 4$) : anglais $\bigcap \{NN \cup VBG \cup JJ \}$ ;  français  $\bigcap \{NOM \cup ADJ\}$
+\item Insertion en base pour extraction quasi-instantanée plus tard (10j $\rightarrow$ 5min)
+\item Estimation de la pertinence des \textit{n-grams} selon r{\'e}partition statistique des co-occurrences
+\end{itemize}
+
+}
+
+
+
+
+\jframe{Construction du r{\'e}seau s{\'e}mantique}{
+
+\begin{itemize}
+
+\item \textbf{Noeuds :} Mots-cl{\'e}s avec la plus grande pertinence cumul{\'e}e
+
+\medskip
+
+\item \textbf{Liens :} Co-occurrences pond{\'e}r{\'e}es
+
+\medskip
+
+\item Filtrage des liens en dessous d'un seuil ; ajustement manuel de mots parasites
+
+\medskip
+
+\item Detection de communaut{\'e}s par maximisation de modularit{\'e} \cite{blondel2008fast} apr{\`e}s suppression des \textit{hubs} (ex. \texttt{model}, \texttt{space}, \texttt{structure}, \texttt{process})
+
+\end{itemize}
+
+%Spatialisation de \textit{Fruchterman-Reingold}
+
+}
+
+
+
+%\jframe{R{\'e}seau s{\'e}mantique : r{\'e}seau brut}{
+%\includegraphics[height=\textheight]{figures/filt_kmin0_kmax1200_edge200}
+%}
+%
+%
+%
+%\jframe{R{\'e}seau s{\'e}mantique : corpus complet (avec filtrage)}{
+%\includegraphics[height=\textheight]{figures/semanticAll}
+%}
+%
+%
+%\jframe{R{\'e}seau s{\'e}mantique : corpus cybergeo}{
+%\includegraphics[height=\textheight]{figures/semanticCybergeo}
+%}
+
+
+%\jframe{Retour au corpus complet}{
+%%\textit{Importance du r{\`e}glage fin des param{\`e}tres}
+%
+%\centering
+%%\vspace{-2cm}
+%\includegraphics[height=0.9\textheight]{figures/all_lesslinks}
+%}
+
+\jframe{Influence des param{\`e}tres}{
+\textit{Importance du r{\`e}glage fin des param{\`e}tres}
+
+$\rightarrow$ Sensibilit{\'e} des mod{\`e}les \textbf{et} traitements de donn{\'e}es aux parametres. Exploration syst{\'e}matique via OpenMole par exemple.
+
+$\rightarrow$ Importance du jugement d'expert : pas de dichotomie ``quanti-quali''
+
+$\rightarrow$ Sensibilit{\'e} aux conditions initiales : \textit{Space matters}~\cite{cottineau2015revisiting}
+
+\medskip
+
+\centering
+
+\includegraphics[width=0.7\textwidth]{figures/sensitivity_facet_allindics}
+
+
+}
+
+%\jframe{Application}{
+%%\textit{Importance du r{\`e}glage fin des param{\`e}tres}
+%
+%\centering
+%%\vspace{-2cm}
+%\includegraphics[height=0.9\textheight]{figures/filt_kmin5_kmax900_edge50}
+%}
+
+
+\jframe{Domaines extraits}{
+\textit{Communaut{\'e}s obtenues pour $\theta_V=1200,\theta_E=50$ :}
+\bigskip
+{\footnotesize
+\begin{itemize}
+\item Political sciences/critical geography (535) : \texttt{decision-mak, polit ideolog, democraci, stakehold, neoliber}
+\item Biogeography (394) : \texttt{plant densiti, wood, wetland, riparian veget}
+\item Economic geography (343) : \texttt{popul growth, transact cost, socio-econom, household incom}
+\item Environnment/climate (309) : \texttt{ice sheet, stratospher, air pollut, climat model}
+\item Complex systems (283) : \texttt{scale-fre, multifract, agent-bas model, self-organ}
+\item Physical geography (203) : \texttt{sedimentari, digit elev model, geolog, river delta}
+\item Spatial analysis (175) : \texttt{spatial analysi, princip compon analysi, heteroscedast, factor analysi}
+\end{itemize}
+}
+}
+
+\jframe{Domaines extraits (suite)}{
+{\footnotesize
+\begin{itemize}
+\item Microbiology (118) : \texttt{chromosom, phylogenet, borrelia}
+\item Statistical methods (88) : \texttt{logist regress, classifi, kalman filter, sampl size}
+\item Cognitive sciences (81) : \texttt{semant memori, retrospect, neuroimag}
+\item GIS (75) : \texttt{geograph inform scienc, softwar design, volunt geograph inform, spatial decis support}
+\item Traffic modeling (63) : \texttt{simul model, lane chang, traffic flow, crowd behavior}
+\item Health (52) : \texttt{epidem, vaccin strategi, acut respiratori syndrom, hospit}
+\item Remote sensing (48) : \texttt{land-cov, landsat imag, lulc}
+\item Crime (17) : \texttt{crimin justic system, social disorgan, crime}
+\end{itemize}
+
+}
+}
+
+
+\jframe{R{\'e}seau}{
+%%\textit{Importance du r{\`e}glage fin des param{\`e}tres}
+%
+\centering
+%%\vspace{-2cm}
+\includegraphics[height=0.9\textheight]{figures/semantic}
+}
+
+\jframe{Interdisicplinarit{'e}}{
+%%\textit{Importance du r{\`e}glage fin des param{\`e}tres}
+%
+\centering
+%%\vspace{-2cm}
+\includegraphics[height=0.9\textheight]{figures/synththemcyb}
+}
+
+
+\jframe{Interdisicplinarit{'e} de citation}{
+%%\textit{Importance du r{\`e}glage fin des param{\`e}tres}
+%
+\centering
+%%\vspace{-2cm}
+\includegraphics[height=0.9\textheight]{figures/citation}
+}
+
+
+
+
+\jframe{Degr{\'e} d'interdisciplinarit{\'e} par articles}{
+Un article peut {\^e}tre associ{\'e} aux communaut{\'e}s s{\'e}mantiques par ses mots cl{\'e}s : probas $p_i$ pour chaque communaut{\'e}.
+
+Mesure d'interdisciplinarit{\'e} (pour un article, au premier ordre) :
+\[
+o = 1 - \sum p_i^2
+\]
+
+\centering
+
+\includegraphics[width=0.5\textwidth]{figures/firstorder_int}
+
+\textit{Mean orig : 0.79}
+
+}
+
+%\jframe{Degr{\'e} d'interdisciplinarit{\'e}}{
+%
+%Aggregation au niveau de la revue : originalit{\'e} des th{\`e}mes abord{\'e}s dans l'ensemble de la revue
+%
+%\[
+%O = 1 - \sum_i \left[\frac{1}{K}\sum_k p_i^{(k)}\right]^2
+%\]
+%
+%$\rightarrow$ 0.890 pour cybergeo (0.8933 pour un mod{\`e}le nul par tirage al{\'e}atoire)
+%
+%\textit{Besoin d'autres revues pour comparaison : retour {\`a} la collecte de donn{\'e}es}
+%
+%
+%}
+%
+%\jframe{Interdisciplinarit{\'e} au second ordre}{
+%
+%\textit{Croisement des couches de l'hyperr{\'e}seau.}
+%
+%$\rightarrow$ Originalit{\'e} de l'ensemble des voisins (entrants ou sortants) dans le r{\'e}seau de citation
+%
+%\includegraphics[width=0.7\textwidth]{figures/2ndorderOrig}
+%
+%
+%}
+
+
+
+\jframe{Conclusion}{
+  $\rightarrow$ Un environnement disciplinaire tr{\`e}s vari{\'e} et une interdicisplinarit{\'e} affirm{\'e}e
+  
+  \bigskip
+  
+  $\rightarrow$ Approche {\`a} croiser avec autres types de classifications (th{\'e}matique (POC), mots-cl{\'e}s (HC), g{\'e}ographique (CC) pour en apprendre plus sur la revue et la pratique de la g{\'e}ographie qui lui est associ{\'e}e
+  \bigskip
+  
+  $\rightarrow$ M{\'e}thode g{\'e}n{\'e}rique pouvant s'appliquer à tout r{\'e}seau dont les noeuds ont une description textuelle
+}
+
+
+
+%
+%\jframe{Perspectives}{
+%Attention {\`a} la tentation des \textit{big data} et de la simulation {\`a} outrance : garder un ancrage th{\'e}orique (poser les bonnes questions) et m{\'e}thodologique.
+%
+%\bigskip
+%
+%Exemple : travail en cours sur interactions Ville/Transports : donn{\'e}es ``simples'' et classiques (densit{\'e} population et OSM), statiques, fournissent de l'information sur processus dynamiques sous-jacents. N{\'e}cessit{\'e} du cadre th{\'e}orique (th{\'e}orie {\'e}volutive des villes) et du travail m{\'e}thodologique pour relier statique-dynamique.
+%}
+%
+%\jframe{Conclusion ({\`a} retenir)}{
+%\begin{itemize}
+%\item ``Big Data'' plus que relatif
+%\bigskip
+%\item Des donn{\'e}es partout, {\`a} vous de les collecter et cr{\'e}er des bases \textbf{ouvertes} (pas de science sans ouverture : multimodeling et open science)
+%\bigskip
+%\item G{\'e}ographie {\`a} la pointe de par les connaissances d{\'e}j{\`a} pr{\'e}sentes : {\`a} vous de jouer !
+%\end{itemize}
+%}
+%
+
+
+
+\jframe{Reserve Slides}{
+\Large \textit{Reserve Slides}
+}
+
+
+
+
+
+\jframe{Collecte des donn{\'e}es}{
+\textit{Crawling de donn{\'e}es semi-ouvertes : exemples en g{\'e}ographie}
+
+\bigskip
+
+Donn{\'e}es de mobilit{\'e} : statuts des stations Vlib en temps r{\'e}el (API)
+
+\cite{raimbault2015user}
+
+\bigskip
+
+\centering
+\includegraphics[width=0.7\textwidth]{figures/velib}
+
+
+
+}
+
+\jframe{Collecte des donn{\'e}es}{
+\textit{Exemples en g{\'e}ographie (suite)}
+
+\bigskip
+
+Traffic routier : collecte de \textit{sytadin} (pas d'API : \textit{scrapping} n{\'e}c{\'e}ssaire)
+
+
+\bigskip
+
+\centering
+\includegraphics[width=0.8\textwidth]{figures/screen_appli}
+
+
+\bigskip
+
+
+
+}
+
+
+
+
+
+
+\jframe{Centralit{\'e} (citation)}{
+
+\includegraphics[width=0.5\textwidth]{figures/betweeness-cyb}
+\includegraphics[width=0.5\textwidth]{figures/betweeness}
+
+\textit{Centralit{\'e}s faibles (rq : impossibilit{\'e} des clusters forts pour des citations car causalit{\'e} temporelle). Gauche : Cyberg{\'e}o ; Droite : Ensemble du r{\'e}seau}
+
+}
+
+
+\jframe{Clustering (citation)}{
+Composante g{\'e}ante : plus de 99\% des noeuds.
+\medskip
+
+\includegraphics[width=0.5\textwidth]{figures/clusterSize}
+\includegraphics[width=0.5\textwidth]{figures/pathlength}
+}
+
+
+\jframe{Cliques(citation)}{
+
+\includegraphics[height=\textheight]{figures/cybclic_2cyb_12817}
+
+}
+
+
+
+
+
+\jframe{Estimation de la pertinence}{
+Estimation exacte de la pertinence via la repartition statistique des co-occurrences (score de $\chi^2$) : \textit{termhood} d{\'e}finie, avec $M_{ij}$ nombre d'articles où $i$ et $j$ apparaissent simultanément,
+\[
+t_i = \sum_{j\neq i}\frac{\left( M_{ij} - \sum_{k}M_{ik} \sum_{k} M_{jk}\right)^2}{\sum_{k}M_{ik} \sum_{k} M_{jk}}
+\]
+
+
+en $\Theta (\sum_i N_i^2)$ ($N_i$ taille des r{\'e}sum{\'e}s) : difficile sur un corpus o{\`u} $\sum_i N_i^2 \simeq N <N_i>^2 \simeq 8\cdot 10^7$
+
+}
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks]
+\frametitle{References}
+\bibliographystyle{apalike}
+\bibliography{/Users/Juste/Documents/ComplexSystems/CityNetwork/Biblio/Bibtex/CityNetwork,/Users/Juste/Documents/ComplexSystems/CityNetwork/Docs/Papers/Cybergeo/Biblio/cybergeo,biblio}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+\end{document}
