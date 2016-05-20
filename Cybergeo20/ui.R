@@ -1,7 +1,7 @@
 library(shiny)
 
 shinyUI(fluidPage(theme = "darkBlue.css",
-                  #tags$head(tags$link(rel="shortcut icon", href="favicon.png")),
+                  tags$head(tags$link(rel="shortcut icon", href="favicon.png")),
                   
                   tags$head(
                     tags$style(HTML("
@@ -9,10 +9,9 @@ shinyUI(fluidPage(theme = "darkBlue.css",
     "))
                   ),
                   headerPanel(
-                    h1("Cybergeo  |  1996-2016", 
-                       style = "font-family: 'Orbitron', sans-serif;
-        font-weight: 500; line-height: 1.1; 
-        color: #ffffff;")),
+                    "CybergeoNetworks",
+        #             
+        ),
                   titlePanel(h4("20 years of Cybergeo, European Journal of Geography")),
                   
                   navlistPanel(
@@ -20,7 +19,10 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                     tabPanel("The Project",
                              fluidRow(
                                
-                               column(9, h2("20 Years of Cybergeo"),
+                               column(9, h1("Cybergeo | 1996-2016", 
+                                                            style = "font-family: 'Orbitron', sans-serif;
+                                             font-weight: 500; line-height: 1.1; 
+                                             color: #ffffff;"),
                                       tags$p(class="text-justify",
                                              "Cybergeo turns 20: It's time to look back ... ", br(), "[blablabla]", br())) ,
                                column(3, img(src = "favicon.png",class="img-responsive")),
