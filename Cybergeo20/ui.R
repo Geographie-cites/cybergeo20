@@ -171,7 +171,11 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                     
                     ############## CLEM
                     tabPanel("Geo-semantic Networks",
-                             fluidRow(h2("Geo-semantic Networks"),
+                             
+                             tabsetPanel(
+                               
+                               tabPanel("Geo-semantic Networks",
+                             fluidRow(##h2("Geo-semantic Networks"),
                                       
                                       column(4, selectInput("semanticMethod", label = "Semantic Method",
                                                             choices = c("Citations", "Keywords", "Semantic"), multiple = F)),
@@ -181,7 +185,13 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                                             min = 1, max = 8, value = 4, step = 1), animate=T),
                                       column(12, plotOutput("termsXCountriesMap")),
                                       column(12, plotOutput("termsXCountriesLegend"))
-                             )),
+                             )
+                               ),
+                             tabPanel("User guide",
+                                "blabla"      
+                                      )
+                             )
+                             ),
                     ############## 
                     
                     
@@ -190,11 +200,20 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                              fluidRow(
                                
                                column(9, h2("About Cybergeo"),
-                                      a("http://cybergeo.revues.org/",href="http://cybergeo.revues.org/"), br(),
-                                      "[blablabla]", br()),
+                                      a("cybergeo.revues.org/",href="http://cybergeo.revues.org/"),br(),
+
+                                      h2("About the app"),"All data, materials and source codes are freely available on this repository: ",
+                                      a("github.com/Geographie-cites/cybergeo20",href="https://github.com/Geographie-cites/cybergeo20"),
+                                      br()),
                                column(3, img(src = "favicon.png",class="img-responsive")),
-                               column(12,h4("The Cybergeo20 team"), 
-                                      "[blablabla]", br())
+                               column(12,h2("The Team"), 
+                                      "Pierre-Olivier Chasset", a("(@chasset)",href="https://github.com/chasset"), br(),
+                                      "Hadrien Commenges", a("(@hcommenges)",href="https://github.com/hcommenges"), br(),
+                                      "Clémentine Cottineau", a("(@ClementineCttn)",href="https://github.com/ClementineCttn"), br(),
+                                      "Juste Raimbault", a("(@JusteRaimbault)",href="https://github.com/JusteRaimbault"), br(),
+                                      "Antoine Fleury", br(),
+                                      "Christine Kosmopoulos", br(),
+                                      "Denise Pumain")
                              )
                     )
                     
