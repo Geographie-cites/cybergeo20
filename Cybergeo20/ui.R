@@ -188,8 +188,8 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                              )
                                ),
                              tabPanel("User guide",
-                                "blabla"      
-                                      )
+                                     
+                                      includeMarkdown("GeoSemanticNetworks.md"))
                              )
                              ),
                     ############## 
