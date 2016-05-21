@@ -18,18 +18,25 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                     #"Looking back",
                     tabPanel("The Project",
                              fluidRow(
-                               
+                                      
                                column(9, h1("Cybergeo | 1996-2016", 
                                                             style = "font-family: 'Orbitron', sans-serif;
                                              font-weight: 500; line-height: 1.1; 
                                              color: #ffffff;"),
                                       tags$p(class="text-justify",
-                                             "Cybergeo turns 20: It's time to look back ... ", br(), "[blablabla]", br())) ,
+                                             "Cybergeo turns 20: it’s time to look back for reflection and to anticipate future evolution!", br())) ,
                                column(3, img(src = "favicon.png",class="img-responsive")),
                                column(12,h4("The journal philosophy"), 
-                                      "[blablabla]", br(), 
-                                      h4("An app to look back"), "This app aims at reviewing the evolution of geography as revealed by 20 years of publication in Cybergeo.")
-                             )
+                                      tags$p(class="text-justify", "First entirely electronic journal for social sciences in the world, 
+                                      peer reviewed, European, open (free of charge for authors and readers), 
+                                      with a focus on geography and widely open to the diversity of research agendas and methodologies in all countries. 
+                                      Cybergeo is a success story with now more than one million papers downloaded every year."), br(), 
+                                      h4("An app to look back"), 
+                                      tags$p(class="text-justify", "This app builds on 20 years of publication in Cybergeo.
+                                      You can play with the data, draw geographical networks of authoring, 
+                                      studying and citing through countries, analyze semantic networks per key words and articles’ content, 
+                                      you can follow twenty years of epistemological trends in a variety of fields of scientific interest. Data are regularly updated.")
+                             ))
                     ),
                     "-----",
                     tabPanel("Overview",
