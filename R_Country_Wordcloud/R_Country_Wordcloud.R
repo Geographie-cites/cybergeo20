@@ -16,10 +16,7 @@ Years = 1996:2015
 path = "/Users/clementinecottineau/Documents/cybergeo20/R_Country_Wordcloud/"
 # REG = readOGR(dsn=paste(path, "FRA_adm/FRA_adm1.shp", sep=""),
 #               layer = "FRA_adm1", encoding="utf8")
-
-
-world = readOGR(dsn=paste(path, "world/world.shp", sep=""),
-                layer = "world", encoding="utf8")
+b
 #plot(world)
 
 REG = world
