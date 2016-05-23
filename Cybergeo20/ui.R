@@ -64,12 +64,14 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                     ),
                     
                     
-                    tabPanel("Semantic network",
-                             fluidRow(h2("Exploring the semantic network"),
-                                      #h4("...",br())
-                                      forceNetworkOutput("semanticNetwork")
-                                      )
-                    ),
+                    
+                    # 
+                    # tabPanel("Semantic network",
+                    #          fluidRow(h2("Exploring the semantic network"),
+                    #                   #h4("...",br())
+                    #                   forceNetworkOutput("semanticNetwork")
+                    #                   )
+                    # ),
                    
                     # HADRI ----
                     

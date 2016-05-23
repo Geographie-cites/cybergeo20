@@ -296,19 +296,23 @@ shinyServer(function(input, output, session) {
   #})
   
   
-  output$semanticNetwork <- renderForceNetwork({
-    forceNetwork(Links = edf, Nodes = vdf,
-                 Source = "source", Target = "target",
-                 Value = "value", NodeID = "name",
-                 Group = "community", opacity = 0.8,zoom=TRUE)
- 
-   })
+   
+  # output$semanticNetwork <- renderForceNetwork({
+  #   forceNetwork(Links = edf, Nodes = vdf,
+  #                Source = "source", Target = "target",
+  #                Value = "value", NodeID = "name",
+  #                Group = "community", opacity = 0.8,zoom=TRUE)
+  # 
+  #  })
+  # 
+  
+  #  DO NOT use networkD3js, unless initial layout is possible
   
   
   
-  
-  
-  
+   
+   
+   
   ### HADRI ----
   
   # select level and other variables

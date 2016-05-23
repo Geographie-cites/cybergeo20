@@ -63,7 +63,7 @@ export_probas = cbind(cybid,data.frame(export_probas))
 names(export_probas)[1] = "CYBERGEOID"
 
 citadjacency = get.adjacency(gcitation,sparse=TRUE)[names(keyword_dico),names(keyword_dico)]
-rm(gcitation);gc()
+#rm(gcitation);gc()
 
 #cybprobas = as.tbl(export_probas[export_probas$CYBERGEOID>0,])
 #cybprobas[cybprobas$crime>0.1,]

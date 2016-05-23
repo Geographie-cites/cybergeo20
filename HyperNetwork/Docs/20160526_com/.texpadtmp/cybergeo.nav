@@ -8,7 +8,7 @@
 \headcommand {\beamer@framepages {2}{2}}
 \headcommand {\slideentry {1}{0}{2}{3/3}{}{0}}
 \headcommand {\beamer@framepages {3}{3}}
-\headcommand {\sectionentry {2}{Collecte des donn{\'e}es}{4}{Collecte des donn{\'e}es}{0}}
+\headcommand {\sectionentry {2}{Data collection}{4}{Data collection}{0}}
 \headcommand {\beamer@sectionpages {2}{3}}
 \headcommand {\beamer@subsectionpages {2}{3}}
 \headcommand {\slideentry {2}{0}{1}{4/4}{}{0}}
@@ -66,12 +66,14 @@
 \headcommand {\beamer@framepages {27}{27}}
 \headcommand {\slideentry {3}{2}{19}{28/28}{R{\'e}seau s{\'e}mantique}{0}}
 \headcommand {\beamer@framepages {28}{28}}
-\headcommand {\slideentry {3}{2}{19}{28/29}{R{\'e}seau s{\'e}mantique}{0}}
-\headcommand {\beamer@framepages {28}{29}}
-\headcommand {\slideentry {3}{2}{19}{28/30}{R{\'e}seau s{\'e}mantique}{0}}
-\headcommand {\beamer@framepages {28}{30}}
-\headcommand {\beamer@partpages {1}{30}}
-\headcommand {\beamer@subsectionpages {10}{30}}
-\headcommand {\beamer@sectionpages {6}{30}}
-\headcommand {\beamer@documentpages {30}}
-\headcommand {\def \inserttotalframenumber {30}}
+\headcommand {\slideentry {3}{2}{20}{29/29}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\beamer@framepages {29}{29}}
+\headcommand {\slideentry {3}{2}{20}{29/30}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\beamer@framepages {29}{30}}
+\headcommand {\slideentry {3}{2}{20}{29/31}{R{\'e}seau s{\'e}mantique}{0}}
+\headcommand {\beamer@framepages {29}{31}}
+\headcommand {\beamer@partpages {1}{31}}
+\headcommand {\beamer@subsectionpages {10}{31}}
+\headcommand {\beamer@sectionpages {6}{31}}
+\headcommand {\beamer@documentpages {31}}
+\headcommand {\def \inserttotalframenumber {31}}

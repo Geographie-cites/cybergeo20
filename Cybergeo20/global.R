@@ -75,11 +75,27 @@ names(result) <-c( paste("G",1:K),"% epl.")
 }
 
 
+
+
+####################
 ### Juste ---
 
-load('data/semanticnw.RData')
+#load('data/semanticnw.RData')
+# !! do not load this shit, too big for simultaneous connexions or grid will be dead a.f. very quickly
+#
+#  --  Archi for cit. nw exploration  --
+# 
+#   - load datatable for cybergeo articles ; request in local sqlite db for connections
+#   - draw the ego nw, and display info for neighbors
+#   - display semantic info : keywords, corresponding communities.
+#   - one tab with sem nw visu : check if svg viz with zoom in/out is possible to include
+# 
+# 
 
 
+
+#######################
+### Hadri
 
 # plot communities ----
 
