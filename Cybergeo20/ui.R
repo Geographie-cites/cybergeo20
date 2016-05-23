@@ -189,9 +189,10 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                       column(12, plotOutput("termsXCountriesLegend"))
                              )
                                ),
-                             tabPanel("User guide",
+                             tabPanel("User guide"#,
                                      
-                                      includeMarkdown("GeoSemanticNetworks.md"))
+                                   #   includeMarkdown("GeoSemanticNetworks.md")
+                                   )
                              )
                              ),
                     ############## 
