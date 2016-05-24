@@ -7,7 +7,7 @@
 # load data ----
 
 load("data/CyberData.RData")
-load("data/themesPO.RData")
+load("data/themesPO.Rdata")
 files$name = NULL
 files$path = NULL
 files[,3:22] = document.themes 
