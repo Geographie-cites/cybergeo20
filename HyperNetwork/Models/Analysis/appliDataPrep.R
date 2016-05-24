@@ -41,3 +41,14 @@ dbWriteTable(db,"edges",edges)
 
 
 
+######
+#
+
+#svgs=""
+#rows=scan('data/synththemcyb.svg',what = "character")
+#for(l in rows){svgs=paste0(svgs,l)}
+
+#library(svglite)
+
+#svgPanZoom('data/semantic.svg')
+
