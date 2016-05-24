@@ -78,9 +78,9 @@ citadjacency = get.adjacency(gcitation,sparse=TRUE)[names(keyword_dico),names(ke
 # write.table(kwdf,col.names = FALSE,row.names = FALSE,file = paste0(exdir,'/thematics.csv'),sep=",")
 # 
 # # export subgraph (for viz)
-# keptvertices = sapply(V(sub$gg)$name,function(s){s%in%kwdf[,1]})
-# gg=induced_subgraph(sub$gg,keptvertices)
-# ind=1:nrow(kwdf);names(ind)=as.character(kwdf[,1]);V(gg)$community = as.character(kwdf[,2])[ind[V(gg)$name]]
+keptvertices = sapply(V(sub$gg)$name,function(s){s%in%kwdf[,1]})
+gg=induced_subgraph(sub$gg,keptvertices)
+ind=1:nrow(kwdf);names(ind)=as.character(kwdf[,1]);V(gg)$community = as.character(kwdf[,2])[ind[V(gg)$name]]
 # gg=filterGraph(gg,'export/addfilter.csv')
 # E(gg)$weight = log(E(gg)$weight)
 # write.graph(gg,file = paste0(exdir,'/graph1.gml'),format = "gml")

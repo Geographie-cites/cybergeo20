@@ -361,6 +361,16 @@ shinyServer(function(input, output, session) {
    
    
    
+   ## semantic nw viz
+   
+   output$citationsemanticnw<-renderSvgPanZoom({
+     svgPanZoom('data/semantic.svg',
+                zoomScaleSensitivity=1,
+                minZoom=2,
+                maxZoom=20
+                )
+   })
+   
    
    
   ### HADRI ----

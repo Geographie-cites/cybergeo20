@@ -76,7 +76,10 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                   )
                                 ),
                                tabPanel("Semantic Network",
-                                   h2("")
+                                   fluidRow(
+                                     h4("Full Semantic Network"),
+                                     svgPanZoomOutput(outputId = "citationsemanticnw",width = "100%", height = "100%")
+                                   )
                                ),
                                tabPanel("User guide",
                                   # describe data provenance and signification of measures      
