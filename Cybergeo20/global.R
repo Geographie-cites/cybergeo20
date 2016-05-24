@@ -92,7 +92,15 @@ names(result) <-c( paste("G",1:K),"% epl.")
 # 
 # 
 
+##
+#  Notations / id conventions : vars and ids prefixed with "citation"
+
+
+# citation nw cybergeo table
 load('data/citation_cybergeodata.RData')
+
+# global vars (needed e.g. to avoid numerous db request with reactive functions)
+citationGlobalVars <- reactiveValues()
 
 
 #######################

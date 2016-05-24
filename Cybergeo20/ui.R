@@ -62,8 +62,15 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                              # )
                              
                              tabsetPanel(
-                               tabPanel("",
-                                  h2("")
+                               tabPanel("Citation Network",
+                                  fluidRow(
+                                    h2(""),
+                                    dataTableOutput("citationcybergeo")
+                                  ),
+                                  fluidRow(
+                                    h2("Citation network neighborhood"),
+                                    plotOutput("citationegoplot")
+                                  )
                                 ),
                                tabPanel("Semantic Network",
                                    h2("")

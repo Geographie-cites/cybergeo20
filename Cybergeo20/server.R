@@ -286,16 +286,8 @@ shinyServer(function(input, output, session) {
 
   ### Juste ----
   
-  
-  #output$citationNetwork <- renderForceNetwork({
-  #  forceNetwork(Links = edf, Nodes = vdf,
-  #               Source = "source", Target = "target",
-  #               Value = "value", NodeID = "name",
-  #               Group = "community", opacity = 0.8,zoom=TRUE)
-  #  
-  #})
-  
-  
+   
+   #########
    
   # output$semanticNetwork <- renderForceNetwork({
   #   forceNetwork(Links = edf, Nodes = vdf,
@@ -305,13 +297,26 @@ shinyServer(function(input, output, session) {
   # 
   #  })
   # 
-  
   #  DO NOT use networkD3js, unless initial layout is possible
   
-  
+   #########
    
-  
+   ## selection datatable
+   output$citationcybergeo <- renderDataTable({
+     DT::datatable(citation_cybergeodata,selection='single')
+   })
    
+   citationSelectedCybergeoArticle <- reactive({input$citationcybergeo_rows_selected[1]})
+   
+   # render citation around selected article
+   output$citationegoplot = renderPlot({
+       selected = citationSelectedCybergeoArticle()
+       if(!is.null(citationGlobalVars$citationSelected)&selected!=citationGlobalVars$citationSelected){
+         show(paste0("selected : ",citation_cybergeodata$title[selected]))
+         citationGlobalVars$citationSelected=selected
+       }
+   })
+  
    
    
   ### HADRI ----
