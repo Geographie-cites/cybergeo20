@@ -92,6 +92,7 @@ names(result) <-c( paste("G",1:K),"% epl.")
 # 
 # 
 
+load('data/citation_cybergeodata.RData')
 
 
 #######################

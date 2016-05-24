@@ -56,9 +56,22 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                     # JUSTE ----
                     
                     tabPanel("Citation network",
-                             fluidRow(h2("Exploring the citation network"),
-                                      #h4("...",br())
-                                      forceNetworkOutput("citationNetwork")
+                             # fluidRow(h2("Exploring the citation network"),
+                             #          #h4("...",br())
+                             #          forceNetworkOutput("citationNetwork")
+                             # )
+                             
+                             tabsetPanel(
+                               tabPanel("",
+                                  h2("")
+                                ),
+                               tabPanel("Semantic Network",
+                                   h2("")
+                               ),
+                               tabPanel("User guide",
+                                  # describe data provenance and signification of measures      
+                                  includeMarkdown("doc/CitationNetwork.md")
+                               )
                              )
                     ),
                     
@@ -165,7 +178,7 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                
                                tabPanel("User guide",
                                         withMathJax(), 
-                                        includeMarkdown("README.md"))
+                                        includeMarkdown("doc/README_HC.md"))
                              )
                     ),
                     
@@ -188,9 +201,8 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                       column(12, plotOutput("termsXCountriesLegend"))
                              )
                                ),
-                             tabPanel("User guide"#,
-                                     
-                                   #   includeMarkdown("GeoSemanticNetworks.md")
+                             tabPanel("User guide",
+                                    includeMarkdown("doc/GeoSemanticNetworks.md")
                                    )
                              )
                              ),

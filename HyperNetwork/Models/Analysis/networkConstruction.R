@@ -25,6 +25,10 @@ getCybindexes<-function(them_probas,cybnames,cybergeo,keyword_dico){
 }
 
 
+getCybDataCitNetwork<-function(){
+  
+}
+
 
 
 extractSubGraphCommunities<-function(ggiant,kmin,kmax,freqmin,freqmax,edge_th){
