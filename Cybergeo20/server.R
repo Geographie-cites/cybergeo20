@@ -303,18 +303,50 @@ shinyServer(function(input, output, session) {
    
    ## selection datatable
    output$citationcybergeo <- renderDataTable({
-     DT::datatable(citation_cybergeodata,selection='single')
+     withProgress(expr={},message='Data Loading...')
+     DT::datatable(citation_cybergeodata[,c(1,2,3,7)],selection='single')
    })
    
-   citationSelectedCybergeoArticle <- reactive({input$citationcybergeo_rows_selected[1]})
+   # strange behavior of rows_selected : due to use of datatable ?
+   #  -> must do a setdiff on global var - ultra dirty
+   #  seems to be a wrong implementation of rows_selected with single selection -- beurk.
+   #   [horrible function intrication]
+   citationSelectedCybergeoArticle <- reactive({
+     sel=input$citationcybergeo_rows_selected
+     show(sel)
+     if(is.null(citationGlobalVars$prevsel)){
+       if(length(sel)>0){citationGlobalVars$prevsel=sel;return(sel[1])}else{return(0)}
+     }else{
+       if(length(sel)==length(citationGlobalVars$prevsel)){return(citationGlobalVars$citationSelected)}
+       if(length(sel)<length(citationGlobalVars$prevsel)){
+         # deselect a row : nothing selected
+          citationGlobalVars$prevsel = sel
+          return(0)
+       }else{
+          selindex = setdiff(sel,citationGlobalVars$prevsel)[1]
+          citationGlobalVars$prevsel = sel#setdiff(sel,c(citationGlobalVars$citationSelected))
+          return(selindex)
+       }
+     }
+   })
    
-   # render citation around selected article
+   # render citation graph around selected article
    output$citationegoplot = renderPlot({
        selected = citationSelectedCybergeoArticle()
-       if(!is.null(citationGlobalVars$citationSelected)&selected!=citationGlobalVars$citationSelected){
-         show(paste0("selected : ",citation_cybergeodata$title[selected]))
-         citationGlobalVars$citationSelected=selected
+       show(paste0("selected : ",selected))
+       if(selected!=citationGlobalVars$citationSelected&selected!="0"){
+          show(paste0("selected different : ",citation_cybergeodata$title[as.numeric(selected)]))
+          citationGlobalVars$citationSelected=selected
+          selectedschid = citation_cybergeodata$SCHID[as.numeric(selected)]
+          
+          # make request for edges in sqlitedb
+          
+          
+          #lay=layout_as_tree(sc,circular=FALSE);
+          #plot(sc,vertex.label=V(sc)$title,vertex.color=V(sc)$cyb+4,layout=lay)
+          
        }
+     
    })
   
    

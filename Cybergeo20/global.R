@@ -21,7 +21,7 @@ library(grid)
 library(igraph)
 library(dplyr)
 library(networkD3)
-
+library(RSQLite)
 
 
 
@@ -99,9 +99,12 @@ names(result) <-c( paste("G",1:K),"% epl.")
 # citation nw cybergeo table
 load('data/citation_cybergeodata.RData')
 
+# sqlite connection
+db = dbConnect(SQLite(),"data/CitationNetwork.sqlite3")
+
 # global vars (needed e.g. to avoid numerous db request with reactive functions)
 citationGlobalVars <- reactiveValues()
-
+citationGlobalVars$citationSelected = "0"
 
 #######################
 ### Hadri

@@ -64,11 +64,13 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                              tabsetPanel(
                                tabPanel("Citation Network",
                                   fluidRow(
-                                    h2(""),
+                                    h4("Data Selection"),
+                                    tags$p(class="text-justify","Search and select a cybergeo paper in the table."),
                                     dataTableOutput("citationcybergeo")
                                   ),
                                   fluidRow(
-                                    h2("Citation network neighborhood"),
+                                    h4("Citation network neighborhood"),
+                                    tags$p(class="text-justify","This graph shows the citation neighborhood of the selected paper"),
                                     plotOutput("citationegoplot")
                                   )
                                 ),
