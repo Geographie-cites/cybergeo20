@@ -11,7 +11,7 @@ pattern_list <- c("espace", "territoire", "environnement", "société", "réseau
 #-- Loading data --------------------------------------------------------------
 
 terms <- read.table(
-  "~/Sync/Data/cybergeo-1996-2015/terms.csv", 
+  "terms.csv", 
   sep = ";", 
   quote = "", 
   comment.char = "", 
@@ -25,7 +25,7 @@ terms <- read.table(
   select(id, article_id, term, count)
 
 sentences <- read.table(
-  "~/Sync/Data/cybergeo-1996-2015/sentences.csv", 
+  "sentences.csv", 
   sep = "|", 
   quote = "", 
   comment.char = "", 
@@ -38,7 +38,7 @@ sentences <- read.table(
   )
 
 articles <- read.table(
-  "~/Sync/Data/cybergeo-1996-2015/cybergeo.csv", 
+  "cybergeo.csv", 
   sep = ";", 
   quote = "", 
   comment.char = "", 
