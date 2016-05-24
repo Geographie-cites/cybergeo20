@@ -17,10 +17,9 @@ The data is collected from google scholar (allowing to get only citing articles,
 
 #### Semantic Data
 
-For around 200000 articles of the citation network, abstracts were collected via the Mendeley API. The extraction of significant keywords (n-grams), following [CHavalarias and Cointet, 2013], allows the construction of a semantic network by co-occurrence analysis, which nodes are keywords. Community detection (Louvain algorithm), optimized on filtering parameters (hub filtering and low edge filtering), yield disciplines which
+For around 200000 articles of the citation network, abstracts were collected via the Mendeley API. The extraction of significant keywords (n-grams), following [CHavalarias and Cointet, 2013], allows the construction of a semantic network by co-occurrence analysis, which nodes are keywords. Community detection (Louvain algorithm), optimized on filtering parameters (hub filtering and low edge filtering), yield disciplines which are given in the following figure :
 
+![Disciplines](./disciplines.png)
 
 
 ### How to use
-
-how to use.
