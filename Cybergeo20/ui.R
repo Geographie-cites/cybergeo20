@@ -66,12 +66,13 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                   fluidRow(
                                     h4("Data Selection"),
                                     tags$p(class="text-justify","Search and select a cybergeo paper in the table."),
+                                    htmlOutput("citationdataloading"),
                                     dataTableOutput("citationcybergeo")
                                   ),
                                   fluidRow(
                                     h4("Citation network neighborhood"),
                                     tags$p(class="text-justify","This graph shows the citation neighborhood of the selected paper"),
-                                    plotOutput("citationegoplot")
+                                    column(9,plotOutput("citationegoplot", width = "100%", height = "800px"))
                                   )
                                 ),
                                tabPanel("Semantic Network",

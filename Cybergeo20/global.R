@@ -92,6 +92,8 @@ names(result) <-c( paste("G",1:K),"% epl.")
 # 
 # 
 
+# setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/Cybergeo20'))
+
 ##
 #  Notations / id conventions : vars and ids prefixed with "citation"
 
@@ -101,10 +103,54 @@ load('data/citation_cybergeodata.RData')
 
 # sqlite connection
 db = dbConnect(SQLite(),"data/CitationNetwork.sqlite3")
+# test query
+# troubleshooting retrieving links ? seems OK, many refs do not have refs
+#dbGetQuery(db,"SELECT * FROM edges WHERE `to`='16612201304630735484';")
+#dbGetQuery(db,"SELECT COUNT(*) FROM edges;")
+#dbGetQuery(db,"SELECT * FROM edges LIMIT 10;")
+citationLoadEdges<-function(id){
+  res=data.frame()
+  res=rbind(res,dbGetQuery(db,paste0("SELECT * FROM edges WHERE `from`='",id,"';")))
+  res=rbind(res,dbGetQuery(db,paste0("SELECT * FROM edges WHERE `to`='",id,"';")))
+  return(res)
+}
 
 # global vars (needed e.g. to avoid numerous db request with reactive functions)
 citationGlobalVars <- reactiveValues()
 citationGlobalVars$citationSelected = "0"
+
+
+citationVisuEgo<-function(edges){
+  if(!is.null(edges)){
+     if(nrow(edges)>0){
+      # data for networkD3
+      #edf = data.frame(source=edges$from,target=edges$to)
+      
+      citsubgraph = graph_from_data_frame(edges,directed=TRUE)
+      #show(citsubgraph)
+      V(citsubgraph)[head_of(citsubgraph,E(citsubgraph))$name]$cyb = E(citsubgraph)$fromcyb
+      V(citsubgraph)[tail_of(citsubgraph,E(citsubgraph))$name]$cyb = E(citsubgraph)$tocyb
+      V(citsubgraph)[head_of(citsubgraph,E(citsubgraph))$name]$title = E(citsubgraph)$fromtitle
+      V(citsubgraph)[tail_of(citsubgraph,E(citsubgraph))$name]$title = E(citsubgraph)$totitle
+      lay=layout_as_tree(citsubgraph,circular=FALSE)
+      lay[lay[,2]==0,2]=-sample.int(length(which(lay[,2]==0)),replace=FALSE)-2
+      lay[lay[,2]==2,1]= sample.int(10,size=length(which(lay[,2]==2)))-5#((-length(which(lay[,2]==2))/2):(length(which(lay[,2]==2))/2))*5/length(which(lay[,2]==2))
+      lay[lay[,2]==2,2]=4+sample.int(length(which(lay[,2]==2)),replace=FALSE)
+      palette=c("#df691a","#1C6F91")
+      par(bg = "#4e5d6c")
+      plot(citsubgraph,edge.color="#df691a",edge.arrow.size = 1,
+           vertex.label=V(citsubgraph)$title,vertex.color=palette[V(citsubgraph)$cyb+1],
+           vertex.frame.color="#1C6F91",vertex.label.color = "#ebebeb",
+           layout=lay
+      )
+      
+      # forceNetwork(Links = edf, Nodes = vdf,
+      #       Source = "source", Target = "target", NodeID = "name",
+      #       Group = "community",zoom=TRUE)
+      # 
+    }
+  }
+}
 
 #######################
 ### Hadri

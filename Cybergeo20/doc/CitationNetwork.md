@@ -12,3 +12,5 @@ GNU GPLv3
 (detail data collection)
 
 ### How to use
+
+how to use.

@@ -17,6 +17,13 @@ save(citation_cybergeodata,file=paste0(datadir,'citation_cybergeodata.RData'))
 
 # export citation nw
 
+linknum=c()
+for(ref in cybnames){
+  show(ref)
+  #show(length(neighbors(gcitation,V(gcitation)[ref],mode="all")))
+  linknum=append(linknum,length(neighbors(gcitation,V(gcitation)[ref],mode="all")))
+}
+
 library(RSQLite)
 db = dbConnect(SQLite(),paste0(datadir,"CitationNetwork.sqlite3"))
 
@@ -24,10 +31,13 @@ db = dbConnect(SQLite(),paste0(datadir,"CitationNetwork.sqlite3"))
 #  (optimizing time performance at the price of disk memory size)
 from=head_of(gcitation,E(gcitation));to=tail_of(gcitation,E(gcitation))
 edges = data.frame(
-  from=from$name,to=from$name,
+  from=from$name,to=to$name,
   fromtitle=from$title,totitle=to$title,
   fromyear=from$year,toyear=to$year,
   fromcyb=from$cyb,tocyb=to$cyb
 )
 
 dbWriteTable(db,"edges",edges)
+
+
+
