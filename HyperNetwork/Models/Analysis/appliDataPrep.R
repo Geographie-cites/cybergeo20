@@ -9,6 +9,25 @@ datadir=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/Cybergeo20/data/')
 # with kws : 584
 
 citation_cybergeodata<-as.tbl(cybergeo[nchar(cybergeo$SCHID)>0,])
+citation_cybergeodata$authors= sapply(citation_cybergeodata$authors,function(s){substr(s,2,nchar(s))})
+
+kws=c();kwcount=c()
+for(ref in citation_cybergeodata$SCHID){
+  effkws="";inds=c()
+   if(ref%in%names(keyword_dico)){
+  show(ref)
+  refkws=keyword_dico[ref][[1]]
+  inds=which(refkws%in%kwdf[,1])
+  if(length(inds)>1){for(i in 1:(length(inds)-1)){
+    effkws=paste0(effkws,refkws[inds[i]],";")
+  }
+  }
+  if(length(inds)>=1){effkws=paste0(effkws,refkws[inds[length(inds)]])}
+   }
+  kws=append(kws,effkws);kwcount=append(kwcount,length(inds))
+  
+}
+
 
 # TODO : correct authors (first ;) - idem keywords ? -- not needed
 
