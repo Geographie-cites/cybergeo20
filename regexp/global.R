@@ -5,7 +5,7 @@ library(lubridate)
 library(stringr)
 library(wordcloud)
 
-pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
+#pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
 #pattern_list <- c("g[ée]ograph")
 
 #-- Loading data --------------------------------------------------------------
@@ -38,7 +38,7 @@ sentences <- read.table(
   )
 
 articles <- read.table(
-  "cybergeo.csv", 
+  "../Data/raw/cybergeo.csv", 
   sep = ";", 
   quote = "", 
   comment.char = "", 
