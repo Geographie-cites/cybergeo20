@@ -35,19 +35,21 @@ themnames=colnames(export_probas)[2:ncol(export_probas)]
 
 
 # construct kws df
-ckws=c();cth=c()
+ckws=c();cth=c();cdocfreq=c()
 for(i in 1:length(thematics)){
   if(!is.na(names(thematics)[i])){
     for(kw in thematics[[i]]){
       show(c(kw,names(thematics)[i]))
       ckws=append(ckws,kw)
       cth=append(cth,names(thematics)[i])
+      cdocfreq=append(cdocfreq,V(sub$gg)[kw]$docfreq)
     }
   }
 }
 
 kwdf = data.frame(ckws,cth)
 kwthemdico = cth;names(kwthemdico)=ckws
+kwfreqs = cdocfreq;names(kwfreqs)=ckws
 
 #kws = as.tbl(kwdf)
 #kws %>% group_by(X2) %>% summarise(l=length(X1)) %>% arrange(l)

@@ -309,7 +309,7 @@ shinyServer(function(input, output, session) {
    ## selection datatable
    output$citationcybergeo <- renderDataTable({
      withProgress(expr={},message='Data Loading...')
-     citation_cybergeodata[,c(1,2,3,7)]
+     citation_cybergeodata[citation_cybergeodata$linknum>0|citation_cybergeodata$kwcount>0,c(1,2,3,7)]
      #DT::datatable(citation_cybergeodata[,c(1,2,3,7)],selection='single')
    })
    
@@ -343,10 +343,10 @@ shinyServer(function(input, output, session) {
      selected = citationSelectedCybergeoArticle()
      selected_hand = which(citation_cybergeodata$id==input$citationselected)
      if(length(selected_hand)>0){selected=selected_hand}
-     show(paste0("selected : ",selected))
+     #show(paste0("selected : ",selected))
      if(length(selected)==1){
        if(selected[1]!=citationGlobalVars$citationSelected){
-         show(paste0("selected different : ",citation_cybergeodata$title[as.numeric(selected)]))
+         #show(paste0("selected different : ",citation_cybergeodata$title[as.numeric(selected)]))
          citationGlobalVars$citationSelected=selected[1]
          selectedschid = citation_cybergeodata$SCHID[as.numeric(selected[1])]
          # make request for edges in sqlitedb
@@ -355,12 +355,30 @@ shinyServer(function(input, output, session) {
      }
    })
    
+   # similar observer for semantic plot
+   observe({
+     selected = citationSelectedCybergeoArticle()
+     selected_hand = which(citation_cybergeodata$id==input$citationsemanticselected)
+     if(length(selected_hand)>0){selected=selected_hand}
+     if(length(selected)==1){
+       if(selected[1]!=citationGlobalVars$citationSemanticSelected){
+         citationGlobalVars$citationSemanticSelected=selected[1]
+         selectedschid = citation_cybergeodata$SCHID[as.numeric(selected[1])]
+         citationGlobalVars$keywords = citationLoadKeywords(selectedschid)
+       }   
+     }
+   })
+   
+   
    # render citation graph around selected article
    output$citationegoplot = renderPlot({
       citationVisuEgo(citationGlobalVars$edges)
    })
   
-   
+   # render wordclouds
+   output$citationesemanticplot = renderPlot({
+     citationWordclouds(citation_cybergeodata$SCHID[citationGlobalVars$citationSemanticSelected],citationGlobalVars$keywords)
+   })
    
    
    ## semantic nw viz

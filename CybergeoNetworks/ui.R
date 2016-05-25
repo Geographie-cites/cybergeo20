@@ -67,18 +67,27 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                     h4("Data Selection"),
                                     tags$p(class="text-justify","Search and select a cybergeo paper in the table."),
                                     htmlOutput("citationdataloading"),
-                                    dataTableOutput("citationcybergeo"),
-                                    selectInput(inputId = "citationselected", 
-                                                label = "Select a publication by id", 
-                                                choices = c("",sort(citation_cybergeodata$id,decreasing = TRUE)),
-                                                selected = "",
-                                                multiple = FALSE)
+                                    dataTableOutput("citationcybergeo")
                                   ),
                                   fluidRow(
                                     h4("Citation network neighborhood"),
                                     tags$p(class="text-justify","This graph shows the citation neighborhood of the selected paper"),
-        
+                                    selectInput(inputId = "citationselected", 
+                                                label = "Select a publication by id", 
+                                                choices = c("",sort(citation_cybergeodata$id[citation_cybergeodata$linknum>0],decreasing = TRUE)),
+                                                selected = "",
+                                                multiple = FALSE),
                                     column(12,plotOutput("citationegoplot", width = "100%", height = "800px"))
+                                  ),
+                                  fluidRow(
+                                    h4("Semantic content"),
+                                    tags$p(class="text-justify","This graph shows the semantic content (color legend in user guide) of the paper (left) and its neighborhood (right)."),
+                                    selectInput(inputId = "citationsemanticselected", 
+                                                label = "Select a publication by id", 
+                                                choices = c("",sort(citation_cybergeodata$id[citation_cybergeodata$kwcount>0],decreasing = TRUE)),
+                                                selected = "",
+                                                multiple = FALSE),
+                                    column(12,plotOutput("citationesemanticplot", width = "100%", height = "800px"))
                                   )
                                 ),
                                tabPanel("Semantic Network",

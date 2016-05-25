@@ -3,7 +3,7 @@
 
 # source semexport.R
 
-datadir=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/Cybergeo20/data/')
+datadir=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/CybergeoNetworks/data/')
 
 # PB : cybnames has 927 rows ; here 885
 # with kws : 584
@@ -40,7 +40,7 @@ for(ref in citation_cybergeodata$SCHID){
   show(ref)
   #show(length(neighbors(gcitation,V(gcitation)[ref],mode="all")))
   lnum=0
-  if(ref %in% V(gcitation)$name)length(neighbors(gcitation,V(gcitation)[ref],mode="all"))
+  if(ref %in% V(gcitation)$name){lnum=length(neighbors(gcitation,V(gcitation)[ref],mode="all"))}
   linknum=append(linknum,lnum)
 }
 
@@ -50,6 +50,9 @@ citation_cybergeodata = cbind(citation_cybergeodata,linknum,kwcount)
 
 save(citation_cybergeodata,file=paste0(datadir,'citation_cybergeodata.RData'))
 
+citationkwthemdico=kwthemdico
+citationkwfreqs=kwfreqs
+save(citationkwthemdico,citationkwfreqs,file=paste0(datadir,'citation_kwthemdico.RData'))
 
 
 
@@ -71,7 +74,15 @@ dbWriteTable(db,"edges",edges)
 
 ## export kw reduced dico as sqlite
 
+citationdbkws = dbConnect(SQLite(),"data/CitationKeywords.sqlite3")
 
+redkws = sapply(keyword_dico,function(l){
+  s=Reduce(function(s1,s2){paste0(s1,";",s2)},l[l%in%ckws])
+  if(is.null(s)){return("")}else{return(s)}
+})
+
+keywords=data.frame(id=names(keyword_dico),keywords=unlist(redkws))
+dbWriteTable(citationdbkws,"keywords",keywords)
 
 ######
 #
