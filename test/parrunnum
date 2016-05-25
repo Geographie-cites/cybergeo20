@@ -1,0 +1,10 @@
+COMMAND=$1
+START=$2
+END=$3
+
+for i in `seq $START $END`
+do
+    echo "run $i"
+    $COMMAND$i & # disown
+done
+

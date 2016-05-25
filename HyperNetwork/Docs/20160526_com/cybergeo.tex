@@ -1,10 +1,12 @@
 \input{PresentationHeader.tex}
 
 
-\title{Bibliom{\'e}trie Indirecte par Analyse de R{\'e}seaux Complexes}
+\title{Indirect Bibliometrics by Complex Network Analysis}
 
 
 \author{J.~Raimbault$^{1,2}$}
+
+%\authorrunning{J.~Raimbault}
 
 \institute{$^{1}$G{\'e}ographie-cit{\'e}s (UMR 8504 CNRS)\\
 $^{2}$LVMT (UMR-T 9403 IFSTTAR)}
@@ -54,60 +56,78 @@ Jeudi 26 mai 2016}
 
 
 
-\jframe{Contexte}{
+\jframe{Context}{
 
-\textit{``You are what you cite''} : \textbf{Quels sont les environnements disciplinaires voisins de Cybergeo ? Sont-ils différents des contenus des articles (PO) et des contenus d{\'e}clar{\'e}s (HC) ?}
+%\textit{``You are what you cite''} : \textbf{Quels sont les environnements disciplinaires voisins de Cybergeo ? Sont-ils différents des contenus des articles (POC) et des contenus d{\'e}clar{\'e}s (HC) ?}
+
+\textit{``You are what you cite''} : \textbf{Which disciplines populate the scientific neighborhood of cybergeo ? Are they different from the ones obtained through article content (POC) and declared contents (HC)  analysis ?}
+
 
 
 \bigskip
 
-$\rightarrow$ Enjeu par rapport {\`a} la ligne {\'e}ditoriale de la revue : interdisciplinarit{\'e} et ouverture
+%$\rightarrow$ Enjeu par rapport {\`a} la ligne {\'e}ditoriale de la revue : interdisciplinarit{\'e} et ouverture
+
+$\rightarrow$ Important for editorial policy : interdisciplinarity and Open Science
 
 \bigskip
 
-$\rightarrow$ Contre une bibliom{\'e}trie quantitative pure en SHS : approche semi-qualitative n{\'e}cessaire
+$\rightarrow$ Semi-qualitative approach, against a purely quantitative bibliometric harmful to humanities
 
 \bigskip
 
 }
 
-\jframe{Objectif}{
+\jframe{Objective}{
 
-\textbf{Question de recherche : }\textit{Dans quelle mesure le croisement des donn{\'e}es de citation et des donn{\'e}es s{\'e}mantiques peut-il permettre d'analyser le contexte disciplinaire de la revue ?}
+%\textbf{Question de recherche : }\textit{Dans quelle mesure le croisement d'une approche par r{\'e}seau de citation avec une approche par analyse s{\'e}mantique peut-il permettre d'analyser le contexte disciplinaire de la revue ?}
 
-\bigskip
-
-$\rightarrow$ Elaboration d'une approche par \textit{Hyperr{\'e}seau} : croisement du r{\'e}seau de citations au r{\'e}seau s{\'e}mantique. Gain d'information par croisement des couches (d{\'e}marche transversale) %analogie avec construction scientifique : cf CS Roadmap)
+\textbf{Research question : }\textit{How does the combination of a citation network approach with a semantic analysis unveil disciplinary context of the journal ?}
 
 \bigskip
 
-$\rightarrow$ Donn{\'e}es difficiles d'acc{\`e}s : base {\`a} construire
+%$\rightarrow$ Elaboration d'une m{\'e}thodologie d'analyse d'\textit{Hyperr{\'e}seau} : croisement d'un r{\'e}seau de citations {\`a} un r{\'e}seau s{\'e}mantique. Gain d'information par croisement des couches (d{\'e}marche transversale) %analogie avec construction scientifique : cf CS Roadmap)
+
+$\rightarrow$ Hypernetwork methodology : superposition of a citation network with a semantic network, in the spirit of a transversal approach
+
+\bigskip
+
+%$\rightarrow$ Donn{\'e}es difficiles d'acc{\`e}s : base {\`a} construire
  
+$\rightarrow$ Data difficult to access : database to construct
 
 
 }
 
 
 
-\section{Collecte des donn{\'e}es}
+\section{Data collection}
 
 
 
-\jframe{Collecte des donn{\'e}es}{
+\jframe{Data collection}{
 
-\textbf{Donn{\'e}es des articles} : bases de fonctionnement (production de la revue)
+\textbf{Cybergeo data} : journal production base
 
-$\rightarrow$ Structuration et Consolidation
+\medskip
+
+$\rightarrow$ Structuration and Consolidation
 
 \bigskip
 
-\textbf{Donn{\'e}es de citation} : revue non r{\'e}f{\'e}renc{\'e}e par base ``classiques'' (de plus non libres !) 
+\textbf{Citation data} : cybergeo not indexed 
 
-$\rightarrow$ \textit{crawling} de \texttt{google scholar} par utilisation de l'option ``\textit{cit{\'e} par}'' \cite{noruzi2005google}
+\medskip
+
+%$\rightarrow$ \textit{crawling} de \texttt{google scholar} par utilisation de l'option ``\textit{cit{\'e} par}'' \cite{noruzi2005google}
+
+$\rightarrow$ \texttt{google scholar} crawling by using ``\textit{cited by}'' option\cite{noruzi2005google}
 
 \bigskip
 
 \textbf{Donn{\'e}es textuelles} : besoin des r{\'e}sum{\'e}s pour l'ensemble des r{\'e}f{\'e}rences li{\'e}es 
+
+\medskip
 
 $\rightarrow$ utilisation de l'API Mendeley~\cite{mendeley} (gratuite mais non ouverte).
 
@@ -115,7 +135,7 @@ $\rightarrow$ utilisation de l'API Mendeley~\cite{mendeley} (gratuite mais non o
 
 
 \jframe{Architecture de collecte des donn{\'e}es}{
-\includegraphics[width=\textwidth]{figures/archi}
+\includegraphics[height=0.8\textheight]{figures/archi}
 }
 
 
@@ -134,14 +154,14 @@ $\rightarrow$ Apr{\`e}s raffinement, $\simeq$ 947 r{\'e}f{\'e}rences de cybergeo
 
 \smallskip
 
-$\rightarrow$ \textit{418670 Noeuds et 570352 Liens ; Diam{\'e}tre : 9 ; Densit{\'e} : 3.25E-6 ; degr{\'e} moyen : 2.724284}
+$\rightarrow$ \textit{418670 Noeuds et 570352 Liens ; Diam{\`e}tre : 9 ; Densit{\'e} : 3.25E-6 ; degr{\'e} moyen : 2.724284}
 
-\includegraphics[width=0.8\textwidth]{figures/degreeDistrib.png}
+\includegraphics[width=0.75\textwidth]{figures/degreeDistrib.png}
 }
 
 
-\jframe{Structure du R{\'e}seau}{
-\includegraphics[width=\textwidth]{figures/citnw}
+\jframe{Citation Network Structure}{
+\includegraphics[height=0.8\textheight]{figures/citnw}
 }
 
 
@@ -194,30 +214,45 @@ $\rightarrow$ $\sim 215000$ r{\'e}f{\'e}rences avec donn{\'e}es compl{\`e}tes.
 
 
 
-\jframe{Extraction des mots-cl{\'e}s}{
+\jframe{Keywords Extraction}{
 
-\textit{Text-mining en python avec \texttt{nltk}~\cite{bird2006nltk}}, m{\'e}thode adapt{\'e}e de
+%\textit{Text-mining en python avec \texttt{nltk}~\cite{bird2006nltk}}, m{\'e}thode adapt{\'e}e de
+%\cite{chavalarias2013phylomemetic}
 
+\textit{Text-mining in python with \texttt{nltk}~\cite{bird2006nltk}}, method adpated from
 \cite{chavalarias2013phylomemetic}
 
+%\begin{itemize}
+%\item Detection de la langue par \textit{stop-words} (mots vides de sens)
+%\item Parsing et tokenizing (isolation des mots) /pos-tagging (fonction des mots) /stemming (extraction de la racine) effectu{\'e}s diff{\'e}remment selon la langue :
+%\begin{itemize}
+%\item Anglais : pos-tagger int{\'e}gr{\'e} {\`a} \texttt{nltk}, combin{\'e} {\`a} un \emph{PorterStemmer}
+%\item Fran\c{c}ais ou autre : utilisation de \texttt{TreeTagger}~\cite{schmid1994probabilistic}
+%\end{itemize}
+%\item Selection des \textit{n-grams} potentiels (avec $1 \leq n \leq 4$) : anglais $\bigcap \{NN \cup VBG \cup JJ \}$ ;  français  $\bigcap \{NOM \cup ADJ\}$
+%\item Insertion en base pour extraction quasi-instantanée plus tard (10j $\rightarrow$ 5min)
+%\item Estimation de la pertinence des \textit{n-grams} selon r{\'e}partition statistique des co-occurrences
+%\end{itemize}
+
 \begin{itemize}
-\item Detection de la langue par \textit{stop-words} (mots vides de sens)
-\item Parsing et tokenizing (isolation des mots) /pos-tagging (fonction des mots) /stemming (extraction de la racine) effectu{\'e}s diff{\'e}remment selon la langue :
+\item Language detection using \textit{stop-words}
+\item Parsing and tokenizing / pos-tagging (word functions) / stemming done differently depending on language :
 \begin{itemize}
-\item Anglais : pos-tagger int{\'e}gr{\'e} {\`a} \texttt{nltk}, combin{\'e} {\`a} un \emph{PorterStemmer}
-\item Fran\c{c}ais ou autre : utilisation de \texttt{TreeTagger}~\cite{schmid1994probabilistic}
+\item English : \texttt{nltk} built-in pos-tagger, combined to a \emph{PorterStemmer}
+\item French or other : use of \texttt{TreeTagger}~\cite{schmid1994probabilistic}
 \end{itemize}
-\item Selection des \textit{n-grams} potentiels (avec $1 \leq n \leq 4$) : anglais $\bigcap \{NN \cup VBG \cup JJ \}$ ;  français  $\bigcap \{NOM \cup ADJ\}$
-\item Insertion en base pour extraction quasi-instantanée plus tard (10j $\rightarrow$ 5min)
-\item Estimation de la pertinence des \textit{n-grams} selon r{\'e}partition statistique des co-occurrences
+\item Selection of potential \textit{n-grams} (with $1 \leq n \leq 4$) : English $\bigcap \{NN \cup VBG \cup JJ \}$ ;  French  $\bigcap \{NOM \cup ADJ\}$
+\item Database insertion for instantaneous utilisation (10j $\rightarrow$ 2min)
+\item Estimation of \textit{n-grams} relevance, following co-occurrences statistical distribution
 \end{itemize}
+
 
 }
 
 
 
 
-\jframe{Construction du r{\'e}seau s{\'e}mantique}{
+\jframe{Construction of Semantic Network}{
 
 \begin{itemize}
 
@@ -268,19 +303,19 @@ $\rightarrow$ $\sim 215000$ r{\'e}f{\'e}rences avec donn{\'e}es compl{\`e}tes.
 %}
 
 \jframe{Influence des param{\`e}tres}{
-\textit{Importance du r{\`e}glage fin des param{\`e}tres}
+\textit{Importance d'un r{\`e}glage fin : }
 
 $\rightarrow$ Sensibilit{\'e} des mod{\`e}les \textbf{et} traitements de donn{\'e}es aux parametres. Exploration syst{\'e}matique via OpenMole par exemple.
 
 $\rightarrow$ Importance du jugement d'expert : pas de dichotomie ``quanti-quali''
 
-$\rightarrow$ Sensibilit{\'e} aux conditions initiales : \textit{Space matters}~\cite{cottineau2015revisiting}
+%$\rightarrow$ Sensibilit{\'e} aux conditions initiales : \textit{Space matters}~\cite{cottineau2015revisiting}
 
 \medskip
 
 \centering
 
-\includegraphics[width=0.7\textwidth]{figures/sensitivity_facet_allindics}
+\includegraphics[width=0.65\textwidth]{figures/sensitivity_facet_allindics}
 
 
 }
@@ -328,27 +363,19 @@ $\rightarrow$ Sensibilit{\'e} aux conditions initiales : \textit{Space matters}~
 
 
 \jframe{R{\'e}seau}{
-%%\textit{Importance du r{\`e}glage fin des param{\`e}tres}
-%
 \centering
-%%\vspace{-2cm}
-\includegraphics[height=0.9\textheight]{figures/semantic.png}
+\includegraphics[height=0.85\textheight]{figures/semantic.png}
 }
 
 \jframe{Interdisicplinarit{\'e}}{
-%%\textit{Importance du r{\`e}glage fin des param{\`e}tres}
-%
 \centering
-%%\vspace{-2cm}
-\includegraphics[height=0.9\textheight]{figures/synththemcyb}
+\includegraphics[height=0.85\textheight]{figures/synththemcyb}
 }
 
 
 \jframe{Interdisicplinarit{\'e} de citation}{
-%%\textit{Importance du r{\`e}glage fin des param{\`e}tres}
-%
 \centering
-%%\vspace{-2cm}
+%\vspace{-1.5cm}
 \includegraphics[height=0.9\textheight]{figures/citation}
 }
 
@@ -365,9 +392,17 @@ o = 1 - \sum p_i^2
 
 \centering
 
-\includegraphics[width=0.5\textwidth]{figures/firstorder_int}
+\includegraphics[width=0.5\textwidth]{figures/firstorderint_withNull}
 
-\textit{Mean orig : 0.79}
+}
+
+\jframe{Interdisciplinarit{\'e} de citation}{
+
+\centering
+
+\includegraphics[width=0.45\textwidth]{figures/citin_interdisc}
+\includegraphics[width=0.45\textwidth]{figures/citout_interdisc}
+
 
 }
 
@@ -407,7 +442,7 @@ o = 1 - \sum p_i^2
   $\rightarrow$ Approche {\`a} croiser avec autres types de classifications (th{\'e}matique (POC), mots-cl{\'e}s (HC), g{\'e}ographique (CC) pour en apprendre plus sur la revue et la pratique de la g{\'e}ographie qui lui est associ{\'e}e
   \bigskip
   
-  $\rightarrow$ M{\'e}thode g{\'e}n{\'e}rique pouvant s'appliquer à tout r{\'e}seau dont les noeuds ont une description textuelle
+  $\rightarrow$ M{\'e}thode g{\'e}n{\'e}rique pouvant s'appliquer {\`a} tout r{\'e}seau dont les noeuds ont une description textuelle
 }
 
 
