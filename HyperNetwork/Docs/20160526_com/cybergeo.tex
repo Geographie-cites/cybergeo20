@@ -125,43 +125,47 @@ $\rightarrow$ \texttt{google scholar} crawling by using ``\textit{cited by}'' op
 
 \bigskip
 
-\textbf{Donn{\'e}es textuelles} : besoin des r{\'e}sum{\'e}s pour l'ensemble des r{\'e}f{\'e}rences li{\'e}es 
+%\textbf{Donn{\'e}es textuelles} : besoin des r{\'e}sum{\'e}s pour l'ensemble des r{\'e}f{\'e}rences li{\'e}es 
+
+\textbf{Text data} : need abstracts for all linked articles
 
 \medskip
 
-$\rightarrow$ utilisation de l'API Mendeley~\cite{mendeley} (gratuite mais non ouverte).
+%$\rightarrow$ utilisation de l'API Mendeley~\cite{mendeley} (gratuite mais non ouverte).
+
+$\rightarrow$ use of Mendeley API~\cite{mendeley} (free but not open)
 
 }
 
 
-\jframe{Architecture de collecte des donn{\'e}es}{
-\includegraphics[height=0.8\textheight]{figures/archi}
+\jframe{Data Collection Architecture}{
+\includegraphics[height=0.76\textheight]{figures/archi}
 }
 
 
 
 
 
-\section{M{\'e}thodes et R{\'e}sultats}
+\section{Methods and Results}
 
-\subsection{R{\'e}seau des citations}
-
-
-\jframe{Caract{\'e}ristiques du r{\'e}seau}{
+\subsection{Citation Network}
 
 
-$\rightarrow$ Apr{\`e}s raffinement, $\simeq$ 947 r{\'e}f{\'e}rences de cybergeo exploitables, sur $\simeq 1200$% ; certaines inexistantes, d'autres mal enregistr{\'e}es sur scholar% $\rightarrow$ possibilit{\'e} de compl{\'e}ter {\`a} la main (long...).
+\jframe{Network Properties}{
+
+
+$\rightarrow$ $\simeq$ 947 cybergeo articles can be studied, among $\simeq 1200$
 
 \smallskip
 
-$\rightarrow$ \textit{418670 Noeuds et 570352 Liens ; Diam{\`e}tre : 9 ; Densit{\'e} : 3.25E-6 ; degr{\'e} moyen : 2.724284}
+$\rightarrow$ \textit{418670 Nodes et 570352 Links ; Diameter : 9 ; Density : 3.25E-6 ; average degree : 2.724284}
 
 \includegraphics[width=0.75\textwidth]{figures/degreeDistrib.png}
 }
 
 
 \jframe{Citation Network Structure}{
-\includegraphics[height=0.8\textheight]{figures/citnw}
+\includegraphics[height=0.75\textheight]{figures/citnw}
 }
 
 
@@ -190,7 +194,7 @@ $\rightarrow$ \textit{418670 Noeuds et 570352 Liens ; Diam{\`e}tre : 9 ; Densit{
 
 
 
-\subsection{R{\'e}seau s{\'e}mantique}
+\subsection{Semantic Network}
 
 
 \jframe{R{\'e}seau s{\'e}mantique}{
