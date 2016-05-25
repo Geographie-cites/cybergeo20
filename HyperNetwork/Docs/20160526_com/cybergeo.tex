@@ -171,11 +171,11 @@ $\rightarrow$ \textit{418670 Nodes et 570352 Links ; Diameter : 9 ; Density : 3.
 
 
 
-\jframe{Degr{\'e}s : Loi rang-taille}{
-\includegraphics[width=0.52\textwidth]{figures/rankSize_fit}
-\includegraphics[width=0.5\textwidth]{figures/rank-size-all}
+\jframe{Hierarchy in citations}{
 
-\textit{Gauche : Cyberg{\'e}o ; Droite : Ensemble du r{\'e}seau}
+\centering
+\includegraphics[height=0.72\textheight]{figures/ranksize.pdf}
+\textit{Superposition of different hierarchical regimes}
 
 }
 
@@ -197,19 +197,19 @@ $\rightarrow$ \textit{418670 Nodes et 570352 Links ; Diameter : 9 ; Density : 3.
 \subsection{Semantic Network}
 
 
-\jframe{R{\'e}seau s{\'e}mantique}{
+\jframe{Semantic Network}{
 
 
-\textbf{R{\'e}seau s{\'e}mantique.} Collection des r{\'e}sum{\'e}s/ann{\'e}es/auteurs/mots-cl{\'e}s pour les 400000 r{\'e}f{\'e}rences via l'API Mendeley
-$\rightarrow$ $\sim 215000$ r{\'e}f{\'e}rences avec donn{\'e}es compl{\`e}tes.
+\textbf{Semantic Data : } Collection of abstract/date/authors/keywords for the 400000 references via Mendeley API
+$\rightarrow$ $\sim 215000$ references with full data.
 
 \bigskip
 
-\textbf{Statistiques}
+\textbf{Summary Statistics}
 
-\textit{Langues :} anglais 206607, francais 4109, espagnol 2029, allemand 892, portugais 891, n{\'e}erlandais 124, autres 182
+\textit{Language :} English 206607, French 4109, Spanish 2029, German 892, Portuguese 891, Dutch 124, others 182
 
-\textit{Repartitions par ann{\'e}es : }
+\textit{Yearly count}
 \centering
 
 \includegraphics[width=0.4\textwidth,height=0.4\textheight]{figures/years}
@@ -260,53 +260,38 @@ $\rightarrow$ $\sim 215000$ r{\'e}f{\'e}rences avec donn{\'e}es compl{\`e}tes.
 
 \begin{itemize}
 
-\item \textbf{Noeuds :} Mots-cl{\'e}s avec la plus grande pertinence cumul{\'e}e
+%\item \textbf{Noeuds :} Mots-cl{\'e}s avec la plus grande pertinence cumul{\'e}e
+
+\item \textbf{Nodes :} Keywords with largest relevance
+
 
 \medskip
 
-\item \textbf{Liens :} Co-occurrences pond{\'e}r{\'e}es
+\item \textbf{Links :} Weighted co-occurrences
 
 \medskip
 
-\item Filtrage des liens en dessous d'un seuil ; ajustement manuel de mots parasites
+\item Manual suppression of parasite words (e.g. : copyright statements !)
 
 \medskip
 
-\item Detection de communaut{\'e}s par maximisation de modularit{\'e} \cite{blondel2008fast} apr{\`e}s suppression des \textit{hubs} (ex. \texttt{model}, \texttt{space}, \texttt{structure}, \texttt{process})
+\item Low weight link filtering
+
+\medskip
+
+\item Suppression of \textit{hubs} (ex. \texttt{model}, \texttt{space}, \texttt{structure}, \texttt{process}) that suppress community structure
+
+\item Community detection by greedy modularity maximization (Louvain method~\cite{blondel2008fast})
+
+\medskip 
 
 \end{itemize}
 
-%Spatialisation de \textit{Fruchterman-Reingold}
 
 }
 
 
-
-%\jframe{R{\'e}seau s{\'e}mantique : r{\'e}seau brut}{
-%\includegraphics[height=\textheight]{figures/filt_kmin0_kmax1200_edge200}
-%}
-%
-%
-%
-%\jframe{R{\'e}seau s{\'e}mantique : corpus complet (avec filtrage)}{
-%\includegraphics[height=\textheight]{figures/semanticAll}
-%}
-%
-%
-%\jframe{R{\'e}seau s{\'e}mantique : corpus cybergeo}{
-%\includegraphics[height=\textheight]{figures/semanticCybergeo}
-%}
-
-
-%\jframe{Retour au corpus complet}{
-%%\textit{Importance du r{\`e}glage fin des param{\`e}tres}
-%
-%\centering
-%%\vspace{-2cm}
-%\includegraphics[height=0.9\textheight]{figures/all_lesslinks}
-%}
-
-\jframe{Influence des param{\`e}tres}{
+\jframe{Parameters influence}{
 \textit{Importance d'un r{\`e}glage fin : }
 
 $\rightarrow$ Sensibilit{\'e} des mod{\`e}les \textbf{et} traitements de donn{\'e}es aux parametres. Exploration syst{\'e}matique via OpenMole par exemple.
@@ -324,17 +309,11 @@ $\rightarrow$ Importance du jugement d'expert : pas de dichotomie ``quanti-quali
 
 }
 
-%\jframe{Application}{
-%%\textit{Importance du r{\`e}glage fin des param{\`e}tres}
 %
-%\centering
-%%\vspace{-2cm}
-%\includegraphics[height=0.9\textheight]{figures/filt_kmin5_kmax900_edge50}
-%}
 
 
-\jframe{Domaines extraits}{
-\textit{Communaut{\'e}s obtenues pour $\theta_V=1200,\theta_E=50$ :}
+\jframe{Obtained disciplines}{
+\textit{Communities obtained with $\theta_V=1200,\theta_E=50$}
 \bigskip
 {\footnotesize
 \begin{itemize}
@@ -349,7 +328,7 @@ $\rightarrow$ Importance du jugement d'expert : pas de dichotomie ``quanti-quali
 }
 }
 
-\jframe{Domaines extraits (suite)}{
+\jframe{Obtained disciplines (continued)}{
 {\footnotesize
 \begin{itemize}
 \item Microbiology (118) : \texttt{chromosom, phylogenet, borrelia}
@@ -365,21 +344,29 @@ $\rightarrow$ Importance du jugement d'expert : pas de dichotomie ``quanti-quali
 }
 }
 
+\begin{frame}
+\frametitle{Network}
+\begin{columns}
+  \begin{column}{0.6\textwidth}
+    \includegraphics[height=0.74\textheight]{figures/semantic.png}
+  \end{column}
+  \begin{column}{0.15\textwidth}
+    \includegraphics[width=\textwidth]{figures/disciplines.png}
+  \end{column}
+\end{columns}
+\end{frame}
 
-\jframe{R{\'e}seau}{
+\jframe{Interdisicplinarity}{
 \centering
-\includegraphics[height=0.85\textheight]{figures/semantic.png}
-}
-
-\jframe{Interdisicplinarit{\'e}}{
-\centering
+\vspace{-0.3cm}
 \includegraphics[height=0.85\textheight]{figures/synththemcyb}
 }
 
 
-\jframe{Interdisicplinarit{\'e} de citation}{
+
+\jframe{Citation interdisicplinarity}{
 \centering
-%\vspace{-1.5cm}
+\vspace{-0.5cm}
 \includegraphics[height=0.9\textheight]{figures/citation}
 }
 
@@ -400,46 +387,27 @@ o = 1 - \sum p_i^2
 
 }
 
-\jframe{Interdisciplinarit{\'e} de citation}{
-
-\centering
-
-\includegraphics[width=0.45\textwidth]{figures/citin_interdisc}
+\begin{frame}
+\frametitle{Citation interdisciplinarity}
+\begin{columns}
+\begin{column}[0.5\textwidth]
+\includegraphics[width=\textwidth]{figures/citin_interdisc}
+\end{column}
+\begin{column}[0.5\textwidth]
 \includegraphics[width=0.45\textwidth]{figures/citout_interdisc}
+\end{column}
 
+\end{columns}
+\end{frame}
 
-}
-
-%\jframe{Degr{\'e} d'interdisciplinarit{\'e}}{
-%
-%Aggregation au niveau de la revue : originalit{\'e} des th{\`e}mes abord{\'e}s dans l'ensemble de la revue
-%
-%\[
-%O = 1 - \sum_i \left[\frac{1}{K}\sum_k p_i^{(k)}\right]^2
-%\]
-%
-%$\rightarrow$ 0.890 pour cybergeo (0.8933 pour un mod{\`e}le nul par tirage al{\'e}atoire)
-%
-%\textit{Besoin d'autres revues pour comparaison : retour {\`a} la collecte de donn{\'e}es}
-%
-%
-%}
-%
-%\jframe{Interdisciplinarit{\'e} au second ordre}{
-%
-%\textit{Croisement des couches de l'hyperr{\'e}seau.}
-%
-%$\rightarrow$ Originalit{\'e} de l'ensemble des voisins (entrants ou sortants) dans le r{\'e}seau de citation
-%
-%\includegraphics[width=0.7\textwidth]{figures/2ndorderOrig}
-%
-%
-%}
 
 
 
 \jframe{Conclusion}{
-  $\rightarrow$ Un environnement disciplinaire tr{\`e}s vari{\'e} et une interdicisplinarit{\'e} affirm{\'e}e
+  %$\rightarrow$ Un environnement disciplinaire tr{\`e}s vari{\'e} et une interdicisplinarit{\'e} affirm{\'e}e
+  
+  $\rightarrow$ 
+  
   
   \bigskip
   
@@ -450,26 +418,6 @@ o = 1 - \sum p_i^2
 }
 
 
-
-%
-%\jframe{Perspectives}{
-%Attention {\`a} la tentation des \textit{big data} et de la simulation {\`a} outrance : garder un ancrage th{\'e}orique (poser les bonnes questions) et m{\'e}thodologique.
-%
-%\bigskip
-%
-%Exemple : travail en cours sur interactions Ville/Transports : donn{\'e}es ``simples'' et classiques (densit{\'e} population et OSM), statiques, fournissent de l'information sur processus dynamiques sous-jacents. N{\'e}cessit{\'e} du cadre th{\'e}orique (th{\'e}orie {\'e}volutive des villes) et du travail m{\'e}thodologique pour relier statique-dynamique.
-%}
-%
-%\jframe{Conclusion ({\`a} retenir)}{
-%\begin{itemize}
-%\item ``Big Data'' plus que relatif
-%\bigskip
-%\item Des donn{\'e}es partout, {\`a} vous de les collecter et cr{\'e}er des bases \textbf{ouvertes} (pas de science sans ouverture : multimodeling et open science)
-%\bigskip
-%\item G{\'e}ographie {\`a} la pointe de par les connaissances d{\'e}j{\`a} pr{\'e}sentes : {\`a} vous de jouer !
-%\end{itemize}
-%}
-%
 
 
 
@@ -549,6 +497,13 @@ Composante g{\'e}ante : plus de 99\% des noeuds.
 
 }
 
+
+
+\jframe{Network Perturbation}{
+
+\includegraphics[height=\textheight]{figures/elsevierMotherFucker}
+
+}
 
 
 
