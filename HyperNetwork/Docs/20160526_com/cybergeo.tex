@@ -4,35 +4,15 @@
 \title{Indirect Bibliometrics by Complex Network Analysis}
 
 
-\author{J.~Raimbault$^{1,2}$}
+\author[J. Raimbault]{J.~Raimbault$^{1,2}$}
 
 %\authorrunning{J.~Raimbault}
 
-\institute{$^{1}$G{\'e}ographie-cit{\'e}s (UMR 8504 CNRS)\\
+\institute[]{$^{1}$G{\'e}ographie-cit{\'e}s (UMR 8504 CNRS)\\
 $^{2}$LVMT (UMR-T 9403 IFSTTAR)}
 
-\date{Cybergeo : 20 ans d{\'e}j{\`a} !\\
+\date[Cybergeo 20 ans]{Cybergeo : 20 ans d{\'e}j{\`a} !\\
 Jeudi 26 mai 2016}
-
-%
-%\usebackgroundtemplate{%
-%  \AddToShipoutPicture*{
-%    \put(0,0){
-%        \parbox[b][\paperheight]{\paperwidth}{%
-%            \vfill
-%            \centering
-%            \includegraphics[width=\paperwidth]{figures/nw}%
-%            \vfill
-%        }
-%    }
-%    \put(0,0){%
-%        \transparent{0.9}\textcolor{white}{\rule{\paperwidth}{\paperheight}}
-%    }
-%}
-%  %\includegraphics[width=1.5\paperwidth,height=1.5\paperheight]{figures/nw}
-%} 
-
-
 
 
 
@@ -72,7 +52,7 @@ $\rightarrow$ Important for editorial policy : interdisciplinarity and Open Scie
 
 \bigskip
 
-$\rightarrow$ Semi-qualitative approach, against a purely quantitative bibliometric harmful to humanities
+$\rightarrow$ Semi-qualitative approach, against purely quantitative bibliometrics harmful to humanities
 
 \bigskip
 
@@ -115,13 +95,13 @@ $\rightarrow$ Structuration and Consolidation
 
 \bigskip
 
-\textbf{Citation data} : cybergeo not indexed 
+\textbf{Citation data} : cybergeo not indexed by ``classical'' bases (such as Web of Science$^{\copyright}$, which are furthermore not open)
 
 \medskip
 
 %$\rightarrow$ \textit{crawling} de \texttt{google scholar} par utilisation de l'option ``\textit{cit{\'e} par}'' \cite{noruzi2005google}
 
-$\rightarrow$ \texttt{google scholar} crawling by using ``\textit{cited by}'' option\cite{noruzi2005google}
+$\rightarrow$ \texttt{google scholar} crawling by using ``\textit{cited by}'' option \cite{noruzi2005google}
 
 \bigskip
 
@@ -183,8 +163,9 @@ $\rightarrow$ \textit{418670 Nodes et 570352 Links ; Diameter : 9 ; Density : 3.
 
 
 \jframe{Cliques}{
-\vspace{-1cm}
-\hspace{-2.3cm}\includegraphics[height=\textheight]{figures/cybclic_2cyb_13761}
+%\vspace{-1cm}
+%\hspace{-2.3cm}
+\includegraphics[height=\textheight]{figures/cybclic}
 
 }
 
@@ -226,17 +207,6 @@ $\rightarrow$ $\sim 215000$ references with full data.
 \textit{Text-mining in python with \texttt{nltk}~\cite{bird2006nltk}}, method adpated from
 \cite{chavalarias2013phylomemetic}
 
-%\begin{itemize}
-%\item Detection de la langue par \textit{stop-words} (mots vides de sens)
-%\item Parsing et tokenizing (isolation des mots) /pos-tagging (fonction des mots) /stemming (extraction de la racine) effectu{\'e}s diff{\'e}remment selon la langue :
-%\begin{itemize}
-%\item Anglais : pos-tagger int{\'e}gr{\'e} {\`a} \texttt{nltk}, combin{\'e} {\`a} un \emph{PorterStemmer}
-%\item Fran\c{c}ais ou autre : utilisation de \texttt{TreeTagger}~\cite{schmid1994probabilistic}
-%\end{itemize}
-%\item Selection des \textit{n-grams} potentiels (avec $1 \leq n \leq 4$) : anglais $\bigcap \{NN \cup VBG \cup JJ \}$ ;  français  $\bigcap \{NOM \cup ADJ\}$
-%\item Insertion en base pour extraction quasi-instantanée plus tard (10j $\rightarrow$ 5min)
-%\item Estimation de la pertinence des \textit{n-grams} selon r{\'e}partition statistique des co-occurrences
-%\end{itemize}
 
 \begin{itemize}
 \item Language detection using \textit{stop-words}
@@ -291,23 +261,26 @@ $\rightarrow$ $\sim 215000$ references with full data.
 }
 
 
-\jframe{Parameters influence}{
-\textit{Importance d'un r{\`e}glage fin : }
+\begin{frame}
+\frametitle{Parameters influence}
+\textit{Importance of \textbf{fine tuning} : }
 
-$\rightarrow$ Sensibilit{\'e} des mod{\`e}les \textbf{et} traitements de donn{\'e}es aux parametres. Exploration syst{\'e}matique via OpenMole par exemple.
+$\rightarrow$ Sensitivity of models \textbf{and} data analysis to parameters. Systematic exploration mandatory, via OpenMole for example.
 
-$\rightarrow$ Importance du jugement d'expert : pas de dichotomie ``quanti-quali''
-
-%$\rightarrow$ Sensibilit{\'e} aux conditions initiales : \textit{Space matters}~\cite{cottineau2015revisiting}
+$\rightarrow$ Place of expert decision-making : no qualitative-quantitative dichotomy
 
 \medskip
 
-\centering
-
-\includegraphics[width=0.65\textwidth]{figures/sensitivity_facet_allindics}
-
-
-}
+\begin{columns}
+\begin{column}{0.65\textwidth}
+\includegraphics[width=\textwidth]{figures/sensitivity_facet_allindics}
+\end{column}
+\begin{column}{0.25\textwidth}
+\justify
+\textit{Multi-criteria optimization (modularity, size, balance) on network construction parameters}
+\end{column}
+\end{columns}
+\end{frame}
 
 %
 
@@ -350,7 +323,7 @@ $\rightarrow$ Importance du jugement d'expert : pas de dichotomie ``quanti-quali
   \begin{column}{0.6\textwidth}
     \includegraphics[height=0.74\textheight]{figures/semantic.png}
   \end{column}
-  \begin{column}{0.15\textwidth}
+  \begin{column}{0.4\textwidth}
     \includegraphics[width=\textwidth]{figures/disciplines.png}
   \end{column}
 \end{columns}
@@ -358,7 +331,7 @@ $\rightarrow$ Importance du jugement d'expert : pas de dichotomie ``quanti-quali
 
 \jframe{Interdisicplinarity}{
 \centering
-\vspace{-0.3cm}
+\vspace{-0.2cm}
 \includegraphics[height=0.85\textheight]{figures/synththemcyb}
 }
 
@@ -390,13 +363,12 @@ o = 1 - \sum p_i^2
 \begin{frame}
 \frametitle{Citation interdisciplinarity}
 \begin{columns}
-\begin{column}[0.5\textwidth]
+\begin{column}{0.5\textwidth}
 \includegraphics[width=\textwidth]{figures/citin_interdisc}
 \end{column}
-\begin{column}[0.5\textwidth]
-\includegraphics[width=0.45\textwidth]{figures/citout_interdisc}
+\begin{column}{0.5\textwidth}
+\includegraphics[width=\textwidth]{figures/citout_interdisc}
 \end{column}
-
 \end{columns}
 \end{frame}
 
@@ -406,15 +378,20 @@ o = 1 - \sum p_i^2
 \jframe{Conclusion}{
   %$\rightarrow$ Un environnement disciplinaire tr{\`e}s vari{\'e} et une interdicisplinarit{\'e} affirm{\'e}e
   
-  $\rightarrow$ 
-  
+  $\rightarrow$ A very rich scientific environment and a certain interdisciplinarity
   
   \bigskip
   
-  $\rightarrow$ Approche {\`a} croiser avec autres types de classifications (th{\'e}matique (POC), mots-cl{\'e}s (HC), g{\'e}ographique (CC) pour en apprendre plus sur la revue et la pratique de la g{\'e}ographie qui lui est associ{\'e}e
+  %$\rightarrow$ Approche {\`a} croiser avec autres types de classifications (th{\'e}matique (POC), mots-cl{\'e}s (HC), g{\'e}ographique (CC) pour en apprendre plus sur la revue et la pratique de la g{\'e}ographie qui lui est associ{\'e}e
+  
+  $\rightarrow$ Approach to be combined with other classifications (thematic (POC), keywords (HC), geographical (CC)) to unveil patterns in geographical practices around the journal
+  
   \bigskip
   
-  $\rightarrow$ M{\'e}thode g{\'e}n{\'e}rique pouvant s'appliquer {\`a} tout r{\'e}seau dont les noeuds ont une description textuelle
+  %$\rightarrow$ M{\'e}thode g{\'e}n{\'e}rique pouvant s'appliquer {\`a} tout r{\'e}seau dont les noeuds ont une description textuelle
+  
+  $\rightarrow$ Generic method that can be applied to any network whose nodes have a textual description
+  
 }
 
 
@@ -429,12 +406,14 @@ o = 1 - \sum p_i^2
 
 
 
-\jframe{Collecte des donn{\'e}es}{
-\textit{Crawling de donn{\'e}es semi-ouvertes : exemples en g{\'e}ographie}
+\jframe{Data Collection}{
+\textit{Crawling of semi-open data : examples in geography}
 
 \bigskip
 
-Donn{\'e}es de mobilit{\'e} : statuts des stations Vlib en temps r{\'e}el (API)
+%Donn{\'e}es de mobilit{\'e} : statuts des stations Vlib en temps r{\'e}el (API)
+
+Mobility data : bike-sharing docking stations status (API)
 
 \cite{raimbault2015user}
 
@@ -447,12 +426,12 @@ Donn{\'e}es de mobilit{\'e} : statuts des stations Vlib en temps r{\'e}el (API)
 
 }
 
-\jframe{Collecte des donn{\'e}es}{
-\textit{Exemples en g{\'e}ographie (suite)}
+\jframe{Data Collection}{
+\textit{Exemples in geography (continued)}
 
 \bigskip
 
-Traffic routier : collecte de \textit{sytadin} (pas d'API : \textit{scrapping} n{\'e}c{\'e}ssaire)
+Road traffic : collect of \textit{sytadin} data (no API : \textit{scrapping} is necessary)
 
 
 \bigskip
@@ -472,18 +451,18 @@ Traffic routier : collecte de \textit{sytadin} (pas d'API : \textit{scrapping} n
 
 
 
-\jframe{Centralit{\'e} (citation)}{
+\jframe{Centrality (citation)}{
 
 \includegraphics[width=0.5\textwidth]{figures/betweeness-cyb}
 \includegraphics[width=0.5\textwidth]{figures/betweeness}
 
-\textit{Centralit{\'e}s faibles (rq : impossibilit{\'e} des clusters forts pour des citations car causalit{\'e} temporelle). Gauche : Cyberg{\'e}o ; Droite : Ensemble du r{\'e}seau}
+\textit{Weak centralities (rq : impossibility of having strong clusters because of temporal causality). Left : Cybergeo ; Right : Whole Network}
 
 }
 
 
 \jframe{Clustering (citation)}{
-Composante g{\'e}ante : plus de 99\% des noeuds.
+Giant component : more than 99\% of nodes.
 \medskip
 
 \includegraphics[width=0.5\textwidth]{figures/clusterSize}
@@ -508,7 +487,7 @@ Composante g{\'e}ante : plus de 99\% des noeuds.
 
 
 
-\jframe{Estimation de la pertinence}{
+\jframe{Relevance estimation}{
 Estimation exacte de la pertinence via la repartition statistique des co-occurrences (score de $\chi^2$) : \textit{termhood} d{\'e}finie, avec $M_{ij}$ nombre d'articles où $i$ et $j$ apparaissent simultanément,
 \[
 t_i = \sum_{j\neq i}\frac{\left( M_{ij} - \sum_{k}M_{ik} \sum_{k} M_{jk}\right)^2}{\sum_{k}M_{ik} \sum_{k} M_{jk}}

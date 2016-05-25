@@ -11,37 +11,47 @@ datadir=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/Cybergeo20/data/')
 citation_cybergeodata<-as.tbl(cybergeo[nchar(cybergeo$SCHID)>0,])
 citation_cybergeodata$authors= sapply(citation_cybergeodata$authors,function(s){substr(s,2,nchar(s))})
 
-kws=c();kwcount=c()
+#kws=c();
+kwcount=c()
 for(ref in citation_cybergeodata$SCHID){
   effkws="";inds=c()
    if(ref%in%names(keyword_dico)){
   show(ref)
   refkws=keyword_dico[ref][[1]]
   inds=which(refkws%in%kwdf[,1])
-  if(length(inds)>1){for(i in 1:(length(inds)-1)){
-    effkws=paste0(effkws,refkws[inds[i]],";")
-  }
-  }
-  if(length(inds)>=1){effkws=paste0(effkws,refkws[inds[length(inds)]])}
+  #if(length(inds)>1){for(i in 1:(length(inds)-1)){
+  #  effkws=paste0(effkws,refkws[inds[i]],";")
+  #}
+  #}
+  #if(length(inds)>=1){effkws=paste0(effkws,refkws[inds[length(inds)]])}
    }
-  kws=append(kws,effkws);kwcount=append(kwcount,length(inds))
-  
+  #kws=append(kws,effkws);
+  kwcount=append(kwcount,length(inds))
 }
 
 
-# TODO : correct authors (first ;) - idem keywords ? -- not needed
-
-save(citation_cybergeodata,file=paste0(datadir,'citation_cybergeodata.RData'))
 
 
 # export citation nw
 
+# shit its the same as colSum(adj)+rowSums(adj)
 linknum=c()
-for(ref in cybnames){
+for(ref in citation_cybergeodata$SCHID){
   show(ref)
   #show(length(neighbors(gcitation,V(gcitation)[ref],mode="all")))
-  linknum=append(linknum,length(neighbors(gcitation,V(gcitation)[ref],mode="all")))
+  lnum=0
+  if(ref %in% V(gcitation)$name)length(neighbors(gcitation,V(gcitation)[ref],mode="all"))
+  linknum=append(linknum,lnum)
 }
+
+# TODO : correct authors (first ;) OK - idem keywords ? -- not needed -> global sqlite base
+
+citation_cybergeodata = cbind(citation_cybergeodata,linknum,kwcount)
+
+save(citation_cybergeodata,file=paste0(datadir,'citation_cybergeodata.RData'))
+
+
+
 
 library(RSQLite)
 db = dbConnect(SQLite(),paste0(datadir,"CitationNetwork.sqlite3"))
@@ -57,6 +67,9 @@ edges = data.frame(
 )
 
 dbWriteTable(db,"edges",edges)
+
+
+## export kw reduced dico as sqlite
 
 
 

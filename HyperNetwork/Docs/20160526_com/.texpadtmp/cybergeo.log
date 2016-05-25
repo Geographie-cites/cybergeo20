@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.8)  25 MAY 2016 17:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.8)  25 MAY 2016 19:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -652,20 +652,20 @@ Grid set 16 x 16 = 22.7622pt x 17.07166pt
 ) (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.aux)
 \openout1 = `cybergeo.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 95.
+LaTeX Font Info:    ... okay on input line 95.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -726,7 +726,7 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box58
-Package hyperref Info: Link coloring OFF on input line 88.
+Package hyperref Info: Link coloring OFF on input line 95.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -734,62 +734,62 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count161
 )
-LaTeX Info: Redefining \ref on input line 88.
-LaTeX Info: Redefining \pageref on input line 88.
-LaTeX Info: Redefining \nameref on input line 88.
+LaTeX Info: Redefining \ref on input line 95.
+LaTeX Info: Redefining \pageref on input line 95.
+LaTeX Info: Redefining \nameref on input line 95.
  (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.out) (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.out)
 \@outlinefile=\write5
 \openout5 = `cybergeo.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 88.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 95.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 88.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 95.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 88.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 88.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 95.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 95.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 88.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 95.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 88.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 88.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 95.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 95.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 88.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 95.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 88.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 88.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 95.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 95.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 88.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 95.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 88.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 88.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 95.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 95.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 88.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 95.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 88.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 95.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 88.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 95.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 88.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 95.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 88.
+(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 95.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 88.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 95.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 88.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 95.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 88.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 95.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 88.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 88.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 95.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 95.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 88.
+(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 95.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 88.
+(Font)                  OT1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 95.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 88.
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 95.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/beamer/translator/dicts/translator-basic-dictionary/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/beamer/translator/dicts/translator-bibliography-dictionary/translator-bibliography-dictionary-English.dict
@@ -803,85 +803,87 @@ Dictionary: translator-numbers-dictionary, Language: English
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/beamer/translator/dicts/translator-theorem-dictionary/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 88.
-Package ragged2e Info: ABD: executing \RaggedRight on input line 88.
+LaTeX Info: Redefining \includegraphics on input line 95.
+Package ragged2e Info: ABD: executing \RaggedRight on input line 95.
  ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 88.
+LaTeX Info: Redefining \selectfont on input line 95.
  (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.nav))
 
 Package hyperref Warning: Option `pdfauthor' has already been used,
 (hyperref)                setting the option has no effect on input line 7.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 43.
+<template/bandeau3.jpg, id=34, 983.71515pt x 160.62007pt>
+File: template/bandeau3.jpg Graphic file (type jpg)
+ <use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 23.
+(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
+
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 23--23
+[] []  
+ []
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 23.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 43.
+LaTeX Font Info:    Try loading font information for U+msb on input line 23.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input line 43.
+LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input line 23.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/mathkerncmss.
 )
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
-(Font)              size <5> substituted on input line 43.
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
- []
+(Font)              size <5> substituted on input line 23.
 
 [1
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] <template/bandeau3.jpg, id=68, 983.71515pt x 160.62007pt>
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./template/bandeau3.jpg>]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 79.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 59.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 79--79
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 59--59
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [2
 
- <./template/bandeau3.jpg>]
+]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 100.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 80.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 100--100
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 80--80
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [3
 
 ]
-File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 138.
-(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
+LaTeX Font Info:    Try loading font information for OMS+cmss on input line 118.
+LaTeX Font Info:    No file OMScmss.fd. on input line 118.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 138--138
-[] []  
+
+LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead on input line 118.
+
+
+Overfull \hbox (3.09685pt too wide) in paragraph at lines 118--118
+[]\OT1/cmss/bx/n/10 Citation data \OT1/cmss/m/n/10 : cy-ber-geo not in-dexed by ``clas-si-cal'' bases (such as Web of Science$[]$,
  []
 
+File: template/bandeau3.jpg Graphic file (type jpg)
+<use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 118.
+(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 118--118
+[] []  
  []
 
 [4
@@ -889,20 +891,15 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
 ] <figures/archi.pdf, id=157, 278.84174pt x 167.5861pt>
 File: figures/archi.pdf Graphic file (type pdf)
  <use figures/archi.pdf>
-Package pdftex.def Info: figures/archi.pdf used on input line 143.
+Package pdftex.def Info: figures/archi.pdf used on input line 123.
 (pdftex.def)             Requested size: 331.22583pt x 199.06113pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 143.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 123.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 143--143
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 123--123
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [5
@@ -910,24 +907,19 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
  <./figures/archi.pdf>] <figures/degreeDistrib.png, id=193, 597.23125pt x 420.57124pt>
 File: figures/degreeDistrib.png Graphic file (type png)
  <use figures/degreeDistrib.png>
-Package pdftex.def Info: figures/degreeDistrib.png used on input line 164.
+Package pdftex.def Info: figures/degreeDistrib.png used on input line 144.
 (pdftex.def)             Requested size: 258.14648pt x 181.78546pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 164.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 144.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 164--164
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 144--144
 [] []  
  []
 
 
-Overfull \vbox (20.73897pt too high) detected at line 164
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (20.73897pt too high) detected at line 144
  []
 
 [6
@@ -935,20 +927,15 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
  <./figures/degreeDistrib.png>] <figures/citnw.pdf, id=224, 258.9675pt x 181.67876pt>
 File: figures/citnw.pdf Graphic file (type pdf)
  <use figures/citnw.pdf>
-Package pdftex.def Info: figures/citnw.pdf used on input line 169.
+Package pdftex.def Info: figures/citnw.pdf used on input line 149.
 (pdftex.def)             Requested size: 280.02054pt x 196.44333pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 169.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 149.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 169--169
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 149--149
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [7
@@ -956,91 +943,76 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
  <./figures/citnw.pdf, page is rotated 270 degrees>] <figures/ranksize.pdf, id=261, 722.7pt x 542.025pt>
 File: figures/ranksize.pdf Graphic file (type pdf)
  <use figures/ranksize.pdf>
-Package pdftex.def Info: figures/ranksize.pdf used on input line 180.
+Package pdftex.def Info: figures/ranksize.pdf used on input line 160.
 (pdftex.def)             Requested size: 251.44904pt x 188.5859pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 180.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 160.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 180--180
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 160--160
 [] []  
  []
 
 
-Overfull \vbox (1.53941pt too high) detected at line 180
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (1.53941pt too high) detected at line 160
  []
 
 [8
 
- <./figures/ranksize.pdf>] <figures/cybclic_2cyb_13761.pdf, id=341, 650.43pt x 433.62pt>
-File: figures/cybclic_2cyb_13761.pdf Graphic file (type pdf)
- <use figures/cybclic_2cyb_13761.pdf>
-Package pdftex.def Info: figures/cybclic_2cyb_13761.pdf used on input line 189.
-(pdftex.def)             Requested size: 392.90099pt x 261.92444pt.
+ <./figures/ranksize.pdf>] <figures/cybclic.pdf, id=341, 722.7pt x 542.025pt>
+File: figures/cybclic.pdf Graphic file (type pdf)
+ <use figures/cybclic.pdf>
+Package pdftex.def Info: figures/cybclic.pdf used on input line 170.
+(pdftex.def)             Requested size: 349.2409pt x 261.92444pt.
+
+Overfull \hbox (5.04558pt too wide) in paragraph at lines 170--170
+[][] 
+ []
+
 File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 189.
+<use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 170.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 189--189
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 170--170
 [] []  
  []
 
 
-Overfull \vbox (32.48076pt too high) detected at line 189
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (60.9335pt too high) detected at line 170
  []
 
 [9
 
- <./figures/cybclic_2cyb_13761.pdf>] <figures/years.pdf, id=373, 597.23125pt x 420.57124pt>
+ <./figures/cybclic.pdf>] <figures/years.pdf, id=419, 597.23125pt x 420.57124pt>
 File: figures/years.pdf Graphic file (type pdf)
  <use figures/years.pdf>
-Package pdftex.def Info: figures/years.pdf used on input line 217.
+Package pdftex.def Info: figures/years.pdf used on input line 198.
 (pdftex.def)             Requested size: 137.67014pt x 104.76392pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 217.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 198.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 217--217
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 198--198
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [10
 
  <./figures/years.pdf>]
-Overfull \hbox (68.99948pt too wide) in paragraph at lines 254--254
+Overfull \hbox (68.99948pt too wide) in paragraph at lines 224--224
 []\OT1/cmss/m/it/10 Text-mining in python with \OT1/cmtt/m/it/10 nltk \OT1/cmss/m/it/10 [[]]\OT1/cmss/m/n/10 , method ad-pated from [[]] 
  []
 
 File: template/bandeau3.jpg Graphic file (type jpg)
 <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 254.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 224.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 254--254
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 224--224
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [11
@@ -1048,41 +1020,47 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
 ]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 291.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 261.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 291--291
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 261--261
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [12
 
-] <figures/sensitivity_facet_allindics.pdf, id=474, 2168.1pt x 1445.4pt>
+]
+
+LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 283.
+
+<figures/sensitivity_facet_allindics.pdf, id=520, 2168.1pt x 1445.4pt>
 File: figures/sensitivity_facet_allindics.pdf Graphic file (type pdf)
  <use figures/sensitivity_facet_allindics.pdf>
-Package pdftex.def Info: figures/sensitivity_facet_allindics.pdf used on input line 310.
+Package pdftex.def Info: figures/sensitivity_facet_allindics.pdf used on input line 283.
 (pdftex.def)             Requested size: 223.72485pt x 149.13591pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 283--283
+[]\OT1/cmss/m/it/10 Multi-criteria op-ti-
+ []
+
+
+Underfull \hbox (badness 4543) in paragraph at lines 283--283
+\OT1/cmss/m/it/10 miza-tion (mod-u-lar-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 283--283
+\OT1/cmss/m/it/10 net-work con-struc-
+ []
+
 File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 310.
+<use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 283.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 310--310
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 283--283
 [] []  
- []
-
-
-Overfull \vbox (2.08942pt too high) detected at line 310
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [13
@@ -1090,16 +1068,11 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
  <./figures/sensitivity_facet_allindics.pdf>]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 329.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 302.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 329--329
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 302--302
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [14
@@ -1107,512 +1080,121 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
 ]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 345.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 318.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 345--345
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 318--318
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [15
 
-] <figures/semantic.png, id=605, 2890.8pt x 2890.8pt>
+] <figures/semantic.png, id=650, 2890.8pt x 2890.8pt>
 File: figures/semantic.png Graphic file (type png)
  <use figures/semantic.png>
-Package pdftex.def Info: figures/semantic.png used on input line 357.
+Package pdftex.def Info: figures/semantic.png used on input line 330.
 (pdftex.def)             Requested size: 193.81934pt x 193.82552pt.
- <figures/disciplines.png, id=606, 309.155pt x 283.0575pt>
+ <figures/disciplines.png, id=651, 309.155pt x 283.0575pt>
 File: figures/disciplines.png Graphic file (type png)
  <use figures/disciplines.png>
-Package pdftex.def Info: figures/disciplines.png used on input line 357.
-(pdftex.def)             Requested size: 51.6272pt x 47.26826pt.
+Package pdftex.def Info: figures/disciplines.png used on input line 330.
+(pdftex.def)             Requested size: 137.67603pt x 126.05736pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 357.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 330.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 357--357
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 330--330
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [16
 
- <./figures/semantic.png> <./figures/disciplines.png>] <figures/synththemcyb.pdf, id=635, 722.7pt x 722.7pt>
+ <./figures/semantic.png> <./figures/disciplines.png>] <figures/synththemcyb.pdf, id=681, 722.7pt x 722.7pt>
 File: figures/synththemcyb.pdf Graphic file (type pdf)
  <use figures/synththemcyb.pdf>
-Package pdftex.def Info: figures/synththemcyb.pdf used on input line 363.
+Package pdftex.def Info: figures/synththemcyb.pdf used on input line 336.
 (pdftex.def)             Requested size: 222.63419pt x 222.63736pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 363.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 336.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 363--363
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 336--336
 [] []  
  []
 
 
-Overfull \vbox (13.11052pt too high) detected at line 363
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (13.11052pt too high) detected at line 336
  []
 
 [17
 
- <./figures/synththemcyb.pdf>] <figures/citation.pdf, id=775, 722.7pt x 722.7pt>
+ <./figures/synththemcyb.pdf>] <figures/citation.pdf, id=820, 722.7pt x 722.7pt>
 File: figures/citation.pdf Graphic file (type pdf)
  <use figures/citation.pdf>
-Package pdftex.def Info: figures/citation.pdf used on input line 371.
+Package pdftex.def Info: figures/citation.pdf used on input line 344.
 (pdftex.def)             Requested size: 235.72383pt x 235.7304pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 371.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 344.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 371--371
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 344--344
 [] []  
  []
 
 
-Overfull \vbox (20.51309pt too high) detected at line 371
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (20.51309pt too high) detected at line 344
  []
 
 [18
 
- <./figures/citation.pdf>] <figures/firstorderint_withNull.pdf, id=1717, 844.15375pt x 597.23125pt>
+ <./figures/citation.pdf>] <figures/firstorderint_withNull.pdf, id=1762, 844.15375pt x 597.23125pt>
 File: figures/firstorderint_withNull.pdf Graphic file (type pdf)
  <use figures/firstorderint_withNull.pdf>
-Package pdftex.def Info: figures/firstorderint_withNull.pdf used on input line 388.
+Package pdftex.def Info: figures/firstorderint_withNull.pdf used on input line 361.
 (pdftex.def)             Requested size: 172.09766pt x 121.75883pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 388.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 361.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 388--388
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 361--361
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [19
 
- <./figures/firstorderint_withNull.pdf>]
-./cybergeo.tex:401: Missing \endcsname inserted.
-<to be read again> 
-                   \textwidth 
-l.401 \end{frame}
-                 
-The control sequence marked <to be read again> should
-not appear between \csname and \endcsname.
-
-./cybergeo.tex:401: Missing number, treated as zero.
-<to be read again> 
-                   \endcsname 
-l.401 \end{frame}
-                 
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-./cybergeo.tex:401: Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \endcsname 
-l.401 \end{frame}
-                 
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-./cybergeo.tex:401: Extra \endcsname.
-<recently read> \endcsname 
-                           
-l.401 \end{frame}
-                 
-I'm ignoring this, since I wasn't doing a \csname.
-
-
-./cybergeo.tex:401: Package keyval Error: 0.5\textwidth  undefined.
-
-See the keyval package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.401 \end{frame}
-                 
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-./cybergeo.tex:401: Missing number, treated as zero.
-<to be read again> 
-                   \protect 
-l.401 \end{frame}
-                 
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-./cybergeo.tex:401: Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \protect 
-l.401 \end{frame}
-                 
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-./cybergeo.tex:401: Package pdftex.def Error: File `\relax .png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.401 \end{frame}
-                 
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-./cybergeo.tex:401: Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.401 \end{frame}
-                 
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-./cybergeo.tex:401: Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.401 \end{frame}
-                 
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-./cybergeo.tex:401: Missing $ inserted.
-<inserted text> 
-                $
-l.401 \end{frame}
-                 
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./cybergeo.tex:401: Extra }, or forgotten $.
-\beamer@doifinframe ... ]{figures/citin_interdisc}
-                                                   \end {column} \begin {col...
-l.401 \end{frame}
-                 
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./cybergeo.tex:401: Missing $ inserted.
-<inserted text> 
-                $
-l.401 \end{frame}
-                 
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (123.21616pt too wide) in paragraph at lines 401--401
-[]\OT1/cmss/m/n/10 [width=]figures/citin$[]\OT1/mathkerncmss/m/sl/10 nterdisc$  
- []
-
-./cybergeo.tex:401: Missing } inserted.
-<inserted text> 
-                }
-l.401 \end{frame}
-                 
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./cybergeo.tex:401: Missing number, treated as zero.
-<to be read again> 
-                   \protect 
-l.401 \end{frame}
-                 
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-./cybergeo.tex:401: Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \protect 
-l.401 \end{frame}
-                 
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-./cybergeo.tex:401: Package pdftex.def Error: File `\relax .png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.401 \end{frame}
-                 
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-./cybergeo.tex:401: Missing \endcsname inserted.
-<to be read again> 
-                   \textwidth 
-l.401 \end{frame}
-                 
-The control sequence marked <to be read again> should
-not appear between \csname and \endcsname.
-
-./cybergeo.tex:401: Missing number, treated as zero.
-<to be read again> 
-                   \endcsname 
-l.401 \end{frame}
-                 
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-./cybergeo.tex:401: Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \endcsname 
-l.401 \end{frame}
-                 
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-./cybergeo.tex:401: Extra \endcsname.
-<recently read> \endcsname 
-                           
-l.401 \end{frame}
-                 
-I'm ignoring this, since I wasn't doing a \csname.
-
-
-./cybergeo.tex:401: Package keyval Error: 0.5\textwidth  undefined.
-
-See the keyval package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.401 \end{frame}
-                 
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-./cybergeo.tex:401: Missing number, treated as zero.
-<to be read again> 
-                   \protect 
-l.401 \end{frame}
-                 
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-./cybergeo.tex:401: Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \protect 
-l.401 \end{frame}
-                 
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-./cybergeo.tex:401: Package pdftex.def Error: File `\relax .png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.401 \end{frame}
-                 
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-./cybergeo.tex:401: Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.401 \end{frame}
-                 
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-./cybergeo.tex:401: Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.401 \end{frame}
-                 
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-./cybergeo.tex:401: Missing $ inserted.
-<inserted text> 
-                $
-l.401 \end{frame}
-                 
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./cybergeo.tex:401: Extra }, or forgotten $.
-\beamer@doifinframe ...]{figures/citout_interdisc}
-                                                   \end {column} \par \end {...
-l.401 \end{frame}
-                 
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./cybergeo.tex:401: Missing $ inserted.
-<inserted text> 
-                $
-l.401 \end{frame}
-                 
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-
-Overfull \hbox (147.21623pt too wide) in paragraph at lines 401--401
-[]\OT1/cmss/m/n/10 [width=0.45]figures/citout$[]\OT1/mathkerncmss/m/sl/10 nterdisc$  
- []
-
-./cybergeo.tex:401: Missing } inserted.
-<inserted text> 
-                }
-l.401 \end{frame}
-                 
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./cybergeo.tex:401: Missing number, treated as zero.
-<to be read again> 
-                   \protect 
-l.401 \end{frame}
-                 
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-./cybergeo.tex:401: Illegal unit of measure (pt inserted).
-<to be read again> 
-                   \protect 
-l.401 \end{frame}
-                 
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, nd, nc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-./cybergeo.tex:401: Package pdftex.def Error: File `\relax .png' not found.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.401 \end{frame}
-                 
-Using draft setting for this image.
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Overfull \hbox (10.66249pt too wide) detected at line 401
-[][][] \OT1/cmss/m/n/10 .png [].png []$[]$[][][][][][][][] .png [].png []$[]$[][][][][][] 
- []
-
+ <./figures/firstorderint_withNull.pdf>] <figures/citin_interdisc.pdf, id=1799, 844.15375pt x 597.23125pt>
+File: figures/citin_interdisc.pdf Graphic file (type pdf)
+ <use figures/citin_interdisc.pdf>
+Package pdftex.def Info: figures/citin_interdisc.pdf used on input line 373.
+(pdftex.def)             Requested size: 172.09766pt x 121.75883pt.
+ <figures/citout_interdisc.pdf, id=1800, 844.15375pt x 597.23125pt>
+File: figures/citout_interdisc.pdf Graphic file (type pdf)
+ <use figures/citout_interdisc.pdf>
+Package pdftex.def Info: figures/citout_interdisc.pdf used on input line 373.
+(pdftex.def)             Requested size: 172.09766pt x 121.75883pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
-<use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 401.
+ <use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 373.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 401--401
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 373--373
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [20
 
-]
+ <./figures/citin_interdisc.pdf> <./figures/citout_interdisc.pdf>]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 418.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 395.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 418--418
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 395--395
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [21
@@ -1620,187 +1202,147 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
 ]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 426.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 403.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 426--426
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 403--403
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [22
 
 ]
 
-LaTeX Warning: Citation `raimbault2015user' on page 23 undefined on input line 448.
+LaTeX Warning: Citation `raimbault2015user' on page 23 undefined on input line 427.
 
-<figures/velib.png, id=1833, 804.00375pt x 498.86375pt>
+<figures/velib.png, id=1896, 804.00375pt x 498.86375pt>
 File: figures/velib.png Graphic file (type png)
  <use figures/velib.png>
-Package pdftex.def Info: figures/velib.png used on input line 448.
+Package pdftex.def Info: figures/velib.png used on input line 427.
 (pdftex.def)             Requested size: 240.93567pt x 149.49281pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 448.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 427.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 448--448
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 427--427
 [] []  
  []
 
 
-Overfull \vbox (3.00188pt too high) detected at line 448
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (3.00188pt too high) detected at line 427
  []
 
 [23
 
- <./figures/velib.png>] <figures/screen_appli.png, id=1861, 1192.455pt x 796.9775pt>
+ <./figures/velib.png>] <figures/screen_appli.png, id=1925, 1192.455pt x 796.9775pt>
 File: figures/screen_appli.png Graphic file (type png)
  <use figures/screen_appli.png>
-Package pdftex.def Info: figures/screen_appli.png used on input line 468.
+Package pdftex.def Info: figures/screen_appli.png used on input line 447.
 (pdftex.def)             Requested size: 275.3573pt x 184.03061pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 468.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 447.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 468--468
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 447--447
 [] []  
  []
 
 
-Overfull \vbox (33.53967pt too high) detected at line 468
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (33.53967pt too high) detected at line 447
  []
 
 [24
 
- <./figures/screen_appli.png>] <figures/betweeness-cyb.pdf, id=1890, 597.23125pt x 420.57124pt>
+ <./figures/screen_appli.png>] <figures/betweeness-cyb.pdf, id=1953, 597.23125pt x 420.57124pt>
 File: figures/betweeness-cyb.pdf Graphic file (type pdf)
  <use figures/betweeness-cyb.pdf>
-Package pdftex.def Info: figures/betweeness-cyb.pdf used on input line 482.
+Package pdftex.def Info: figures/betweeness-cyb.pdf used on input line 461.
 (pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
- <figures/betweeness.pdf, id=1891, 597.23125pt x 420.57124pt>
+ <figures/betweeness.pdf, id=1954, 597.23125pt x 420.57124pt>
 File: figures/betweeness.pdf Graphic file (type pdf)
  <use figures/betweeness.pdf>
-Package pdftex.def Info: figures/betweeness.pdf used on input line 482.
+Package pdftex.def Info: figures/betweeness.pdf used on input line 461.
 (pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
-
-Overfull \hbox (0.41602pt too wide) in paragraph at lines 482--482
-[]\OT1/cmss/m/it/10 Centralit^^Ses faibles (rq : im-pos-si-bilit^^Se des clus-ters forts pour des ci-ta-tions car causalit^^Se
- []
-
 File: template/bandeau3.jpg Graphic file (type jpg)
-<use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 482.
+ <use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 461.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 482--482
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 461--461
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [25
 
- <./figures/betweeness-cyb.pdf> <./figures/betweeness.pdf>] <figures/clusterSize.pdf, id=1931, 597.23125pt x 420.57124pt>
+ <./figures/betweeness-cyb.pdf> <./figures/betweeness.pdf>] <figures/clusterSize.pdf, id=1994, 597.23125pt x 420.57124pt>
 File: figures/clusterSize.pdf Graphic file (type pdf)
  <use figures/clusterSize.pdf>
-Package pdftex.def Info: figures/clusterSize.pdf used on input line 491.
+Package pdftex.def Info: figures/clusterSize.pdf used on input line 470.
 (pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
- <figures/pathlength.pdf, id=1932, 597.23125pt x 420.57124pt>
+ <figures/pathlength.pdf, id=1995, 597.23125pt x 420.57124pt>
 File: figures/pathlength.pdf Graphic file (type pdf)
  <use figures/pathlength.pdf>
-Package pdftex.def Info: figures/pathlength.pdf used on input line 491.
+Package pdftex.def Info: figures/pathlength.pdf used on input line 470.
 (pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 491.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 470.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 491--491
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 470--470
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [26
 
- <./figures/clusterSize.pdf> <./figures/pathlength.pdf>] <figures/cybclic_2cyb_12817.pdf, id=1971, 650.43pt x 433.62pt>
+ <./figures/clusterSize.pdf> <./figures/pathlength.pdf>] <figures/cybclic_2cyb_12817.pdf, id=2035, 650.43pt x 433.62pt>
 File: figures/cybclic_2cyb_12817.pdf Graphic file (type pdf)
  <use figures/cybclic_2cyb_12817.pdf>
-Package pdftex.def Info: figures/cybclic_2cyb_12817.pdf used on input line 498.
+Package pdftex.def Info: figures/cybclic_2cyb_12817.pdf used on input line 477.
 (pdftex.def)             Requested size: 392.90099pt x 261.92444pt.
 
-Overfull \hbox (48.70566pt too wide) in paragraph at lines 498--498
+Overfull \hbox (48.70566pt too wide) in paragraph at lines 477--477
 [][] 
  []
 
 File: template/bandeau3.jpg Graphic file (type jpg)
 <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 498.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 477.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 498--498
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 477--477
 [] []  
  []
 
 
-Overfull \vbox (60.9335pt too high) detected at line 498
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (60.9335pt too high) detected at line 477
  []
 
 [27
 
- <./figures/cybclic_2cyb_12817.pdf>] <figures/elsevierMotherFucker.png, id=2005, 1113.15875pt x 719.68875pt>
+ <./figures/cybclic_2cyb_12817.pdf>] <figures/elsevierMotherFucker.png, id=2068, 1113.15875pt x 719.68875pt>
 File: figures/elsevierMotherFucker.png Graphic file (type png)
  <use figures/elsevierMotherFucker.png>
-Package pdftex.def Info: figures/elsevierMotherFucker.png used on input line 506.
+Package pdftex.def Info: figures/elsevierMotherFucker.png used on input line 485.
 (pdftex.def)             Requested size: 405.13608pt x 261.92444pt.
 
-Overfull \hbox (60.94075pt too wide) in paragraph at lines 506--506
+Overfull \hbox (60.94075pt too wide) in paragraph at lines 485--485
 [][] 
  []
 
 File: template/bandeau3.jpg Graphic file (type jpg)
 <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 506.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 485.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 506--506
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 485--485
 [] []  
  []
 
 
-Overfull \vbox (60.9335pt too high) detected at line 506
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (60.9335pt too high) detected at line 485
  []
 
 [28
@@ -1812,16 +1354,11 @@ Missing character: There is no Ã in font cmss10!
 Missing character: There is no © in font cmss10!
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 520.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 499.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 520--520
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 499--499
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [29
@@ -1829,16 +1366,11 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
 ] (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.bbl)
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 537.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 516.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 537--537
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 516--516
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [30
@@ -1846,16 +1378,11 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
  </usr/local/texlive/2015/texmf-dist/tex/latex/beamer/art/beamericonarticle.pdf>]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 537.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 516.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 537--537
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 516--516
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [31
@@ -1864,16 +1391,11 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
 ]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 537.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 516.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 537--537
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 516--516
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [32
@@ -1889,11 +1411,11 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
 \tf@snm=\write8
 \openout8 = `cybergeo.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 546.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 546.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 525.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 525.
  (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 546.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 546.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 525.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 525.
 Package rerunfilecheck Info: File `cybergeo.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 
@@ -1902,23 +1424,26 @@ LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
 
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 546.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 525.
  ) 
 Here is how much of TeX's memory you used:
- 17769 strings out of 493615
- 343046 string characters out of 6151290
- 410104 words of memory out of 5000000
- 20721 multiletter control sequences out of 15000+600000
+ 17791 strings out of 493615
+ 343544 string characters out of 6151290
+ 410169 words of memory out of 5000000
+ 20739 multiletter control sequences out of 15000+600000
  10446 words of font info for 40 fonts, out of 8000000 for 9000
  805 hyphenation exceptions out of 8191
- 58i,18n,57p,419b,559s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam5.pfb>
-Output written on /Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.pdf (32 pages, 14906008 bytes).
+ 58i,16n,57p,419b,559s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam5.pfb>
+Output written on /Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.pdf (32 pages, 14967046 bytes).
 PDF statistics:
- 2230 PDF objects out of 2487 (max. 8388607)
- 2040 compressed objects within 21 object streams
+ 2289 PDF objects out of 2487 (max. 8388607)
+ 2081 compressed objects within 21 object streams
  77 named destinations out of 1000 (max. 500000)
- 194 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 204 words of extra memory for PDF output out of 10000 (max. 10000000)
 
