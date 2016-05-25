@@ -168,14 +168,18 @@ citationVisuEgo<-function(edges){
 }
 
 
-semanticcolors = c(rgb(204,0,255,maxColorValue=255),rgb(255,102,0,maxColorValue=255), rgb(255,102,0,maxColorValue=255),rgb(255,153,0,maxColorValue=255),rgb(0,204,102,maxColorValue=255),rgb(255,0,0,maxColorValue=255),rgb(153,153,0,maxColorValue=255),rgb(102,204,0,maxColorValue=255),
-                   rgb(0,255,255,maxColorValue=255),rgb(255,255,0,maxColorValue=255),rgb(51,102,255,maxColorValue=255),rgb(51,255,51,maxColorValue=255),rgb(0,102,0,maxColorValue=255),
-                   rgb(0,0,255,maxColorValue=255),rgb(102,51,0,maxColorValue=255)
+semanticcolors = list(rgb(204,0,255,maxColorValue=255),rgb(255,102,0,maxColorValue=255), rgb(255,102,0,maxColorValue=255),
+                   rgb(255,153,0,maxColorValue=255),rgb(0,204,102,maxColorValue=255),rgb(255,0,0,maxColorValue=255),
+                   rgb(153,153,0,maxColorValue=255),rgb(102,204,0,maxColorValue=255),rgb(0,255,255,maxColorValue=255),
+                   rgb(255,255,0,maxColorValue=255),rgb(51,102,255,maxColorValue=255),rgb(51,255,51,maxColorValue=255),
+                   rgb(0,102,0,maxColorValue=255),rgb(0,0,255,maxColorValue=255),rgb(102,51,0,maxColorValue=255)
 )
 # damn it Carl, you could have load his shit ! ^^
-names(semanticcolors)<-c("complex systems","health","crime","statistical methods","remote sensing","political sciences/critical geography",
-                         "traffic modeling","microbiology","cognitive sciences","spatial analysis","GIS","biogeography","environnemnt/climate",
-                         "economic geography","physical geography")
+names(semanticcolors)<-c("complex systems","health","crime",
+                         "statistical methods","remote sensing","political sciences/critical geography",
+                         "traffic modeling","microbiology","cognitive sciences",
+                         "spatial analysis","GIS","biogeography",
+                         "environnment/climate","economic geography","physical geography")
                       
 
 citationWordclouds<-function(id,keywords){
@@ -183,15 +187,16 @@ citationWordclouds<-function(id,keywords){
   #show(keywords)
   if(id!="0"&!is.null(keywords)){
     # at least kws for the paper, so no need to check emptyness
-    par(mfrow=c(1,2)) 
+    par(mfrow=c(1,2))
+    par(bg = "#4e5d6c")
     wordcloud(words=keywords[[id]],
               freq=citationkwfreqs[keywords[[id]]],
-              colors=semanticcolors[citationkwthemdico[keywords[[id]]]]
+              colors=unlist(semanticcolors[citationkwthemdico[keywords[[id]]]])
               )
     allkws=unlist(keywords)
     wordcloud(words=allkws,
               freq=citationkwfreqs[allkws],
-              colors=semanticcolors[citationkwthemdico[allkws]]
+              colors=unlist(semanticcolors[citationkwthemdico[allkws]])
     )
   }
 }
