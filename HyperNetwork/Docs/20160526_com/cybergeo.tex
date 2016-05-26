@@ -131,7 +131,8 @@ $\rightarrow$ use of Mendeley API~\cite{mendeley} (free but not open)
 \subsection{Citation Network}
 
 
-\jframe{Network Properties}{
+\begin{frame}
+\frametitle{Network Properties}
 
 
 $\rightarrow$ $\simeq$ 947 cybergeo articles can be studied, among $\simeq 1200$
@@ -140,32 +141,58 @@ $\rightarrow$ $\simeq$ 947 cybergeo articles can be studied, among $\simeq 1200$
 
 $\rightarrow$ \textit{418670 Nodes et 570352 Links ; Diameter : 9 ; Density : 3.25E-6 ; average degree : 2.724284}
 
-\includegraphics[width=0.75\textwidth]{figures/degreeDistrib.png}
-}
+\begin{columns}
+\begin{column}{0.75\textwidth}
+\includegraphics[width=\textwidth]{figures/degreeDistrib.png}
+\end{column}
+\begin{column}{0.25\textwidth}
+\footnotesize
+\justify
+\textit{The stationary integrated impact factor, estimated as average citation count, means that a cybergeo paper gets at least 3 citations in its lifetime}
+\end{column}
+\end{columns}
+
+
+
+\end{frame}
 
 
 \jframe{Citation Network Structure}{
-\includegraphics[height=0.75\textheight]{figures/citnw}
-}
-
-
-
-
-\jframe{Hierarchy in citations}{
 
 \centering
-\includegraphics[height=0.72\textheight]{figures/ranksize.pdf}
-\textit{Superposition of different hierarchical regimes}
+\includegraphics[height=0.75\textheight]{figures/citnw}
 
 }
+
+
+
+\begin{frame}
+\frametitle{Hierarchy in citations}
+\begin{columns}
+\begin{column}{0.8\textwidth}
+\includegraphics[width=\textwidth]{figures/ranksize.pdf}
+\end{column}
+\begin{column}{0.2\textwidth}
+\justify
+\textit{Superposition of different hierarchical citation regimes}
+\end{column}
+\end{columns}
+
+\end{frame}
 
 
 
 
 \jframe{Cliques}{
+\textit{Complete subgraphs reveal strong affiliation patterns}
 %\vspace{-1cm}
 %\hspace{-2.3cm}
-\includegraphics[height=\textheight]{figures/cybclic}
+
+\bigskip
+
+\centering
+
+\includegraphics[width=0.95\textwidth]{figures/cybclic.png}
 
 }
 
@@ -190,6 +217,9 @@ $\rightarrow$ $\sim 215000$ references with full data.
 
 \textit{Language :} English 206607, French 4109, Spanish 2029, German 892, Portuguese 891, Dutch 124, others 182
 
+\bigskip
+\bigskip
+
 \textit{Yearly count}
 \centering
 
@@ -207,6 +237,8 @@ $\rightarrow$ $\sim 215000$ references with full data.
 \textit{Text-mining in python with \texttt{nltk}~\cite{bird2006nltk}}, method adpated from
 \cite{chavalarias2013phylomemetic}
 
+
+\bigskip
 
 \begin{itemize}
 \item Language detection using \textit{stop-words}
@@ -346,19 +378,31 @@ $\rightarrow$ Place of expert decision-making : no qualitative-quantitative dich
 
 
 
-\jframe{Degr{\'e} d'interdisciplinarit{\'e} par articles}{
-Un article peut {\^e}tre associ{\'e} aux communaut{\'e}s s{\'e}mantiques par ses mots cl{\'e}s : probas $p_i$ pour chaque communaut{\'e}.
+\begin{frame}
+\frametitle{Article-level interdisciplinarity}
 
-Mesure d'interdisciplinarit{\'e} (pour un article, au premier ordre) :
-\[
-o = 1 - \sum p_i^2
-\]
+%Un article peut {\^e}tre associ{\'e} aux communaut{\'e}s s{\'e}mantiques par ses mots cl{\'e}s : probas $p_i$ pour chaque communaut{\'e}.
+
+%Mesure d'interdisciplinarit{\'e} (pour un article, au premier ordre) :
+%\[
+%o = 1 - \sum p_i^2
+%\]
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+
+\end{column}
+\begin{column}{0.3\textwidth}
+\includegraphics[width=\textwidth]{figures/exampleWordcloud_24872}
+\end{column}
+\end{columns}
 
 \centering
 
 \includegraphics[width=0.5\textwidth]{figures/firstorderint_withNull}
 
-}
+\end{frame}
+
 
 \begin{frame}
 \frametitle{Citation interdisciplinarity}
