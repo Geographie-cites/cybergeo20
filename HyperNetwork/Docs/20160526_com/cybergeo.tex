@@ -439,13 +439,18 @@ An article has a proportion of keywords in each discipline, which can be underst
 
 \textit{Citation interdisciplinarity defined the same way, based on probabilities to cite or be cited by a discipline.}
 
+\bigskip
+
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \includegraphics[width=\textwidth]{figures/citin_interdisc}
-\textit{}
+
+\textit{Citing article interdisciplinarity distribution. Cybergeo papers are cited by less different disciplines, what can be explained by their young age.}
 \end{column}
 \begin{column}{0.5\textwidth}
 \includegraphics[width=\textwidth]{figures/citout_interdisc}
+
+\textit{Cited article interdisciplinarity distribution. Distribution for all articles is directly shaped by citation network structure.}
 \end{column}
 \end{columns}
 \end{frame}
@@ -476,7 +481,7 @@ An article has a proportion of keywords in each discipline, which can be underst
 \jframe{Conclusion}{
   %$\rightarrow$ Un environnement disciplinaire tr{\`e}s vari{\'e} et une interdicisplinarit{\'e} affirm{\'e}e
   
-  $\rightarrow$ A very rich scientific environment and a certain interdisciplinarity
+  $\rightarrow$ A very rich scientific environment and a confirmed interdisciplinarity
   
   \bigskip
   
@@ -569,7 +574,7 @@ Giant component : more than 99\% of nodes.
 
 
 \jframe{Cliques(citation)}{
-
+\vspace{-1cm}
 \includegraphics[height=\textheight]{figures/cybclic_2cyb_12817}
 
 }
@@ -586,15 +591,27 @@ Giant component : more than 99\% of nodes.
 
 
 \jframe{Relevance estimation}{
-Estimation exacte de la pertinence via la repartition statistique des co-occurrences (score de $\chi^2$) : \textit{termhood} d{\'e}finie, avec $M_{ij}$ nombre d'articles où $i$ et $j$ apparaissent simultanément,
+Relevance estimation via statistical distribution of co-occurrences ($\chi^2$ score) : \textit{termhood} defined, with $M_{ij}$ number of articles where $i$ et $j$ appear simultaneously :
 \[
 t_i = \sum_{j\neq i}\frac{\left( M_{ij} - \sum_{k}M_{ik} \sum_{k} M_{jk}\right)^2}{\sum_{k}M_{ik} \sum_{k} M_{jk}}
 \]
 
 
-en $\Theta (\sum_i N_i^2)$ ($N_i$ taille des r{\'e}sum{\'e}s) : difficile sur un corpus o{\`u} $\sum_i N_i^2 \simeq N <N_i>^2 \simeq 8\cdot 10^7$
+in $\Theta (\sum_i N_i^2)$ ($N_i$ abstract sizes) : difficult on a corpus where $\sum_i N_i^2 \simeq N <N_i>^2 \simeq 8\cdot 10^7$
 
 }
+
+\jframe{Relevance estimation}{
+
+\textit{Bootstrap estimation tests (performance)}
+
+\bigskip
+
+\includegraphics[width=0.5\textwidth]{figures/bootstrap_withReplacement_kw50}
+\includegraphics[width=0.5\textwidth]{figures/bootstrap_withReplacement_kw100}
+}
+
+
 
 
 

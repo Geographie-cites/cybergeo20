@@ -103,14 +103,48 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                     
                     
                     
-                    # 
-                    # tabPanel("Semantic network",
-                    #          fluidRow(h2("Exploring the semantic network"),
-                    #                   #h4("...",br())
-                    #                   forceNetworkOutput("semanticNetwork")
-                    #                   )
-                    # ),
-                   
+                    
+                    
+                    # PO
+                    tabPanel("Full-text Semantic network",
+                             fluidPage(
+                               column(
+                                 3,
+                                 selectInput("mode", "Mode", c(
+                                   "Single Pattern Analysis" = "one", 
+                                   "Multiple Pattern Analysis" = "multi",
+                                   "Parameterisation" = "param"
+                                 )
+                                 ),
+                                 conditionalPanel(
+                                   "input.mode == 'multi' | input.mode == 'one'",
+                                   textInput("pattern_input", "Pattern")
+                                 ),
+                                 conditionalPanel(
+                                   "input.mode == 'multi'",
+                                   actionButton("add_pattern", "Add to Selection"),
+                                   p(),
+                                   checkboxGroupInput("patterns_selection", "Pattern Selection", pattern_list)
+                                 )
+                               ),
+                               column(
+                                 9,
+                             tabsetPanel(
+                               
+                               tabPanel("Chronogram",
+                               plotOutput("chronogram", height = "700px")
+                               ),
+                               tabPanel(
+                                 "Word Cloud",
+                                 plotOutput("cloud", height = "700px")
+                               ),
+                               tabPanel("Sentences", verbatimTextOutput("phrases")),
+                               tabPanel("Citations", verbatimTextOutput("citations"))
+                             )))),
+
+                             
+                             
+                    
                     # HADRI ----
                     
                     tabPanel("Keyword network",

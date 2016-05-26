@@ -23,7 +23,13 @@ library(dplyr)
 library(RSQLite)
 library(svgPanZoom)
 library(wordcloud)
-
+library(scales)
+library(lubridate)
+library(stringr)
+library(scales)
+library(lubridate)
+library(stringr)
+library(wordcloud)
 
 #### Clem
 aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate, colNumbers){
@@ -72,6 +78,150 @@ result<-c(mk,100.0*BSS/TSS)
 names(result) <-c( paste("G",1:K),"% epl.")
  return(result)
 }
+
+
+######## PO
+
+
+
+
+pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
+#pattern_list <- c("g[ée]ograph")
+
+#setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/regexp'))
+
+#-- Loading data --------------------------------------------------------------
+
+terms <- read.table(
+  "data/terms.csv", 
+  sep = ";", 
+  quote = "", 
+  comment.char = "", 
+  header = TRUE,
+  stringsAsFactors = FALSE
+) %>% 
+  tbl_df() %>%
+  dplyr::mutate(
+    article_id = id,
+    id = row_number()
+  ) %>%
+  dplyr::select(id, article_id, term, count)
+
+sentences <- read.table(
+  "data/sentences.csv", 
+  sep = "|", 
+  quote = "", 
+  comment.char = "", 
+  header = TRUE,
+  stringsAsFactors=FALSE
+) %>% 
+  tbl_df() %>%
+  dplyr::mutate(
+    article_id = id,
+    id = row_number()
+  )
+
+articles <- read.table(
+  "data/cybergeo.csv", 
+  sep = ",", 
+  quote = "\"", 
+  comment.char = "", 
+  header = TRUE
+) %>% 
+  tbl_df() %>%
+  dplyr::rename(titre = title_en, auteurs = authors) %>%
+  dplyr::mutate(citation = paste(sep = ". ", auteurs, substr(date,1,4), titre)) %>%
+  dplyr::select(id, date, citation, langue)
+
+gc()
+
+#-- Functions -----------------------------------------------------------------
+
+terms_matched <- function(patterns) {
+  data <- data_frame()
+  for (pattern in patterns) {
+    indices <- grep(pattern, terms$term, ignore.case = TRUE, perl = TRUE)
+    data <- data_frame(id = indices) %>%
+      dplyr::mutate(pattern = pattern) %>%
+      dplyr::bind_rows(data)
+  }
+  data <- data %>%
+    dplyr::left_join(terms, by = c("id")) %>%
+    dplyr::arrange(id, pattern)
+  return(data)
+} 
+
+titles_matched <- function(patterns) {
+  citations <- terms_matched(patterns) %>%
+    dplyr::select(article_id) %>%
+    dplyr::unique() %>%
+    dplyr::left_join(articles, by = c("article_id" = "id")) %>%
+    dplyr::arrange(date) %>%
+    dplyr::select(citation)
+  return(citations$citation)
+}
+
+phrases <- function(patterns) {
+  data <- data_frame()
+  for (pattern in patterns) {
+    indices <- grep(pattern, sentences$sentence, ignore.case = TRUE, perl = TRUE)
+    data <- data_frame(id = indices) %>%
+      dplyr::bind_rows(data)
+  }
+  data <- data %>%
+    dplyr::left_join(sentences, by = c("id")) %>%
+    dplyr::select(sentence)
+  return(data$sentence)
+}
+
+terms_matched_cloud <- function(patterns) {
+  terms_matched(patterns) %>%
+    dplyr::group_by(term) %>%
+    #    summarise(articles = n_distinct(article_id), terms = sum(count))
+    dplyr::summarise(articles = sum(count))
+}
+
+articles_matched <- function(patterns) {
+  terms_matched(patterns) %>%
+    dplyr::group_by(article_id, pattern) %>%
+    dplyr::summarise(count = sum(count)) %>%
+    dplyr::left_join(articles, by = c("article_id" = "id")) %>%
+    dplyr::mutate(ym = str_sub(date, 1, 4)) %>%
+    dplyr::group_by(ym, pattern) %>%
+    dplyr::summarise(articles=n_distinct(article_id), terms=sum(count)) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(date = parse_date_time(ym, "%y")) %>%
+    dplyr::select(date, pattern, articles, terms)
+}
+
+chronogram <- function(patterns) {
+  ggplot(articles_matched(patterns), aes(date, articles)) +
+    geom_bar(stat = "identity") +
+    facet_grid(pattern ~ ., scales = "free_y", space = "free_y") +
+    labs(title="Chronogramme des articles publiés dans Cybergéo", x = "Année de publication", y = "Nombre d'articles publiés")
+}
+
+cloud <- function(patterns) {
+  words <- terms_matched_cloud(patterns)
+  wordcloud(
+    words$term,
+    words$articles,
+    scale = c(10,1),
+    rot.per = 0
+  ) 
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
