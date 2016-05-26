@@ -154,7 +154,8 @@ citationVisuEgo<-function(edges){
       V(citsubgraph)[tail_of(citsubgraph,E(citsubgraph))$name]$title = E(citsubgraph)$totitle
       lay=layout_as_tree(citsubgraph,circular=FALSE)
       lay[lay[,2]==0,2]=-sample.int(length(which(lay[,2]==0)),replace=FALSE)-2
-      lay[lay[,2]==2,1]= sample.int(10,size=length(which(lay[,2]==2)))-5#((-length(which(lay[,2]==2))/2):(length(which(lay[,2]==2))/2))*5/length(which(lay[,2]==2))
+      #lay[lay[,2]==2,1]= sample.int(10,size=length(which(lay[,2]==2)))-5#((-length(which(lay[,2]==2))/2):(length(which(lay[,2]==2))/2))*5/length(which(lay[,2]==2))
+      lay[lay[,2]==2,1]= sample.int(length(which(lay[,2]==2)))-5
       lay[lay[,2]==2,2]=4+sample.int(length(which(lay[,2]==2)),replace=FALSE)
       palette=c("#df691a","#1C6F91")
       par(bg = "#4e5d6c")
@@ -163,6 +164,7 @@ citationVisuEgo<-function(edges){
            vertex.frame.color="#1C6F91",vertex.label.color = "#ebebeb",
            layout=lay
       )
+      #16283 22232 23337 23502 26325 24841 26026 22270 24798 25354 26969
     }
   }
 }
@@ -188,7 +190,7 @@ citationWordclouds<-function(id,keywords){
   if(id!="0"&!is.null(keywords)){
     # at least kws for the paper, so no need to check emptyness
     par(mfrow=c(1,2))
-    #par(bg = "#4e5d6c")
+    par(bg = "#4e5d6c")
     wordcloud(words=keywords[[id]],
               freq=citationkwfreqs[keywords[[id]]],
               colors=unlist(semanticcolors[citationkwthemdico[keywords[[id]]]]),

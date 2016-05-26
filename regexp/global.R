@@ -53,6 +53,8 @@ articles <- read.table(
   mutate(citation = paste(sep = ". ", auteurs, substr(date,1,4), titre)) %>%
   select(id, date, citation, langue)
 
+gc()
+
 #-- Functions -----------------------------------------------------------------
 
 terms_matched <- function(patterns) {

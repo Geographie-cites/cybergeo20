@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.8)  26 MAY 2016 09:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.8)  26 MAY 2016 11:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -994,7 +994,7 @@ Overfull \vbox (0.52655pt too high) detected at line 181
 File: figures/cybclic.png Graphic file (type png)
  <use figures/cybclic.png>
 Package pdftex.def Info: figures/cybclic.png used on input line 197.
-(pdftex.def)             Requested size: 326.9845pt x 165.96584pt.
+(pdftex.def)             Requested size: 344.19533pt x 174.7021pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
 Package pdftex.def Info: template/bandeau3.jpg used on input line 197.
@@ -1138,19 +1138,19 @@ Overfull \hbox (57.46121pt too wide) in paragraph at lines 362--362
  <./figures/semantic.png> <./figures/disciplines.png>] <figures/synththemcyb.pdf, id=631, 722.7pt x 722.7pt>
 File: figures/synththemcyb.pdf Graphic file (type pdf)
  <use figures/synththemcyb.pdf>
-Package pdftex.def Info: figures/synththemcyb.pdf used on input line 368.
-(pdftex.def)             Requested size: 222.63419pt x 222.63736pt.
+Package pdftex.def Info: figures/synththemcyb.pdf used on input line 381.
+(pdftex.def)             Requested size: 206.51929pt x 206.51198pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 368.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 381.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 368--368
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 381--381
 [] []  
  []
 
 
-Overfull \vbox (15.95596pt too high) detected at line 368
+Overfull \vbox (0.52104pt too high) detected at line 381
  []
 
 [17
@@ -1158,102 +1158,100 @@ Overfull \vbox (15.95596pt too high) detected at line 368
  <./figures/synththemcyb.pdf>] <figures/citation.pdf, id=771, 722.7pt x 722.7pt>
 File: figures/citation.pdf Graphic file (type pdf)
  <use figures/citation.pdf>
-Package pdftex.def Info: figures/citation.pdf used on input line 376.
+Package pdftex.def Info: figures/citation.pdf used on input line 400.
 (pdftex.def)             Requested size: 235.72383pt x 235.7304pt.
+
+Overfull \hbox (29.20454pt too wide) in paragraph at lines 400--400
+[][]  
+ []
+
+
+Underfull \hbox (badness 4713) in paragraph at lines 400--400
+[]\OT1/cmss/m/it/10 Citation flows be-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 400--400
+\OT1/cmss/m/it/10 tween dis-ci-plines
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 400--400
+\OT1/cmss/m/it/10 (di-rected links to
+ []
+
+
+Underfull \hbox (badness 7907) in paragraph at lines 400--400
+\OT1/cmss/m/it/10 be read in anti-
+ []
+
 File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 376.
+<use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 400.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 376--376
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 400--400
 [] []  
  []
 
 
-Overfull \vbox (20.51309pt too high) detected at line 376
+Overfull \vbox (29.73946pt too high) detected at line 400
  []
 
 [18
 
- <./figures/citation.pdf>] <figures/exampleWordcloud_24872.png, id=1713, 337.26pt x 287.0725pt>
-File: figures/exampleWordcloud_24872.png Graphic file (type png)
- <use figures/exampleWordcloud_24872.png>
-Package pdftex.def Info: figures/exampleWordcloud_24872.png used on input line 404.
-(pdftex.def)             Requested size: 103.25964pt x 87.89207pt.
- <figures/firstorderint_withNull.pdf, id=1714, 844.15375pt x 597.23125pt>
+ <./figures/citation.pdf>] <figures/firstorderint_withNull.pdf, id=1713, 844.15375pt x 597.23125pt>
 File: figures/firstorderint_withNull.pdf Graphic file (type pdf)
  <use figures/firstorderint_withNull.pdf>
-Package pdftex.def Info: figures/firstorderint_withNull.pdf used on input line 404.
-(pdftex.def)             Requested size: 172.09766pt x 121.75883pt.
+Package pdftex.def Info: figures/firstorderint_withNull.pdf used on input line 434.
+(pdftex.def)             Requested size: 192.74927pt x 136.36697pt.
+ <figures/exampleWordcloud_24872.png, id=1714, 337.26pt x 287.0725pt>
+File: figures/exampleWordcloud_24872.png Graphic file (type png)
+ <use figures/exampleWordcloud_24872.png>
+Package pdftex.def Info: figures/exampleWordcloud_24872.png used on input line 434.
+(pdftex.def)             Requested size: 103.25964pt x 87.89207pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 404.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 434.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 404--404
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 434--434
 [] []  
- []
-
-
-Overfull \vbox (4.65997pt too high) detected at line 404
  []
 
 [19
 
- <./figures/exampleWordcloud_24872.png> <./figures/firstorderint_withNull.pdf>] <figures/citin_interdisc.pdf, id=1751, 844.15375pt x 597.23125pt>
+ <./figures/firstorderint_withNull.pdf> <./figures/exampleWordcloud_24872.png>] <figures/citin_interdisc.pdf, id=1751, 844.15375pt x 597.23125pt>
 File: figures/citin_interdisc.pdf Graphic file (type pdf)
  <use figures/citin_interdisc.pdf>
-Package pdftex.def Info: figures/citin_interdisc.pdf used on input line 417.
+Package pdftex.def Info: figures/citin_interdisc.pdf used on input line 451.
 (pdftex.def)             Requested size: 172.09766pt x 121.75883pt.
  <figures/citout_interdisc.pdf, id=1752, 844.15375pt x 597.23125pt>
 File: figures/citout_interdisc.pdf Graphic file (type pdf)
  <use figures/citout_interdisc.pdf>
-Package pdftex.def Info: figures/citout_interdisc.pdf used on input line 417.
+Package pdftex.def Info: figures/citout_interdisc.pdf used on input line 451.
 (pdftex.def)             Requested size: 172.09766pt x 121.75883pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 417.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 451.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 417--417
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 451--451
 [] []  
  []
 
 [20
 
- <./figures/citin_interdisc.pdf> <./figures/citout_interdisc.pdf>]
-File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 439.
-(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
-
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 439--439
-[] []  
- []
-
-[21
-
-]
-File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 447.
-(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
-
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 447--447
-[] []  
- []
-
-[22
-
-]
-
-LaTeX Warning: Citation `raimbault2015user' on page 23 undefined on input line 471.
-
-<figures/velib.png, id=1849, 804.00375pt x 498.86375pt>
-File: figures/velib.png Graphic file (type png)
- <use figures/velib.png>
-Package pdftex.def Info: figures/velib.png used on input line 471.
-(pdftex.def)             Requested size: 240.93567pt x 149.49281pt.
+ <./figures/citin_interdisc.pdf> <./figures/citout_interdisc.pdf>] <figures/ex_citvisu_23337.png, id=1796, 909.3975pt x 668.4975pt>
+File: figures/ex_citvisu_23337.png Graphic file (type png)
+ <use figures/ex_citvisu_23337.png>
+Package pdftex.def Info: figures/ex_citvisu_23337.png used on input line 471.
+(pdftex.def)             Requested size: 154.88684pt x 113.85727pt.
+ <figures/ex_visuwordcloud_25892.png, id=1797, 848.16875pt x 504.88625pt>
+File: figures/ex_visuwordcloud_25892.png Graphic file (type png)
+ <use figures/ex_visuwordcloud_25892.png>
+Package pdftex.def Info: figures/ex_visuwordcloud_25892.png used on input line 471.
+(pdftex.def)             Requested size: 189.30847pt x 112.68542pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
 Package pdftex.def Info: template/bandeau3.jpg used on input line 471.
@@ -1263,123 +1261,167 @@ Overfull \hbox (57.46121pt too wide) in paragraph at lines 471--471
 [] []  
  []
 
+[21
 
-Overfull \vbox (3.00188pt too high) detected at line 471
+ <./figures/ex_citvisu_23337.png> <./figures/ex_visuwordcloud_25892.png>]
+File: template/bandeau3.jpg Graphic file (type jpg)
+ <use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 493.
+(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
+
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 493--493
+[] []  
+ []
+
+[22
+
+]
+File: template/bandeau3.jpg Graphic file (type jpg)
+ <use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 501.
+(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
+
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 501--501
+[] []  
  []
 
 [23
 
- <./figures/velib.png>] <figures/screen_appli.png, id=1877, 1192.455pt x 796.9775pt>
-File: figures/screen_appli.png Graphic file (type png)
- <use figures/screen_appli.png>
-Package pdftex.def Info: figures/screen_appli.png used on input line 491.
-(pdftex.def)             Requested size: 275.3573pt x 184.03061pt.
+]
+
+LaTeX Warning: Citation `raimbault2015user' on page 24 undefined on input line 525.
+
+<figures/velib.png, id=1879, 804.00375pt x 498.86375pt>
+File: figures/velib.png Graphic file (type png)
+ <use figures/velib.png>
+Package pdftex.def Info: figures/velib.png used on input line 525.
+(pdftex.def)             Requested size: 240.93567pt x 149.49281pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 491.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 525.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 491--491
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 525--525
 [] []  
  []
 
 
-Overfull \vbox (33.53967pt too high) detected at line 491
+Overfull \vbox (3.00188pt too high) detected at line 525
  []
 
 [24
 
- <./figures/screen_appli.png>] <figures/betweeness-cyb.pdf, id=1906, 597.23125pt x 420.57124pt>
-File: figures/betweeness-cyb.pdf Graphic file (type pdf)
- <use figures/betweeness-cyb.pdf>
-Package pdftex.def Info: figures/betweeness-cyb.pdf used on input line 505.
-(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
- <figures/betweeness.pdf, id=1907, 597.23125pt x 420.57124pt>
-File: figures/betweeness.pdf Graphic file (type pdf)
- <use figures/betweeness.pdf>
-Package pdftex.def Info: figures/betweeness.pdf used on input line 505.
-(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
+ <./figures/velib.png>] <figures/screen_appli.png, id=1908, 1192.455pt x 796.9775pt>
+File: figures/screen_appli.png Graphic file (type png)
+ <use figures/screen_appli.png>
+Package pdftex.def Info: figures/screen_appli.png used on input line 545.
+(pdftex.def)             Requested size: 275.3573pt x 184.03061pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 505.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 545.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 505--505
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 545--545
 [] []  
+ []
+
+
+Overfull \vbox (33.53967pt too high) detected at line 545
  []
 
 [25
 
- <./figures/betweeness-cyb.pdf> <./figures/betweeness.pdf>] <figures/clusterSize.pdf, id=1947, 597.23125pt x 420.57124pt>
-File: figures/clusterSize.pdf Graphic file (type pdf)
- <use figures/clusterSize.pdf>
-Package pdftex.def Info: figures/clusterSize.pdf used on input line 514.
+ <./figures/screen_appli.png>] <figures/betweeness-cyb.pdf, id=1937, 597.23125pt x 420.57124pt>
+File: figures/betweeness-cyb.pdf Graphic file (type pdf)
+ <use figures/betweeness-cyb.pdf>
+Package pdftex.def Info: figures/betweeness-cyb.pdf used on input line 559.
 (pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
- <figures/pathlength.pdf, id=1948, 597.23125pt x 420.57124pt>
-File: figures/pathlength.pdf Graphic file (type pdf)
- <use figures/pathlength.pdf>
-Package pdftex.def Info: figures/pathlength.pdf used on input line 514.
+ <figures/betweeness.pdf, id=1938, 597.23125pt x 420.57124pt>
+File: figures/betweeness.pdf Graphic file (type pdf)
+ <use figures/betweeness.pdf>
+Package pdftex.def Info: figures/betweeness.pdf used on input line 559.
 (pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 514.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 559.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 514--514
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 559--559
 [] []  
  []
 
 [26
 
- <./figures/clusterSize.pdf> <./figures/pathlength.pdf>] <figures/cybclic_2cyb_12817.pdf, id=1987, 650.43pt x 433.62pt>
-File: figures/cybclic_2cyb_12817.pdf Graphic file (type pdf)
- <use figures/cybclic_2cyb_12817.pdf>
-Package pdftex.def Info: figures/cybclic_2cyb_12817.pdf used on input line 521.
-(pdftex.def)             Requested size: 392.90099pt x 261.92444pt.
-
-Overfull \hbox (48.70566pt too wide) in paragraph at lines 521--521
-[][] 
- []
-
+ <./figures/betweeness-cyb.pdf> <./figures/betweeness.pdf>] <figures/clusterSize.pdf, id=1977, 597.23125pt x 420.57124pt>
+File: figures/clusterSize.pdf Graphic file (type pdf)
+ <use figures/clusterSize.pdf>
+Package pdftex.def Info: figures/clusterSize.pdf used on input line 568.
+(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
+ <figures/pathlength.pdf, id=1978, 597.23125pt x 420.57124pt>
+File: figures/pathlength.pdf Graphic file (type pdf)
+ <use figures/pathlength.pdf>
+Package pdftex.def Info: figures/pathlength.pdf used on input line 568.
+(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
-<use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 521.
+ <use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 568.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 521--521
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 568--568
 [] []  
- []
-
-
-Overfull \vbox (60.9335pt too high) detected at line 521
  []
 
 [27
 
- <./figures/cybclic_2cyb_12817.pdf>] <figures/elsevierMotherFucker.png, id=2021, 1113.15875pt x 719.68875pt>
-File: figures/elsevierMotherFucker.png Graphic file (type png)
- <use figures/elsevierMotherFucker.png>
-Package pdftex.def Info: figures/elsevierMotherFucker.png used on input line 529.
-(pdftex.def)             Requested size: 405.13608pt x 261.92444pt.
+ <./figures/clusterSize.pdf> <./figures/pathlength.pdf>] <figures/cybclic_2cyb_12817.pdf, id=2018, 650.43pt x 433.62pt>
+File: figures/cybclic_2cyb_12817.pdf Graphic file (type pdf)
+ <use figures/cybclic_2cyb_12817.pdf>
+Package pdftex.def Info: figures/cybclic_2cyb_12817.pdf used on input line 575.
+(pdftex.def)             Requested size: 392.90099pt x 261.92444pt.
 
-Overfull \hbox (60.94075pt too wide) in paragraph at lines 529--529
+Overfull \hbox (48.70566pt too wide) in paragraph at lines 575--575
 [][] 
  []
 
 File: template/bandeau3.jpg Graphic file (type jpg)
 <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 529.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 575.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 529--529
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 575--575
 [] []  
  []
 
 
-Overfull \vbox (60.9335pt too high) detected at line 529
+Overfull \vbox (60.9335pt too high) detected at line 575
  []
 
 [28
+
+ <./figures/cybclic_2cyb_12817.pdf>] <figures/elsevierMotherFucker.png, id=2051, 1113.15875pt x 719.68875pt>
+File: figures/elsevierMotherFucker.png Graphic file (type png)
+ <use figures/elsevierMotherFucker.png>
+Package pdftex.def Info: figures/elsevierMotherFucker.png used on input line 583.
+(pdftex.def)             Requested size: 405.13608pt x 261.92444pt.
+
+Overfull \hbox (60.94075pt too wide) in paragraph at lines 583--583
+[][] 
+ []
+
+File: template/bandeau3.jpg Graphic file (type jpg)
+<use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 583.
+(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
+
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 583--583
+[] []  
+ []
+
+
+Overfull \vbox (60.9335pt too high) detected at line 583
+ []
+
+[29
 
  <./figures/elsevierMotherFucker.png>]
 Missing character: There is no Ã in font cmss10!
@@ -1388,51 +1430,51 @@ Missing character: There is no Ã in font cmss10!
 Missing character: There is no © in font cmss10!
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 543.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 597.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 543--543
-[] []  
- []
-
-[29
-
-] (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.bbl)
-File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 560.
-(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
-
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 560--560
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 597--597
 [] []  
  []
 
 [30
 
- </usr/local/texlive/2015/texmf-dist/tex/latex/beamer/art/beamericonarticle.pdf>]
+] (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.bbl)
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 560.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 614.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 560--560
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 614--614
 [] []  
  []
 
 [31
 
-
-]
+ </usr/local/texlive/2015/texmf-dist/tex/latex/beamer/art/beamericonarticle.pdf>]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 560.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 614.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 560--560
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 614--614
 [] []  
  []
 
 [32
+
+
+]
+File: template/bandeau3.jpg Graphic file (type jpg)
+ <use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 614.
+(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
+
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 614--614
+[] []  
+ []
+
+[33
 
 
 ]
@@ -1445,11 +1487,11 @@ Overfull \hbox (57.46121pt too wide) in paragraph at lines 560--560
 \tf@snm=\write8
 \openout8 = `cybergeo.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 569.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 569.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 623.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 623.
  (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 569.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 569.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 623.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 623.
 Package rerunfilecheck Info: File `cybergeo.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 
@@ -1463,21 +1505,21 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 569.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 623.
  ) 
 Here is how much of TeX's memory you used:
- 17796 strings out of 493615
- 343720 string characters out of 6151290
+ 17810 strings out of 493615
+ 344087 string characters out of 6151290
  410171 words of memory out of 5000000
- 20742 multiletter control sequences out of 15000+600000
+ 20752 multiletter control sequences out of 15000+600000
  10797 words of font info for 41 fonts, out of 8000000 for 9000
  805 hyphenation exceptions out of 8191
  58i,16n,57p,419b,559s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam5.pfb>
-Output written on /Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.pdf (32 pages, 15008412 bytes).
+Output written on /Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.pdf (33 pages, 15272428 bytes).
 PDF statistics:
- 2243 PDF objects out of 2487 (max. 8388607)
- 2048 compressed objects within 21 object streams
- 77 named destinations out of 1000 (max. 500000)
- 209 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2274 PDF objects out of 2487 (max. 8388607)
+ 2074 compressed objects within 21 object streams
+ 79 named destinations out of 1000 (max. 500000)
+ 219 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -192,7 +192,7 @@ $\rightarrow$ \textit{418670 Nodes et 570352 Links ; Diameter : 9 ; Density : 3.
 
 \centering
 
-\includegraphics[width=0.95\textwidth]{figures/cybclic.png}
+\includegraphics[width=\textwidth]{figures/cybclic.png}
 
 }
 
@@ -361,19 +361,43 @@ $\rightarrow$ Place of expert decision-making : no qualitative-quantitative dich
 \end{columns}
 \end{frame}
 
-\jframe{Interdisicplinarity}{
-\centering
-\vspace{-0.2cm}
-\includegraphics[height=0.85\textheight]{figures/synththemcyb}
-}
+
+\begin{frame}
+\frametitle{Interdisicplinarity}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+%\vspace{-0.2cm}
+\includegraphics[width=\textwidth]{figures/synththemcyb}
+\end{column}
+\begin{column}{0.4\textwidth}
+\justify
+\textit{Synthetic representation of disciplines. Link strength gives the probability for two disciplines to appear }
+\end{column}
+\end{columns}
 
 
 
-\jframe{Citation interdisicplinarity}{
-\centering
-\vspace{-0.5cm}
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{Citation interdisicplinarity}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
 \includegraphics[height=0.9\textheight]{figures/citation}
-}
+\end{column}
+\begin{column}{0.05\textwidth}
+\end{column}
+\begin{column}{0.25\textwidth}
+\justify
+\textit{Citation flows between disciplines (directed links to be read in anti-trigonometric sense) reveal citation level interdisciplinarity}
+\end{column}
+\end{columns}
+\end{frame}
 
 
 
@@ -389,31 +413,61 @@ $\rightarrow$ Place of expert decision-making : no qualitative-quantitative dich
 %\]
 
 \begin{columns}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.7\textwidth}
+An article has a proportion of keywords in each discipline, which can be understood as probabilities $(p_i)$. Interdisciplinarity index defined as $i = 1 - \sum p_i^2$.
 
-\end{column}
-\begin{column}{0.3\textwidth}
-\includegraphics[width=\textwidth]{figures/exampleWordcloud_24872}
-\end{column}
-\end{columns}
+\bigskip
 
 \centering
 
-\includegraphics[width=0.5\textwidth]{figures/firstorderint_withNull}
+\includegraphics[width=0.8\textwidth]{figures/firstorderint_withNull}
+
+\end{column}
+\begin{column}{0.3\textwidth}
+\vspace{-1cm}
+\includegraphics[width=\textwidth]{figures/exampleWordcloud_24872}
+\vspace{1cm}
+\textit{Distribution of article interdisciplinarities (null model in dotted line). }
+\end{column}
+\end{columns}
 
 \end{frame}
 
 
 \begin{frame}
 \frametitle{Citation interdisciplinarity}
+
+\textit{Citation interdisciplinarity defined the same way, based on probabilities to cite or be cited by a discipline.}
+
 \begin{columns}
 \begin{column}{0.5\textwidth}
 \includegraphics[width=\textwidth]{figures/citin_interdisc}
+\textit{}
 \end{column}
 \begin{column}{0.5\textwidth}
 \includegraphics[width=\textwidth]{figures/citout_interdisc}
 \end{column}
 \end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Interactive exploration}
+\textit{On \texttt{CybergeoNetworks} : Article level citation and semantic exploration ; semantic network exploration}
+
+\bigskip
+\bigskip
+
+
+\begin{columns}
+\begin{column}{0.45\textwidth}
+\includegraphics[width=\textwidth]{figures/ex_citvisu_23337}
+\end{column}
+\begin{column}{0.55\textwidth}
+\includegraphics[width=\textwidth]{figures/ex_visuwordcloud_25892}
+\end{column}
+\end{columns}
+
 \end{frame}
 
 
