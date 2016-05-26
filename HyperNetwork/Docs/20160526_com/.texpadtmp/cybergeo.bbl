@@ -18,12 +18,6 @@ Chavalarias, D. and Cointet, J.-P. (2013).
   scientific fields.
 \newblock {\em Plos One}, 8(2):e54847.
 
-\bibitem[Cottineau et~al., 2015]{cottineau2015revisiting}
-Cottineau, C., Le~N{\'e}chet, F., Le~Texier, M., and Reuillon, R. (2015).
-\newblock Revisiting some geography classics with spatial simulation.
-\newblock In {\em Plurimondi. An International Forum for Research and Debate on
-  Human Settlements}, volume~7.
-
 \bibitem[Mendeley, 2015]{mendeley}
 Mendeley (2015).
 \newblock Mendeley reference manager.
@@ -33,6 +27,13 @@ Mendeley (2015).
 Noruzi, A. (2005).
 \newblock Google scholar: The new generation of citation indexes.
 \newblock {\em Libri}, 55(4):170--180.
+
+\bibitem[Raimbault, 2015]{raimbault2015user}
+Raimbault, J. (2015).
+\newblock User-based solutions for increasing level of service in bike-sharing
+  transportation systems.
+\newblock In {\em Complex Systems Design \& Management}, pages 31--44.
+  Springer.
 
 \bibitem[Schmid, 1994]{schmid1994probabilistic}
 Schmid, H. (1994).
