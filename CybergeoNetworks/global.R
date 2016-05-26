@@ -174,7 +174,7 @@ semanticcolors = list(rgb(204,0,255,maxColorValue=255),rgb(255,102,0,maxColorVal
                    rgb(255,255,0,maxColorValue=255),rgb(51,102,255,maxColorValue=255),rgb(51,255,51,maxColorValue=255),
                    rgb(0,102,0,maxColorValue=255),rgb(0,0,255,maxColorValue=255),rgb(102,51,0,maxColorValue=255)
 )
-# damn it Carl, you could have load his shit ! ^^
+# damn it Carl, you could have load this shit ! ^^
 names(semanticcolors)<-c("complex systems","health","crime",
                          "statistical methods","remote sensing","political sciences/critical geography",
                          "traffic modeling","microbiology","cognitive sciences",
@@ -188,15 +188,17 @@ citationWordclouds<-function(id,keywords){
   if(id!="0"&!is.null(keywords)){
     # at least kws for the paper, so no need to check emptyness
     par(mfrow=c(1,2))
-    par(bg = "#4e5d6c")
+    #par(bg = "#4e5d6c")
     wordcloud(words=keywords[[id]],
               freq=citationkwfreqs[keywords[[id]]],
-              colors=unlist(semanticcolors[citationkwthemdico[keywords[[id]]]])
+              colors=unlist(semanticcolors[citationkwthemdico[keywords[[id]]]]),
+              ordered.colors = TRUE
               )
     allkws=unlist(keywords)
     wordcloud(words=allkws,
               freq=citationkwfreqs[allkws],
-              colors=unlist(semanticcolors[citationkwthemdico[allkws]])
+              colors=unlist(semanticcolors[citationkwthemdico[allkws]]),
+              ordered.colors = TRUE
     )
   }
 }
