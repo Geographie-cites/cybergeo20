@@ -27,29 +27,38 @@ themnames = as.character(read.csv(file=paste0('export/comunitiesnames/',dbparams
 
 names(thematics)<-themnames
 
+# select existing thematics
+export_probas = them_probas[,!is.na(names(thematics))]
+colnames(export_probas) = names(thematics)[!is.na(names(thematics))]
+themnames=colnames(export_probas)[2:ncol(export_probas)]
+
+
+
 # construct kws df
-kws=c()
+ckws=c();cth=c();cdocfreq=c()
 for(i in 1:length(thematics)){
   if(!is.na(names(thematics)[i])){
     for(kw in thematics[[i]]){
       show(c(kw,names(thematics)[i]))
-      kws=append(kws,c(kw,names(thematics)[i]))
+      ckws=append(ckws,kw)
+      cth=append(cth,names(thematics)[i])
+      cdocfreq=append(cdocfreq,V(sub$gg)[kw]$docfreq)
     }
   }
 }
 
-kwdf = data.frame(matrix(kws,ncol=2,byrow=TRUE))
+kwdf = data.frame(ckws,cth)
+kwthemdico = cth;names(kwthemdico)=ckws
+kwfreqs = cdocfreq;names(kwfreqs)=ckws
 
-kws = as.tbl(kwdf)
-kws %>% group_by(X2) %>% summarise(l=length(X1)) %>% arrange(l)
-data.frame(kws[kws[,2]=='crime',])
+#kws = as.tbl(kwdf)
+#kws %>% group_by(X2) %>% summarise(l=length(X1)) %>% arrange(l)
+#data.frame(kws[kws[,2]=='crime',])
 
 # load them probas
 #  -> precomputed in semthem_probas
 
-# select existing thematics
-export_probas = them_probas[,!is.na(names(thematics))]
-colnames(export_probas) = names(thematics)[!is.na(names(thematics))]
+
 
 # need iscyb and cybindexes
 # -> load from consolidated db

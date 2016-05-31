@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.8)  23 MAY 2016 17:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.8)  26 MAY 2016 13:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -652,20 +652,20 @@ Grid set 16 x 16 = 22.7622pt x 17.07166pt
 ) (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.aux)
 \openout1 = `cybergeo.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -726,7 +726,7 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box58
-Package hyperref Info: Link coloring OFF on input line 88.
+Package hyperref Info: Link coloring OFF on input line 98.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -734,62 +734,62 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count161
 )
-LaTeX Info: Redefining \ref on input line 88.
-LaTeX Info: Redefining \pageref on input line 88.
-LaTeX Info: Redefining \nameref on input line 88.
+LaTeX Info: Redefining \ref on input line 98.
+LaTeX Info: Redefining \pageref on input line 98.
+LaTeX Info: Redefining \nameref on input line 98.
  (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.out) (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.out)
 \@outlinefile=\write5
 \openout5 = `cybergeo.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 88.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 98.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 88.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 98.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 88.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 88.
+(Font)                  OT1/cmss/m/n --> OT1/cmr/m/n on input line 98.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 88.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 88.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 88.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 98.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 88.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 88.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 88.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/m/n on input line 98.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 88.
+(Font)                  OT1/cmr/m/it --> OT1/cmss/m/it on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 88.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 88.
+(Font)                  OT1/cmr/bx/it --> OT1/cmss/m/it on input line 98.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 88.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 88.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 98.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 88.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 98.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 88.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 88.
+(Font)                  OT1/cmss/bx/n --> OT1/cmr/bx/n on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 88.
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/bx/n on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 88.
+(Font)                  OT1/cmss/m/n --> OT1/cmss/bx/n on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 88.
+(Font)                  OT1/cmss/m/it --> OT1/cmss/bx/it on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 88.
-LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 88.
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/bx/n on input line 98.
+LaTeX Font Info:    Redeclaring symbol font `pureletters' on input line 98.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `normal'
-(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 88.
+(Font)                  OT1/cmss/m/it --> OT1/mathkerncmss/m/sl on input line 98.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 88.
+(Font)                  OT1/cmss/bx/it --> OT1/mathkerncmss/m/sl on input line 98.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 88.
+(Font)                  OT1/mathkerncmss/m/sl --> OT1/mathkerncmss/bx/sl on input line 98.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/beamer/translator/dicts/translator-basic-dictionary/translator-basic-dictionary-English.dict
 Dictionary: translator-basic-dictionary, Language: English 
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/beamer/translator/dicts/translator-bibliography-dictionary/translator-bibliography-dictionary-English.dict
@@ -803,135 +803,143 @@ Dictionary: translator-numbers-dictionary, Language: English
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/beamer/translator/dicts/translator-theorem-dictionary/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 88.
-Package ragged2e Info: ABD: executing \RaggedRight on input line 88.
+LaTeX Info: Redefining \includegraphics on input line 98.
+Package ragged2e Info: ABD: executing \RaggedRight on input line 98.
  ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 88.
+LaTeX Info: Redefining \selectfont on input line 98.
  (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.nav))
 
 Package hyperref Warning: Option `pdfauthor' has already been used,
 (hyperref)                setting the option has no effect on input line 7.
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 43.
+<template/bandeau3.jpg, id=34, 983.71515pt x 160.62007pt>
+File: template/bandeau3.jpg Graphic file (type jpg)
+ <use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 23.
+(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
+
+Overfull \hbox (57.9491pt too wide) in paragraph at lines 23--23
+[]  []  
+ []
+
+LaTeX Font Info:    Try loading font information for U+msa on input line 23.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 43.
+LaTeX Font Info:    Try loading font information for U+msb on input line 23.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input line 43.
+LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input line 23.
  (/usr/local/texlive/2015/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/mathkerncmss.
 )
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
-(Font)              size <5> substituted on input line 43.
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
- []
+(Font)              size <5> substituted on input line 23.
 
 [1
 
-{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] <template/bandeau3.jpg, id=68, 983.71515pt x 160.62007pt>
+{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./template/bandeau3.jpg>]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 79.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 59.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 79--79
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 59--59
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [2
 
- <./template/bandeau3.jpg>]
+]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 100.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 80.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 100--100
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 80--80
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [3
 
 ]
-File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 134.
-(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
+LaTeX Font Info:    Try loading font information for OMS+cmss on input line 118.
+LaTeX Font Info:    No file OMScmss.fd. on input line 118.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 134--134
-[] []  
+
+LaTeX Font Warning: Font shape `OMS/cmss/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead on input line 118.
+
+
+Overfull \hbox (3.09685pt too wide) in paragraph at lines 118--118
+[]\OT1/cmss/bx/n/10 Citation data \OT1/cmss/m/n/10 : cy-ber-geo not in-dexed by ``clas-si-cal'' bases (such as Web of Science$[]$,
  []
 
+File: template/bandeau3.jpg Graphic file (type jpg)
+<use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 118.
+(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 118--118
+[] []  
  []
 
 [4
 
-] <figures/archi.pdf, id=157, 278.84174pt x 180.675pt>
+] <figures/archi.pdf, id=156, 278.84174pt x 167.5861pt>
 File: figures/archi.pdf Graphic file (type pdf)
  <use figures/archi.pdf>
-Package pdftex.def Info: figures/archi.pdf used on input line 139.
-(pdftex.def)             Requested size: 323.39279pt x 209.54034pt.
+Package pdftex.def Info: figures/archi.pdf used on input line 123.
+(pdftex.def)             Requested size: 331.22583pt x 199.06113pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 139.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 123.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 139--139
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 123--123
 [] []  
- []
-
-
-Overfull \vbox (8.54941pt too high) detected at line 139
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [5
 
- <./figures/archi.pdf>] <figures/degreeDistrib.png, id=193, 597.23125pt x 420.57124pt>
+ <./figures/archi.pdf>] <figures/degreeDistrib.png, id=192, 597.23125pt x 420.57124pt>
 File: figures/degreeDistrib.png Graphic file (type png)
  <use figures/degreeDistrib.png>
-Package pdftex.def Info: figures/degreeDistrib.png used on input line 160.
+Package pdftex.def Info: figures/degreeDistrib.png used on input line 157.
 (pdftex.def)             Requested size: 258.14648pt x 181.78546pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 157--157
+[]\OT1/cmss/m/it/8 The sta-tion-ary in-te-
+ []
+
+
+Underfull \hbox (badness 5847) in paragraph at lines 157--157
+\OT1/cmss/m/it/8 grated im-pact fac-tor,
+ []
+
+
+Underfull \hbox (badness 7667) in paragraph at lines 157--157
+\OT1/cmss/m/it/8 es-ti-mated as av-er-age
+ []
+
+
+Underfull \hbox (badness 2393) in paragraph at lines 157--157
+\OT1/cmss/m/it/8 ci-ta-tion count, means
+ []
+
 File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 160.
+<use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 157.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 160--160
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 157--157
 [] []  
  []
 
 
-Overfull \vbox (20.73897pt too high) detected at line 160
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (15.73897pt too high) detected at line 157
  []
 
 [6
@@ -940,7 +948,7 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
 File: figures/citnw.pdf Graphic file (type pdf)
  <use figures/citnw.pdf>
 Package pdftex.def Info: figures/citnw.pdf used on input line 165.
-(pdftex.def)             Requested size: 298.69147pt x 209.54034pt.
+(pdftex.def)             Requested size: 280.02054pt x 196.44333pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
 Package pdftex.def Info: template/bandeau3.jpg used on input line 165.
@@ -950,116 +958,86 @@ Overfull \hbox (57.46121pt too wide) in paragraph at lines 165--165
 [] []  
  []
 
-
-Overfull \vbox (8.54941pt too high) detected at line 165
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
- []
-
 [7
 
- <./figures/citnw.pdf, page is rotated 270 degrees>] <figures/rankSize_fit.pdf, id=261, 597.23125pt x 420.57124pt>
-File: figures/rankSize_fit.pdf Graphic file (type pdf)
- <use figures/rankSize_fit.pdf>
-Package pdftex.def Info: figures/rankSize_fit.pdf used on input line 176.
-(pdftex.def)             Requested size: 178.98303pt x 126.03758pt.
- <figures/rank-size-all.pdf, id=262, 844.15375pt x 597.23125pt>
-File: figures/rank-size-all.pdf Graphic file (type pdf)
- <use figures/rank-size-all.pdf>
-Package pdftex.def Info: figures/rank-size-all.pdf used on input line 176.
-(pdftex.def)             Requested size: 172.09766pt x 121.75883pt.
+ <./figures/citnw.pdf, page is rotated 270 degrees>] <figures/ranksize.pdf, id=261, 722.7pt x 542.025pt>
+File: figures/ranksize.pdf Graphic file (type pdf)
+ <use figures/ranksize.pdf>
+Package pdftex.def Info: figures/ranksize.pdf used on input line 181.
+(pdftex.def)             Requested size: 275.3573pt x 206.51749pt.
 
-Overfull \hbox (6.88536pt too wide) in paragraph at lines 176--176
-[][][] 
+Underfull \hbox (badness 1762) in paragraph at lines 181--181
+\OT1/cmss/m/it/10 dif-fer-ent hi-er-ar-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
+\OT1/cmss/m/it/10 chi-cal ci-ta-tion
  []
 
 File: template/bandeau3.jpg Graphic file (type jpg)
 <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 176.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 181.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 176--176
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 181--181
 [] []  
  []
 
 
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (0.52655pt too high) detected at line 181
  []
 
 [8
 
- <./figures/rankSize_fit.pdf> <./figures/rank-size-all.pdf>] <figures/cybclic_2cyb_13761.pdf, id=300, 650.43pt x 433.62pt>
-File: figures/cybclic_2cyb_13761.pdf Graphic file (type pdf)
- <use figures/cybclic_2cyb_13761.pdf>
-Package pdftex.def Info: figures/cybclic_2cyb_13761.pdf used on input line 185.
-(pdftex.def)             Requested size: 392.90099pt x 261.92444pt.
+ <./figures/ranksize.pdf>] <figures/cybclic.png, id=341, 994.71625pt x 504.88625pt>
+File: figures/cybclic.png Graphic file (type png)
+ <use figures/cybclic.png>
+Package pdftex.def Info: figures/cybclic.png used on input line 197.
+(pdftex.def)             Requested size: 344.19533pt x 174.7021pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 185.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 197.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 185--185
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 197--197
 [] []  
- []
-
-
-Overfull \vbox (32.48076pt too high) detected at line 185
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [9
 
- <./figures/cybclic_2cyb_13761.pdf>]
-Overfull \hbox (8.60954pt too wide) in paragraph at lines 213--213
-\OT1/cmss/m/n/10 400000 r^^Sef^^Serences via l'API Mende-ley $\OMS/cmsy/m/n/10 !$ $^^X \OT1/cmss/m/n/10 215000$ r^^Sef^^Serences avec donn^^Sees compl^^Retes. 
- []
-
-<figures/years.pdf, id=332, 597.23125pt x 420.57124pt>
+ <./figures/cybclic.png>] <figures/years.pdf, id=368, 597.23125pt x 420.57124pt>
 File: figures/years.pdf Graphic file (type pdf)
  <use figures/years.pdf>
-Package pdftex.def Info: figures/years.pdf used on input line 213.
+Package pdftex.def Info: figures/years.pdf used on input line 228.
 (pdftex.def)             Requested size: 137.67014pt x 104.76392pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 213.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 228.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 213--213
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 228--228
 [] []  
  []
 
 
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (1.71742pt too high) detected at line 228
  []
 
 [10
 
  <./figures/years.pdf>]
-Overfull \hbox (68.99948pt too wide) in paragraph at lines 250--250
+Overfull \hbox (68.99948pt too wide) in paragraph at lines 256--256
 []\OT1/cmss/m/it/10 Text-mining in python with \OT1/cmtt/m/it/10 nltk \OT1/cmss/m/it/10 [[]]\OT1/cmss/m/n/10 , method ad-pated from [[]] 
  []
 
 File: template/bandeau3.jpg Graphic file (type jpg)
 <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 250.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 256.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 250--250
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 256--256
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [11
@@ -1067,41 +1045,47 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
 ]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 277.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 293.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 277--277
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 293--293
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [12
 
-] <figures/sensitivity_facet_allindics.pdf, id=433, 2168.1pt x 1445.4pt>
+]
+
+LaTeX Font Warning: Font shape `OT1/cmss/bx/it' undefined
+(Font)              using `OT1/cmss/bx/n' instead on input line 315.
+
+<figures/sensitivity_facet_allindics.pdf, id=470, 2168.1pt x 1445.4pt>
 File: figures/sensitivity_facet_allindics.pdf Graphic file (type pdf)
  <use figures/sensitivity_facet_allindics.pdf>
-Package pdftex.def Info: figures/sensitivity_facet_allindics.pdf used on input line 321.
+Package pdftex.def Info: figures/sensitivity_facet_allindics.pdf used on input line 315.
 (pdftex.def)             Requested size: 223.72485pt x 149.13591pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 315--315
+[]\OT1/cmss/m/it/10 Multi-criteria op-ti-
+ []
+
+
+Underfull \hbox (badness 4543) in paragraph at lines 315--315
+\OT1/cmss/m/it/10 miza-tion (mod-u-lar-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 315--315
+\OT1/cmss/m/it/10 net-work con-struc-
+ []
+
 File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 321.
+<use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 315.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 321--321
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 315--315
 [] []  
- []
-
-
-Overfull \vbox (2.08942pt too high) detected at line 321
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [13
@@ -1109,21 +1093,37 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
  <./figures/sensitivity_facet_allindics.pdf>]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 346.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 334.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 346--346
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 334--334
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [14
 
 ]
+File: template/bandeau3.jpg Graphic file (type jpg)
+ <use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 350.
+(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
+
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 350--350
+[] []  
+ []
+
+[15
+
+] <figures/semantic.png, id=601, 2890.8pt x 2890.8pt>
+File: figures/semantic.png Graphic file (type png)
+ <use figures/semantic.png>
+Package pdftex.def Info: figures/semantic.png used on input line 362.
+(pdftex.def)             Requested size: 193.81934pt x 193.82552pt.
+ <figures/disciplines.png, id=602, 309.155pt x 283.0575pt>
+File: figures/disciplines.png Graphic file (type png)
+ <use figures/disciplines.png>
+Package pdftex.def Info: figures/disciplines.png used on input line 362.
+(pdftex.def)             Requested size: 137.67603pt x 126.05736pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
 Package pdftex.def Info: template/bandeau3.jpg used on input line 362.
@@ -1133,240 +1133,167 @@ Overfull \hbox (57.46121pt too wide) in paragraph at lines 362--362
 [] []  
  []
 
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
- []
-
-[15
-
-] <figures/semantic.png, id=564, 2890.8pt x 2890.8pt>
-File: figures/semantic.png Graphic file (type png)
- <use figures/semantic.png>
-Package pdftex.def Info: figures/semantic.png used on input line 368.
-(pdftex.def)             Requested size: 222.62317pt x 222.63736pt.
-File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 368.
-(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
-
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 368--368
-[] []  
- []
-
-
-Overfull \vbox (21.64642pt too high) detected at line 368
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
- []
-
 [16
 
- <./figures/semantic.png>] <figures/synththemcyb.pdf, id=592, 722.7pt x 722.7pt>
+ <./figures/semantic.png> <./figures/disciplines.png>] <figures/synththemcyb.pdf, id=631, 722.7pt x 722.7pt>
 File: figures/synththemcyb.pdf Graphic file (type pdf)
  <use figures/synththemcyb.pdf>
-Package pdftex.def Info: figures/synththemcyb.pdf used on input line 373.
-(pdftex.def)             Requested size: 222.63419pt x 222.63736pt.
+Package pdftex.def Info: figures/synththemcyb.pdf used on input line 381.
+(pdftex.def)             Requested size: 206.51929pt x 206.51198pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 373.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 381.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 373--373
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 381--381
 [] []  
  []
 
 
-Overfull \vbox (21.64642pt too high) detected at line 373
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (0.52104pt too high) detected at line 381
  []
 
 [17
 
- <./figures/synththemcyb.pdf>] <figures/citation.pdf, id=731, 722.7pt x 722.7pt>
+ <./figures/synththemcyb.pdf>] <figures/citation.pdf, id=771, 722.7pt x 722.7pt>
 File: figures/citation.pdf Graphic file (type pdf)
  <use figures/citation.pdf>
-Package pdftex.def Info: figures/citation.pdf used on input line 380.
+Package pdftex.def Info: figures/citation.pdf used on input line 400.
 (pdftex.def)             Requested size: 235.72383pt x 235.7304pt.
+
+Overfull \hbox (29.20454pt too wide) in paragraph at lines 400--400
+[][]  
+ []
+
+
+Underfull \hbox (badness 4713) in paragraph at lines 400--400
+[]\OT1/cmss/m/it/10 Citation flows be-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 400--400
+\OT1/cmss/m/it/10 tween dis-ci-plines
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 400--400
+\OT1/cmss/m/it/10 (di-rected links to
+ []
+
+
+Underfull \hbox (badness 7907) in paragraph at lines 400--400
+\OT1/cmss/m/it/10 be read in anti-
+ []
+
 File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 380.
+<use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 400.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 380--380
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 400--400
 [] []  
  []
 
 
-Overfull \vbox (34.73946pt too high) detected at line 380
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (29.73946pt too high) detected at line 400
  []
 
 [18
 
- <./figures/citation.pdf>] <figures/firstorderint_withNull.pdf, id=1674, 844.15375pt x 597.23125pt>
+ <./figures/citation.pdf>] <figures/firstorderint_withNull.pdf, id=1713, 844.15375pt x 597.23125pt>
 File: figures/firstorderint_withNull.pdf Graphic file (type pdf)
  <use figures/firstorderint_withNull.pdf>
-Package pdftex.def Info: figures/firstorderint_withNull.pdf used on input line 397.
-(pdftex.def)             Requested size: 172.09766pt x 121.75883pt.
+Package pdftex.def Info: figures/firstorderint_withNull.pdf used on input line 434.
+(pdftex.def)             Requested size: 192.74927pt x 136.36697pt.
+ <figures/exampleWordcloud_24872.png, id=1714, 337.26pt x 287.0725pt>
+File: figures/exampleWordcloud_24872.png Graphic file (type png)
+ <use figures/exampleWordcloud_24872.png>
+Package pdftex.def Info: figures/exampleWordcloud_24872.png used on input line 434.
+(pdftex.def)             Requested size: 103.25964pt x 87.89207pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 397.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 434.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 397--397
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 434--434
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [19
 
- <./figures/firstorderint_withNull.pdf>] <figures/citin_interdisc.pdf, id=1710, 844.15375pt x 597.23125pt>
+ <./figures/firstorderint_withNull.pdf> <./figures/exampleWordcloud_24872.png>] <figures/citin_interdisc.pdf, id=1751, 844.15375pt x 597.23125pt>
 File: figures/citin_interdisc.pdf Graphic file (type pdf)
  <use figures/citin_interdisc.pdf>
-Package pdftex.def Info: figures/citin_interdisc.pdf used on input line 407.
-(pdftex.def)             Requested size: 154.88684pt x 109.57474pt.
- <figures/citout_interdisc.pdf, id=1711, 844.15375pt x 597.23125pt>
+Package pdftex.def Info: figures/citin_interdisc.pdf used on input line 456.
+(pdftex.def)             Requested size: 172.09766pt x 121.75883pt.
+ <figures/citout_interdisc.pdf, id=1752, 844.15375pt x 597.23125pt>
 File: figures/citout_interdisc.pdf Graphic file (type pdf)
  <use figures/citout_interdisc.pdf>
-Package pdftex.def Info: figures/citout_interdisc.pdf used on input line 407.
-(pdftex.def)             Requested size: 154.88684pt x 109.57474pt.
+Package pdftex.def Info: figures/citout_interdisc.pdf used on input line 456.
+(pdftex.def)             Requested size: 172.09766pt x 121.75883pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 407.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 456.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 407--407
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 456--456
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [20
 
- <./figures/citin_interdisc.pdf> <./figures/citout_interdisc.pdf>]
+ <./figures/citin_interdisc.pdf> <./figures/citout_interdisc.pdf>] <figures/ex_citvisu_23337.png, id=1796, 909.3975pt x 668.4975pt>
+File: figures/ex_citvisu_23337.png Graphic file (type png)
+ <use figures/ex_citvisu_23337.png>
+Package pdftex.def Info: figures/ex_citvisu_23337.png used on input line 476.
+(pdftex.def)             Requested size: 154.88684pt x 113.85727pt.
+ <figures/ex_visuwordcloud_25892.png, id=1797, 848.16875pt x 504.88625pt>
+File: figures/ex_visuwordcloud_25892.png Graphic file (type png)
+ <use figures/ex_visuwordcloud_25892.png>
+Package pdftex.def Info: figures/ex_visuwordcloud_25892.png used on input line 476.
+(pdftex.def)             Requested size: 189.30847pt x 112.68542pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 446.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 476.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 446--446
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 476--476
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [21
 
-]
+ <./figures/ex_citvisu_23337.png> <./figures/ex_visuwordcloud_25892.png>]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 474.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 498.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 474--474
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 498--498
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [22
 
 ]
-
-LaTeX Warning: Citation `raimbault2015user' on page 23 undefined on input line 496.
-
-<figures/velib.png, id=1808, 804.00375pt x 498.86375pt>
-File: figures/velib.png Graphic file (type png)
- <use figures/velib.png>
-Package pdftex.def Info: figures/velib.png used on input line 496.
-(pdftex.def)             Requested size: 240.93567pt x 149.49281pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 496.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 506.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 496--496
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 506--506
 [] []  
- []
-
-
-Overfull \vbox (3.00188pt too high) detected at line 496
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [23
 
- <./figures/velib.png>] <figures/screen_appli.png, id=1836, 1192.455pt x 796.9775pt>
-File: figures/screen_appli.png Graphic file (type png)
- <use figures/screen_appli.png>
-Package pdftex.def Info: figures/screen_appli.png used on input line 516.
-(pdftex.def)             Requested size: 275.3573pt x 184.03061pt.
+] <figures/velib.png, id=1880, 804.00375pt x 498.86375pt>
+File: figures/velib.png Graphic file (type png)
+ <use figures/velib.png>
+Package pdftex.def Info: figures/velib.png used on input line 530.
+(pdftex.def)             Requested size: 240.93567pt x 149.49281pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 516.
-(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
-
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 516--516
-[] []  
- []
-
-
-Overfull \vbox (33.53967pt too high) detected at line 516
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
- []
-
-[24
-
- <./figures/screen_appli.png>] <figures/betweeness-cyb.pdf, id=1864, 597.23125pt x 420.57124pt>
-File: figures/betweeness-cyb.pdf Graphic file (type pdf)
- <use figures/betweeness-cyb.pdf>
-Package pdftex.def Info: figures/betweeness-cyb.pdf used on input line 530.
-(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
- <figures/betweeness.pdf, id=1865, 597.23125pt x 420.57124pt>
-File: figures/betweeness.pdf Graphic file (type pdf)
- <use figures/betweeness.pdf>
-Package pdftex.def Info: figures/betweeness.pdf used on input line 530.
-(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
-
-Overfull \hbox (0.41602pt too wide) in paragraph at lines 530--530
-[]\OT1/cmss/m/it/10 Centralit^^Ses faibles (rq : im-pos-si-bilit^^Se des clus-ters forts pour des ci-ta-tions car causalit^^Se
- []
-
-File: template/bandeau3.jpg Graphic file (type jpg)
-<use template/bandeau3.jpg>
 Package pdftex.def Info: template/bandeau3.jpg used on input line 530.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
@@ -1375,140 +1302,179 @@ Overfull \hbox (57.46121pt too wide) in paragraph at lines 530--530
  []
 
 
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (3.00188pt too high) detected at line 530
  []
 
-[25
+[24
 
- <./figures/betweeness-cyb.pdf> <./figures/betweeness.pdf>] <figures/clusterSize.pdf, id=1906, 597.23125pt x 420.57124pt>
-File: figures/clusterSize.pdf Graphic file (type pdf)
- <use figures/clusterSize.pdf>
-Package pdftex.def Info: figures/clusterSize.pdf used on input line 539.
-(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
- <figures/pathlength.pdf, id=1907, 597.23125pt x 420.57124pt>
-File: figures/pathlength.pdf Graphic file (type pdf)
- <use figures/pathlength.pdf>
-Package pdftex.def Info: figures/pathlength.pdf used on input line 539.
-(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
+ <./figures/velib.png>] <figures/screen_appli.png, id=1910, 1192.455pt x 796.9775pt>
+File: figures/screen_appli.png Graphic file (type png)
+ <use figures/screen_appli.png>
+Package pdftex.def Info: figures/screen_appli.png used on input line 550.
+(pdftex.def)             Requested size: 275.3573pt x 184.03061pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 539.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 550.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 539--539
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 550--550
 [] []  
  []
 
 
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (33.53967pt too high) detected at line 550
+ []
+
+[25
+
+ <./figures/screen_appli.png>] <figures/betweeness-cyb.pdf, id=1939, 597.23125pt x 420.57124pt>
+File: figures/betweeness-cyb.pdf Graphic file (type pdf)
+ <use figures/betweeness-cyb.pdf>
+Package pdftex.def Info: figures/betweeness-cyb.pdf used on input line 564.
+(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
+ <figures/betweeness.pdf, id=1940, 597.23125pt x 420.57124pt>
+File: figures/betweeness.pdf Graphic file (type pdf)
+ <use figures/betweeness.pdf>
+Package pdftex.def Info: figures/betweeness.pdf used on input line 564.
+(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
+File: template/bandeau3.jpg Graphic file (type jpg)
+ <use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 564.
+(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
+
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 564--564
+[] []  
  []
 
 [26
 
- <./figures/clusterSize.pdf> <./figures/pathlength.pdf>] <figures/cybclic_2cyb_12817.pdf, id=1946, 650.43pt x 433.62pt>
+ <./figures/betweeness-cyb.pdf> <./figures/betweeness.pdf>] <figures/clusterSize.pdf, id=1979, 597.23125pt x 420.57124pt>
+File: figures/clusterSize.pdf Graphic file (type pdf)
+ <use figures/clusterSize.pdf>
+Package pdftex.def Info: figures/clusterSize.pdf used on input line 573.
+(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
+ <figures/pathlength.pdf, id=1980, 597.23125pt x 420.57124pt>
+File: figures/pathlength.pdf Graphic file (type pdf)
+ <use figures/pathlength.pdf>
+Package pdftex.def Info: figures/pathlength.pdf used on input line 573.
+(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
+File: template/bandeau3.jpg Graphic file (type jpg)
+ <use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 573.
+(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
+
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 573--573
+[] []  
+ []
+
+[27
+
+ <./figures/clusterSize.pdf> <./figures/pathlength.pdf>] <figures/cybclic_2cyb_12817.pdf, id=2020, 650.43pt x 433.62pt>
 File: figures/cybclic_2cyb_12817.pdf Graphic file (type pdf)
  <use figures/cybclic_2cyb_12817.pdf>
-Package pdftex.def Info: figures/cybclic_2cyb_12817.pdf used on input line 546.
+Package pdftex.def Info: figures/cybclic_2cyb_12817.pdf used on input line 580.
 (pdftex.def)             Requested size: 392.90099pt x 261.92444pt.
 
-Overfull \hbox (48.70566pt too wide) in paragraph at lines 546--546
+Overfull \hbox (48.70566pt too wide) in paragraph at lines 580--580
 [][] 
  []
 
 File: template/bandeau3.jpg Graphic file (type jpg)
 <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 546.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 580.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 546--546
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 580--580
 [] []  
  []
 
 
-Overfull \vbox (60.9335pt too high) detected at line 546
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
- []
-
-[27
-
- <./figures/cybclic_2cyb_12817.pdf>]
-Missing character: There is no Ã in font cmss10!
-Missing character: There is no ¹ in font cmss10!
-Missing character: There is no Ã in font cmss10!
-Missing character: There is no © in font cmss10!
-File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 561.
-(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
-
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 561--561
-[] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (32.48076pt too high) detected at line 580
  []
 
 [28
 
-] (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.bbl)
+ <./figures/cybclic_2cyb_12817.pdf>] <figures/elsevierMotherFucker.png, id=2053, 1113.15875pt x 719.68875pt>
+File: figures/elsevierMotherFucker.png Graphic file (type png)
+ <use figures/elsevierMotherFucker.png>
+Package pdftex.def Info: figures/elsevierMotherFucker.png used on input line 588.
+(pdftex.def)             Requested size: 405.13608pt x 261.92444pt.
+
+Overfull \hbox (60.94075pt too wide) in paragraph at lines 588--588
+[][] 
+ []
+
 File: template/bandeau3.jpg Graphic file (type jpg)
- <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 578.
+<use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 588.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 578--578
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 588--588
 [] []  
  []
 
 
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+Overfull \vbox (60.9335pt too high) detected at line 588
  []
 
 [29
 
- </usr/local/texlive/2015/texmf-dist/tex/latex/beamer/art/beamericonarticle.pdf>]
+ <./figures/elsevierMotherFucker.png>]
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 578.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 602.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 578--578
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 602--602
 [] []  
- []
-
-
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
  []
 
 [30
 
-
-]
+] <figures/bootstrap_withReplacement_kw50.pdf, id=2107, 597.23125pt x 420.57124pt>
+File: figures/bootstrap_withReplacement_kw50.pdf Graphic file (type pdf)
+ <use figures/bootstrap_withReplacement_kw50.pdf>
+Package pdftex.def Info: figures/bootstrap_withReplacement_kw50.pdf used on input line 612.
+(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
+ <figures/bootstrap_withReplacement_kw100.pdf, id=2108, 597.23125pt x 420.57124pt>
+File: figures/bootstrap_withReplacement_kw100.pdf Graphic file (type pdf)
+ <use figures/bootstrap_withReplacement_kw100.pdf>
+Package pdftex.def Info: figures/bootstrap_withReplacement_kw100.pdf used on input line 612.
+(pdftex.def)             Requested size: 172.09766pt x 121.19244pt.
 File: template/bandeau3.jpg Graphic file (type jpg)
  <use template/bandeau3.jpg>
-Package pdftex.def Info: template/bandeau3.jpg used on input line 578.
+Package pdftex.def Info: template/bandeau3.jpg used on input line 612.
 (pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
 
-Overfull \hbox (57.46121pt too wide) in paragraph at lines 578--578
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 612--612
 [] []  
  []
 
+[31
 
-Overfull \hbox (85.2066pt too wide) has occurred while \output is active
- [][]  \OT1/cmss/m/n/5 ([])  
+ <./figures/bootstrap_withReplacement_kw50.pdf> <./figures/bootstrap_withReplacement_kw100.pdf>] (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.bbl)
+File: template/bandeau3.jpg Graphic file (type jpg)
+ <use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 631.
+(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
+
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 631--631
+[] []  
  []
 
-[31
+[32
+
+ </usr/local/texlive/2015/texmf-dist/tex/latex/beamer/art/beamericonarticle.pdf>]
+File: template/bandeau3.jpg Graphic file (type jpg)
+ <use template/bandeau3.jpg>
+Package pdftex.def Info: template/bandeau3.jpg used on input line 631.
+(pdftex.def)             Requested size: 413.03746pt x 34.14294pt.
+
+Overfull \hbox (57.46121pt too wide) in paragraph at lines 631--631
+[] []  
+ []
+
+[33
 
 
 ]
@@ -1521,36 +1487,36 @@ Overfull \hbox (85.2066pt too wide) has occurred while \output is active
 \tf@snm=\write8
 \openout8 = `cybergeo.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 587.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 587.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 640.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 640.
  (/Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 587.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 587.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 640.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 640.
 Package rerunfilecheck Info: File `cybergeo.out' has not changed.
-(rerunfilecheck)             Checksum: <no file>.
+(rerunfilecheck)             Checksum: 4B0158FED9BCCE3D5A4717A40641A555;282.
 
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
 
-LaTeX Warning: There were undefined references.
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 587.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 640.
  ) 
 Here is how much of TeX's memory you used:
- 17770 strings out of 493615
- 343168 string characters out of 6151290
- 410104 words of memory out of 5000000
- 20723 multiletter control sequences out of 15000+600000
- 10446 words of font info for 40 fonts, out of 8000000 for 9000
+ 17819 strings out of 493615
+ 344507 string characters out of 6151290
+ 409156 words of memory out of 5000000
+ 20759 multiletter control sequences out of 15000+600000
+ 10797 words of font info for 41 fonts, out of 8000000 for 9000
  805 hyphenation exceptions out of 8191
- 58i,18n,57p,419b,559s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam5.pfb>
-Output written on /Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.pdf (31 pages, 13616465 bytes).
+ 58i,16n,57p,419b,559s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam5.pfb>
+Output written on /Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.pdf (33 pages, 15296851 bytes).
 PDF statistics:
- 2177 PDF objects out of 2487 (max. 8388607)
- 2005 compressed objects within 21 object streams
- 75 named destinations out of 1000 (max. 500000)
- 199 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2291 PDF objects out of 2487 (max. 8388607)
+ 2085 compressed objects within 21 object streams
+ 79 named destinations out of 1000 (max. 500000)
+ 229 words of extra memory for PDF output out of 10000 (max. 10000000)
 

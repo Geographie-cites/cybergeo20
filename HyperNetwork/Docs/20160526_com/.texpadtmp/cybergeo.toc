@@ -1,6 +1,6 @@
 \beamer@endinputifotherversion {3.36pt}
 \beamer@sectionintoc {1}{Introduction}{2}{0}{1}
 \beamer@sectionintoc {2}{Data collection}{4}{0}{2}
-\beamer@sectionintoc {3}{M{\'e}thodes et R{\'e}sultats}{6}{0}{3}
-\beamer@subsectionintoc {3}{1}{R{\'e}seau des citations}{6}{0}{3}
-\beamer@subsectionintoc {3}{2}{R{\'e}seau s{\'e}mantique}{10}{0}{3}
+\beamer@sectionintoc {3}{Methods and Results}{6}{0}{3}
+\beamer@subsectionintoc {3}{1}{Citation Network}{6}{0}{3}
+\beamer@subsectionintoc {3}{2}{Semantic Network}{10}{0}{3}

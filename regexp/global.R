@@ -5,7 +5,7 @@ library(lubridate)
 library(stringr)
 library(wordcloud)
 
-#pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
+pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
 #pattern_list <- c("g[ée]ograph")
 
 #setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/regexp'))
@@ -43,8 +43,8 @@ sentences <- read.table(
 
 articles <- read.table(
   "../Data/raw/cybergeo.csv", 
-  sep = ";", 
-  quote = "", 
+  sep = ",", 
+  quote = "\"", 
   comment.char = "", 
   header = TRUE
 ) %>% 
@@ -52,6 +52,8 @@ articles <- read.table(
   rename(titre = title_en, auteurs = authors) %>%
   mutate(citation = paste(sep = ". ", auteurs, substr(date,1,4), titre)) %>%
   select(id, date, citation, langue)
+
+gc()
 
 #-- Functions -----------------------------------------------------------------
 

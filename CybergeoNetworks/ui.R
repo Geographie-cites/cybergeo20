@@ -6,7 +6,16 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                   tags$head(
                     tags$style(HTML("
       @import url('//fonts.googleapis.com/css?family=Orbitron|Cabin:400,700');
-    "))
+    ")),
+            tags$script(HTML("
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-40299595-6', 'auto');
+  ga('send', 'pageview');
+"))
                   ),
                   headerPanel(
                     "CybergeoNetworks",
@@ -67,18 +76,27 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                     h4("Data Selection"),
                                     tags$p(class="text-justify","Search and select a cybergeo paper in the table."),
                                     htmlOutput("citationdataloading"),
-                                    dataTableOutput("citationcybergeo"),
-                                    selectInput(inputId = "citationselected", 
-                                                label = "Select a publication by id", 
-                                                choices = c("",sort(citation_cybergeodata$id,decreasing = TRUE)),
-                                                selected = "",
-                                                multiple = FALSE)
+                                    dataTableOutput("citationcybergeo")
                                   ),
                                   fluidRow(
                                     h4("Citation network neighborhood"),
                                     tags$p(class="text-justify","This graph shows the citation neighborhood of the selected paper"),
-        
+                                    selectInput(inputId = "citationselected", 
+                                                label = "Select a publication by id", 
+                                                choices = c("",sort(citation_cybergeodata$id[citation_cybergeodata$linknum>0],decreasing = TRUE)),
+                                                selected = "",
+                                                multiple = FALSE),
                                     column(12,plotOutput("citationegoplot", width = "100%", height = "800px"))
+                                  ),
+                                  fluidRow(
+                                    h4("Semantic content"),
+                                    tags$p(class="text-justify","This graph shows the semantic content (color legend in user guide) of the paper (left) and its neighborhood (right)."),
+                                    selectInput(inputId = "citationsemanticselected", 
+                                                label = "Select a publication by id", 
+                                                choices = c("",sort(citation_cybergeodata$id[citation_cybergeodata$kwcount>0],decreasing = TRUE)),
+                                                selected = "",
+                                                multiple = FALSE),
+                                    column(12,plotOutput("citationesemanticplot", width = "100%", height = "800px"))
                                   )
                                 ),
                                tabPanel("Semantic Network",
@@ -94,14 +112,48 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                     
                     
                     
-                    # 
-                    # tabPanel("Semantic network",
-                    #          fluidRow(h2("Exploring the semantic network"),
-                    #                   #h4("...",br())
-                    #                   forceNetworkOutput("semanticNetwork")
-                    #                   )
-                    # ),
-                   
+                    
+                    
+                    # PO
+                    tabPanel("Full-text Semantic network",
+                             fluidPage(
+                               column(
+                                 3,
+                                 selectInput("mode", "Mode", c(
+                                   "Single Pattern Analysis" = "one", 
+                                   "Multiple Pattern Analysis" = "multi",
+                                   "Parameterisation" = "param"
+                                 )
+                                 ),
+                                 conditionalPanel(
+                                   "input.mode == 'multi' | input.mode == 'one'",
+                                   textInput("pattern_input", "Pattern")
+                                 ),
+                                 conditionalPanel(
+                                   "input.mode == 'multi'",
+                                   actionButton("add_pattern", "Add to Selection"),
+                                   p(),
+                                   checkboxGroupInput("patterns_selection", "Pattern Selection", pattern_list)
+                                 )
+                               ),
+                               column(
+                                 9,
+                             tabsetPanel(
+                               
+                               tabPanel("Chronogram",
+                               plotOutput("chronogram", height = "700px")
+                               ),
+                               tabPanel(
+                                 "Word Cloud",
+                                 plotOutput("cloud", height = "700px")
+                               ),
+                               tabPanel("Sentences", verbatimTextOutput("phrases")),
+                               tabPanel("Citations", verbatimTextOutput("citations"))
+                             )))),
+
+                             
+                             
+                    
                     # HADRI ----
                     
                     tabPanel("Keyword network",

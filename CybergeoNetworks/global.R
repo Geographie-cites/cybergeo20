@@ -20,11 +20,16 @@ library(reshape2)
 library(grid)
 library(igraph)
 library(dplyr)
-#library(networkD3)
 library(RSQLite)
 library(svgPanZoom)
-
-
+library(wordcloud)
+library(scales)
+library(lubridate)
+library(stringr)
+library(scales)
+library(lubridate)
+library(stringr)
+library(wordcloud)
 
 #### Clem
 aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate, colNumbers){
@@ -75,6 +80,150 @@ names(result) <-c( paste("G",1:K),"% epl.")
 }
 
 
+######## PO
+
+
+
+
+pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
+#pattern_list <- c("g[ée]ograph")
+
+#setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/regexp'))
+
+#-- Loading data --------------------------------------------------------------
+
+terms <- read.table(
+  "data/terms.csv", 
+  sep = ";", 
+  quote = "", 
+  comment.char = "", 
+  header = TRUE,
+  stringsAsFactors = FALSE
+) %>% 
+  tbl_df() %>%
+  dplyr::mutate(
+    article_id = id,
+    id = row_number()
+  ) %>%
+  dplyr::select(id, article_id, term, count)
+
+sentences <- read.table(
+  "data/sentences.csv", 
+  sep = "|", 
+  quote = "", 
+  comment.char = "", 
+  header = TRUE,
+  stringsAsFactors=FALSE
+) %>% 
+  tbl_df() %>%
+  dplyr::mutate(
+    article_id = id,
+    id = row_number()
+  )
+
+articles <- read.table(
+  "data/cybergeo.csv", 
+  sep = ",", 
+  quote = "\"", 
+  comment.char = "", 
+  header = TRUE
+) %>% 
+  tbl_df() %>%
+  dplyr::rename(titre = title_en, auteurs = authors) %>%
+  dplyr::mutate(citation = paste(sep = ". ", auteurs, substr(date,1,4), titre)) %>%
+  dplyr::select(id, date, citation, langue)
+
+gc()
+
+#-- Functions -----------------------------------------------------------------
+
+terms_matched <- function(patterns) {
+  data <- data_frame()
+  for (pattern in patterns) {
+    indices <- grep(pattern, terms$term, ignore.case = TRUE, perl = TRUE)
+    data <- data_frame(id = indices) %>%
+      dplyr::mutate(pattern = pattern) %>%
+      dplyr::bind_rows(data)
+  }
+  data <- data %>%
+    dplyr::left_join(terms, by = c("id")) %>%
+    dplyr::arrange(id, pattern)
+  return(data)
+} 
+
+titles_matched <- function(patterns) {
+  citations <- terms_matched(patterns) %>%
+    dplyr::select(article_id) %>%
+    dplyr::unique() %>%
+    dplyr::left_join(articles, by = c("article_id" = "id")) %>%
+    dplyr::arrange(date) %>%
+    dplyr::select(citation)
+  return(citations$citation)
+}
+
+phrases <- function(patterns) {
+  data <- data_frame()
+  for (pattern in patterns) {
+    indices <- grep(pattern, sentences$sentence, ignore.case = TRUE, perl = TRUE)
+    data <- data_frame(id = indices) %>%
+      dplyr::bind_rows(data)
+  }
+  data <- data %>%
+    dplyr::left_join(sentences, by = c("id")) %>%
+    dplyr::select(sentence)
+  return(data$sentence)
+}
+
+terms_matched_cloud <- function(patterns) {
+  terms_matched(patterns) %>%
+    dplyr::group_by(term) %>%
+    #    summarise(articles = n_distinct(article_id), terms = sum(count))
+    dplyr::summarise(articles = sum(count))
+}
+
+articles_matched <- function(patterns) {
+  terms_matched(patterns) %>%
+    dplyr::group_by(article_id, pattern) %>%
+    dplyr::summarise(count = sum(count)) %>%
+    dplyr::left_join(articles, by = c("article_id" = "id")) %>%
+    dplyr::mutate(ym = str_sub(date, 1, 4)) %>%
+    dplyr::group_by(ym, pattern) %>%
+    dplyr::summarise(articles=n_distinct(article_id), terms=sum(count)) %>%
+    dplyr::ungroup() %>%
+    dplyr::mutate(date = parse_date_time(ym, "%y")) %>%
+    dplyr::select(date, pattern, articles, terms)
+}
+
+chronogram <- function(patterns) {
+  ggplot(articles_matched(patterns), aes(date, articles)) +
+    geom_bar(stat = "identity") +
+    facet_grid(pattern ~ ., scales = "free_y", space = "free_y") +
+    labs(title="Chronogramme des articles publiés dans Cybergéo", x = "Année de publication", y = "Nombre d'articles publiés")
+}
+
+cloud <- function(patterns) {
+  words <- terms_matched_cloud(patterns)
+  wordcloud(
+    words$term,
+    words$articles,
+    scale = c(10,1),
+    rot.per = 0
+  ) 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ####################
@@ -92,7 +241,7 @@ names(result) <-c( paste("G",1:K),"% epl.")
 # 
 # 
 
-# setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/Cybergeo20'))
+# setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/CybergeoNetworks'))
 
 ##
 #  Notations / id conventions : vars and ids prefixed with "citation"
@@ -100,32 +249,53 @@ names(result) <-c( paste("G",1:K),"% epl.")
 
 # citation nw cybergeo table
 load('data/citation_cybergeodata.RData')
+# kws domains dico
+load('data/citation_kwthemdico.RData')
 
-# sqlite connection
-db = dbConnect(SQLite(),"data/CitationNetwork.sqlite3")
+# sqlite connection : citation nw
+citationdbcit = dbConnect(SQLite(),"data/CitationNetwork.sqlite3")
+# sqlite connection : keywords
+citationdbkws = dbConnect(SQLite(),"data/CitationKeywords.sqlite3")
 # test query
 # troubleshooting retrieving links ? seems OK, many refs do not have refs
 #dbGetQuery(db,"SELECT * FROM edges WHERE `to`='16612201304630735484';")
 #dbGetQuery(db,"SELECT COUNT(*) FROM edges;")
 #dbGetQuery(db,"SELECT * FROM edges LIMIT 10;")
+
+##
+#  load citation edges given an id
 citationLoadEdges<-function(id){
   res=data.frame()
-  res=rbind(res,dbGetQuery(db,paste0("SELECT * FROM edges WHERE `from`='",id,"';")))
-  res=rbind(res,dbGetQuery(db,paste0("SELECT * FROM edges WHERE `to`='",id,"';")))
+  res=rbind(res,dbGetQuery(citationdbcit,paste0("SELECT * FROM edges WHERE `from`='",id,"';")))
+  res=rbind(res,dbGetQuery(citationdbcit,paste0("SELECT * FROM edges WHERE `to`='",id,"';")))
   return(res)
+}
+
+##
+#  load neighbors keywords given an id
+citationLoadKeywords<-function(id){
+  # load edges
+  toids=dbGetQuery(citationdbcit,paste0("SELECT `to` FROM edges WHERE `from`='",id,"';"))[,1]
+  fromids=dbGetQuery(citationdbcit,paste0("SELECT `from` FROM edges WHERE `to`='",id,"';"))[,1]
+  ids=c(id,toids,fromids)
+  req = "SELECT * FROM keywords WHERE "
+  for(i in ids[1:(length(ids)-1)]){req=paste0(req,"`id`='",i,"' OR ")}
+  req=paste0(req,"`id`='",ids[length(ids)],"';")
+  res=dbGetQuery(citationdbkws,req)
+  l = sapply(res$keywords,function(s){strsplit(s,";")})
+  names(l)<-res$id
+  return(l)
 }
 
 # global vars (needed e.g. to avoid numerous db request with reactive functions)
 citationGlobalVars <- reactiveValues()
 citationGlobalVars$citationSelected = "0"
+citationGlobalVars$citationSemanticSelected = "0"
 
 
 citationVisuEgo<-function(edges){
   if(!is.null(edges)){
      if(nrow(edges)>0){
-      # data for networkD3
-      #edf = data.frame(source=edges$from,target=edges$to)
-      
       citsubgraph = graph_from_data_frame(edges,directed=TRUE)
       #show(citsubgraph)
       V(citsubgraph)[head_of(citsubgraph,E(citsubgraph))$name]$cyb = E(citsubgraph)$fromcyb
@@ -134,7 +304,8 @@ citationVisuEgo<-function(edges){
       V(citsubgraph)[tail_of(citsubgraph,E(citsubgraph))$name]$title = E(citsubgraph)$totitle
       lay=layout_as_tree(citsubgraph,circular=FALSE)
       lay[lay[,2]==0,2]=-sample.int(length(which(lay[,2]==0)),replace=FALSE)-2
-      lay[lay[,2]==2,1]= sample.int(10,size=length(which(lay[,2]==2)))-5#((-length(which(lay[,2]==2))/2):(length(which(lay[,2]==2))/2))*5/length(which(lay[,2]==2))
+      #lay[lay[,2]==2,1]= sample.int(10,size=length(which(lay[,2]==2)))-5#((-length(which(lay[,2]==2))/2):(length(which(lay[,2]==2))/2))*5/length(which(lay[,2]==2))
+      lay[lay[,2]==2,1]= sample.int(length(which(lay[,2]==2)))-5
       lay[lay[,2]==2,2]=4+sample.int(length(which(lay[,2]==2)),replace=FALSE)
       palette=c("#df691a","#1C6F91")
       par(bg = "#4e5d6c")
@@ -143,25 +314,46 @@ citationVisuEgo<-function(edges){
            vertex.frame.color="#1C6F91",vertex.label.color = "#ebebeb",
            layout=lay
       )
-      
-      # forceNetwork(Links = edf, Nodes = vdf,
-      #       Source = "source", Target = "target", NodeID = "name",
-      #       Group = "community",zoom=TRUE)
-      # 
+      #16283 22232 23337 23502 26325 24841 26026 22270 24798 25354 26969
     }
   }
 }
 
 
-semanticcolors = list(complex.systems=rgb(204,0,255,maxColorValue=255),health=rgb(255,102,0,maxColorValue=255),
-                      crime=rgb(255,102,0,maxColorValue=255),statistical.methods=rgb(255,153,0,maxColorValue=255),
-                      remote.sensing=rgb(0,204,102,maxColorValue=255),political.sciences.critical.geography=rgb(255,0,0,maxColorValue=255),
-                      traffic.modeling=rgb(153,153,0,maxColorValue=255),microbiology=rgb(102,204,0,maxColorValue=255),
-                      cognitive.sciences=rgb(0,255,255,maxColorValue=255),spatial.analysis=rgb(255,255,0,maxColorValue=255),
-                      GIS=rgb(51,102,255,maxColorValue=255),biogeography=rgb(51,255,51,maxColorValue=255),environnemnt.climate=rgb(0,102,0,maxColorValue=255),
-                      economic.geography=rgb(0,0,255,maxColorValue=255),physical.geography=rgb(102,51,0,maxColorValue=255)
+semanticcolors = list(rgb(204,0,255,maxColorValue=255),rgb(255,102,0,maxColorValue=255), rgb(255,102,0,maxColorValue=255),
+                   rgb(255,153,0,maxColorValue=255),rgb(0,204,102,maxColorValue=255),rgb(255,0,0,maxColorValue=255),
+                   rgb(153,153,0,maxColorValue=255),rgb(102,204,0,maxColorValue=255),rgb(0,255,255,maxColorValue=255),
+                   rgb(255,255,0,maxColorValue=255),rgb(51,102,255,maxColorValue=255),rgb(51,255,51,maxColorValue=255),
+                   rgb(0,102,0,maxColorValue=255),rgb(0,0,255,maxColorValue=255),rgb(102,51,0,maxColorValue=255)
 )
+# damn it Carl, you could have load this shit ! ^^
+names(semanticcolors)<-c("complex systems","health","crime",
+                         "statistical methods","remote sensing","political sciences/critical geography",
+                         "traffic modeling","microbiology","cognitive sciences",
+                         "spatial analysis","GIS","biogeography",
+                         "environnment/climate","economic geography","physical geography")
                       
+
+citationWordclouds<-function(id,keywords){
+  #show(id)
+  #show(keywords)
+  if(id!="0"&!is.null(keywords)){
+    # at least kws for the paper, so no need to check emptyness
+    par(mfrow=c(1,2))
+    par(bg = "#4e5d6c")
+    wordcloud(words=keywords[[id]],
+              freq=citationkwfreqs[keywords[[id]]],
+              colors=unlist(semanticcolors[citationkwthemdico[keywords[[id]]]]),
+              ordered.colors = TRUE
+              )
+    allkws=unlist(keywords)
+    wordcloud(words=allkws,
+              freq=citationkwfreqs[allkws],
+              colors=unlist(semanticcolors[citationkwthemdico[allkws]]),
+              ordered.colors = TRUE
+    )
+  }
+}
 
 
 

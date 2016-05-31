@@ -1,26 +1,18 @@
 ## User guide
 
 ### Description
-Outil interactif d'analyse des mots-clefs du *Répertoire des géographes*.
-
-### License
-
-GNU GPLv3
-
-### Citation
-
-Les données sont issues de ...
-
-Bla bla bla
+Exploratory Analysis of Cybergeo Keywords
 
 ------
-### Méthodologie
+### Methodology
 
-#### Attributs des noeuds et des liens
+#### Vertices and nodes attributes
 
-Les noeuds du réseau sont dotés de deux attributs: le nombre de géographes qui citent le mot et le degré du mot, c'est-à-dire l'ensemble des liens reliant ce mot aux autres mots (pas de distinction entre degré entrant/sortant puisque le graphe est non dirigé). 
+The vertices are described by two variables: **frequency** and **degree**. The **frequency** is the number of articles citing the keyword. The **degree** is the total degree of the nodes in the network, that is the number of edges linking thiw keyword to the others (there is no distinction between in- and out- degree as the network is undirected). Both variables are distinct but correlated.
+  
+The edges are described by two variables: **observed weight** and **relative residual**. For two given keywords the **observed weight** is the number of articles citing both keywords. The **relative residual** is the ratio between the **observed weight** and the **expected weigth** of the edge. For a given edge the expected weight is the probability that this edge exists considering the degree of the nodes. It is computed as the union of two dependant probabilities.
 
-Les liens du réseau sont dotés de deux attributs. Le premier est le poids observé: pour deux mots A et B, le poids observé est le nombre de géographes qui co-citent ces deux mots. Le second est un attribut de résidu relatif qui est calculé comme le rapport entre le poids observé du lien et le poids espéré ou théorique. Ce poids espéré est conçu comme la probabilité d'occurrence de deux tirages successifs d'un noeud d'origine puis d'un noeud de destination. La probabilité de tirer un noeud d'origine puis un noeud de destination est l'intersection de deux probabilités dépendantes. La probabilité de tirer un noeud *i* d'origine est égale à <math xmlns="http://www.w3.org/1998/Math/MathML">
+The probability of drawing a vertex *i* equals <math xmlns="http://www.w3.org/1998/Math/MathML">
   <mfrac>
     <msub>
       <mi>w</mi>
@@ -33,7 +25,9 @@ Les liens du réseau sont dotés de deux attributs. Le premier est le poids obse
     <mi>w</mi>
     <mi>i</mi>
   </msub>
-</math> est le poids du noeud *i* (degré pondéré) et *w* la somme des poids (sur la moitié de la matrice de poids). Puis la probabilité de tirer un noeud *j* de destination est égale à <math xmlns="http://www.w3.org/1998/Math/MathML">
+</math> is the degree of vertex *i* (weighted degree) and *w* the half sum of weights. 
+
+Then the probability of drawing a vertex *j* distinct from *i* equals <math xmlns="http://www.w3.org/1998/Math/MathML">
   <mfrac>
     <msub>
       <mi>w</mi>
@@ -48,9 +42,9 @@ Les liens du réseau sont dotés de deux attributs. Le premier est le poids obse
       </msub>
     </mrow>
   </mfrac>
-</math> car les deux évènements ne sont pas indépendants. 
+</math>. 
 
-La probabilité d'existence d'un lien de *i* vers *j* s'écrit donc :
+The probability of existence of an edge between *i* and *j* is:
 
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <msub>
@@ -87,7 +81,7 @@ La probabilité d'existence d'un lien de *i* vers *j* s'écrit donc :
   </mfrac>
 </math>
 
-La probabilité d'existence d'un lien de *j* vers *i*, qui n'est pas forcément égale à celle de *i* vers *j* s'écrit :
+The probability of existence of an edge between *j* and *i*:
 
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <msub>
@@ -124,7 +118,7 @@ La probabilité d'existence d'un lien de *j* vers *i*, qui n'est pas forcément 
   </mfrac>
 </math>
 
-La probabilité d'existence d'un lien entre les deux noeuds, tous sens confondus (i.e. non dirigé) est l'union des deux :
+The probability of existence of an undirected edge is the union of both probabilities:
 
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <msub>
@@ -159,7 +153,7 @@ La probabilité d'existence d'un lien entre les deux noeuds, tous sens confondus
   </msub>
 </math>
 
-Finalement, le poids espéré est :
+Eventually the expected weight is:
 
 <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
   <msup>
@@ -189,87 +183,6 @@ Finalement, le poids espéré est :
 
 #### Algorithme de détection de communautés
 
-La plupart des algorithmes utilisés en théorie des graphes s'appuient sur une mesure de modularité. Pour un graphe dans lequel on distingue plusieurs communautés ou clusters, la modularité est forte quand les liens intracommunauté sont forts et les liens intercommunauté sont faibles. Cette mesure (Q) est définie comme la différence entre la proportion observée de liens intracommunauté et la proportion que l'on observerait dans un graphe aléatoire conservant la distribution de degrés du graphe originel.
+The community detection is computed with the Louvain algorithm which finds an optimum of modularity. See Blondel *et al.* 2008.
 
 
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mi>Q</mi>
-  <mo>=</mo>
-  <mfrac>
-    <mn>1</mn>
-    <mrow>
-      <mn>2</mn>
-      <mi>m</mi>
-    </mrow>
-  </mfrac>
-  <munder>
-    <mo>&#x2211;<!-- ∑ --></mo>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>i</mi>
-      <mo>,</mo>
-      <mi>j</mi>
-    </mrow>
-  </munder>
-  <mrow class="MJX-TeXAtom-ORD">
-    <mo maxsize="1.623em" minsize="1.623em">[</mo>
-  </mrow>
-  <msub>
-    <mi>A</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>i</mi>
-      <mi>j</mi>
-    </mrow>
-  </msub>
-  <mo>&#x2212;<!-- − --></mo>
-  <mfrac>
-    <mrow>
-      <msub>
-        <mi>w</mi>
-        <mi>i</mi>
-      </msub>
-      <msub>
-        <mi>w</mi>
-        <mi>j</mi>
-      </msub>
-    </mrow>
-    <mrow>
-      <mn>2</mn>
-      <mi>m</mi>
-    </mrow>
-  </mfrac>
-  <mrow class="MJX-TeXAtom-ORD">
-    <mo maxsize="1.623em" minsize="1.623em">]</mo>
-  </mrow>
-  <mi>&#x03B4;<!-- δ --></mi>
-  <mo stretchy="false">(</mo>
-  <msub>
-    <mi>c</mi>
-    <mi>i</mi>
-  </msub>
-  <mo>,</mo>
-  <msub>
-    <mi>c</mi>
-    <mi>j</mi>
-  </msub>
-  <mo stretchy="false">)</mo>
-</math>
-
-Où *m* est la somme de la matrice de poids, où <math xmlns="http://www.w3.org/1998/Math/MathML">
-  <msub>
-    <mi>A</mi>
-    <mrow class="MJX-TeXAtom-ORD">
-      <mi>i</mi>
-      <mi>j</mi>
-    </mrow>
-  </msub>
-</math> est le poids du lien entre *i* et *j* et où la fonction <math xmlns="http://www.w3.org/1998/Math/MathML">
-  <mi>&#x03B4;</mi>
-</math> est une fonction qui renvoie 1 si *i* et *j* font partie de la même communauté et 0 sinon.
-
-La modularité peut être utilisée comme mesure de la qualité d'une partition réalisée *a priori* mais aussi comme une fonction à maximiser par un algorithme pour produire une partition cohérente. C'est sur ce principe que fonctionne l'algorithme utilisé ici, développé par V. Blondel *et al.* (2008), dit "méthode de Louvain". Il produit une partition du graphe qui correspond à un optimum de modularité.
-
-------
-
-#### Onglet bla bla
-
-Bla bla

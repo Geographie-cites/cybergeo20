@@ -69,9 +69,9 @@ g = induced.subgraph(g,which(clust$membership==cmax))
 ################
 # Cliques
 #
-gc = induced.subgraph(g,v=which(degree(g,mode="all")>=3))
-clic = cliques(gc,min=4)
-clic_lengths = sapply(clic,length)
+gc = induced.subgraph(gcitation,v=which(degree(gcitation,mode="all")>=3))
+#clic = cliques(gc,min=4)
+#clic_lengths = sapply(clic,length)
 #hist(clic_lengths,breaks=20)
 
 # write cliques to file to avoid recomputation
@@ -82,12 +82,16 @@ clicmat=read.table('clics_ids.csv',header=FALSE,sep=";",colClasses=rep("characte
 clic=list();for(i in 1:nrow(clicmat)){clic[[i]]=unlist(clicmat[i,which(clicmat[i,]!="0")])}#reconstruct clics from clicmat
 cyb = V(gc)$name[which(V(gc)$cyb==1)]
 cybclics = which(sapply(clic,function(c){length(intersect(c,cyb))>1&length(c)>4}))
+
+palette=c("#df691a","#1C6F91")
+
 for(i in cybclics){
   sc = induced.subgraph(gc,V(gc)[clic[[i]]])
   lay=layout_as_tree(sc,circular=FALSE);
-  lay[,2]=degree(sc,mode="in")
-  pdf(paste0(Sys.getenv('CS_HOME'),"/Cybergeo/cybergeo20/HyperNetwork/Results/Networks/Citations/cliques/cybclic_2cyb_",i,".pdf"),width = 9,height=6)
-  plot(sc,vertex.label=V(sc)$title,vertex.color=V(sc)$cyb+4,layout=lay)
+  lay[,2]=degree(sc,mode="in");lay[,1]=lay[,1]
+  pdf(paste0(Sys.getenv('CS_HOME'),"/Cybergeo/cybergeo20/HyperNetwork/Results/Networks/Citations/cliques/cybclic_2cyb_cybpalette_novname_",i,".pdf"),width = 9.5,height=6)
+  plot(sc,vertex.label=NA,edge.color="white",#V(sc)$title,
+       vertex.color=palette[V(sc)$cyb+1],layout=lay)
   dev.off()
 }
 

@@ -5,7 +5,7 @@
 This tab allows to explore the disciplinary neighborhood of cybergeo. It combines citation data with semantic content of articles. The exploration can be at the article level or at an aggregated level with the full semantic network.
 
 
-### Data
+### Methodology
 
 #### Citation Data
 
@@ -23,3 +23,8 @@ For around 200000 articles of the citation network, abstracts were collected via
 
 
 ### How to use
+
+The tab `Network Exploration` provides article-level exploration. The user can search an article in cybergeo with the datatable. Once one is selected, different informations are displayed **if available** [note that ~600 papers among 900 have citation and semantic information].
+
+  * citation neighborhood of the selected article
+  * semantic content of the selected article as a colored wordcloud (disciplines legend above), and semantic content for the neighborhood
