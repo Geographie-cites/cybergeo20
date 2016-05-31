@@ -16,12 +16,13 @@ themeDescription = read.csv("data/20themes20words.csv", sep=",", dec=".")
 articles = data.frame()
 paletteCybergeo = c("#1C6F91", "#df691a", "#77c5ba", "orange", "#2db92d", "#e1ff2f", "#ff2313", "#bbab61")
 
-world = readOGR(dsn="data/world_SimplifiedGeom.shp",
-              layer = "world_SimplifiedGeom", encoding="utf8", verbose = F)
+world = readOGR(dsn="data/world_withZoom.shp",
+              layer = "world_withZoom", encoding="utf8", verbose = F)
 countries = as.character(world@data$CNTR_ID)
 locals = paste0("L_", countries)
 authors = paste0("A_", countries)
 studies = paste0("S_", countries)
+
 lookup = data.frame(countries)
 lookup$polyID = as.numeric(rownames(lookup)) - 1
 
@@ -61,8 +62,6 @@ shinyServer(function(input, output, session) {
     countryBase = data.frame(countries, Studied, Authoring, SelfStudied)
     return(countryBase)   
   })
-  
-  
   
    output$statArticles = renderDataTable({
     tab = data.frame()
@@ -143,7 +142,6 @@ shinyServer(function(input, output, session) {
     
     return(tab)
   }, options = list(paging = FALSE, searching = FALSE))
-  
    
   output$cybMap = renderPlot({
     countryBase = mappingData()
