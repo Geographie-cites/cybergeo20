@@ -11,9 +11,10 @@ texts.folder <- "texts"
 
 # Validation croisée
 models <- c("LDA")
-nbrReplications <- 1
 nbrFolds <- 10
-k.list <- c(2, seq(5, 50, 5), seq(60, 100, 10), 150, 200)
+k.list <- 20
+k.list <- c(seq(5, 50, 5))
+nbrReplications <- 1
 
 # Modèle final
 k0 <- 20                   # Sélection du nombre de thématiques après validation croisée
