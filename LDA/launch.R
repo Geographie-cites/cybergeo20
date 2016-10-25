@@ -31,11 +31,13 @@ treetagger <- lapply(tag.corpus, function(x) {
 
 lemmes0 <- treetagger %>%
   # Récupération des noms communs et propros, ainsi que des verbes
-  filter(str_sub(tag,1,3) %in% c("NAM","NOM","ADJ","ABR")) %>%
+  filter(str_sub(tag,1,3) %in% c("NAM","NOM","ADJ","ABR","VER")) %>%
   # Suppression des termes de moins de 3 caractères
   filter(nchar(lemmes) >= 3) %>%
   rename(term = lemmes) %>%
   select(docid, term)
+
+lemmes.et.ngrams0 <- lemmes0 %>% tfidf()
 
 #-- NGrams
 
@@ -70,18 +72,19 @@ lemmes.et.ngrams <- lemmes.et.ngrams0 %>% ungroup %>%
 
 #################
 # Import
-tmp <- read.table(file = "~/Sync/Shared/ngrams.csv", header = T, sep = ";", fileEncoding = "UTF-8", stringsAsFactors = FALSE) %>% 
+lemmes.et.ngrams <- read.table(file = "ngrams.csv", header = T, sep = ";", fileEncoding = "UTF-8", stringsAsFactors = FALSE) %>% 
   tbl_df() %>%
   rename(term = ngram) %>% 
   arrange(docid, term)%>%
   select(docid, term, tfidf)
-lemmes.et.ngrams <- tmp 
 ##################
 
-m <- median(lemmes.et.ngrams$tfidf)
-
 lemmes.et.ngrams <- lemmes.et.ngrams %>%
-  filter(tfidf > m)
+  group_by(docid) %>%
+  summarise(m = median(tfidf)) %>%
+  right_join(lemmes.et.ngrams, by = c("docid" = "docid")) %>%
+  filter(tfidf > m) %>%
+  select(-m)
 
 lemmes.et.ngrams %>% nrow 
 lemmes.et.ngrams %>% select(term) %>% unique %>% nrow
@@ -117,6 +120,8 @@ prog <- expand.grid(
   fold = 1:nbrFolds
 )
 prog$id <- 1:nrow(prog)
+
+# model <- LDA(texts, k = 20)
 
 simulation.results <- retrieve.or.cache(
   cache.file = simulation.results.file,

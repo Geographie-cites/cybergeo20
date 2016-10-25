@@ -10,18 +10,23 @@ load("data/CyberData.RData")
 load("data/themesPO.Rdata")
 files$name = NULL
 files$path = NULL
-files[,3:22] = document.themes 
-colnames(files)[3:22] = paste0("T_", 1:20)
+
 themeDescription = read.csv("data/20themes20words.csv", sep=",", dec=".")
+nameThemes = c(as.character(themeDescription$NAME), "Other")
+colnames(document.themes) = nameThemes
+files[,3:22] = document.themes 
+colnames(files)[3:22] = nameThemes
+
 articles = data.frame()
 paletteCybergeo = c("#1C6F91", "#df691a", "#77c5ba", "orange", "#2db92d", "#e1ff2f", "#ff2313", "#bbab61")
 
-world = readOGR(dsn="data/world_SimplifiedGeom.shp",
-              layer = "world_SimplifiedGeom", encoding="utf8", verbose = F)
+world = readOGR(dsn="data/world_withZoom.shp",
+              layer = "world_withZoom", encoding="utf8", verbose = F)
 countries = as.character(world@data$CNTR_ID)
 locals = paste0("L_", countries)
 authors = paste0("A_", countries)
 studies = paste0("S_", countries)
+
 lookup = data.frame(countries)
 lookup$polyID = as.numeric(rownames(lookup)) - 1
 
@@ -62,8 +67,6 @@ shinyServer(function(input, output, session) {
     countryBase = data.frame(countries, Studied, Authoring, SelfStudied)
     return(countryBase)   
   })
-  
-  
   
    output$statArticles = renderDataTable({
     tab = data.frame()
@@ -124,8 +127,7 @@ shinyServer(function(input, output, session) {
     tab[8,1] = "Number of citations of other articles"
     tab[8,2] = as.numeric(sumsCitations[2])
     
-    
-   themes =  paste0("T_", 1:20)
+   themes = nameThemes
    sumsByTheme = colSums(articlesDF[,themes], na.rm = T)
    sortedThemes = sort(sumsByTheme, decreasing = T)
    topTheme1 = themeDescription[as.numeric(substr(names(sortedThemes)[1], 3, 3)),2]
@@ -144,7 +146,6 @@ shinyServer(function(input, output, session) {
     
     return(tab)
   }, options = list(paging = FALSE, searching = FALSE))
-  
    
   output$cybMap = renderPlot({
     countryBase = mappingData()
@@ -185,7 +186,7 @@ shinyServer(function(input, output, session) {
     termCountryRelation = input$aggregationMethod
     articles = cyberData$ARTICLES
     
-    if(termCountryRelation == "Authoring") tcr = authors
+     if(termCountryRelation == "Authoring") tcr = authors
     if(termCountryRelation ==  "Studied") tcr = studies
     if (termsMethod == "Citations"){
       colNumbers = 2:13
@@ -207,14 +208,16 @@ shinyServer(function(input, output, session) {
     if (termsMethod == "Semantic"){
       articlesWithThemes = data.frame(articles, files[match(articles$id,files$id), ])
       colNumbers = 2:21
-      themeNames =  paste0("T_", 1:20)
+      themeNames = nameThemes
       cybterms = articlesWithThemes[,c("id",themeNames)]
       cybtermsbis = cybterms[complete.cases(cybterms[,themeNames]),]
       cybterms2 = data.frame(cybtermsbis, articles[match(cybtermsbis$id,articles$id), ])
       cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
       cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
+      dim(cybterms4)
      }
     themes_By_country_bf = aggregateCountriesBasedOnTerms(themesFile = cybterms4, themes = themeNames, countries_to_aggregate = tcr, colNumbers = colNumbers)
+   
     return(themes_By_country_bf)   
   })
   
