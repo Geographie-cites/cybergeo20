@@ -1,0 +1,250 @@
+\documentclass[11pt]{article}
+
+
+% encoding 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% lang
+\usepackage[french]{babel}
+
+% general packages without options
+\usepackage{amsmath,amssymb,amsthm,bbm}
+
+% graphics
+\usepackage{graphicx,transparent,eso-pic}
+
+% text formatting
+\usepackage[document]{ragged2e}
+\usepackage{pagecolor,color}
+%\usepackage{ulem}
+\usepackage{soul}
+\usepackage{eurosym}
+
+
+% geometry
+\usepackage[margin=2cm]{geometry}
+
+% layout : use fancyhdr package
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\makeatletter
+
+
+%% Commands
+
+\newcommand{\noun}[1]{\textsc{#1}}
+
+% running head/foot
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancyhead[RO,RE]{\textit{Cybergeo Networks}}
+\fancyhead[LO,LE]{G{\'e}ographie-Cit{\'e}s}
+\fancyfoot[RO,RE] {\thepage}
+\fancyfoot[LO,LE] {POC, HC, CC, JR}
+\fancyfoot[CO,CE] {}
+
+\makeatother
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%% Begin doc
+%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+
+
+
+
+\title{Cybergeo Networks\bigskip\\
+\textit{Cahier des Charges pour une Application Autonome}
+}
+
+\author{\noun{P.O. Chasset}, \noun{H. Commenges}, \noun{C. Cottineau}, \noun{J. Raimbault}}
+\date{}
+
+
+\maketitle
+
+\justify
+
+
+\begin{abstract}
+Nous développons une estimation des tâches et de la charge de travail (ceci n'est pas un cahier des charges informatique au sens classique) pour la création d'une première version  d'un logiciel libre d'exploration bibliographique à partir du prototype développé à l'occasion de l'anniversaire de \emph{Cybergeo}~\cite{cybergeo20}.
+\end{abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}
+
+L'exploitation des nouvelles sources de données et des traitements associés a radicalement changé la nature de la réflexivité des connaissances, avec par exemple des possibilités de cartographie dynamique \cite{chavalarias2013phylomemetic} et d'exploration interactive de domaines scientifiques~\cite{chen2010citespace}, d'anticipation des fronts de recherche émergents~\cite{shibata2008detecting}, ou de l'établissement de mesures prédictives du devenir d'un travail scientifique~\cite{2013arXiv1310.8220N,2014arXiv1402.7268S}. Le prototype \emph{CybergeoNetworks}~\cite{cybergeo20}, développé à l'occasion des 20ans de la revue \emph{Cybergeo}, est une application interactive en ligne offrant des possibilités d'exploration de différents aspects bibliométriques, et se réclamant de deux principes fondamentaux : d'une part, les analyses bibliométriques quantitatives pures sont néfastes à la science (voir les études empiriques comme \cite{alberto2015they}) et une approche hybride intégrant qualitatif et quantitatif est nécessaire ; d'autre part, ces nouvelles approches ont rapidement subit la prédation des géants privés de l'édition scientifique qui cherchent à valoriser pour leur profit cette ``valeur ajoutée'': il est alors essentiel pour les éditeurs libres de s'armer d'outils libres offrant au moins des fonctionnalités similaires, dans l'idéal des fonctions plus avancées\footnote{le développement libre est en général à la pointe de l'innovation dans la plupart des domaines}.
+
+Afin de poursuivre l'esprit du prototype, la mise à disposition d'un outil libre flexible et simple offrant au départ les mêmes fonctionnalités est nécessaire. Nous détaillons ici les étapes nécessaires pour passer du prototype à une version beta de l'application.
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Objectifs}
+
+\paragraph{Court terme}
+
+Obtenir une version beta du logiciel satisfaisant les contraintes suivantes :
+
+\begin{enumerate}
+\item Pour toute revue utilisant le système Lodel, fonctionnalités \emph{front} équivalentes à celles de la version de démonstration sur Cybergeo\footnote{\texttt{http://shiny.parisgeo.cnrs.fr/CybergeoNetworks}}
+\item Logiciel qui pourra de déployer de façon autonome et sans besoin de compétences avancées pour une revue donnée, sur un serveur ayant accès à la base de production
+\item Architecture \emph{back-end} permettant la mise à jour en continu (dans la limite des ressources disponibles) des données bibliographiques utilisées par l'application
+\end{enumerate}
+
+
+\paragraph{Long terme}
+
+Développements futurs : ajouts de fonctionnalités, études de scalabilité, système de gestion administrateur etc.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Contraintes Générales}
+
+Parmi d'autres, les contraintes suivantes retiennent particulièrement notre attention :
+
+\begin{itemize}
+\item Hétérogénéité des languages : nécessité de maitriser de manière avancée R/shiny, Java, Python.
+\item Licence : l'application devra être Open Source et Libre (non négociable), dès la récupération du code du prototype.
+\item Légalité de la collecte des données : le prototype utilise les bibliothèques \texttt{TorPool}~\cite{raimbault2016torpool} et \texttt{ScholarAPI}~\cite{raimbault2016scholar}, dont une utilisation abusive peut être interprétée comme un contournement des conditions d'utilisation du fournisseur de données ; il conviendra de vérifier la position légale de l'application sur ce point. L'utilisation d'autres sources de données n'est guère envisageable, cette approche permettant d'étudier des revues non référencées par les bases propriétaires fournissant des API.
+\end{itemize}
+
+\bigskip
+
+\textit{Par la suite, l'estimation des temps de travail est donnée en heures ou jours (1jour = 7h) de travail d'un ingénieur compétent, et calibrée sur les temps effectifs de développement du prototype ; les temps de parallelisation des tâches/organisation sont négligés.}
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Tâches Préliminaires}
+
+Il reviendra à l'équipe du prototype d'assurer les tâches préliminaires suivantes pour une reprise en main réaliste par des développeurs extérieurs :
+
+\begin{itemize}
+\item Nettoyage du code, factorisation, niveau de commentaires raisonnable \textbf{[ETA 1j - tous]}
+\item Mise en cohérence de l'architecture : autonomisation, isolation et spécification fonctionnelle pour les différents blocs \textbf{[ETA 4h - tous]} : 
+\begin{itemize}
+\item Collecte des données brutes
+\item Pré-traitements des données/analyse statistiques pour une comestibilité directe par l'application shiny
+\item Application shiny
+\end{itemize}
+\item Bugs mineurs de l'application shiny, ajustements cosmétiques, suppression des fonctionnalités non-automatisables (e.g. visualisation du réseau sémantique) \textbf{[ETA 2h - tous]}
+\item Automatisation de certains traitements statistiques préliminaires (e.g. estimation des paramètres optimaux du réseau sémantiques) \textbf{[ETA 4h - JR]}
+\item Intégration de l'analyse thématique LDA des textes complets dans l'application shiny \textbf{[ETA 4h - POC]}
+\item Etude de faisabilité de l'automatisation du géocodage des articles, solutions alternatives (\textit{question : l'onglet des cartes est-il toujours pertinent pour des revues qui ne font pas de géographie ?}) \textbf{[ETA 4h - CC]}
+\item Etude de faisabilité de l'automatisation de la construction du thésaurus des mots-clés, solution alternatives \textbf{[ETA 4h - HC]}
+\item Note sur les performances de l'application (complexité des différents traitements, vitesse maximale/optimale de collecte des données à estimer) \textbf{[ETA 1j - tous]}
+\item Note sur l'architecture générale et des différents modules si nécessaire \textbf{[ETA 1j - tous]}
+\end{itemize}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\section{Cahier des Charges}
+
+
+
+\subsection{Court Terme - Version Beta fonctionnelle}
+
+Etapes de développement nécessaire pour satisfaire les objectifs sans modification majeure du code du prototype, en supposant le travail préliminaire par l'équipe du prototype réalisé.
+
+\textbf{[ETA total - 7j]}
+
+\subsubsection*{Prise en main}
+
+Prise en main du code, de l'architecture et de la documentation \textbf{[ETA 2j]}
+
+
+\subsubsection*{Collecte des données}
+
+\begin{itemize}
+\item Rendre générique et propre l'interface avec la base de production (nom des tables et champs comme paramètres ; \textit{sur ce point tant que Lodel ne fournit pas d'API propre, il risque d'y avoir une étape d'installation peu évidente dans l'installation du logiciel qui consistera en la définition de ces paramètres}) \textbf{[ETA 1j]}
+\item Démon de collecte et de mise à jour \textbf{[ETA 4h]}
+\end{itemize}
+
+
+
+\subsubsection*{Pré-traitements}
+
+
+\begin{itemize}
+\item Envelopper les différents scripts de pré-traitement dans une sous-application \textbf{[ETA 4h]}
+\item Démon de prétraitement \textbf{[ETA 2h]}
+\end{itemize}
+
+
+
+\subsubsection*{Application Shiny}
+
+\begin{itemize}
+\item Rendre générique et modifiable facilement (ex. : fichier de configuration externe) le texte de description de la revue \textbf{[ETA 2h]}
+\item Adapter les interfaces selon les modifications faites sur les prétraitements \textbf{[ETA 4h]}
+\end{itemize}
+
+
+\subsubsection*{Application}
+
+\begin{itemize}
+\item Envelope globale de l'application \textbf{[ETA 4h]}
+\item Programme d'installation ``clés-en-main'' pour l'utilisateur novice \textbf{[ETA 1j]}
+\end{itemize}
+
+
+
+
+
+\subsection{Long Terme}
+
+Nous donnons ici des pistes pour les développements futurs, les objectifs sont plus flous et non chiffrés.
+
+\begin{itemize}
+\item Professionnalisation du code (la version beta ci-dessus aura toujours un code ``artisanal'')
+\item Elaboration d'un outil de gestion administrateur des différentes options de l'application
+\item Généricisation du type de base de production; écriture d'une API
+\item Nouvelles fonctionnalités
+\item Scalabilité : vers une application multi-revues, étude de faisabilité ``grandes-données''
+\item Sur le très long terme : réécriture complète de l'application de manière intégrée (un seul language) ; point à débattre car la nature hétéroclite de l'architecture fait la force de l'application pour l'instant (sous-optimisations) 
+\end{itemize}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+\section*{Chiffrage des coûts}
+
+
+\begin{itemize}
+\item Pour l'étape court terme : 7 jours temps plein ; coût minimisé par l'emploi de précaires : doctorants \textbf{500\euro{} HC}, post-docs \textbf{600\euro{} HC} ; ingénieurs \textbf{1500\euro{} HC}
+\item Pour le long terme, attention à ne pas se faire enfumer par des ``bureaux d'études'' privés qui vendent du vent - serait-il possible de rester en interne au CNRS ou organisme public ?
+\end{itemize}
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Biblio
+%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{apalike}
+\bibliography{biblio}
+
+
+\end{document}

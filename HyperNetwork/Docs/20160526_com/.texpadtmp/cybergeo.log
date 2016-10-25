@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.8)  26 MAY 2016 13:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2016.2.8)  25 JUL 2016 02:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1506,14 +1506,14 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 640.
  ) 
 Here is how much of TeX's memory you used:
  17819 strings out of 493615
- 344507 string characters out of 6151290
- 409156 words of memory out of 5000000
+ 344508 string characters out of 6151290
+ 409155 words of memory out of 5000000
  20759 multiletter control sequences out of 15000+600000
  10797 words of font info for 41 fonts, out of 8000000 for 9000
  805 hyphenation exceptions out of 8191
  58i,16n,57p,419b,559s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam5.pfb>
-Output written on /Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.pdf (33 pages, 15296851 bytes).
+Output written on /Users/Juste/Documents/ComplexSystems/CyberGeo/cybergeo20/HyperNetwork/Docs/20160526_com/.texpadtmp/cybergeo.pdf (33 pages, 15296872 bytes).
 PDF statistics:
  2291 PDF objects out of 2487 (max. 8388607)
  2085 compressed objects within 21 object streams
