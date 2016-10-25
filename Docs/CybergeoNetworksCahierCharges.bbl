@@ -1,0 +1,49 @@
+\begin{thebibliography}{}
+
+\bibitem[Alberto and Giuseppe, 2015]{alberto2015they}
+Alberto, B. and Giuseppe, D.~N. (2015).
+\newblock Do they agree? bibliometric evaluation vs informed peer review in the
+  italian research assessment exercise.
+\newblock {\em arXiv preprint arXiv:1505.00115}.
+
+\bibitem[Chasset et~al., 2016]{cybergeo20}
+Chasset, P.-O., Commenges, C. C.~H., and Raimbault, J. (2016).
+\newblock cybergeo20 v1.0, doi 10.5281/zenodo.53905.
+
+\bibitem[Chavalarias and Cointet, 2013]{chavalarias2013phylomemetic}
+Chavalarias, D. and Cointet, J.-P. (2013).
+\newblock Phylomemetic patterns in science evolution---the rise and fall of
+  scientific fields.
+\newblock {\em Plos One}, 8(2):e54847.
+
+\bibitem[Chen, 2010]{chen2010citespace}
+Chen, C. (2010).
+\newblock Citespace: Visualizing patterns and trends in scientific literature.
+\newblock {\em Retrieved January}, 27:2010.
+
+\bibitem[{Newman}, 2013]{2013arXiv1310.8220N}
+{Newman}, M.~E.~J. (2013).
+\newblock {Prediction of highly cited papers}.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[Raimbault, 2016a]{raimbault2016scholar}
+Raimbault, J. (2016a).
+\newblock Scholarapi v1.0, doi 10.5281/zenodo.53763.
+
+\bibitem[Raimbault, 2016b]{raimbault2016torpool}
+Raimbault, J. (2016b).
+\newblock Torpool v1.0, doi 10.5281/zenodo.53739.
+
+\bibitem[{Sarig{\"o}l} et~al., 2014]{2014arXiv1402.7268S}
+{Sarig{\"o}l}, E., {Pfitzner}, R., {Scholtes}, I., {Garas}, A., and
+  {Schweitzer}, F. (2014).
+\newblock {Predicting Scientific Success Based on Coauthorship Networks}.
+\newblock {\em ArXiv e-prints}.
+
+\bibitem[Shibata et~al., 2008]{shibata2008detecting}
+Shibata, N., Kajikawa, Y., Takeda, Y., and Matsushima, K. (2008).
+\newblock Detecting emerging research fronts based on topological measures in
+  citation networks of scientific publications.
+\newblock {\em Technovation}, 28(11):758--775.
+
+\end{thebibliography}
