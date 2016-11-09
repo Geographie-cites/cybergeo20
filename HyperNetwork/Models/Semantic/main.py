@@ -20,12 +20,6 @@ def run():
 
 def main():
 
-    # import utils
-    # execfile('../Utils/utils.py')
-
-    #sys.setdefaultencoding('utf8')
-    # deprecated in python 2.6
-
     start = time.time()
 
     run()
