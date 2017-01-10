@@ -22,23 +22,35 @@ library(igraph)
 library(dplyr)
 library(RSQLite)
 library(svgPanZoom)
-library(wordcloud)
+#library(wordcloud)
 library(scales)
 library(lubridate)
 library(stringr)
-library(scales)
-library(lubridate)
-library(stringr)
-library(wordcloud)
+
+
+
 
 #### Clem
-aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate, colNumbers){
+
+# aggregateCountriesBasedOnTerms (function)
+
+# This function summarises the number of articles by theme for each country
+# it is used in the reactive object 'clusterCountries' for every analysis at the country level
+
+# Arguments:
+# - themesFile: a dataframe in which lines represent articles and columns include themes and country codes
+# - themes: the list of themes of the analysis
+# - countries_to_aggregate: the list of countries to aggregate articles by (taken from the shapeFile)
+
+# Returns: themes_By_country_bf, a dataframe in which lines represent country codes and columns represent the number of articles for each themes
+
+aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate){
   themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
   themes_By_country_bf[,themes] = NA
   themes_By_country_bf$n = NA
   
   for (c in countries_to_aggregate){
-    articles_to_aggregate = themesFile[themesFile[,c] == 1,colNumbers]
+    articles_to_aggregate = themesFile[themesFile[,c] == 1,themes]
     if (!is.null(articles_to_aggregate)){
       nArticles = dim(articles_to_aggregate)[1]
       themes_By_country_bf[themes_By_country_bf$CountryID == c, themes] = colSums(articles_to_aggregate) / nArticles
@@ -49,6 +61,20 @@ aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggre
   themes_By_country_bf$CountryID = substr(themes_By_country_bf$CountryID, 3,4)
   return(themes_By_country_bf)
 }
+
+
+
+# cahCountriesBasedOnTerms (function)
+
+# This function 
+# it is used in 
+
+# Arguments:
+# - themes_By_country_bf: 
+# - numberOfGroups: 
+# - colNumbers: the list of column number which correspond to the themes
+
+# Returns: groups_Country, 
 
 cahCountriesBasedOnTerms = function(themes_By_country_bf, numberOfGroups, colNumbers){
 themesScaled = scale(themes_By_country_bf[,colNumbers])

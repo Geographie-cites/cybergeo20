@@ -214,7 +214,6 @@ shinyServer(function(input, output, session) {
       cybterms2 = data.frame(cybtermsbis, articles[match(cybtermsbis$id,articles$id), ])
       cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
       cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
-      dim(cybterms4)
      }
     themes_By_country_bf = aggregateCountriesBasedOnTerms(themesFile = cybterms4, themes = themeNames, countries_to_aggregate = tcr, colNumbers = colNumbers)
    
