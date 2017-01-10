@@ -76,8 +76,8 @@ aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggre
 
 # Returns: groups_Country, 
 
-cahCountriesBasedOnTerms = function(themes_By_country_bf, numberOfGroups, colNumbers){
-themesScaled = scale(themes_By_country_bf[,colNumbers])
+cahCountriesBasedOnTerms = function(themes_By_country_bf, numberOfGroups, themes){
+themesScaled = scale(themes_By_country_bf[,themes])
   rownames(themesScaled) = themes_By_country_bf[,1]
   d.themes = dist(themesScaled)
   cah.themes = hclust(d.themes, method = "ward.D2")
