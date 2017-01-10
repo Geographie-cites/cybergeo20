@@ -34,7 +34,6 @@ justeTerms = read.csv("data/docprobasJuste2.csv", sep=",", dec=".")
 hadriTerms = read.csv("data/kwprop.csv", sep=",", dec=".")
 pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
 
-themeNames = c()
 # set server ----
 
 shinyServer(function(input, output, session) {
@@ -137,8 +136,8 @@ shinyServer(function(input, output, session) {
     tab[8,1] = "Number of citations of other articles"
     tab[8,2] = as.numeric(sumsCitations[2])
     
-   themes = nameThemes
-   sumsByTheme = colSums(articlesDF[,themes], na.rm = T)
+   semanticthemes = nameThemes
+   sumsByTheme = colSums(articlesDF[,semanticthemes], na.rm = T)
    sortedThemes = sort(sumsByTheme, decreasing = T)
    topTheme1 = themeDescription[as.numeric(substr(names(sortedThemes)[1], 3, 3)),2]
    topTheme2 = themeDescription[as.numeric(substr(names(sortedThemes)[2], 3, 3)),2]
