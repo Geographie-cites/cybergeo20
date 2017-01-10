@@ -136,20 +136,7 @@ shinyServer(function(input, output, session) {
     tab[8,1] = "Number of citations of other articles"
     tab[8,2] = as.numeric(sumsCitations[2])
     
-   semanticthemes = nameThemes
-   sumsByTheme = colSums(articlesDF[,semanticthemes], na.rm = T)
-   sortedThemes = sort(sumsByTheme, decreasing = T)
-   topTheme1 = themeDescription[as.numeric(substr(names(sortedThemes)[1], 3, 3)),2]
-   topTheme2 = themeDescription[as.numeric(substr(names(sortedThemes)[2], 3, 3)),2]
-   topTheme3 = themeDescription[as.numeric(substr(names(sortedThemes)[3], 3, 3)),2]
-   
-   tab[9,1] = "Top theme described with 20 words"
-   tab[9,2] = as.character(topTheme1)
-   tab[10,1] = "2nd Top theme"
-   tab[10,2] = as.character(topTheme2)
-   tab[11,1] = "3rd Top theme"
-   tab[11,2] = as.character(topTheme3)
-   
+ # 
     colnames(tab) = c("Indicator", "Value")
     
     
@@ -202,23 +189,21 @@ shinyServer(function(input, output, session) {
       cybterms = justeTerms[justeTerms$CYBERGEOID != 0,]
       cybterms$idterm = rownames(cybterms)
       cybterms2 = data.frame(cybterms, articles[match(cybterms$CYBERGEOID,articles$id), ])
-      cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
-      cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
     }
     if (termsMethod == "Keywords"){
       cybterms = hadriTerms
       cybterms2 = data.frame(cybterms, articles[match(cybterms$ID,articles$id), ])
-      cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
-      cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
-    }
+      }
     if (termsMethod == "Semantic"){
       articlesWithThemes = data.frame(articles, files[match(articles$id,files$id), ])
       cybterms = articlesWithThemes[,c("id",themeNames)]
       cybtermsbis = cybterms[complete.cases(cybterms[,themeNames]),]
       cybterms2 = data.frame(cybtermsbis, articles[match(cybtermsbis$id,articles$id), ])
-      cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
-      cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
      }
+    
+    cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
+    cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
+    
     themes_By_country_bf = aggregateCountriesBasedOnTerms(themesFile = cybterms4, themes = themeNames, countries_to_aggregate = tcr)
    
     return(themes_By_country_bf)   
