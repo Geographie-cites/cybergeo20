@@ -22,23 +22,35 @@ library(igraph)
 library(dplyr)
 library(RSQLite)
 library(svgPanZoom)
-library(wordcloud)
+#library(wordcloud)
 library(scales)
 library(lubridate)
 library(stringr)
-library(scales)
-library(lubridate)
-library(stringr)
-library(wordcloud)
+
+
+
 
 #### Clem
-aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate, colNumbers){
+
+# aggregateCountriesBasedOnTerms (function)
+
+# This function summarises the number of articles by theme for each country
+# it is used in the reactive object 'clusterCountries' for every analysis at the country level
+
+# Arguments:
+# - themesFile: a dataframe in which lines represent articles and columns include themes and country codes
+# - themes: the list of themes of the analysis
+# - countries_to_aggregate: the list of countries to aggregate articles by (taken from the shapeFile)
+
+# Returns: themes_By_country_bf, a dataframe in which lines represent country codes and columns represent the number of articles for each theme
+
+aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate){
   themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
   themes_By_country_bf[,themes] = NA
   themes_By_country_bf$n = NA
   
   for (c in countries_to_aggregate){
-    articles_to_aggregate = themesFile[themesFile[,c] == 1,colNumbers]
+    articles_to_aggregate = themesFile[themesFile[,c] == 1,themes]
     if (!is.null(articles_to_aggregate)){
       nArticles = dim(articles_to_aggregate)[1]
       themes_By_country_bf[themes_By_country_bf$CountryID == c, themes] = colSums(articles_to_aggregate) / nArticles
@@ -50,8 +62,22 @@ aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggre
   return(themes_By_country_bf)
 }
 
-cahCountriesBasedOnTerms = function(themes_By_country_bf, numberOfGroups, colNumbers){
-themesScaled = scale(themes_By_country_bf[,colNumbers])
+
+
+# cahCountriesBasedOnTerms (function)
+
+# This function produces a hierarchical clustering of countries with respect to their frequency of themes
+# it is used in the geosemantic tab to display the groups of countries by themes and the corresponding average profiles of themes
+
+# Arguments:
+# - themes_By_country_bf: dataframe in which lines represent country codes and columns represent the number of articles for each theme
+# - numberOfGroups: an integer giving the number of classes for the clustering
+# - themes: the list of themes of the analysis
+
+# Returns: groups_Country, a vector of group IDs for each country
+
+cahCountriesBasedOnTerms = function(themes_By_country_bf, numberOfGroups, themes){
+themesScaled = scale(themes_By_country_bf[,themes])
   rownames(themesScaled) = themes_By_country_bf[,1]
   d.themes = dist(themesScaled)
   cah.themes = hclust(d.themes, method = "ward.D2")
@@ -59,12 +85,35 @@ themesScaled = scale(themes_By_country_bf[,colNumbers])
   return(groups_Country)
 }
 
+
+
+# sumNum (function)
+
+# This function ensures that no <NA> is returned for a sum if one element of the sum is <NA>
+# it is used in aggregate and apply functions.
+
+# Arguments:
+# - x: a vector of elements to sum  
+
+# Returns: y, a single value (the sum)
+
 sumNum = function(x){
   y = sum(x, na.rm= T)
   return(y)
 }
 
 
+
+# stat.comp (function)
+
+# This function computes the average frquencies of themes by cah group
+# it is used in the legend of the cah map 
+
+# Arguments:
+# - x: a dataframe of theme frequency by country (themes_By_country_bf) in which lines represent country codes and columns represent the number of articles for each themes
+# - y: a vector of group numbers the length of the dataframe rows
+
+# Returns: result, a dataframe in which lines represent cah groups of country and columns represent the frequency of articles for each theme
 
 stat.comp<-  function( x,y){
 K <-length(unique(y))
