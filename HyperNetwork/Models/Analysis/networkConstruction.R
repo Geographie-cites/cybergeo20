@@ -84,10 +84,11 @@ computeThemProbas<-function(gg,com,keyword_dico){
 
 
 
-##
-# Import coocs graph directly from nw table in mongo.
-# Kw dico is reconstructed.
-#
+#'
+#' @title Semantic Network construction
+#' @name constructSemanticNetwork
+#' @description Construct semantic coocurrence graph directly from nw table in mongo. Kw dico is reconstructed here (not that efficient in R)
+#' 
 constructSemanticNetwork<-function(relevantcollection,kwcollection,nwcollection,edge_th,target,mongohost){
   mongo <- mongo.create(host=mongohost)
   # 
@@ -157,15 +158,15 @@ importDicoCsv<-function(kwFile){
 }
 
 
-##
-# filter nodes : grep -v -f file for nodes names
+#'
+#' @title Graph Filtering
+#' @name filterGraph
+#' @description filter nodes : grep -v -f file for nodes names
 filterGraph<-function(graph,file){
   words<-unlist(read.csv(file,stringsAsFactors=FALSE,header=FALSE))
   g=graph
   for(w in 1:length(words)){
-    #show(words[w])   
     g=induced.subgraph(g,which(V(g)$name!=words[w]))
-    #show(length(V(g)))
   }
   return(g)
 }

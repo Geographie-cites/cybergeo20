@@ -6,9 +6,14 @@ library(dplyr)
 library(igraph)
 
 
-##
-#  Constructs citation network as an igraph object from edges and nodes files ; saves to outputfile
-#
+#'
+#' @title Citation Network Construction
+#' @name constructCitationNetwork
+#' @description Construct igraph object from edges and nodes files
+#' @param edgefile
+#' @param nodefile
+#' @param outputfile
+#' 
 constructCitationNetwork <- function(edgefile,nodefile,outputfile){
   
   edges <- read.csv(edgefile,header=FALSE,sep="\t",colClasses=c("character","character"))
