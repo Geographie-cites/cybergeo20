@@ -7,6 +7,14 @@
 
 
 
+
+
+
+
+
+#bootstrap.init_bootstrap('relevant_full_'+str(20000))
+#bootstrap.run_bootstrap('test_kw1000_csize5000_b20',1000,5000,20,1)
+
 ##
 #   assumed to be run in //
 #     - run by packet for intermediate filtering -

@@ -11,7 +11,11 @@ def run_fulltext_kw_extraction(data):
 
 
 # 'SELECT id,abstract FROM refdesc WHERE abstract_keywords IS NULL;'
-def run_kw_extraction(data) :
+def run_kw_extraction() :
+     run_kw_extraction_data(utils.get_data('SELECT id,abstract FROM refdesc WHERE abstract_keywords IS NULL;','mysql'))
+
+
+def run_kw_extraction_data(data) :
     kw_extraction(data,'abstract')
 
 def kw_extraction(data,text_type):

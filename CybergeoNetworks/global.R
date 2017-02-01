@@ -32,17 +32,13 @@ library(stringr)
 
 #### Clem
 
-# aggregateCountriesBasedOnTerms (function)
-
-# This function summarises the number of articles by theme for each country
-# it is used in the reactive object 'clusterCountries' for every analysis at the country level
-
-# Arguments:
-# - themesFile: a dataframe in which lines represent articles and columns include themes and country codes
-# - themes: the list of themes of the analysis
-# - countries_to_aggregate: the list of countries to aggregate articles by (taken from the shapeFile)
-
-# Returns: themes_By_country_bf, a dataframe in which lines represent country codes and columns represent the number of articles for each theme
+#' @title Aggregate countries based on terms
+#' @name aggregateCountriesBasedOnTerms
+#' @description This function summarises the number of articles by theme for each country it is used in the reactive object 'clusterCountries' for every analysis at the country level
+#' @param themesFile: a dataframe in which lines represent articles and columns include themes and country codes
+#' @param themes: the list of themes of the analysis
+#' @param countries_to_aggregate: the list of countries to aggregate articles by (taken from the shapeFile)
+#' Returns: themes_By_country_bf, a dataframe in which lines represent country codes and columns represent the number of articles for each theme
 
 aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate){
   themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
@@ -383,6 +379,10 @@ names(semanticcolors)<-c("complex systems","health","crime",
                          "environnment/climate","economic geography","physical geography")
                       
 
+
+#'
+#'
+#'
 citationWordclouds<-function(id,keywords){
   #show(id)
   #show(keywords)
