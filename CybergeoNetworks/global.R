@@ -60,11 +60,9 @@ aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggre
 
 
 
-# cahCountriesBasedOnTerms (function)
-
-# This function produces a hierarchical clustering of countries with respect to their frequency of themes
-# it is used in the geosemantic tab to display the groups of countries by themes and the corresponding average profiles of themes
-
+#'
+#' @name cahCountriesBasedOnTerms (function)
+#' @description This function produces a hierarchical clustering of countries with respect to their frequency of themes it is used in the geosemantic tab to display the groups of countries by themes and the corresponding average profiles of themes
 # Arguments:
 # - themes_By_country_bf: dataframe in which lines represent country codes and columns represent the number of articles for each theme
 # - numberOfGroups: an integer giving the number of classes for the clustering
@@ -273,16 +271,15 @@ cloud <- function(patterns) {
 
 ####################
 ### Juste ---
-
-#load('data/semanticnw.RData')
-# !! do not load this shit, too big for simultaneous connexions or grid will be dead a.f. very quickly
 #
 #  --  Archi for cit. nw exploration  --
 # 
+#   - data/semanticnw.RData is not loaded as huge ; replaced by sqlite
+#    -> for performance, can be fully loaded is speed is prefered over memory
 #   - load datatable for cybergeo articles ; request in local sqlite db for connections
-#   - draw the ego nw, and display info for neighbors
+#   - get the ego nw, and display info for neighbors
 #   - display semantic info : keywords, corresponding communities.
-#   - one tab with sem nw visu : check if svg viz with zoom in/out is possible to include
+#   - one tab with sem nw visu : svg viz
 # 
 # 
 
@@ -301,14 +298,10 @@ load('data/citation_kwthemdico.RData')
 citationdbcit = dbConnect(SQLite(),"data/CitationNetwork.sqlite3")
 # sqlite connection : keywords
 citationdbkws = dbConnect(SQLite(),"data/CitationKeywords.sqlite3")
-# test query
-# troubleshooting retrieving links ? seems OK, many refs do not have refs
-#dbGetQuery(db,"SELECT * FROM edges WHERE `to`='16612201304630735484';")
-#dbGetQuery(db,"SELECT COUNT(*) FROM edges;")
-#dbGetQuery(db,"SELECT * FROM edges LIMIT 10;")
 
-##
-#  load citation edges given an id
+#'
+#'
+#'  @description load citation edges given an id
 citationLoadEdges<-function(id){
   res=data.frame()
   res=rbind(res,dbGetQuery(citationdbcit,paste0("SELECT * FROM edges WHERE `from`='",id,"';")))
@@ -338,6 +331,9 @@ citationGlobalVars$citationSelected = "0"
 citationGlobalVars$citationSemanticSelected = "0"
 
 
+#'
+#'
+#' @description 
 citationVisuEgo<-function(edges){
   if(!is.null(edges)){
      if(nrow(edges)>0){
