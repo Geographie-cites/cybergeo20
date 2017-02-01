@@ -81,16 +81,10 @@ themesScaled = scale(themes_By_country_bf[,themes])
 
 
 
-# sumNum (function)
-
-# This function ensures that no <NA> is returned for a sum if one element of the sum is <NA>
-# it is used in aggregate and apply functions.
-
-# Arguments:
-# - x: a vector of elements to sum  
-
-# Returns: y, a single value (the sum)
-
+#' @name sumNum
+#' @description This function ensures that no <NA> is returned for a sum if one element of the sum is <NA> it is used in aggregate and apply functions.
+#' @param  x: a vector of elements to sum  
+#' Returns: y, a single value (the sum)
 sumNum = function(x){
   y = sum(x, na.rm= T)
   return(y)
@@ -110,21 +104,22 @@ sumNum = function(x){
 # Returns: result, a dataframe in which lines represent cah groups of country and columns represent the frequency of articles for each theme
 
 stat.comp<-  function( x,y){
-K <-length(unique(y))
-n <-length(x)
-m <-mean(x)
-TSS <-sum((x-m)^2)
-nk<-table(y)
-mk<-tapply(x,y,mean)
- BSS <-sum(nk* (mk-m)^2)
-result<-c(mk,100.0*BSS/TSS)
-names(result) <-c( paste("G",1:K),"% epl.")
- return(result)
+  K <-length(unique(y))
+  n <-length(x)
+  m <-mean(x)
+  TSS <-sum((x-m)^2)
+  nk<-table(y)
+  mk<-tapply(x,y,mean)
+  BSS <-sum(nk* (mk-m)^2)
+  result<-c(mk,100.0*BSS/TSS)
+  names(result) <-c( paste("G",1:K),"% epl.")
+  return(result)
 }
 
 
-######## PO
 
+
+######## PO
 
 
 
@@ -176,7 +171,7 @@ articles <- read.table(
   dplyr::mutate(citation = paste(sep = ". ", auteurs, substr(date,1,4), titre)) %>%
   dplyr::select(id, date, citation, langue)
 
-gc()
+gc() # <- WHY THIS GC HERE ?
 
 #-- Functions -----------------------------------------------------------------
 
@@ -283,25 +278,59 @@ cloud <- function(patterns) {
 # 
 # 
 
-# setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/CybergeoNetworks'))
 
 ##
 #  Notations / id conventions : vars and ids prefixed with "citation"
 
+#' ---- DATA ----
 
-# citation nw cybergeo table
+#'
+#'  citation nw cybergeo table
 load('data/citation_cybergeodata.RData')
-# kws domains dico
+
+#'
+#'  kws domains dico
 load('data/citation_kwthemdico.RData')
 
-# sqlite connection : citation nw
+#'
+#'  sqlite connection : citation nw
 citationdbcit = dbConnect(SQLite(),"data/CitationNetwork.sqlite3")
-# sqlite connection : keywords
-citationdbkws = dbConnect(SQLite(),"data/CitationKeywords.sqlite3")
 
 #'
+#'  sqlite connection : keywords
+citationdbkws = dbConnect(SQLite(),"data/CitationKeywords.sqlite3")
+
+
+#' ---- GLOBALS ----
+
 #'
-#'  @description load citation edges given an id
+#' list specific colors associated with thematics
+#'  -- SHOULD NOT BE HARDCODED --
+semanticcolors = list(rgb(204,0,255,maxColorValue=255),rgb(255,102,0,maxColorValue=255), rgb(255,102,0,maxColorValue=255),
+                      rgb(255,153,0,maxColorValue=255),rgb(0,204,102,maxColorValue=255),rgb(255,0,0,maxColorValue=255),
+                      rgb(153,153,0,maxColorValue=255),rgb(102,204,0,maxColorValue=255),rgb(0,255,255,maxColorValue=255),
+                      rgb(255,255,0,maxColorValue=255),rgb(51,102,255,maxColorValue=255),rgb(51,255,51,maxColorValue=255),
+                      rgb(0,102,0,maxColorValue=255),rgb(0,0,255,maxColorValue=255),rgb(102,51,0,maxColorValue=255)
+)
+names(semanticcolors)<-c("complex systems","health","crime",
+                         "statistical methods","remote sensing","political sciences/critical geography",
+                         "traffic modeling","microbiology","cognitive sciences",
+                         "spatial analysis","GIS","biogeography",
+                         "environnment/climate","economic geography","physical geography")
+
+
+# global vars (needed e.g. to avoid numerous db request with reactive functions)
+citationGlobalVars <- reactiveValues()
+citationGlobalVars$citationSelected = "0"
+citationGlobalVars$citationSemanticSelected = "0"
+
+
+#' ---- FUNCTIONS ----
+
+
+#'
+#' @name citationLoadEdges
+#' @description load citation edges given an reference id
 citationLoadEdges<-function(id){
   res=data.frame()
   res=rbind(res,dbGetQuery(citationdbcit,paste0("SELECT * FROM edges WHERE `from`='",id,"';")))
@@ -309,8 +338,8 @@ citationLoadEdges<-function(id){
   return(res)
 }
 
-##
-#  load neighbors keywords given an id
+#' @name  citationLoadKeywords
+#' @description load neighbors keywords given an id
 citationLoadKeywords<-function(id){
   # load edges
   toids=dbGetQuery(citationdbcit,paste0("SELECT `to` FROM edges WHERE `from`='",id,"';"))[,1]
@@ -325,15 +354,11 @@ citationLoadKeywords<-function(id){
   return(l)
 }
 
-# global vars (needed e.g. to avoid numerous db request with reactive functions)
-citationGlobalVars <- reactiveValues()
-citationGlobalVars$citationSelected = "0"
-citationGlobalVars$citationSemanticSelected = "0"
 
 
 #'
-#'
-#' @description 
+#' @name citationVisuEgo
+#' @description visualize an ego network given edges
 citationVisuEgo<-function(edges){
   if(!is.null(edges)){
      if(nrow(edges)>0){
@@ -361,27 +386,13 @@ citationVisuEgo<-function(edges){
 }
 
 
-semanticcolors = list(rgb(204,0,255,maxColorValue=255),rgb(255,102,0,maxColorValue=255), rgb(255,102,0,maxColorValue=255),
-                   rgb(255,153,0,maxColorValue=255),rgb(0,204,102,maxColorValue=255),rgb(255,0,0,maxColorValue=255),
-                   rgb(153,153,0,maxColorValue=255),rgb(102,204,0,maxColorValue=255),rgb(0,255,255,maxColorValue=255),
-                   rgb(255,255,0,maxColorValue=255),rgb(51,102,255,maxColorValue=255),rgb(51,255,51,maxColorValue=255),
-                   rgb(0,102,0,maxColorValue=255),rgb(0,0,255,maxColorValue=255),rgb(102,51,0,maxColorValue=255)
-)
-# damn it Carl, you could have load this shit ! ^^
-names(semanticcolors)<-c("complex systems","health","crime",
-                         "statistical methods","remote sensing","political sciences/critical geography",
-                         "traffic modeling","microbiology","cognitive sciences",
-                         "spatial analysis","GIS","biogeography",
-                         "environnment/climate","economic geography","physical geography")
                       
 
 
 #'
-#'
-#'
+#' @name citationWordclouds
+#' @description plots word clouds, one for the keywords of the ref itself, the other for the provided keywords (neighborhood)
 citationWordclouds<-function(id,keywords){
-  #show(id)
-  #show(keywords)
   if(id!="0"&!is.null(keywords)){
     # at least kws for the paper, so no need to check emptyness
     par(mfrow=c(1,2))

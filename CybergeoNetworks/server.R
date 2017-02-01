@@ -360,8 +360,7 @@ shinyServer(function(input, output, session) {
    })
    
    
-   ## semantic nw viz
-   
+   # semantic nw viz
    output$citationsemanticnw<-renderSvgPanZoom({
      svgPanZoom('data/semantic.svg',
                 zoomScaleSensitivity=1,

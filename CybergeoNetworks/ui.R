@@ -1,13 +1,16 @@
 library(shiny)
 
 shinyUI(fluidPage(theme = "darkBlue.css",
+                  # favicon
                   tags$head(tags$link(rel="shortcut icon", href="favicon.png")),
                   
                   tags$head(
+                    # specific font
                     tags$style(HTML("
       @import url('//fonts.googleapis.com/css?family=Orbitron|Cabin:400,700');
     ")),
-            tags$script(HTML("
+                    # google analytics tracker
+                    tags$script(HTML("
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -19,17 +22,17 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                   ),
                   headerPanel(
                     "CybergeoNetworks",
-        #             
-        ),
+                    #             
+                  ),
                   titlePanel(h4("20 years of Cybergeo, European Journal of Geography")),
                   
                   navlistPanel(
                     #"Looking back",
                     tabPanel("The Project",
                              fluidRow(
-                                      
+                               
                                column(9, h1("Cybergeo | 1996-2016", 
-                                                            style = "font-family: 'Orbitron', sans-serif;
+                                            style = "font-family: 'Orbitron', sans-serif;
                                              font-weight: 500; line-height: 1.1; 
                                              color: #ffffff;"),
                                       tags$p(class="text-justify",
@@ -44,13 +47,13 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                       studying and citing through countries, analyzing semantic networks per key words and articles’ content, 
                                       you can review twenty years of epistemological and thematic trends in a variety of fields of scientific interest. 
                                         The networks tell who studies what, where and how. Data are regularly updated."         
-                                             )))
+                                      )))
                     ),
                     "-----",
                     tabPanel("Overview",
                              fluidRow(h2("Global Stats"),
                                       column(6, sliderInput("dateRange", label = "Time Range",
-                                                             min = 1996, max = 2015, value = c(1996,2015), step = 1), animate=T),
+                                                            min = 1996, max = 2015, value = c(1996,2015), step = 1), animate=T),
                                       column(6, selectInput("whatMapped", label = "Indicator to map",
                                                             choices=c("Authoring countries" = "A", 
                                                                       "Countries Studied"= "S",  
@@ -60,7 +63,7 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                       div(dataTableOutput("tableName"), style = "font-size:120%")
                              )),
                     
-                   
+                    
                     
                     # JUSTE ----
                     
@@ -72,40 +75,45 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                              
                              tabsetPanel(
                                tabPanel("Citation Network",
-                                  fluidRow(
-                                    h4("Data Selection"),
-                                    tags$p(class="text-justify","Search and select a cybergeo paper in the table."),
-                                    htmlOutput("citationdataloading"),
-                                    dataTableOutput("citationcybergeo")
-                                  ),
-                                  fluidRow(
-                                    h4("Citation network neighborhood"),
-                                    tags$p(class="text-justify","This graph shows the citation neighborhood of the selected paper"),
-                                    selectInput(inputId = "citationselected", 
-                                                label = "Select a publication by id", 
-                                                choices = c("",sort(citation_cybergeodata$id[citation_cybergeodata$linknum>0],decreasing = TRUE)),
-                                                selected = "",
-                                                multiple = FALSE),
-                                    column(12,plotOutput("citationegoplot", width = "100%", height = "800px"))
-                                  ),
-                                  fluidRow(
-                                    h4("Semantic content"),
-                                    tags$p(class="text-justify","This graph shows the semantic content (color legend in user guide) of the paper (left) and its neighborhood (right)."),
-                                    selectInput(inputId = "citationsemanticselected", 
-                                                label = "Select a publication by id", 
-                                                choices = c("",sort(citation_cybergeodata$id[citation_cybergeodata$kwcount>0],decreasing = TRUE)),
-                                                selected = "",
-                                                multiple = FALSE),
-                                    column(12,plotOutput("citationesemanticplot", width = "100%", height = "800px"))
-                                  )
-                                ),
-                               tabPanel("Semantic Network",
-                                     h4("Full Semantic Network"),
-                                     column(12,svgPanZoomOutput(outputId = "citationsemanticnw",width = "100%", height = "100%"))
+                                        # select article to visualize
+                                        fluidRow(
+                                          h4("Data Selection"),
+                                          tags$p(class="text-justify","Search and select a cybergeo paper in the table."),
+                                          htmlOutput("citationdataloading"),
+                                          dataTableOutput("citationcybergeo")
+                                        ),
+                                        # citation ego network
+                                        fluidRow(
+                                          h4("Citation network neighborhood"),
+                                          tags$p(class="text-justify","This graph shows the citation neighborhood of the selected paper"),
+                                          selectInput(inputId = "citationselected", 
+                                                      label = "Select a publication by id", 
+                                                      choices = c("",sort(citation_cybergeodata$id[citation_cybergeodata$linknum>0],decreasing = TRUE)),
+                                                      selected = "",
+                                                      multiple = FALSE),
+                                          column(12,plotOutput("citationegoplot", width = "100%", height = "800px"))
+                                        ),
+                                        # word clouds of semantic content
+                                        fluidRow(
+                                          h4("Semantic content"),
+                                          tags$p(class="text-justify","This graph shows the semantic content (color legend in user guide) of the paper (left) and its neighborhood (right)."),
+                                          selectInput(inputId = "citationsemanticselected", 
+                                                      label = "Select a publication by id", 
+                                                      choices = c("",sort(citation_cybergeodata$id[citation_cybergeodata$kwcount>0],decreasing = TRUE)),
+                                                      selected = "",
+                                                      multiple = FALSE),
+                                          column(12,plotOutput("citationesemanticplot", width = "100%", height = "800px"))
+                                        )
                                ),
+                               # svg viusalization of the full semantic network
+                               tabPanel("Semantic Network",
+                                        h4("Full Semantic Network"),
+                                        column(12,svgPanZoomOutput(outputId = "citationsemanticnw",width = "100%", height = "100%"))
+                               ),
+                               # user guide
                                tabPanel("User guide",
-                                  # describe data provenance and signification of measures      
-                                  includeMarkdown("doc/CitationNetwork.md")
+                                        # describe data provenance and signification of measures      
+                                        includeMarkdown("doc/CitationNetwork.md")
                                )
                              )
                     ),
@@ -138,21 +146,21 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                ),
                                column(
                                  9,
-                             tabsetPanel(
-                               
-                               tabPanel("Chronogram",
-                               plotOutput("chronogram", height = "700px")
-                               ),
-                               tabPanel(
-                                 "Word Cloud",
-                                 plotOutput("cloud", height = "700px")
-                               ),
-                               tabPanel("Sentences", verbatimTextOutput("phrases")),
-                               tabPanel("Citations", verbatimTextOutput("citations"))
-                             )))),
-
-                             
-                             
+                                 tabsetPanel(
+                                   
+                                   tabPanel("Chronogram",
+                                            plotOutput("chronogram", height = "700px")
+                                   ),
+                                   tabPanel(
+                                     "Word Cloud",
+                                     plotOutput("cloud", height = "700px")
+                                   ),
+                                   tabPanel("Sentences", verbatimTextOutput("phrases")),
+                                   tabPanel("Citations", verbatimTextOutput("citations"))
+                                 )))),
+                    
+                    
+                    
                     
                     # HADRI ----
                     
@@ -242,7 +250,7 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                
                                
                                
-                            
+                               
                                
                                
                                tabPanel("User guide",
@@ -258,23 +266,23 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                              tabsetPanel(
                                
                                tabPanel("Geo-semantic Networks",
-                             fluidRow(##h2("Geo-semantic Networks"),
-                                      
-                                      column(4, selectInput("semanticMethod", label = "Semantic Method",
-                                                            choices = c("Citations", "Keywords", "Semantic"), multiple = F)),
-                                      column(4, selectInput("aggregationMethod", label = "Set of Countries",choices = c("Authoring", "Studied"), 
-                                                            selected = "Studied", multiple = F)),
-                                      column(4, sliderInput("nClassifGroups", label = "Number of Clusters",
-                                                            min = 1, max = 8, value = 4, step = 1), animate=T),
-                                      column(12, plotOutput("termsXCountriesMap")),
-                                      column(12, plotOutput("termsXCountriesLegend"))
-                             )
+                                        fluidRow(##h2("Geo-semantic Networks"),
+                                          
+                                          column(4, selectInput("semanticMethod", label = "Semantic Method",
+                                                                choices = c("Citations", "Keywords", "Semantic"), multiple = F)),
+                                          column(4, selectInput("aggregationMethod", label = "Set of Countries",choices = c("Authoring", "Studied"), 
+                                                                selected = "Studied", multiple = F)),
+                                          column(4, sliderInput("nClassifGroups", label = "Number of Clusters",
+                                                                min = 1, max = 8, value = 4, step = 1), animate=T),
+                                          column(12, plotOutput("termsXCountriesMap")),
+                                          column(12, plotOutput("termsXCountriesLegend"))
+                                        )
                                ),
-                             tabPanel("User guide",
-                                    includeMarkdown("doc/GeoSemanticNetworks.md")
-                                   )
+                               tabPanel("User guide",
+                                        includeMarkdown("doc/GeoSemanticNetworks.md")
+                               )
                              )
-                             ),
+                    ),
                     ############## 
                     
                     
@@ -284,7 +292,7 @@ shinyUI(fluidPage(theme = "darkBlue.css",
                                
                                column(9, h2("About Cybergeo"),
                                       a("cybergeo.revues.org/",href="http://cybergeo.revues.org/"),br(),
-
+                                      
                                       h2("About the app"),"All data, materials and source codes are freely available on this repository: ",
                                       a("github.com/Geographie-cites/cybergeo20",href="https://github.com/Geographie-cites/cybergeo20"),
                                       br()),
