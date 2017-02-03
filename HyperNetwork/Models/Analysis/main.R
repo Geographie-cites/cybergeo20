@@ -24,8 +24,13 @@ constructCitationNetwork(citnwedgefile,citnwnodefile,citnwoutput)
 ## Construct the semantic nw
 #   mongo -> RData
 
-importNetwork('relevant.relevant_full_50000','cybergeo.keywords','relevant.network_full_50000_eth10',50,'processed/relevant_full_50000_eth50_nonfiltdico','127.0.0.1:27017')
-
+relevantCollection = 'relevant.relevant_full_50000'
+kwcollection = 'cybergeo.keywords'
+nwcollection = 'relevant.network_full_50000_eth10'
+edge_th = 50
+target = 'processed/relevant_full_50000_eth50_nonfiltdico'
+mongohost = '127.0.0.1:27017'
+constructSemanticNetwork(relevantcollection,kwcollection,nwcollection,edge_th,target,mongohost)
 
 
 ####

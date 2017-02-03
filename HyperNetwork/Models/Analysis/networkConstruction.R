@@ -6,9 +6,9 @@ library(igraph)
 library(dplyr)
 
 
-##
-# Gets cybergeo indexes from consolidated data and citation network
-#
+#'
+#' @name getCybindexes
+#' @description Gets cybergeo indexes from consolidated data and citation network
 getCybindexes<-function(them_probas,cybnames,cybergeo,keyword_dico){
   cybindexes = c();cybresnames = c();iscyb=rep(FALSE,nrow(them_probas));cybid = rep(0,nrow(them_probas))
   for(cyb in cybnames){
@@ -25,10 +25,6 @@ getCybindexes<-function(them_probas,cybnames,cybergeo,keyword_dico){
   return(list(cybid=cybid,iscyb=iscyb,cybindexes=cybindexes,cybresnames=cybresnames))
 }
 
-
-getCybDataCitNetwork<-function(){
-  
-}
 
 
 
@@ -55,8 +51,10 @@ extractSubGraphCommunities<-function(ggiant,kmin,kmax,freqmin,freqmax,edge_th){
   return(list(gg=gg,com=com))
 }
 
-##
-# Summary of a subgraph
+
+
+#'
+#' @description Summary of a subgraph
 summarySubGraphCommunities<-function(sub){
    gg=sub$gg;com=sub$com
    show(paste0('Vertices : ',length(V(gg))))
@@ -68,9 +66,9 @@ summarySubGraphCommunities<-function(sub){
 
 
 
-##
-# Compute thematic probability matrix
-#
+#'
+#'  @name computeThemProbas
+#'  @description Compute thematic probability matrix
 computeThemProbas<-function(gg,com,keyword_dico){
   # construct kw -> thematic dico
   thematics = list()
@@ -154,17 +152,18 @@ constructSemanticNetwork<-function(relevantcollection,kwcollection,nwcollection,
 
 
 
+# DEPRECATED
+#importDicoCsv<-function(kwFile){
+#  res=list()
+#  relevant = read.table(paste0("../Semantic/res/cybergeo/kw_",kwFile,".csv"),header=FALSE,sep=";",stringsAsFactors = FALSE)
+#  colnames(relevant)=c("keyword","cumtermhood")
+#  dico = scan(paste0("../Semantic/res/cybergeo/relevantDico_kwLimit",kwFile,".csv"),what="character",sep="\n")
+#  relevant$keyword=sapply(relevant$keyword,FUN=enc2utf8)
+#  res$relevant=relevant
+#  res$dico=dico
+#  return(res)
+#}
 
-importDicoCsv<-function(kwFile){
-  res=list()
-  relevant = read.table(paste0("../Semantic/res/cybergeo/kw_",kwFile,".csv"),header=FALSE,sep=";",stringsAsFactors = FALSE)
-  colnames(relevant)=c("keyword","cumtermhood")
-  dico = scan(paste0("../Semantic/res/cybergeo/relevantDico_kwLimit",kwFile,".csv"),what="character",sep="\n")
-  relevant$keyword=sapply(relevant$keyword,FUN=enc2utf8)
-  res$relevant=relevant
-  res$dico=dico
-  return(res)
-}
 
 
 #'

@@ -22,7 +22,7 @@ library(igraph)
 library(dplyr)
 library(RSQLite)
 library(svgPanZoom)
-#library(wordcloud)
+library(wordcloud)
 library(scales)
 library(lubridate)
 library(stringr)
@@ -32,14 +32,14 @@ library(stringr)
 
 #### Clem
 
+#'
 #' @title Aggregate countries based on terms
 #' @name aggregateCountriesBasedOnTerms
 #' @description This function summarises the number of articles by theme for each country it is used in the reactive object 'clusterCountries' for every analysis at the country level
 #' @param themesFile: a dataframe in which lines represent articles and columns include themes and country codes
 #' @param themes: the list of themes of the analysis
 #' @param countries_to_aggregate: the list of countries to aggregate articles by (taken from the shapeFile)
-#' Returns: themes_By_country_bf, a dataframe in which lines represent country codes and columns represent the number of articles for each theme
-
+#' @value themes_By_country_bf, a dataframe in which lines represent country codes and columns represent the number of articles for each theme
 aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate){
   themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
   themes_By_country_bf[,themes] = NA
@@ -63,13 +63,10 @@ aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggre
 #'
 #' @name cahCountriesBasedOnTerms (function)
 #' @description This function produces a hierarchical clustering of countries with respect to their frequency of themes it is used in the geosemantic tab to display the groups of countries by themes and the corresponding average profiles of themes
-# Arguments:
-# - themes_By_country_bf: dataframe in which lines represent country codes and columns represent the number of articles for each theme
-# - numberOfGroups: an integer giving the number of classes for the clustering
-# - themes: the list of themes of the analysis
-
-# Returns: groups_Country, a vector of group IDs for each country
-
+#' @param themes_By_country_bf: dataframe in which lines represent country codes and columns represent the number of articles for each theme
+#' @param numberOfGroups: an integer giving the number of classes for the clustering
+#' @param themes: the list of themes of the analysis
+#' @param groups_Country, a vector of group IDs for each country
 cahCountriesBasedOnTerms = function(themes_By_country_bf, numberOfGroups, themes){
 themesScaled = scale(themes_By_country_bf[,themes])
   rownames(themesScaled) = themes_By_country_bf[,1]
@@ -81,6 +78,8 @@ themesScaled = scale(themes_By_country_bf[,themes])
 
 
 
+
+#'
 #' @name sumNum
 #' @description This function ensures that no <NA> is returned for a sum if one element of the sum is <NA> it is used in aggregate and apply functions.
 #' @param  x: a vector of elements to sum  
@@ -92,17 +91,12 @@ sumNum = function(x){
 
 
 
-# stat.comp (function)
-
-# This function computes the average frquencies of themes by cah group
-# it is used in the legend of the cah map 
-
-# Arguments:
-# - x: a dataframe of theme frequency by country (themes_By_country_bf) in which lines represent country codes and columns represent the number of articles for each themes
-# - y: a vector of group numbers the length of the dataframe rows
-
-# Returns: result, a dataframe in which lines represent cah groups of country and columns represent the frequency of articles for each theme
-
+#' @name stat.comp
+#' @description This function computes the average frquencies of themes by cah group
+#'   it is used in the legend of the cah map 
+#' @param x: a dataframe of theme frequency by country (themes_By_country_bf) in which lines represent country codes and columns represent the number of articles for each themes
+#' @param y: a vector of group numbers the length of the dataframe rows
+#' @value result, a dataframe in which lines represent cah groups of country and columns represent the frequency of articles for each theme
 stat.comp<-  function( x,y){
   K <-length(unique(y))
   n <-length(x)
@@ -119,7 +113,78 @@ stat.comp<-  function( x,y){
 
 
 
-######## PO
+
+
+
+# load data ----
+
+
+
+#### Keywords network
+
+#'
+#' @description contains cyberData = list(NETKW = igraph network of thesaurus keywords, ARTICLES keywords raw data)
+load("data/CyberData.RData")
+
+#'
+#' @description thesaurus themes probas
+hadriTerms = read.csv("data/kwprop.csv", sep=",", dec=".")
+
+
+#### Semantic network
+
+#'
+#' @description themes probas with the semantic network classification
+justeTerms = read.csv("data/docprobasJuste2.csv", sep=",", dec=".")
+
+
+#### LDA analysis
+
+#'
+#' @description LDA analysis output : files = ids and raw files ;
+#'   themes.termes = keywords of thematics ; document.themes = probability matrix
+load("data/themesPO.Rdata")
+files$name = NULL
+files$path = NULL
+
+#'
+#' @description keywords and themes from LDA
+poTerms = read.csv("data/20themes20words.csv", sep=",", dec=".")
+
+nameThemes = c(as.character(poTerms$NAME), "Other")
+colnames(document.themes) = nameThemes
+files[,3:22] = document.themes 
+colnames(files)[3:22] = nameThemes
+
+
+
+
+#### Geographical data
+
+world = readOGR(dsn="data/world_withZoom.shp",
+                layer = "world_withZoom", encoding="utf8", verbose = F)
+countries = as.character(world@data$CNTR_ID)
+locals = paste0("L_", countries)
+authors = paste0("A_", countries)
+studies = paste0("S_", countries)
+lookup = data.frame(countries)
+lookup$polyID = as.numeric(rownames(lookup)) - 1
+
+articles = data.frame()
+paletteCybergeo = c("#1C6F91", "#df691a", "#77c5ba", "orange", "#2db92d", "#e1ff2f", "#ff2313", "#bbab61")
+pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
+
+
+
+
+
+
+
+
+
+
+######## PO : 
+##   Regexp terms in full textes
 
 
 
