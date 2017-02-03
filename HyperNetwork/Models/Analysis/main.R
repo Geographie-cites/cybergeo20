@@ -8,7 +8,6 @@ source('citationNWConstruction.R')
 
 
 
-
 #####
 ## Construct the citation nw from raw data
 #  csv -> RData
@@ -63,7 +62,21 @@ multiplot(plotlist = plots,cols=3)
 
 
 ######
-# 
+#  export
+
+source('semexport.R')
+
+nkws='50000'
+eth_0 = '50'
+eth = '100'
+kmin = '0'
+kmax = '1200'
+freqmin = '50'
+freqmax = '10000'
+eth = '100'
+
+exportData(nkws,eth_0,eth,kmin,kmax,freqmin,freqmax,eth)
+
 
 
 
