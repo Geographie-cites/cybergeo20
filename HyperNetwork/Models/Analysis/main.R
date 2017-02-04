@@ -8,7 +8,6 @@ source('citationNWConstruction.R')
 
 
 
-
 #####
 ## Construct the citation nw from raw data
 #  csv -> RData
@@ -24,8 +23,13 @@ constructCitationNetwork(citnwedgefile,citnwnodefile,citnwoutput)
 ## Construct the semantic nw
 #   mongo -> RData
 
-importNetwork('relevant.relevant_full_50000','cybergeo.keywords','relevant.network_full_50000_eth10',50,'processed/relevant_full_50000_eth50_nonfiltdico','127.0.0.1:27017')
-
+relevantCollection = 'relevant.relevant_full_50000'
+kwcollection = 'cybergeo.keywords'
+nwcollection = 'relevant.network_full_50000_eth10'
+edge_th = 50
+target = 'processed/relevant_full_50000_eth50_nonfiltdico'
+mongohost = '127.0.0.1:27017'
+constructSemanticNetwork(relevantcollection,kwcollection,nwcollection,edge_th,target,mongohost)
 
 
 ####
@@ -58,7 +62,21 @@ multiplot(plotlist = plots,cols=3)
 
 
 ######
-# 
+#  export
+
+source('semexport.R')
+
+nkws='50000'
+eth_0 = '50'
+eth = '100'
+kmin = '0'
+kmax = '1200'
+freqmin = '50'
+freqmax = '10000'
+eth = '100'
+
+exportData(nkws,eth_0,eth,kmin,kmax,freqmin,freqmax,eth)
+
 
 
 

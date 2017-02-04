@@ -6,13 +6,13 @@ library(igraph)
 library(dplyr)
 
 
-##
-# Gets cybergeo indexes from consolidated data and citation network
-#
+#'
+#' @name getCybindexes
+#' @description Gets cybergeo indexes from consolidated data and citation network
 getCybindexes<-function(them_probas,cybnames,cybergeo,keyword_dico){
   cybindexes = c();cybresnames = c();iscyb=rep(FALSE,nrow(them_probas));cybid = rep(0,nrow(them_probas))
   for(cyb in cybnames){
-    show(cyb)
+    #show(cyb)
     indexes = which(names(keyword_dico)==cyb);
     id=cybergeo$id[cybergeo$SCHID==cyb]
     if(length(indexes)>0){
@@ -26,15 +26,20 @@ getCybindexes<-function(them_probas,cybnames,cybergeo,keyword_dico){
 }
 
 
-getCybDataCitNetwork<-function(){
-  
-}
 
 
-
-##
-#  Filter a graph on degree (kmin,kmax), document frequency (freqmin,freqmax) and co-occurence (edge_th)
-#  and computes optimal communities
+#'
+#' @title Community Extraction
+#' @name extractSubGraphCommunities
+#' @description Filter a graph on degree (kmin,kmax), document frequency (freqmin,freqmax) and co-occurence (edge_th)
+#'  and computes optimal communities
+#'  @param ggiant igraph; graph
+#'  @param kmin ; minimal filtering degree
+#'  @param kmax ; maximal filtering degree
+#'  @param freqmin ; minimal filtering frequency
+#'  @param freqmax ; maximal filtering frequency
+#'  @param edge_th ; edge weight threshold
+#'  
 extractSubGraphCommunities<-function(ggiant,kmin,kmax,freqmin,freqmax,edge_th){
   dd = V(ggiant)$docfreq
   d = degree(ggiant)
@@ -46,8 +51,10 @@ extractSubGraphCommunities<-function(ggiant,kmin,kmax,freqmin,freqmax,edge_th){
   return(list(gg=gg,com=com))
 }
 
-##
-# Summary of a subgraph
+
+
+#'
+#' @description Summary of a subgraph
 summarySubGraphCommunities<-function(sub){
    gg=sub$gg;com=sub$com
    show(paste0('Vertices : ',length(V(gg))))
@@ -59,9 +66,9 @@ summarySubGraphCommunities<-function(sub){
 
 
 
-##
-# Compute thematic probability matrix
-#
+#'
+#'  @name computeThemProbas
+#'  @description Compute thematic probability matrix
 computeThemProbas<-function(gg,com,keyword_dico){
   # construct kw -> thematic dico
   thematics = list()
@@ -145,17 +152,18 @@ constructSemanticNetwork<-function(relevantcollection,kwcollection,nwcollection,
 
 
 
+# DEPRECATED
+#importDicoCsv<-function(kwFile){
+#  res=list()
+#  relevant = read.table(paste0("../Semantic/res/cybergeo/kw_",kwFile,".csv"),header=FALSE,sep=";",stringsAsFactors = FALSE)
+#  colnames(relevant)=c("keyword","cumtermhood")
+#  dico = scan(paste0("../Semantic/res/cybergeo/relevantDico_kwLimit",kwFile,".csv"),what="character",sep="\n")
+#  relevant$keyword=sapply(relevant$keyword,FUN=enc2utf8)
+#  res$relevant=relevant
+#  res$dico=dico
+#  return(res)
+#}
 
-importDicoCsv<-function(kwFile){
-  res=list()
-  relevant = read.table(paste0("../Semantic/res/cybergeo/kw_",kwFile,".csv"),header=FALSE,sep=";",stringsAsFactors = FALSE)
-  colnames(relevant)=c("keyword","cumtermhood")
-  dico = scan(paste0("../Semantic/res/cybergeo/relevantDico_kwLimit",kwFile,".csv"),what="character",sep="\n")
-  relevant$keyword=sapply(relevant$keyword,FUN=enc2utf8)
-  res$relevant=relevant
-  res$dico=dico
-  return(res)
-}
 
 
 #'

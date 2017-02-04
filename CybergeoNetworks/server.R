@@ -4,32 +4,6 @@
 ##############################
 
 
-# load data ----
-
-load("data/CyberData.RData")
-load("data/themesPO.Rdata")
-files$name = NULL
-files$path = NULL
-justeTerms = read.csv("data/docprobasJuste2.csv", sep=",", dec=".") 
-hadriTerms = read.csv("data/kwprop.csv", sep=",", dec=".")
-poTerms = read.csv("data/20themes20words.csv", sep=",", dec=".")
-nameThemes = c(as.character(poTerms$NAME), "Other")
-colnames(document.themes) = nameThemes
-files[,3:22] = document.themes 
-colnames(files)[3:22] = nameThemes
-
-world = readOGR(dsn="data/world_withZoom.shp",
-                layer = "world_withZoom", encoding="utf8", verbose = F)
-countries = as.character(world@data$CNTR_ID)
-locals = paste0("L_", countries)
-authors = paste0("A_", countries)
-studies = paste0("S_", countries)
-lookup = data.frame(countries)
-lookup$polyID = as.numeric(rownames(lookup)) - 1
-
-articles = data.frame()
-paletteCybergeo = c("#1C6F91", "#df691a", "#77c5ba", "orange", "#2db92d", "#e1ff2f", "#ff2313", "#bbab61")
-pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
 
 # set server ----
 
@@ -360,8 +334,7 @@ shinyServer(function(input, output, session) {
    })
    
    
-   ## semantic nw viz
-   
+   # semantic nw viz
    output$citationsemanticnw<-renderSvgPanZoom({
      svgPanZoom('data/semantic.svg',
                 zoomScaleSensitivity=1,
