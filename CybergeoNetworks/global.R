@@ -519,7 +519,17 @@ citationWordclouds<-function(id,keywords){
 
 # plot communities ----
 
-VisuComm <- function(g, comm, vertcol, vertsize, vfacsize, edgesize, efacsize, textsize){
+
+# Description: plot the communities (result of any community detection algo, here Louvain method)
+VisuComm <- function(g, # igraph network
+                     comm, # scalar, character, name of the community
+                     vertcol, # scalar, character, vertex color 
+                     vertsize, # scalar, numeric, vertex size
+                     vfacsize, # scalar, numeric, expansion factor for vertex size
+                     edgesize, # scalar, numeric, edge width
+                     efacsize, # scalar, numeric, expansion factor for edge width
+                     textsize) # scalar, numeric, font size
+{  
   par(bg = "#4e5d6c")
   # circle layout with sampled coordinates
   oriCoords <- layout_in_circle(g)
@@ -544,10 +554,13 @@ VisuComm <- function(g, comm, vertcol, vertsize, vfacsize, edgesize, efacsize, t
 
 
 
-# plot semantic field ----
-
-VisuSem <- function(g, kw, textsizemin, textsizemax){
-  
+# Description: plot the semantic field of a selected keyword (inverse proportional distance to pseudo-chi2 distance)
+VisuSem <- function(g, # igraph network
+                    kw, # scalar, character, name of the keyword
+		    chidist, # scalar, character, name of the field storing pseudo-chi2 distance
+                    textsizemin, # scalar, numeric, minimum font size
+                    textsizemax) # scalar, numeric, maximum font sizes
+{
   # make theme empty
   theme_empty <- theme_bw() +
     theme(plot.background = element_rect(fill = "#4e5d6c"),
@@ -569,7 +582,7 @@ VisuSem <- function(g, kw, textsizemin, textsizemax){
   tabPoints <- tabPoints %>% left_join(x = ., y = tabLinks, by = c("name" = "NODES"))
   
   # compute distance from ego
-  tabPoints$DIST <- 1 / tabPoints$relresid
+  tabPoints$DIST <- 1 / tabPoints[[chidist]]
   thresRadis <- seq(0, 0.1 + max(tabPoints$DIST, na.rm = TRUE), 0.1)
   tabPoints$X <- cut(tabPoints$DIST, breaks = thresRadis, labels = thresRadis[-1], include.lowest = TRUE, right = FALSE)
   tabPoints <- tabPoints %>% group_by(X) %>% mutate(NPTS = n())
@@ -596,13 +609,7 @@ VisuSem <- function(g, kw, textsizemin, textsizemax){
 
 
 
-
-
-# Internal functions for VisuSem() ----
-
-
-# Sample x values for polar coordinates
-
+# Description: sample x values for polar coordinates for the semantic field visualization (VisuSem function)
 GetXvalues <- function(df){
   initVal <- sample(x = 0:360, size = 1, replace = FALSE)
   tempRange <- seq(initVal, initVal + 360, 360/unique(df$NPTS))
@@ -612,10 +619,11 @@ GetXvalues <- function(df){
 }
 
 
-# create semantic field network
 
-SemanticField <- function(g, kw){
-  
+# Description: create an ego subgraph for the semantic field visualization (VisuSem function)
+SemanticField <- function(g,  # igraph network
+			  kw) # scalar, character, selected keyword
+{  
   # list of neighbors
   neiNodes <- unlist(neighborhood(g, order = 1, nodes = V(g)[V(g)$name == kw], mode = "all"))
   pairedNodes <- unlist(paste(which(V(g)$name == kw), neiNodes[-1], sep = ","))
@@ -628,3 +636,6 @@ SemanticField <- function(g, kw){
   
   return(gSem)
 }
+
+
+
