@@ -1,0 +1,212 @@
+From f4bfb736e7dc07cbb9af347f010de5b9fd09eb2f Mon Sep 17 00:00:00 2001
+From: Pierre-Olivier Chasset <pierre-olivier@chasset.net>
+Date: Fri, 3 Feb 2017 14:58:45 +0100
+Subject: [PATCH] Add comments to functions
+
+---
+ CybergeoNetworks/global.R | 46 +++++++++++++++++++++++++++++++++++++++-------
+ CybergeoNetworks/server.R |  4 +++-
+ CybergeoNetworks/ui.R     |  6 ++++++
+ 3 files changed, 48 insertions(+), 8 deletions(-)
+
+diff --git a/CybergeoNetworks/global.R b/CybergeoNetworks/global.R
+index 83b97be..94c5303 100644
+--- a/CybergeoNetworks/global.R
++++ b/CybergeoNetworks/global.R
+@@ -10,7 +10,6 @@
+ library(shiny)
+ library(rgdal)
+ library(plyr)
+-library(rgdal) 
+ library(mapproj) 
+ library(maptools) 
+ library(RColorBrewer)
+@@ -22,7 +21,7 @@ library(igraph)
+ library(dplyr)
+ library(RSQLite)
+ library(svgPanZoom)
+-#library(wordcloud)
++library(wordcloud)
+ library(scales)
+ library(lubridate)
+ library(stringr)
+@@ -124,12 +123,10 @@ stat.comp<-  function( x,y){
+ 
+ 
+ pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
+-#pattern_list <- c("g[ée]ograph")
+-
+-#setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/regexp'))
+ 
+ #-- Loading data --------------------------------------------------------------
+ 
++# Read the terms dataframe
+ terms <- read.table(
+   "data/terms.csv", 
+   sep = ";", 
+@@ -145,6 +142,7 @@ terms <- read.table(
+   ) %>%
+   dplyr::select(id, article_id, term, count)
+ 
++# Read the sentences dataframe 
+ sentences <- read.table(
+   "data/sentences.csv", 
+   sep = "|", 
+@@ -159,6 +157,7 @@ sentences <- read.table(
+     id = row_number()
+   )
+ 
++# Read the metadata of articles
+ articles <- read.table(
+   "data/cybergeo.csv", 
+   sep = ",", 
+@@ -171,10 +170,13 @@ articles <- read.table(
+   dplyr::mutate(citation = paste(sep = ". ", auteurs, substr(date,1,4), titre)) %>%
+   dplyr::select(id, date, citation, langue)
+ 
+-gc() # <- WHY THIS GC HERE ?
+-
+ #-- Functions -----------------------------------------------------------------
+ 
++#' @title Matched terms list
++#' @name terms_matched
++#' @description Compute a dataframe of matched terms
++#' @param patterns: a string vector of regexp patterns to match
++#' Returns: a data frame of matched terms
+ terms_matched <- function(patterns) {
+   data <- data_frame()
+   for (pattern in patterns) {
+@@ -189,6 +191,11 @@ terms_matched <- function(patterns) {
+   return(data)
+ } 
+ 
++#' @title Matched articles list
++#' @name titles_matched
++#' @description Compute a list of articles containing a matched term
++#' @param patterns: a string vector of regexp patterns to match
++#' Returns: a string vector of articles containing a matched term
+ titles_matched <- function(patterns) {
+   citations <- terms_matched(patterns) %>%
+     dplyr::select(article_id) %>%
+@@ -199,6 +206,11 @@ titles_matched <- function(patterns) {
+   return(citations$citation)
+ }
+ 
++#' @title Matched sentences list
++#' @name phrases
++#' @description Compute a list of sentences containing a matched term
++#' @param patterns: a string vector of regexp patterns to match
++#' Returns: a vector of sentences containing a matched term
+ phrases <- function(patterns) {
+   data <- data_frame()
+   for (pattern in patterns) {
+@@ -212,6 +224,11 @@ phrases <- function(patterns) {
+   return(data$sentence)
+ }
+ 
++#' @title Metadata for each matched terms
++#' @name terms_matched_cloud
++#' @description Compute the metadata of each terms in order to build a wordcloud
++#' @param patterns: a string vector of regexp patterns to match
++#' Returns: 
+ terms_matched_cloud <- function(patterns) {
+   terms_matched(patterns) %>%
+     dplyr::group_by(term) %>%
+@@ -219,6 +236,11 @@ terms_matched_cloud <- function(patterns) {
+     dplyr::summarise(articles = sum(count))
+ }
+ 
++#' @title Metadata of each articles containing a matched term
++#' @name articles_matched
++#' @description Compute the metadata of each articles containing a matched term
++#' @param patterns: a string vector of regexp patterns to match
++#' Returns: a dataframe of articles metadata
+ articles_matched <- function(patterns) {
+   terms_matched(patterns) %>%
+     dplyr::group_by(article_id, pattern) %>%
+@@ -232,6 +254,11 @@ articles_matched <- function(patterns) {
+     dplyr::select(date, pattern, articles, terms)
+ }
+ 
++#' @title Chronogramme
++#' @name chronogram
++#' @description Compute a chronogram graphic of articles
++#' @param patterns: a string vector of regexp patterns to match
++#' Returns: a graphic
+ chronogram <- function(patterns) {
+   ggplot(articles_matched(patterns), aes(date, articles)) +
+     geom_bar(stat = "identity") +
+@@ -239,6 +266,11 @@ chronogram <- function(patterns) {
+     labs(title="Chronogramme des articles publiés dans Cybergéo", x = "Année de publication", y = "Nombre d'articles publiés")
+ }
+ 
++#' @title Cloud of terms
++#' @name cloud
++#' @description Compute a word cloud of matched terms
++#' @param patterns: a string vector of regexp patterns to match
++#' Returns: a graphic
+ cloud <- function(patterns) {
+   words <- terms_matched_cloud(patterns)
+   wordcloud(
+diff --git a/CybergeoNetworks/server.R b/CybergeoNetworks/server.R
+index ac823e5..1a118be 100644
+--- a/CybergeoNetworks/server.R
++++ b/CybergeoNetworks/server.R
+@@ -373,10 +373,11 @@ shinyServer(function(input, output, session) {
+    
+    ######## PO ---
+    
+-  
++  # Ask a pattern to match in the corpus
+    patterns <- reactive({
+      if(input$mode == 'one') { input$pattern_input } else { input$patterns_selection }
+    })
++   # Ask for a new pattern to add in the list
+    observeEvent(
+      input$add_pattern,
+      {
+@@ -385,6 +386,7 @@ shinyServer(function(input, output, session) {
+        updateCheckboxGroupInput(session, "patterns_selection", choices = pattern_list, selected = c(input$pattern_input, input$patterns_selection))
+      }
+    )
++   # Compute the Outputs
+    output$chronogram <- renderPlot(chronogram(patterns()))
+    output$cloud <- renderPlot(cloud(patterns()))
+    output$citations <- renderPrint(titles_matched(patterns()))
+diff --git a/CybergeoNetworks/ui.R b/CybergeoNetworks/ui.R
+index 3f465fd..ea8e6ae 100644
+--- a/CybergeoNetworks/ui.R
++++ b/CybergeoNetworks/ui.R
+@@ -127,6 +127,7 @@ shinyUI(fluidPage(theme = "darkBlue.css",
+                              fluidPage(
+                                column(
+                                  3,
++                                 # Select an option in order to compute the interface (one or more patterns) and the outputs
+                                  selectInput("mode", "Mode", c(
+                                    "Single Pattern Analysis" = "one", 
+                                    "Multiple Pattern Analysis" = "multi",
+@@ -146,16 +147,21 @@ shinyUI(fluidPage(theme = "darkBlue.css",
+                                ),
+                                column(
+                                  9,
++                                 # All the outputs panel
+                                  tabsetPanel(
+                                    
++                                   # show a chronogram of the number of match per year
+                                    tabPanel("Chronogram",
+                                             plotOutput("chronogram", height = "700px")
+                                    ),
++                                   # show a wordcloud of the matched items
+                                    tabPanel(
+                                      "Word Cloud",
+                                      plotOutput("cloud", height = "700px")
+                                    ),
++                                   # show the sentences including a term that matches a pattern
+                                    tabPanel("Sentences", verbatimTextOutput("phrases")),
++                                   # show the articles including a term that matches a pattern
+                                    tabPanel("Citations", verbatimTextOutput("citations"))
+                                  )))),
+                     
+-- 
+2.8.1
+
