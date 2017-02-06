@@ -10,7 +10,6 @@
 library(shiny)
 library(rgdal)
 library(plyr)
-library(rgdal) 
 library(mapproj) 
 library(maptools) 
 library(RColorBrewer)
@@ -189,12 +188,10 @@ pattern_list <- c("espace", "territoire", "environnement", "société", "réseau
 
 
 pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
-#pattern_list <- c("g[ée]ograph")
-
-#setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/regexp'))
 
 #-- Loading data --------------------------------------------------------------
 
+# Read the terms dataframe
 terms <- read.table(
   "data/terms.csv", 
   sep = ";", 
@@ -210,6 +207,7 @@ terms <- read.table(
   ) %>%
   dplyr::select(id, article_id, term, count)
 
+# Read the sentences dataframe
 sentences <- read.table(
   "data/sentences.csv", 
   sep = "|", 
@@ -224,6 +222,7 @@ sentences <- read.table(
     id = row_number()
   )
 
+# Read the metadata of articles
 articles <- read.table(
   "data/cybergeo.csv", 
   sep = ",", 
@@ -236,10 +235,13 @@ articles <- read.table(
   dplyr::mutate(citation = paste(sep = ". ", auteurs, substr(date,1,4), titre)) %>%
   dplyr::select(id, date, citation, langue)
 
-gc() # <- WHY THIS GC HERE ?
-
 #-- Functions -----------------------------------------------------------------
 
+#' @title Matched terms list
+#' @name terms_matched
+#' @description Compute a dataframe of matched terms
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns: a data frame of matched terms
 terms_matched <- function(patterns) {
   data <- data_frame()
   for (pattern in patterns) {
@@ -254,6 +256,11 @@ terms_matched <- function(patterns) {
   return(data)
 } 
 
+#' @title Matched articles list
+#' @name titles_matched
+#' @description Compute a list of articles containing a matched term
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns: a string vector of articles containing a matched term
 titles_matched <- function(patterns) {
   citations <- terms_matched(patterns) %>%
     dplyr::select(article_id) %>%
@@ -264,6 +271,11 @@ titles_matched <- function(patterns) {
   return(citations$citation)
 }
 
+#' @title Matched sentences list
+#' @name phrases
+#' @description Compute a list of sentences containing a matched term
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns: a vector of sentences containing a matched term
 phrases <- function(patterns) {
   data <- data_frame()
   for (pattern in patterns) {
@@ -277,6 +289,11 @@ phrases <- function(patterns) {
   return(data$sentence)
 }
 
+#' @title Metadata for each matched terms
+#' @name terms_matched_cloud
+#' @description Compute the metadata of each terms in order to build a wordcloud
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns:
 terms_matched_cloud <- function(patterns) {
   terms_matched(patterns) %>%
     dplyr::group_by(term) %>%
@@ -284,6 +301,11 @@ terms_matched_cloud <- function(patterns) {
     dplyr::summarise(articles = sum(count))
 }
 
+#' @title Metadata of each articles containing a matched term
+#' @name articles_matched
+#' @description Compute the metadata of each articles containing a matched term
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns: a dataframe of articles metadata
 articles_matched <- function(patterns) {
   terms_matched(patterns) %>%
     dplyr::group_by(article_id, pattern) %>%
@@ -297,6 +319,11 @@ articles_matched <- function(patterns) {
     dplyr::select(date, pattern, articles, terms)
 }
 
+#' @title Chronogramme
+#' @name chronogram
+#' @description Compute a chronogram graphic of articles
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns: a graphic
 chronogram <- function(patterns) {
   ggplot(articles_matched(patterns), aes(date, articles)) +
     geom_bar(stat = "identity") +
@@ -304,6 +331,11 @@ chronogram <- function(patterns) {
     labs(title="Chronogramme des articles publiés dans Cybergéo", x = "Année de publication", y = "Nombre d'articles publiés")
 }
 
+#' @title Cloud of terms
+#' @name cloud
+#' @description Compute a word cloud of matched terms
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns: a graphic
 cloud <- function(patterns) {
   words <- terms_matched_cloud(patterns)
   wordcloud(
