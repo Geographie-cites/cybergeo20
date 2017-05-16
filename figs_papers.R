@@ -130,12 +130,16 @@ themes_By_country_bf$n = 1
 nArticlesByGroup = aggregate(themes_By_country_bf[,"n"], by = list(themes_By_country_bf$group), FUN = sumNum)
 colnames(nArticlesByGroup) = c("ID", "n")
 nArticlesByGroup = nArticlesByGroup[order(nArticlesByGroup$ID),]
+summary(as.factor(themes_By_country_bf$group))
+
+themes_By_country_bf[themes_By_country_bf$group == 2,]
+
 
 par(mfrow=window, las=2, mar = c(5,10,4,2), bg="white")
 for(i in 1:numberOfGroups){
   barplot(leg[i,], col=paletteCybergeo[i], horiz=TRUE, cex.names=0.8, xlab= "Frequency of themes")
-  if(nArticlesByGroup[i, "n"] == 1)  title(paste0(nArticlesByGroup[i, "n"], " article"))
-  if(nArticlesByGroup[i, "n"] > 1)  title(paste0(nArticlesByGroup[i, "n"], " articles"))
+  if(nArticlesByGroup[i, "n"] == 1)  title(paste0(nArticlesByGroup[i, "n"], " country"))
+  if(nArticlesByGroup[i, "n"] > 1)  title(paste0(nArticlesByGroup[i, "n"], " countries"))
 }
 
 str(cah.themes)
@@ -144,6 +148,9 @@ sortedHeight <- sort(cah.themes$height, decreasing = TRUE)
 relHeight <- sortedHeight / sum(sortedHeight) * 100 
 cumHeight <- cumsum(relHeight)
 cumHeight[numberOfGroups]
+
+
+
 ############################################
 # Citation clustering on studied countries
 ############################################
@@ -164,7 +171,7 @@ head(cybterms5)
 ### parameters
 themesFile = cybterms4
 themes = colnames(justeTerms)[2:13]
-numberOfGroups = 4
+numberOfGroups = 5
 countries_to_aggregate = studies
 
 ### clustering
@@ -213,8 +220,8 @@ nArticlesByGroup = nArticlesByGroup[order(nArticlesByGroup$ID),]
 par(mfrow=window, las=2, mar = c(5,8,4,2), bg="white")
 for(i in 1:numberOfGroups){
   barplot(leg[i,], col=paletteCybergeo[i], horiz=TRUE, cex.names=0.8, xlab= "Frequency of themes")
-  if(nArticlesByGroup[i, "n"] == 1)  title(paste0(nArticlesByGroup[i, "n"], " article"))
-  if(nArticlesByGroup[i, "n"] > 1)  title(paste0(nArticlesByGroup[i, "n"], " articles"))
+  if(nArticlesByGroup[i, "n"] == 1)  title(paste0(nArticlesByGroup[i, "n"], " country"))
+  if(nArticlesByGroup[i, "n"] > 1)  title(paste0(nArticlesByGroup[i, "n"], " countries"))
 }
 
 sortedHeight <- sort(cah.themes$height, decreasing = TRUE) 
@@ -299,11 +306,14 @@ nArticlesByGroup = nArticlesByGroup[order(nArticlesByGroup$ID),]
 par(mfrow=window, las=2, mar = c(5,8,4,2), bg="white")
 for(i in 1:numberOfGroups){
   barplot(leg[i,], col=paletteCybergeo[i], horiz=TRUE, cex.names=0.8, xlab= "Frequency of themes")
-  if(nArticlesByGroup[i, "n"] == 1)  title(paste0(nArticlesByGroup[i, "n"], " article"))
-  if(nArticlesByGroup[i, "n"] > 1)  title(paste0(nArticlesByGroup[i, "n"], " articles"))
+  if(nArticlesByGroup[i, "n"] == 1)  title(paste0(nArticlesByGroup[i, "n"], " country"))
+  if(nArticlesByGroup[i, "n"] > 1)  title(paste0(nArticlesByGroup[i, "n"], " countries"))
 }
 
 sortedHeight <- sort(cah.themes$height, decreasing = TRUE) 
 relHeight <- sortedHeight / sum(sortedHeight) * 100 
 cumHeight <- cumsum(relHeight)
 cumHeight[numberOfGroups]
+
+
+
