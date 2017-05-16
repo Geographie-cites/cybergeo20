@@ -73,6 +73,72 @@ plot(REG, col=REG@data$SelfStudiedAtAll, border="white")
 # Keywords clustering on studied countries
 ############################################
 
+hadriTerms = read.csv("kwprop.csv", sep=",", dec=".")
+cybterms = hadriTerms
+colNumbers = 2:11
+cybterms2 = data.frame(cybterms, articles[match(cybterms$ID,articles$id), ])
+cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
+cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
+themeNames = colnames(hadriTerms)[colNumbers]
+
+### parameters
+themesFile = cybterms4
+themes = colnames(hadriTerms)[colNumbers]
+numberOfGroups = 4
+countries_to_aggregate = studies
+
+### clustering
+themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
+themes_By_country_bf[,themes] = NA
+
+for (c in countries_to_aggregate){
+  articles_to_aggregate = themesFile[themesFile[,c] == 1,colNumbers]
+  if (!is.null(articles_to_aggregate)){
+    nArticles = dim(articles_to_aggregate)[1]
+    themes_By_country_bf[themes_By_country_bf$CountryID == c, themes] = colSums(articles_to_aggregate) / nArticles
+  }}
+
+themes_By_country_bf = themes_By_country_bf[complete.cases(themes_By_country_bf),]
+themes_By_country_bf$CountryID = substr(themes_By_country_bf$CountryID, 3,4)
+themesScaled = scale(themes_By_country_bf[,colNumbers])
+rownames(themesScaled) = themes_By_country_bf[,1]
+d.themes = dist(themesScaled)
+cah.themes = hclust(d.themes, method = "ward.D2")
+groups_Country = cutree(cah.themes, k=numberOfGroups)
+cahRes = data.frame("ID" = themes_By_country_bf[,1], "group" = groups_Country)
+cahRes$groupColour = as.character(cut(cahRes$group, breaks = c(1:numberOfGroups, numberOfGroups+1),
+                                      labels = paletteCybergeo[1:numberOfGroups],include.lowest = TRUE,right = FALSE))
+REG=world
+REG@data = data.frame(REG@data, cahRes[match(REG@data$CNTR_ID,cahRes$ID), ])
+
+par(mfrow=c(1,1), las=2, mar = c(5,4,4,2), bg="white")
+plot(cah.themes)
+# Map
+par(mfrow=c(1,1), mar = c(0,0,1,0), bg='white')
+plot(REG, col=REG@data$groupColour)
+
+summary(cah.themes)
+
+# Legend
+countriesDF = themes_By_country_bf[,colNumbers]
+rownames(countriesDF) = themes_By_country_bf[,1]
+leg = sapply(countriesDF, stat.comp,y=groups_Country)
+if(numberOfGroups %% 2 == 0) window = c(numberOfGroups/2,2)
+if(numberOfGroups %% 2 == 1) window = c(numberOfGroups/2 + 0.5,2)
+themes_By_country_bf$group = cahRes$group
+themes_By_country_bf$n = 1
+nArticlesByGroup = aggregate(themes_By_country_bf[,"n"], by = list(themes_By_country_bf$group), FUN = sumNum)
+colnames(nArticlesByGroup) = c("ID", "n")
+nArticlesByGroup = nArticlesByGroup[order(nArticlesByGroup$ID),]
+
+par(mfrow=window, las=2, mar = c(5,10,4,2), bg="white")
+for(i in 1:numberOfGroups){
+  barplot(leg[i,], col=paletteCybergeo[i], horiz=TRUE, cex.names=0.8, xlab= "Frequency of themes")
+  if(nArticlesByGroup[i, "n"] == 1)  title(paste0(nArticlesByGroup[i, "n"], " article"))
+  if(nArticlesByGroup[i, "n"] > 1)  title(paste0(nArticlesByGroup[i, "n"], " articles"))
+}
+
+
 ############################################
 # Citation clustering on studied countries
 ############################################
@@ -93,7 +159,7 @@ head(cybterms5)
 ### parameters
 themesFile = cybterms4
 themes = colnames(justeTerms)[2:13]
-numberOfGroups = 6
+numberOfGroups = 4
 countries_to_aggregate = studies
 
 ### clustering
@@ -119,6 +185,9 @@ countries_to_aggregate = studies
                                         labels = paletteCybergeo[1:numberOfGroups],include.lowest = TRUE,right = FALSE))
   REG=world
   REG@data = data.frame(REG@data, cahRes[match(REG@data$CNTR_ID,cahRes$ID), ])
+  
+  par(mfrow=c(1,1), las=2, mar = c(5,4,4,2), bg="white")
+  plot(cah.themes)
   
   # Map
   par(mfrow=c(1,1), mar = c(0,0,1,0), bg='white')
@@ -148,3 +217,80 @@ for(i in 1:numberOfGroups){
 ############################################
 # Full-text clustering on studied countries
 ############################################
+load("/Users/clementinecottineau/Documents/cybergeo20/CybergeoNetworks/data/themesPO.Rdata")
+files$name = NULL
+files$path = NULL
+pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
+themeDescription = read.csv("20themes20words.csv", sep=",", dec=".")
+nameThemes = c(as.character(themeDescription$NAME), "Other")
+colnames(document.themes) = nameThemes
+files[,3:22] = document.themes 
+colnames(files)[3:22] = nameThemes
+
+
+articlesWithThemes = data.frame(articles, files[match(articles$id,files$id), ])
+colNumbers = 2:21
+themeNames = nameThemes
+cybterms = articlesWithThemes[,c("id",themeNames)]
+cybtermsbis = cybterms[complete.cases(cybterms[,themeNames]),]
+cybterms2 = data.frame(cybtermsbis, articles[match(cybtermsbis$id,articles$id), ])
+cybterms3 = data.frame(cybterms2, lookup[match(cybterms2$firstauthor,lookup$countries), ])
+cybterms4 = cybterms3[complete.cases(cybterms3$id.1),]
+
+
+### parameters
+themesFile = cybterms4
+themes = nameThemes
+numberOfGroups = 4
+countries_to_aggregate = studies
+
+### clustering
+themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
+themes_By_country_bf[,themes] = NA
+
+for (c in countries_to_aggregate){
+  articles_to_aggregate = themesFile[themesFile[,c] == 1,colNumbers]
+  if (!is.null(articles_to_aggregate)){
+    nArticles = dim(articles_to_aggregate)[1]
+    themes_By_country_bf[themes_By_country_bf$CountryID == c, themes] = colSums(articles_to_aggregate) / nArticles
+  }}
+
+themes_By_country_bf = themes_By_country_bf[complete.cases(themes_By_country_bf),]
+themes_By_country_bf$CountryID = substr(themes_By_country_bf$CountryID, 3,4)
+themesScaled = scale(themes_By_country_bf[,colNumbers])
+rownames(themesScaled) = themes_By_country_bf[,1]
+d.themes = dist(themesScaled)
+cah.themes = hclust(d.themes, method = "ward.D2")
+groups_Country = cutree(cah.themes, k=numberOfGroups)
+cahRes = data.frame("ID" = themes_By_country_bf[,1], "group" = groups_Country)
+cahRes$groupColour = as.character(cut(cahRes$group, breaks = c(1:numberOfGroups, numberOfGroups+1),
+                                      labels = paletteCybergeo[1:numberOfGroups],include.lowest = TRUE,right = FALSE))
+REG=world
+REG@data = data.frame(REG@data, cahRes[match(REG@data$CNTR_ID,cahRes$ID), ])
+
+par(mfrow=c(1,1), las=2, mar = c(5,4,4,2), bg="white")
+plot(cah.themes)
+
+# Map
+par(mfrow=c(1,1), mar = c(0,0,1,0), bg='white')
+plot(REG, col=REG@data$groupColour)
+
+# Legend
+countriesDF = themes_By_country_bf[,colNumbers]
+rownames(countriesDF) = themes_By_country_bf[,1]
+leg = sapply(countriesDF, stat.comp,y=groups_Country)
+if(numberOfGroups %% 2 == 0) window = c(numberOfGroups/2,2)
+if(numberOfGroups %% 2 == 1) window = c(numberOfGroups/2 + 0.5,2)
+themes_By_country_bf$group = cahRes$group
+themes_By_country_bf$n = 1
+nArticlesByGroup = aggregate(themes_By_country_bf[,"n"], by = list(themes_By_country_bf$group), FUN = sumNum)
+colnames(nArticlesByGroup) = c("ID", "n")
+nArticlesByGroup = nArticlesByGroup[order(nArticlesByGroup$ID),]
+
+par(mfrow=window, las=2, mar = c(5,8,4,2), bg="white")
+for(i in 1:numberOfGroups){
+  barplot(leg[i,], col=paletteCybergeo[i], horiz=TRUE, cex.names=0.8, xlab= "Frequency of themes")
+  if(nArticlesByGroup[i, "n"] == 1)  title(paste0(nArticlesByGroup[i, "n"], " article"))
+  if(nArticlesByGroup[i, "n"] > 1)  title(paste0(nArticlesByGroup[i, "n"], " articles"))
+}
+
