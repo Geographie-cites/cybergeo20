@@ -138,7 +138,12 @@ for(i in 1:numberOfGroups){
   if(nArticlesByGroup[i, "n"] > 1)  title(paste0(nArticlesByGroup[i, "n"], " articles"))
 }
 
+str(cah.themes)
 
+sortedHeight <- sort(cah.themes$height, decreasing = TRUE) 
+relHeight <- sortedHeight / sum(sortedHeight) * 100 
+cumHeight <- cumsum(relHeight)
+cumHeight[numberOfGroups]
 ############################################
 # Citation clustering on studied countries
 ############################################
@@ -212,6 +217,10 @@ for(i in 1:numberOfGroups){
   if(nArticlesByGroup[i, "n"] > 1)  title(paste0(nArticlesByGroup[i, "n"], " articles"))
 }
 
+sortedHeight <- sort(cah.themes$height, decreasing = TRUE) 
+relHeight <- sortedHeight / sum(sortedHeight) * 100 
+cumHeight <- cumsum(relHeight)
+cumHeight[numberOfGroups]
 
 
 ############################################
@@ -294,3 +303,7 @@ for(i in 1:numberOfGroups){
   if(nArticlesByGroup[i, "n"] > 1)  title(paste0(nArticlesByGroup[i, "n"], " articles"))
 }
 
+sortedHeight <- sort(cah.themes$height, decreasing = TRUE) 
+relHeight <- sortedHeight / sum(sortedHeight) * 100 
+cumHeight <- cumsum(relHeight)
+cumHeight[numberOfGroups]
