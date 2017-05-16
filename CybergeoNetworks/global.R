@@ -10,7 +10,6 @@
 library(shiny)
 library(rgdal)
 library(plyr)
-library(rgdal) 
 library(mapproj) 
 library(maptools) 
 library(RColorBrewer)
@@ -26,19 +25,27 @@ library(wordcloud)
 library(scales)
 library(lubridate)
 library(stringr)
-library(scales)
-library(lubridate)
-library(stringr)
-library(wordcloud)
+
+
+
 
 #### Clem
-aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate, colNumbers){
+
+#'
+#' @title Aggregate countries based on terms
+#' @name aggregateCountriesBasedOnTerms
+#' @description This function summarises the number of articles by theme for each country it is used in the reactive object 'clusterCountries' for every analysis at the country level
+#' @param themesFile: a dataframe in which lines represent articles and columns include themes and country codes
+#' @param themes: the list of themes of the analysis
+#' @param countries_to_aggregate: the list of countries to aggregate articles by (taken from the shapeFile)
+#' @value themes_By_country_bf, a dataframe in which lines represent country codes and columns represent the number of articles for each theme
+aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggregate){
   themes_By_country_bf = data.frame("CountryID" = countries_to_aggregate)
   themes_By_country_bf[,themes] = NA
   themes_By_country_bf$n = NA
   
   for (c in countries_to_aggregate){
-    articles_to_aggregate = themesFile[themesFile[,c] == 1,colNumbers]
+    articles_to_aggregate = themesFile[themesFile[,c] == 1,themes]
     if (!is.null(articles_to_aggregate)){
       nArticles = dim(articles_to_aggregate)[1]
       themes_By_country_bf[themes_By_country_bf$CountryID == c, themes] = colSums(articles_to_aggregate) / nArticles
@@ -50,8 +57,17 @@ aggregateCountriesBasedOnTerms = function(themesFile, themes, countries_to_aggre
   return(themes_By_country_bf)
 }
 
-cahCountriesBasedOnTerms = function(themes_By_country_bf, numberOfGroups, colNumbers){
-themesScaled = scale(themes_By_country_bf[,colNumbers])
+
+
+#'
+#' @name cahCountriesBasedOnTerms (function)
+#' @description This function produces a hierarchical clustering of countries with respect to their frequency of themes it is used in the geosemantic tab to display the groups of countries by themes and the corresponding average profiles of themes
+#' @param themes_By_country_bf: dataframe in which lines represent country codes and columns represent the number of articles for each theme
+#' @param numberOfGroups: an integer giving the number of classes for the clustering
+#' @param themes: the list of themes of the analysis
+#' @param groups_Country, a vector of group IDs for each country
+cahCountriesBasedOnTerms = function(themes_By_country_bf, numberOfGroups, themes){
+themesScaled = scale(themes_By_country_bf[,themes])
   rownames(themesScaled) = themes_By_country_bf[,1]
   d.themes = dist(themesScaled)
   cah.themes = hclust(d.themes, method = "ward.D2")
@@ -59,6 +75,14 @@ themesScaled = scale(themes_By_country_bf[,colNumbers])
   return(groups_Country)
 }
 
+
+
+
+#'
+#' @name sumNum
+#' @description This function ensures that no <NA> is returned for a sum if one element of the sum is <NA> it is used in aggregate and apply functions.
+#' @param  x: a vector of elements to sum  
+#' Returns: y, a single value (the sum)
 sumNum = function(x){
   y = sum(x, na.rm= T)
   return(y)
@@ -66,32 +90,108 @@ sumNum = function(x){
 
 
 
+#' @name stat.comp
+#' @description This function computes the average frquencies of themes by cah group
+#'   it is used in the legend of the cah map 
+#' @param x: a dataframe of theme frequency by country (themes_By_country_bf) in which lines represent country codes and columns represent the number of articles for each themes
+#' @param y: a vector of group numbers the length of the dataframe rows
+#' @value result, a dataframe in which lines represent cah groups of country and columns represent the frequency of articles for each theme
 stat.comp<-  function( x,y){
-K <-length(unique(y))
-n <-length(x)
-m <-mean(x)
-TSS <-sum((x-m)^2)
-nk<-table(y)
-mk<-tapply(x,y,mean)
- BSS <-sum(nk* (mk-m)^2)
-result<-c(mk,100.0*BSS/TSS)
-names(result) <-c( paste("G",1:K),"% epl.")
- return(result)
+  K <-length(unique(y))
+  n <-length(x)
+  m <-mean(x)
+  TSS <-sum((x-m)^2)
+  nk<-table(y)
+  mk<-tapply(x,y,mean)
+  BSS <-sum(nk* (mk-m)^2)
+  result<-c(mk,100.0*BSS/TSS)
+  names(result) <-c( paste("G",1:K),"% epl.")
+  return(result)
 }
 
 
-######## PO
 
+
+
+
+
+# load data ----
+
+
+
+#### Keywords network
+
+#'
+#' @description contains cyberData = list(NETKW = igraph network of thesaurus keywords, ARTICLES keywords raw data)
+load("data/CyberData.RData")
+
+#'
+#' @description thesaurus themes probas
+hadriTerms = read.csv("data/kwprop.csv", sep=",", dec=".")
+
+
+#### Semantic network
+
+#'
+#' @description themes probas with the semantic network classification
+justeTerms = read.csv("data/docprobasJuste2.csv", sep=",", dec=".")
+
+
+#### LDA analysis
+
+#'
+#' @description LDA analysis output : files = ids and raw files ;
+#'   themes.termes = keywords of thematics ; document.themes = probability matrix
+load("data/themesPO.Rdata")
+files$name = NULL
+files$path = NULL
+
+#'
+#' @description keywords and themes from LDA
+poTerms = read.csv("data/20themes20words.csv", sep=",", dec=".")
+
+nameThemes = c(as.character(poTerms$NAME), "Other")
+colnames(document.themes) = nameThemes
+files[,3:22] = document.themes 
+colnames(files)[3:22] = nameThemes
+
+
+
+
+#### Geographical data
+
+world = readOGR(dsn="data/world_withZoom.shp",
+                layer = "world_withZoom", encoding="utf8", verbose = F)
+countries = as.character(world@data$CNTR_ID)
+locals = paste0("L_", countries)
+authors = paste0("A_", countries)
+studies = paste0("S_", countries)
+lookup = data.frame(countries)
+lookup$polyID = as.numeric(rownames(lookup)) - 1
+
+articles = data.frame()
+paletteCybergeo = c("#1C6F91", "#df691a", "#77c5ba", "orange", "#2db92d", "#e1ff2f", "#ff2313", "#bbab61")
+pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
+
+
+
+
+
+
+
+
+
+
+######## PO : 
+##   Regexp terms in full textes
 
 
 
 pattern_list <- c("espace", "territoire", "environnement", "société", "réseau", "interaction", "aménagement", "urbanisme", "carte", "modèle", "système", "SIG", "fractale", "durabilité", "représentation", "migration", "quantitatif", "qualitatif", "post-moderne")
-#pattern_list <- c("g[ée]ograph")
-
-#setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/regexp'))
 
 #-- Loading data --------------------------------------------------------------
 
+# Read the terms dataframe
 terms <- read.table(
   "data/terms.csv", 
   sep = ";", 
@@ -107,6 +207,7 @@ terms <- read.table(
   ) %>%
   dplyr::select(id, article_id, term, count)
 
+# Read the sentences dataframe
 sentences <- read.table(
   "data/sentences.csv", 
   sep = "|", 
@@ -121,6 +222,7 @@ sentences <- read.table(
     id = row_number()
   )
 
+# Read the metadata of articles
 articles <- read.table(
   "data/cybergeo.csv", 
   sep = ",", 
@@ -133,10 +235,13 @@ articles <- read.table(
   dplyr::mutate(citation = paste(sep = ". ", auteurs, substr(date,1,4), titre)) %>%
   dplyr::select(id, date, citation, langue)
 
-gc()
-
 #-- Functions -----------------------------------------------------------------
 
+#' @title Matched terms list
+#' @name terms_matched
+#' @description Compute a dataframe of matched terms
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns: a data frame of matched terms
 terms_matched <- function(patterns) {
   data <- data_frame()
   for (pattern in patterns) {
@@ -151,6 +256,11 @@ terms_matched <- function(patterns) {
   return(data)
 } 
 
+#' @title Matched articles list
+#' @name titles_matched
+#' @description Compute a list of articles containing a matched term
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns: a string vector of articles containing a matched term
 titles_matched <- function(patterns) {
   citations <- terms_matched(patterns) %>%
     dplyr::select(article_id) %>%
@@ -161,6 +271,11 @@ titles_matched <- function(patterns) {
   return(citations$citation)
 }
 
+#' @title Matched sentences list
+#' @name phrases
+#' @description Compute a list of sentences containing a matched term
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns: a vector of sentences containing a matched term
 phrases <- function(patterns) {
   data <- data_frame()
   for (pattern in patterns) {
@@ -174,6 +289,11 @@ phrases <- function(patterns) {
   return(data$sentence)
 }
 
+#' @title Metadata for each matched terms
+#' @name terms_matched_cloud
+#' @description Compute the metadata of each terms in order to build a wordcloud
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns:
 terms_matched_cloud <- function(patterns) {
   terms_matched(patterns) %>%
     dplyr::group_by(term) %>%
@@ -181,6 +301,11 @@ terms_matched_cloud <- function(patterns) {
     dplyr::summarise(articles = sum(count))
 }
 
+#' @title Metadata of each articles containing a matched term
+#' @name articles_matched
+#' @description Compute the metadata of each articles containing a matched term
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns: a dataframe of articles metadata
 articles_matched <- function(patterns) {
   terms_matched(patterns) %>%
     dplyr::group_by(article_id, pattern) %>%
@@ -194,6 +319,11 @@ articles_matched <- function(patterns) {
     dplyr::select(date, pattern, articles, terms)
 }
 
+#' @title Chronogramme
+#' @name chronogram
+#' @description Compute a chronogram graphic of articles
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns: a graphic
 chronogram <- function(patterns) {
   ggplot(articles_matched(patterns), aes(date, articles)) +
     geom_bar(stat = "identity") +
@@ -201,6 +331,11 @@ chronogram <- function(patterns) {
     labs(title="Chronogramme des articles publiés dans Cybergéo", x = "Année de publication", y = "Nombre d'articles publiés")
 }
 
+#' @title Cloud of terms
+#' @name cloud
+#' @description Compute a word cloud of matched terms
+#' @param patterns: a string vector of regexp patterns to match
+#' Returns: a graphic
 cloud <- function(patterns) {
   words <- terms_matched_cloud(patterns)
   wordcloud(
@@ -228,42 +363,71 @@ cloud <- function(patterns) {
 
 ####################
 ### Juste ---
-
-#load('data/semanticnw.RData')
-# !! do not load this shit, too big for simultaneous connexions or grid will be dead a.f. very quickly
 #
 #  --  Archi for cit. nw exploration  --
 # 
+#   - data/semanticnw.RData is not loaded as huge ; replaced by sqlite
+#    -> for performance, can be fully loaded is speed is prefered over memory
 #   - load datatable for cybergeo articles ; request in local sqlite db for connections
-#   - draw the ego nw, and display info for neighbors
+#   - get the ego nw, and display info for neighbors
 #   - display semantic info : keywords, corresponding communities.
-#   - one tab with sem nw visu : check if svg viz with zoom in/out is possible to include
+#   - one tab with sem nw visu : svg viz
 # 
 # 
 
-# setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/CybergeoNetworks'))
 
 ##
 #  Notations / id conventions : vars and ids prefixed with "citation"
 
+#' ---- DATA ----
 
-# citation nw cybergeo table
+#'
+#'  citation nw cybergeo table
 load('data/citation_cybergeodata.RData')
-# kws domains dico
+
+#'
+#'  kws domains dico
 load('data/citation_kwthemdico.RData')
 
-# sqlite connection : citation nw
+#'
+#'  sqlite connection : citation nw
 citationdbcit = dbConnect(SQLite(),"data/CitationNetwork.sqlite3")
-# sqlite connection : keywords
-citationdbkws = dbConnect(SQLite(),"data/CitationKeywords.sqlite3")
-# test query
-# troubleshooting retrieving links ? seems OK, many refs do not have refs
-#dbGetQuery(db,"SELECT * FROM edges WHERE `to`='16612201304630735484';")
-#dbGetQuery(db,"SELECT COUNT(*) FROM edges;")
-#dbGetQuery(db,"SELECT * FROM edges LIMIT 10;")
 
-##
-#  load citation edges given an id
+#'
+#'  sqlite connection : keywords
+citationdbkws = dbConnect(SQLite(),"data/CitationKeywords.sqlite3")
+
+
+#' ---- GLOBALS ----
+
+#'
+#' list specific colors associated with thematics
+#'  -- SHOULD NOT BE HARDCODED --
+semanticcolors = list(rgb(204,0,255,maxColorValue=255),rgb(255,102,0,maxColorValue=255), rgb(255,102,0,maxColorValue=255),
+                      rgb(255,153,0,maxColorValue=255),rgb(0,204,102,maxColorValue=255),rgb(255,0,0,maxColorValue=255),
+                      rgb(153,153,0,maxColorValue=255),rgb(102,204,0,maxColorValue=255),rgb(0,255,255,maxColorValue=255),
+                      rgb(255,255,0,maxColorValue=255),rgb(51,102,255,maxColorValue=255),rgb(51,255,51,maxColorValue=255),
+                      rgb(0,102,0,maxColorValue=255),rgb(0,0,255,maxColorValue=255),rgb(102,51,0,maxColorValue=255)
+)
+names(semanticcolors)<-c("complex systems","health","crime",
+                         "statistical methods","remote sensing","political sciences/critical geography",
+                         "traffic modeling","microbiology","cognitive sciences",
+                         "spatial analysis","GIS","biogeography",
+                         "environnment/climate","economic geography","physical geography")
+
+
+# global vars (needed e.g. to avoid numerous db request with reactive functions)
+citationGlobalVars <- reactiveValues()
+citationGlobalVars$citationSelected = "0"
+citationGlobalVars$citationSemanticSelected = "0"
+
+
+#' ---- FUNCTIONS ----
+
+
+#'
+#' @name citationLoadEdges
+#' @description load citation edges given an reference id
 citationLoadEdges<-function(id){
   res=data.frame()
   res=rbind(res,dbGetQuery(citationdbcit,paste0("SELECT * FROM edges WHERE `from`='",id,"';")))
@@ -271,8 +435,8 @@ citationLoadEdges<-function(id){
   return(res)
 }
 
-##
-#  load neighbors keywords given an id
+#' @name  citationLoadKeywords
+#' @description load neighbors keywords given an id
 citationLoadKeywords<-function(id){
   # load edges
   toids=dbGetQuery(citationdbcit,paste0("SELECT `to` FROM edges WHERE `from`='",id,"';"))[,1]
@@ -287,12 +451,11 @@ citationLoadKeywords<-function(id){
   return(l)
 }
 
-# global vars (needed e.g. to avoid numerous db request with reactive functions)
-citationGlobalVars <- reactiveValues()
-citationGlobalVars$citationSelected = "0"
-citationGlobalVars$citationSemanticSelected = "0"
 
 
+#'
+#' @name citationVisuEgo
+#' @description visualize an ego network given edges
 citationVisuEgo<-function(edges){
   if(!is.null(edges)){
      if(nrow(edges)>0){
@@ -320,23 +483,13 @@ citationVisuEgo<-function(edges){
 }
 
 
-semanticcolors = list(rgb(204,0,255,maxColorValue=255),rgb(255,102,0,maxColorValue=255), rgb(255,102,0,maxColorValue=255),
-                   rgb(255,153,0,maxColorValue=255),rgb(0,204,102,maxColorValue=255),rgb(255,0,0,maxColorValue=255),
-                   rgb(153,153,0,maxColorValue=255),rgb(102,204,0,maxColorValue=255),rgb(0,255,255,maxColorValue=255),
-                   rgb(255,255,0,maxColorValue=255),rgb(51,102,255,maxColorValue=255),rgb(51,255,51,maxColorValue=255),
-                   rgb(0,102,0,maxColorValue=255),rgb(0,0,255,maxColorValue=255),rgb(102,51,0,maxColorValue=255)
-)
-# damn it Carl, you could have load this shit ! ^^
-names(semanticcolors)<-c("complex systems","health","crime",
-                         "statistical methods","remote sensing","political sciences/critical geography",
-                         "traffic modeling","microbiology","cognitive sciences",
-                         "spatial analysis","GIS","biogeography",
-                         "environnment/climate","economic geography","physical geography")
                       
 
+
+#'
+#' @name citationWordclouds
+#' @description plots word clouds, one for the keywords of the ref itself, the other for the provided keywords (neighborhood)
 citationWordclouds<-function(id,keywords){
-  #show(id)
-  #show(keywords)
   if(id!="0"&!is.null(keywords)){
     # at least kws for the paper, so no need to check emptyness
     par(mfrow=c(1,2))
@@ -366,7 +519,17 @@ citationWordclouds<-function(id,keywords){
 
 # plot communities ----
 
-VisuComm <- function(g, comm, vertcol, vertsize, vfacsize, edgesize, efacsize, textsize){
+
+# Description: plot the communities (result of any community detection algo, here Louvain method)
+VisuComm <- function(g, # igraph network
+                     comm, # scalar, character, name of the community
+                     vertcol, # scalar, character, vertex color 
+                     vertsize, # scalar, numeric, vertex size
+                     vfacsize, # scalar, numeric, expansion factor for vertex size
+                     edgesize, # scalar, numeric, edge width
+                     efacsize, # scalar, numeric, expansion factor for edge width
+                     textsize) # scalar, numeric, font size
+{  
   par(bg = "#4e5d6c")
   # circle layout with sampled coordinates
   oriCoords <- layout_in_circle(g)
@@ -391,10 +554,13 @@ VisuComm <- function(g, comm, vertcol, vertsize, vfacsize, edgesize, efacsize, t
 
 
 
-# plot semantic field ----
-
-VisuSem <- function(g, kw, textsizemin, textsizemax){
-  
+# Description: plot the semantic field of a selected keyword (inverse proportional distance to pseudo-chi2 distance)
+VisuSem <- function(g, # igraph network
+                    kw, # scalar, character, name of the keyword
+		    chidist, # scalar, character, name of the field storing pseudo-chi2 distance
+                    textsizemin, # scalar, numeric, minimum font size
+                    textsizemax) # scalar, numeric, maximum font sizes
+{
   # make theme empty
   theme_empty <- theme_bw() +
     theme(plot.background = element_rect(fill = "#4e5d6c"),
@@ -416,7 +582,7 @@ VisuSem <- function(g, kw, textsizemin, textsizemax){
   tabPoints <- tabPoints %>% left_join(x = ., y = tabLinks, by = c("name" = "NODES"))
   
   # compute distance from ego
-  tabPoints$DIST <- 1 / tabPoints$relresid
+  tabPoints$DIST <- 1 / tabPoints[[chidist]]
   thresRadis <- seq(0, 0.1 + max(tabPoints$DIST, na.rm = TRUE), 0.1)
   tabPoints$X <- cut(tabPoints$DIST, breaks = thresRadis, labels = thresRadis[-1], include.lowest = TRUE, right = FALSE)
   tabPoints <- tabPoints %>% group_by(X) %>% mutate(NPTS = n())
@@ -443,13 +609,7 @@ VisuSem <- function(g, kw, textsizemin, textsizemax){
 
 
 
-
-
-# Internal functions for VisuSem() ----
-
-
-# Sample x values for polar coordinates
-
+# Description: sample x values for polar coordinates for the semantic field visualization (VisuSem function)
 GetXvalues <- function(df){
   initVal <- sample(x = 0:360, size = 1, replace = FALSE)
   tempRange <- seq(initVal, initVal + 360, 360/unique(df$NPTS))
@@ -459,10 +619,11 @@ GetXvalues <- function(df){
 }
 
 
-# create semantic field network
 
-SemanticField <- function(g, kw){
-  
+# Description: create an ego subgraph for the semantic field visualization (VisuSem function)
+SemanticField <- function(g,  # igraph network
+			  kw) # scalar, character, selected keyword
+{  
   # list of neighbors
   neiNodes <- unlist(neighborhood(g, order = 1, nodes = V(g)[V(g)$name == kw], mode = "all"))
   pairedNodes <- unlist(paste(which(V(g)$name == kw), neiNodes[-1], sep = ","))
@@ -475,3 +636,6 @@ SemanticField <- function(g, kw){
   
   return(gSem)
 }
+
+
+

@@ -1,17 +1,18 @@
 
-#  functions for netowrk export
+#  functions for network construction and export
 
 library(rmongodb)
 library(igraph)
 library(dplyr)
 
 
-##
-# Gets cybergeo indexes from consolidates data and citation network
+#'
+#' @name getCybindexes
+#' @description Gets cybergeo indexes from consolidated data and citation network
 getCybindexes<-function(them_probas,cybnames,cybergeo,keyword_dico){
   cybindexes = c();cybresnames = c();iscyb=rep(FALSE,nrow(them_probas));cybid = rep(0,nrow(them_probas))
   for(cyb in cybnames){
-    show(cyb)
+    #show(cyb)
     indexes = which(names(keyword_dico)==cyb);
     id=cybergeo$id[cybergeo$SCHID==cyb]
     if(length(indexes)>0){
@@ -25,12 +26,20 @@ getCybindexes<-function(them_probas,cybnames,cybergeo,keyword_dico){
 }
 
 
-getCybDataCitNetwork<-function(){
-  
-}
 
 
-
+#'
+#' @title Community Extraction
+#' @name extractSubGraphCommunities
+#' @description Filter a graph on degree (kmin,kmax), document frequency (freqmin,freqmax) and co-occurence (edge_th)
+#'  and computes optimal communities
+#'  @param ggiant igraph; graph
+#'  @param kmin ; minimal filtering degree
+#'  @param kmax ; maximal filtering degree
+#'  @param freqmin ; minimal filtering frequency
+#'  @param freqmax ; maximal filtering frequency
+#'  @param edge_th ; edge weight threshold
+#'  
 extractSubGraphCommunities<-function(ggiant,kmin,kmax,freqmin,freqmax,edge_th){
   dd = V(ggiant)$docfreq
   d = degree(ggiant)
@@ -42,6 +51,10 @@ extractSubGraphCommunities<-function(ggiant,kmin,kmax,freqmin,freqmax,edge_th){
   return(list(gg=gg,com=com))
 }
 
+
+
+#'
+#' @description Summary of a subgraph
 summarySubGraphCommunities<-function(sub){
    gg=sub$gg;com=sub$com
    show(paste0('Vertices : ',length(V(gg))))
@@ -53,9 +66,9 @@ summarySubGraphCommunities<-function(sub){
 
 
 
-##
-# Compute thematic probability matrix
-#
+#'
+#'  @name computeThemProbas
+#'  @description Compute thematic probability matrix
 computeThemProbas<-function(gg,com,keyword_dico){
   # construct kw -> thematic dico
   thematics = list()
@@ -78,15 +91,13 @@ computeThemProbas<-function(gg,com,keyword_dico){
 
 
 
-##
-# Import coocs graph directly from nw table in mongo.
-# Kw dico is reconstructed.
-#  Similar to computeNetwork function but does not recompute cooccurrences.
-#
-#  issues : filter eth here ? and termhood/tfidf ?
-#
-importNetwork<-function(relevantcollection,kwcollection,nwcollection,edge_th,target){
-  mongo <- mongo.create(host="127.0.0.1:27017")
+#'
+#' @title Semantic Network construction
+#' @name constructSemanticNetwork
+#' @description Construct semantic coocurrence graph directly from nw table in mongo. Kw dico is reconstructed here (not that efficient in R)
+#' 
+constructSemanticNetwork<-function(relevantcollection,kwcollection,nwcollection,edge_th,target,mongohost){
+  mongo <- mongo.create(host=mongohost)
   # 
   relevant <- mongo.find.all(mongo,relevantcollection)
   dico <- mongo.find.all(mongo,kwcollection)
@@ -140,177 +151,33 @@ importNetwork<-function(relevantcollection,kwcollection,nwcollection,edge_th,tar
 
 
 
-##
-#  construct coocs graph and kw dico
-computeNetwork<-function(db,target){
-  mongo <- mongo.create()
-  relevant <-mongo.find.all(mongo,paste0(db,'.relevant'))
-  dico <- mongo.find.all(mongo,'keywords.keywords')
-  relevant = data.frame(keyword=sapply(relevant,function(d){d$keyword}),cumtermhood=sapply(relevant,function(d){d$cumtermhood}))
-  
-  srel = as.tbl(relevant)
-  srel$keyword = as.character(srel$keyword)
-  srel = srel %>% arrange(desc(cumtermhood))
-  
-  #srel = srel[1:min(kwthreshold,nrow(srel)),]
-  
-  # construct relevant dico : word -> index
-  rel = list()
-  for(i in 1:length(srel$keyword)){rel[[srel$keyword[i]]]=i}
-  
-  res=list()
-  
-  keyword_dico = list()
-  
-  for(i in 1:length(dico)){
-    if(i%%100==0){show(i)}
-    kws = unique(dico[[i]]$keywords)
-    #show(kws)
-    if(length(kws)>0){
-      kws = kws[sapply(kws,function(w){w %in% srel$keyword})]
-      keyword_dico[[dico[[i]]$id]]=kws
-    }
-  }
-  
-  keyword_dico_keys = names(keyword_dico)
-  
-  cooccs = matrix(0,nrow(srel),nrow(srel))
-  
-  for(i in 1:length(keyword_dico)){
-    if(i%%100==0){show(i)}
-    #kws=strsplit(enc2utf8(dico[i,kwCol]),";")[[1]]
-    #kws = dicoSplitFunction(dico[i,kwCol])
-    kws = keyword_dico[[i]]
-    #id=keyword_dico_keys[i]
-    #if(kwCol==1){id=kws[1];kws=kws[-1];}else{id=dico[i,1]}
-    if(length(kws)>1){
-      for(k in 1:(length(kws)-1)){
-        for(l in (k+1):(length(kws))){
-          if(nchar(kws[k])>0&nchar(kws[l])>0){
-            cooccs[rel[[kws[k]]],rel[[kws[l]]]]=cooccs[rel[[kws[k]]],rel[[kws[l]]]]+1
-          }
-        }
-      }
-    }
-    #keyword_dico[[id]]=kws
-  }
-  
-  colnames(cooccs) = names(unlist(rel))
-  #g = graph_from_adjacency_matrix(adjacency,weighted=TRUE,mode="undirected")
-  
-  res$g=g
-  res$keyword_dico=keyword_dico
-  
-  save(res,file=paste0(target,'.RData'))
-  
-}
+
+# DEPRECATED
+#importDicoCsv<-function(kwFile){
+#  res=list()
+#  relevant = read.table(paste0("../Semantic/res/cybergeo/kw_",kwFile,".csv"),header=FALSE,sep=";",stringsAsFactors = FALSE)
+#  colnames(relevant)=c("keyword","cumtermhood")
+#  dico = scan(paste0("../Semantic/res/cybergeo/relevantDico_kwLimit",kwFile,".csv"),what="character",sep="\n")
+#  relevant$keyword=sapply(relevant$keyword,FUN=enc2utf8)
+#  res$relevant=relevant
+#  res$dico=dico
+#  return(res)
+#}
 
 
 
-
-importDicoCsv<-function(kwFile){
-  res=list()
-  relevant = read.table(paste0("../Semantic/res/cybergeo/kw_",kwFile,".csv"),header=FALSE,sep=";",stringsAsFactors = FALSE)
-  colnames(relevant)=c("keyword","cumtermhood")
-  dico = scan(paste0("../Semantic/res/cybergeo/relevantDico_kwLimit",kwFile,".csv"),what="character",sep="\n")
-  relevant$keyword=sapply(relevant$keyword,FUN=enc2utf8)
-  res$relevant=relevant
-  res$dico=dico
-  return(res)
-}
-
-
-# filter nodes : grep -v -f file for nodes names
+#'
+#' @title Graph Filtering
+#' @name filterGraph
+#' @description filter nodes : grep -v -f file for nodes names
 filterGraph<-function(graph,file){
   words<-unlist(read.csv(file,stringsAsFactors=FALSE,header=FALSE))
   g=graph
   for(w in 1:length(words)){
-    #show(words[w])   
     g=induced.subgraph(g,which(V(g)$name!=words[w]))
-    #show(length(V(g)))
   }
   return(g)
 }
 
-
-
-##
-#  generic function to create and export nw
-#  also compute kws dictionary (used later in originality computation)
-exportNetwork<-function(data,kwthreshold = 2000,linkthreshold =15,connex=TRUE,export=FALSE,exportPrefix="",filterFile="",kwFile="2000"){
-  
-  relevant = data$relevant
-  dico = data$dico
-  # dico can be of two types : output of a scanned pseudo-csv or structured output of sqlite table
-  # must take that into account
-  kwCol=2
-  if(is.null(dim(dico))){dico=data.frame(keywords=dico);kwCol=1}
-  # dirty as keep id in kws, but needed for perf to not split strings twice
-  
-  srel = as.tbl(relevant) %>% arrange(desc(cumtermhood))
-  if(filterFile!=""){
-    forbidden = read.csv(filterFile)
-    srel = srel %>% filter(!(keyword %in% forbidden))
-  }
-  
-  
-  srel = srel[1:min(kwthreshold,nrow(srel)),]
-  
-  # construct relevant dico : word -> index
-  rel = list()
-  for(i in 1:length(srel$keyword)){rel[[srel$keyword[i]]]=i}
-  
-  res=list()
-  
-  keyword_dico = list()
-  
-  cooccs = matrix(0,nrow(srel),nrow(srel))
-  
-  for(i in 1:nrow(dico)){
-    if(i%%100==0){show(i)}
-    kws=strsplit(enc2utf8(dico[i,kwCol]),";")[[1]]
-    id=""
-    if(kwCol==1){id=kws[1];kws=kws[-1];}else{id=dico[i,1]}
-    if(length(kws)>1){
-      for(k in 1:(length(kws)-1)){
-        for(l in (k+1):(length(kws))){
-          if(nchar(kws[k])>0&nchar(kws[l])>0){
-            cooccs[rel[[kws[k]]],rel[[kws[l]]]]=cooccs[rel[[kws[k]]],rel[[kws[l]]]]+1
-          }
-        }
-      }
-    }
-    keyword_dico[[id]]=kws
-  }
-  
-  colnames(cooccs) = names(unlist(rel))
-  # filter edges
-  adjacency=cooccs;adjacency[adjacency<linkthreshold]=0
-  g = graph_from_adjacency_matrix(adjacency,weighted=TRUE,mode="undirected")
-  
-  
-  # keep giant component
-  if(connex==TRUE){
-    clust = clusters(g);cmax = which(clust$csize==max(clust$csize))
-    g = induced.subgraph(g,which(clust$membership==cmax))
-  }
-  
-  if(export==TRUE){
-    if(kwCol==1){
-    filename=paste0(exportPrefix,"_kw",kwFile,"_kwth",kwthreshold,"_th",linkthreshold,"_connex",connex)
-    }else{
-      filename=paste0(exportPrefix,"_kwth",kwthreshold,"_th",linkthreshold,"_connex",connex)
-    }
-    if(filterFile!=""){filename=paste0(filename,"_filtered")}
-    filename=paste0(filename,".gml")
-    write.graph(g,filename,"gml")
-  }
-  
-  res=list()
-  res$g=g
-  res$keyword_dico=keyword_dico
-  
-  return(res)
-}
 
 
