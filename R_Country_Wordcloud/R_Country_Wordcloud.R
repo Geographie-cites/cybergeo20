@@ -18,6 +18,8 @@ path = "/Users/clementinecottineau/Documents/cybergeo20/R_Country_Wordcloud/"
 #               layer = "FRA_adm1", encoding="utf8")
 b
 #plot(world)
+world = readOGR(dsn="data/world_withZoom.shp",
+                layer = "world_withZoom", encoding="utf8", verbose = F)
 
 REG = world
  
@@ -203,6 +205,7 @@ cybterms5
 
 
 authors = paste0("A_", countries)
+
 studies = paste0("S_", countries)
 
 summary(cybterms4$countries)
@@ -228,9 +231,11 @@ d.themes = dist(themesScaled)
 cah.themes = hclust(d.themes, method = "ward.D2")
 groups_Country = cutree(cah.themes, k=numberOfGroups)
 cahRes = data.frame("ID" = themes_By_country_bf[,1], "group" = groups_Country)
+cahRes$groupColour = as.character(cut(cahRes$group, breaks = c(1:groupsOfCountries, groupsOfCountries+1),
+                                      labels = paletteCybergeo[1:groupsOfCountries],include.lowest = TRUE,right = FALSE))
 REG=world
 REG@data = data.frame(REG@data, cahRes[match(REG@data$CNTR_ID,cahRes$ID), ])
-plot(REG, col=REG@data$group)
+plot(REG, col=REG@data$groupColour)
 }
 stat.comp<-  function( x,y){
   K <-length(unique(y))
