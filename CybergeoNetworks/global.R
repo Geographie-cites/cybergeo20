@@ -435,6 +435,7 @@ citationLoadEdges<-function(id){
   return(res)
 }
 
+#'
 #' @name  citationLoadKeywords
 #' @description load neighbors keywords given an id
 citationLoadKeywords<-function(id){
@@ -507,8 +508,6 @@ citationWordclouds<-function(id,keywords){
     )
   }
 }
-
-
 
 
 

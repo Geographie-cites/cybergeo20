@@ -6,6 +6,8 @@ library(dplyr)
 
 setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw'))
 
+citnwfile=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/citationNetwork.RData')
+load(citnwfile)
 
 citingcyb=c();citedbycyb=c()
 for(i in 1:length(cybnodes)){
@@ -23,9 +25,33 @@ for(i in 1:length(citedbycyb)){
 # intersections ! -> USE IDS : does not work
 #  sort and setdiff ?
 
+###
+# export core
+
+set.seed(0)
+
+raw = induced_subgraph(gcitation,which(components(gcitation)$membership==1))
+V(raw)$reduced_title = sapply(V(raw)$title,function(s){paste0(substr(s,1,30),"...")})
+V(raw)$reduced_title = ifelse(degree(raw)>50,V(raw)$reduced_title,rep("",vcount(raw)))
+
+# subsampling
+#core = induced_subgraph(raw,sample.int(n = vcount(raw),size=floor(vcount(raw)/2),replace = F))
+core = raw
+
+while(min(degree(core))<=1){
+  show(min(degree(core)))
+  core = induced_subgraph(core,which(degree(core)>1))
+}
+#write_graph(raw,file=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/raw.gml'),format = 'gml')
+V(core)$title=rep("",vcount(core));V(core)$reduced_title=rep("",vcount(core))
+#write_graph(core,file=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/core_subsampleseed0_vprop0.5_notitles.gml'),format = 'gml')
+write_graph(core,file=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/core_notitles.gml'),format = 'gml')
 
 
-
+A = as.matrix(as_adjacency_matrix(core))
+M = A+t(A)
+undirected_rawcore = graph_from_adjacency_matrix(M,mode="undirected")
+com = cluster_louvain(undirected_rawcore)
 
 # impact factor
 #V(g)$cyb[is.na(V(g)$cyb)]=0

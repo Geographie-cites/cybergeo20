@@ -1,7 +1,7 @@
 
 ##
 
-setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Models/Analysis'))
+setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Models/Analysis'))
 
 source('networkConstruction.R')
 source('citationNWConstruction.R')
@@ -11,12 +11,13 @@ source('citationNWConstruction.R')
 #####
 ## Construct the citation nw from raw data
 #  csv -> RData
-citnwedgefile = paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw/full_edges.csv')
-citnwnodefile = paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw/full_nodes.csv')
-citnwoutput=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw/citationNetwork.RData')
+citnwedgefile = paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/full_edges.csv')
+citnwnodefile = paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/full_nodes.csv')
+citnwoutput=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/citationNetwork.RData')
 
 constructCitationNetwork(citnwedgefile,citnwnodefile,citnwoutput)
 
+# load(citnwoutput)
 
 
 ####
