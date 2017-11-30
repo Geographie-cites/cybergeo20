@@ -17,6 +17,27 @@ citnwoutput=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwo
 
 constructCitationNetwork(citnwedgefile,citnwnodefile,citnwoutput)
 
+
+cybnodes = V(gcitation)[V(gcitation)$name%in%cybnames]
+citingcyb=c();citedbycyb=c()
+for(i in 1:length(cybnodes)){
+  if(i %% 10==0){show(i)}
+  citingcyb = append(citingcyb,neighbors(gcitation,v=cybnodes[i],mode="in")$name)
+  citedbycyb = append(citedbycyb,neighbors(gcitation,v=cybnodes[i],mode="out")$name)
+}
+
+citingcited=c()
+for(i in 1:length(citedbycyb)){ 
+  if(i %% 10==0){show(i)}
+  citingcited = append(citingcited,neighbors(gcitation,v=citedbycyb[i],mode="in")$name)
+}
+
+save(cybnodes,citingcyb,citedbycyb,citingcited,paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/citationNetworkStats.RData'))
+
+
+
+
+
 # load(citnwoutput)
 
 
@@ -43,19 +64,43 @@ filters=c('data/filter.csv','data/french.csv')
 freqmaxvals=c(5000,10000,20000)
 freqminvals=c(50,75,100,125,200)
 kmaxvals=seq(from=300,to=1500,by=50)
-ethvals=seq(from=140,to=300,by=20)
-outputfile=paste0('sensitivity/',db,'_ext_local.RData')
+ethvals=seq(from=50,to=200,by=10)
+outputfile=paste0('sensitivity/',db,'_ext_local_2.RData')
 
 networkSensitivity(db,filters,freqmaxvals,freqminvals,kmaxvals,ethvals,outputfile)
 
-load('sensitivity/relevant_full_50000_eth50_nonfiltdico_ext_local.RData')
+#load('sensitivity/relevant_full_50000_eth50_nonfiltdico_ext_local.RData')
+load(outputfile)
 names(d)[ncol(d)-2]="balance"
-g = ggplot(d) + scale_fill_gradient(low="yellow",high="red")#+ geom_raster(hjust = 0, vjust = 0) 
+
+library(ggplot2)
+source(paste0(Sys.getenv('CN_HOME'),'/Models/Utils/R/plots.R'))
+figdir=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Results/Networks/Sensitivity/relevant_full50000_eth50/')
+
+freqmin=50;freqmax=10000
+g = ggplot(d[d$freqmin==freqmin&d$freqmax==freqmax,]) + scale_fill_gradient(low="yellow",high="red")#+ geom_raster(hjust = 0, vjust = 0) 
 plots=list()
-for(indic in c("modularity","communities","components","vertices","density","balance")){
-  plots[[indic]] = g+geom_raster(aes_string("degree_max","edge_th",fill=indic))+facet_grid(freqmax~freqmin)
+for(indic in c("modularity","communities","vertices","balance")){#,"components","density")){
+  #plots[[indic]] = g+geom_raster(aes_string("degree_max","edge_th",fill=indic))+xlab(expression(k[max]))+ylab(expression(theta[w]))#+facet_grid(freqmax~freqmin)
+  g+geom_raster(aes_string("degree_max","edge_th",fill=indic))+xlab(expression(k[max]))+ylab(expression(theta[w]))+stdtheme#+facet_grid(freqmax~freqmin)
+  ggsave(file=paste0(figdir,'sensitivity_',indic,'_freqmin',freqmin,'_freqmax',freqmax,'.png'),width=20,height=18,units = 'cm')
 }
-multiplot(plotlist = plots,cols=3)
+#multiplot(plotlist = plots,cols=2)
+
+g = ggplot(d,aes(x=edge_th,y=modularity,color=degree_max,group=degree_max))
+g+geom_line()+xlab(expression(theta[w]))+facet_grid(freqmax~freqmin)+stdtheme
+
+g = ggplot(d,aes(x=edge_th,y=vertices,color=degree_max,group=degree_max))
+g+geom_line()+xlab(expression(theta[w]))+facet_grid(freqmax~freqmin)+stdtheme
+
+g = ggplot(d,aes(x=modularity,y=vertices,color=edge_th))
+g+geom_point()+facet_grid(freqmax~freqmin)+stdtheme
+
+g = ggplot(d[d$freqmin==50&d$freqmax==10000,],aes(x=components,y=modularity,color=degree_max))
+g+geom_point()+geom_point(aes(x=d$components[d$freqmin==50&d$freqmax==10000&d$edge_th==100&d$degree_max==1200],y=d$modularity[d$freqmin==50&d$freqmax==10000&d$edge_th==100&d$degree_max==1200]),col='red')+stdtheme
+
+
+
 
 
 # -> etablish the optimal parameters

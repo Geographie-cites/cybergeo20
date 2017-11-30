@@ -5,6 +5,8 @@
 # export thematics for Clem mappping
 
 
+library(igraph)
+
 
 #'
 #'
@@ -28,7 +30,8 @@ exportData <- function(nkws,eth_0,eth,kmin,kmax,freqmin,freqmax,eth){
   # select existing thematics
   export_probas = them_probas[,!is.na(names(thematics))]
   colnames(export_probas) = names(thematics)[!is.na(names(thematics))]
-  themnames=colnames(export_probas)[2:ncol(export_probas)]
+  
+  #themnames=colnames(export_probas)[2:ncol(export_probas)]
   
   
   
@@ -62,8 +65,8 @@ exportData <- function(nkws,eth_0,eth,kmin,kmax,freqmin,freqmax,eth){
   # -> load from consolidated db
   #export_probas = cbind(data.frame(export_probas),as.character(names(keyword_dico)))
   #colnames(export_probas)[13]="ID"
-  load(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw/citationNetwork.RData'))
-  cybergeo <- read.csv(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/Data/raw/cybergeo.csv'),colClasses = c('integer',rep('character',25)))
+  load(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/citationNetwork.RData'))
+  cybergeo <- read.csv(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/Data/raw/cybergeo.csv'),colClasses = c('integer',rep('character',25)))
   cyb = getCybindexes(them_probas,cybnames,cybergeo,keyword_dico)
   cybid=cyb$cybid;iscyb=cyb$iscyb
   export_probas = cbind(cybid,data.frame(export_probas))

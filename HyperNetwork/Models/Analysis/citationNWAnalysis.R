@@ -3,24 +3,14 @@
 
 library(igraph)
 library(dplyr)
+library(Matrix)
 
 setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw'))
 
 citnwfile=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/citationNetwork.RData')
 load(citnwfile)
 
-citingcyb=c();citedbycyb=c()
-for(i in 1:length(cybnodes)){
-  if(i %% 10==0){show(i)}
-  citingcyb = append(citingcyb,neighbors(gcitation,v=cybnodes[i],mode="in")$name)
-  citedbycyb = append(citedbycyb,neighbors(gcitation,v=cybnodes[i],mode="out")$name)
-}
-
-citingcited=c()
-for(i in 1:length(citedbycyb)){ 
-  if(i %% 10==0){show(i)}
-  citingcited = append(citingcited,neighbors(gcitation,v=citedbycyb[i],mode="in")$name)
-}
+load(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/citationNetworkStats.RData'))
 
 # intersections ! -> USE IDS : does not work
 #  sort and setdiff ?
@@ -32,26 +22,74 @@ set.seed(0)
 
 raw = induced_subgraph(gcitation,which(components(gcitation)$membership==1))
 V(raw)$reduced_title = sapply(V(raw)$title,function(s){paste0(substr(s,1,30),"...")})
-V(raw)$reduced_title = ifelse(degree(raw)>50,V(raw)$reduced_title,rep("",vcount(raw)))
+V(raw)$reduced_title = ifelse(degree(raw)>1000,V(raw)$reduced_title,rep("",vcount(raw)))
 
 # subsampling
 #core = induced_subgraph(raw,sample.int(n = vcount(raw),size=floor(vcount(raw)/2),replace = F))
 core = raw
+#core = delete_vertex_attr(core,'title')
 
 while(min(degree(core))<=1){
   show(min(degree(core)))
   core = induced_subgraph(core,which(degree(core)>1))
 }
 #write_graph(raw,file=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/raw.gml'),format = 'gml')
-V(core)$title=rep("",vcount(core));V(core)$reduced_title=rep("",vcount(core))
+
 #write_graph(core,file=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/core_subsampleseed0_vprop0.5_notitles.gml'),format = 'gml')
-write_graph(core,file=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/core_notitles.gml'),format = 'gml')
 
+#V(core)$title=rep("",vcount(core));V(core)$reduced_title=rep("",vcount(core))
+#write_graph(core,file=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/core_notitles.gml'),format = 'gml')
 
-A = as.matrix(as_adjacency_matrix(core))
-M = A+t(A)
+#V(core)$reduced_title[V(core)$reduced_title!=""]
+#write_graph(core,file=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/core_titlesdeg1000.gml'),format = 'gml')
+
+citationcore = core
+
+A = as_adjacency_matrix(core,sparse = T)
+M = A+Matrix::t(A)
 undirected_rawcore = graph_from_adjacency_matrix(M,mode="undirected")
+
+set.seed(0)
 com = cluster_louvain(undirected_rawcore)
+
+d=degree(citationcore,mode='in')
+for(c in c(17,3,22)){#unique(com$membership)){
+  show(paste0("Community ",c, " ; corpus prop ",100*length(which(com$membership==c))/vcount(citationcore)))
+  #show(paste0("Size ",length(which(com$membership==c))))
+  currentd=d[com$membership==c];dth=sort(currentd,decreasing = T)[20]
+  show(data.frame(titles=V(citationcore)$title[com$membership==c&d>dth],degree=d[com$membership==c&d>dth]))
+  #show(V(rawcore)$title[com$membership==c])
+}
+
+#citcomnames=list(
+#  '24'='Traffic','10'="Complex Networks",'16'="Ecology",'17'='Critical Geography','18'='Sociology',
+#  '6'='GIS','3'='Spatial Analysis','14'='ABMS','9'='Hydrology','21'='Socio-ecology','13'='Urban Networks',
+#  '23'='Urban Simulation','2'='Urban Studies','22'='Economic Geography','28'='Environment',
+#  '1'='Computational Social Science','5'='Accessibility/Land-Use','26'='Urban Ecology','4'='Tourism',
+#  '11'='Time Geography'
+#)# too detailed
+citcomnames=list(
+ '10'="Complex Networks",'16'="Ecology",'17'='Social Geography','18'='Sociology',
+ '6'='GIS','3'='Spatial Analysis','14'='ABMS','21'='Socio-ecology','13'='Urban Networks',
+'23'='Urban Simulation','2'='Urban Studies','22'='Economic Geography','5'='Accessibility/Land-Use',
+'11'='Time Geography'
+  )
+
+
+V(citationcore)$citmemb = com$membership
+citclass =  sapply(as.character(V(citationcore)$citmemb),function(n){ifelse(n%in%names(citcomnames),unlist(citcomnames[n]),'NA')})
+V(citationcore)$citclass = citclass
+
+#save(citationcore,citcomnames,com,undirected_rawcore,file=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/citationNetworkComs.RData'))
+# 
+load(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/citationNetworkComs.RData'))
+
+
+
+##############
+##############
+
+
 
 # impact factor
 #V(g)$cyb[is.na(V(g)$cyb)]=0
@@ -160,8 +198,8 @@ clics = cliques(s,min=4)
 sc = induced.subgraph(s,V(s)[clics[[1]]])
 plot(sc,vertex.label=V(sc)$title)
 
-v1 = V(g)[V(g)$title=="Dynamique de la mangrove de l’estuaire du Saloum (Sénégal) entre 1972 et 2010"]
-v2 = V(g)[V(g)$title=="Les conceptions initiales des élèves turcs de CM2 relatives aux séismes"]
+v1 = V(g)[V(g)$title=="Dynamique de la mangrove de l???estuaire du Saloum (S??n??gal) entre 1972 et 2010"]
+v2 = V(g)[V(g)$title=="Les conceptions initiales des ??l??ves turcs de CM2 relatives aux s??ismes"]
 p = get.shortest.paths(g,from=v1,to=v2,mode="all")$vpath[[1]]
 V(g)$title[p]
 

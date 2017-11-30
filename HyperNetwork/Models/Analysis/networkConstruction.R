@@ -1,7 +1,7 @@
 
 #  functions for network construction and export
 
-library(rmongodb)
+#library(rmongodb)
 library(igraph)
 library(dplyr)
 

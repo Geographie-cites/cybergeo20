@@ -4,8 +4,17 @@
 library(Matrix)
 library(ggplot2)
 
-probas = export_probas[,2:ncol(export_probas)]
+source(paste0(Sys.getenv('CN_HOME'),'/Models/Utils/R/plots.R'))
 
+figdir=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Results/Interdisc/');dir.create(figdir)
+
+citcomnameslabs = c("ABMS","Accessibility\nLand-Use","Complex\nNetworks","Ecology","Economic\nGeography","GIS","Social\nGeography",
+                    "Socio-ecology","Sociology","Spatial\nAnalysis","Time\nGeography",
+                    "Urban\nNetworks","Urban\nSimulation","Urban\nStudies")
+
+
+probas = export_probas[,2:ncol(export_probas)]
+rownames(probas)<-names(keyword_dico)
 
 ##
 # publication-level originality
@@ -15,8 +24,7 @@ originalities=apply(probas,MARGIN = 1,FUN = function(r){if(sum(r)==0){return(0)}
 dat=data.frame(originality=originalities,cyb=iscyb)
 sdat=as.tbl(dat)%>%group_by(cyb)%>%summarise(mean=mean(originality))
 gp=ggplot(dat)
-gp+geom_density(aes(x=originality, fill=cyb),alpha=.3)+geom_vline(data=sdat, aes(xintercept=mean,  colour=cyb),linetype="dashed", size=1)+
-  geom_density(data=data.frame(null=borig),aes(x=null),linetype="dashed")
+gp+geom_density(aes(x=originality, fill=cyb),alpha=.3)+geom_vline(data=sdat, aes(xintercept=mean,  colour=cyb),linetype="dashed", size=1)
 
 
 ## null model
@@ -42,6 +50,62 @@ for(b in 1:bsize){
 dat=data.frame(originality=c(originalities,borig),type=c(rep("pubs",length(originalities)),rep("null",length(borig))))
 sdat=as.tbl(dat)%>%group_by(type)%>%summarise(mean=mean(originality))  
 ggplot(dat, aes(x=originality, fill=type)) + geom_density(alpha=.3)+geom_vline(data=sdat, aes(xintercept=mean,  colour=type),linetype="dashed", size=1)
+
+
+
+## by cit. class
+#citclass=sapply(rownames(probas),function(n){ifelse(n%in%V(citationcore)$name,V(citationcore)$citclass[n],'NA')})
+vertices = V(citationcore)[intersect(rownames(probas),V(citationcore)$name)]
+originalities=apply(probas[vertices$name,],MARGIN = 1,FUN = function(r){if(sum(r)==0){return(0)}else{return(1 - sum(r^2))}})
+
+dat=data.frame(originality=originalities[vertices$citclass!='NA'],citclass=vertices$citclass[vertices$citclass!='NA'])
+sdat=as.tbl(dat)%>%group_by(citclass)%>%summarise(mean=mean(originality))
+gp=ggplot(dat,aes(x=originality, color=citclass))
+gp+geom_density()+geom_vline(data=sdat, aes(xintercept=mean,  colour=citclass),linetype="dashed", size=1)+scale_color_discrete(name='Citation class')+stdtheme
+ggsave(paste0(figdir,'originalities_citclass.png'),width=30,height=20,units='cm')
+
+
+
+###########
+## compositions
+
+selectedsem = colnames(probas)
+subprobas=probas[vertices$name,]
+  
+compos=c();cit=c();sem=c()
+for(citclass in citcomnames){
+  show(citclass);
+  currentprobas=subprobas[vertices$citclass==citclass,selectedsem];show(dim(currentprobas))
+  compos=append(compos,colSums(currentprobas))
+  cit=append(cit,rep(citclass,length(selectedsem)));sem=append(sem,selectedsem)
+}
+
+dd=data.frame(citclass=cit,semclass=sem,compo=compos)
+
+g=ggplot(dd,aes(x=citclass,y=compo,fill=semclass))
+g+geom_col()+xlab('Citation class')+ylab('Composition')+scale_colour_discrete(name='Semantic')#+stdtheme
+ggsave(file=paste0(figdir,'compos.png'),width=20,height=10,units = 'cm')
+
+# same with proportions
+for(citclass in unique(dd$citclass)){
+  dd$compo[dd$citclass==citclass]=dd$compo[dd$citclass==citclass]/sum(dd$compo[dd$citclass==citclass])
+}
+g=ggplot(dd,aes(x=as.character(citclass),y=compo,fill=semclass))
+g+geom_col()+xlab('Citation class')+ylab('Proportion')+stdtheme+scale_fill_discrete(name='Semantic class')+scale_x_discrete(labels=citcomnameslabs)
+ggsave(file=paste0(figdir,'compo_proportion.png'),width=55,height=25,units = 'cm')
+
+
+for(semclass in unique(dd$semclass)){
+  dd$compo[dd$semclass==semclass]=(dd$compo[dd$semclass==semclass]-min(dd$compo[dd$semclass==semclass]))/(max(dd$compo[dd$semclass==semclass])-min(dd$compo[dd$semclass==semclass]))
+}
+for(citclass in unique(dd$citclass)){
+  dd$compo[dd$citclass==citclass]=dd$compo[dd$citclass==citclass]/sum(dd$compo[dd$citclass==citclass])
+}
+g=ggplot(dd,aes(x=citclass,y=compo,fill=semclass))
+g+geom_col()+xlab('Citation class')+ylab('Proportion')+scale_colour_discrete(name='Semantic')#+stdtheme
+ggsave(file=paste0(figdir,'compo_proportion.png'),width=20,height=10,units = 'cm')
+
+
 
 
 
