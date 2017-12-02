@@ -1,5 +1,20 @@
 
 
+directedmodularity<-function(membership,adjacency){
+  m=sum(adjacency)
+  kout=rowSums(adjacency);kin=colSums(adjacency)
+  res = 0;k=length(unique(membership))
+  for(c in unique(membership)){
+    #if(c%%100==0){show(c/k)}
+    inds=which(membership==c)
+    res = res + sum(adjacency[inds,inds]) - sum(kin[inds])*sum(kout[inds])/m 
+    gc()
+  }
+  return(res/m)
+}
+
+
+
 
 corrMat <- function(p1,p2){
   ids = intersect(rownames(p1),rownames(p2))

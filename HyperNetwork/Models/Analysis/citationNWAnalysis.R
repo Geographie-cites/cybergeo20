@@ -5,7 +5,7 @@ library(igraph)
 library(dplyr)
 library(Matrix)
 
-setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/cybergeo20/HyperNetwork/Data/nw'))
+setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Models/Analysis'))
 
 citnwfile=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/citationNetwork.RData')
 load(citnwfile)
@@ -29,6 +29,10 @@ V(raw)$reduced_title = ifelse(degree(raw)>1000,V(raw)$reduced_title,rep("",vcoun
 core = raw
 #core = delete_vertex_attr(core,'title')
 
+#core_full = induced_subgraph(core,which(degree(core,mode="in")>1));V(core_full)$title=rep("",vcount(core_full));
+#write_graph(core_full,file=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/core_full.gml'),format = 'gml')
+
+
 while(min(degree(core))<=1){
   show(min(degree(core)))
   core = induced_subgraph(core,which(degree(core)>1))
@@ -49,14 +53,32 @@ A = as_adjacency_matrix(core,sparse = T)
 M = A+Matrix::t(A)
 undirected_rawcore = graph_from_adjacency_matrix(M,mode="undirected")
 
+source('corrs.R')
+
+
 set.seed(0)
 com = cluster_louvain(undirected_rawcore)
 
+directedmodularity(com$membership,A)
+
+nreps = 100
+mods = c()
+for(i in 1:nreps){
+  show(i)
+  mods=append(mods,directedmodularity(com$membership,A[sample.int(nrow(A),nrow(A),replace = F),sample.int(ncol(A),ncol(A),replace = F)]))
+}
+show(paste0(mean(mods)," +- ",sd(mods)))
+
+
+
+
+## content
+
 d=degree(citationcore,mode='in')
-for(c in c(17,3,22)){#unique(com$membership)){
+for(c in unique(com$membership)){#  c(17,3,22)
   show(paste0("Community ",c, " ; corpus prop ",100*length(which(com$membership==c))/vcount(citationcore)))
   #show(paste0("Size ",length(which(com$membership==c))))
-  currentd=d[com$membership==c];dth=sort(currentd,decreasing = T)[20]
+  currentd=d[com$membership==c];dth=sort(currentd,decreasing = T)[5]
   show(data.frame(titles=V(citationcore)$title[com$membership==c&d>dth],degree=d[com$membership==c&d>dth]))
   #show(V(rawcore)$title[com$membership==c])
 }
@@ -110,9 +132,12 @@ title(main="rank-citations,alpha = (-0.01,-1.56,-0.75)")
 
 ##
 # degree distrib for all graph
-d = degree(g)
+d = degree(gcitation)
 # -> same as above
 
+mean(V(gcitation)$year[d<10&V(gcitation)$year>0])
+mean(V(gcitation)$year[d>1000&V(gcitation)$year>0])
+mean(V(gcitation)$year[d<1000&d>10&V(gcitation)$year>0])
 
 # no strong cluster -> necessary because of time constraint
 
