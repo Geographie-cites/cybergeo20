@@ -61,7 +61,7 @@ originalities=apply(probas[vertices$name,],MARGIN = 1,FUN = function(r){if(sum(r
 dat=data.frame(originality=originalities[vertices$citclass!='NA'],citclass=vertices$citclass[vertices$citclass!='NA'])
 sdat=as.tbl(dat)%>%group_by(citclass)%>%summarise(mean=mean(originality))
 gp=ggplot(dat,aes(x=originality, color=citclass))
-gp+geom_density()+geom_vline(data=sdat, aes(xintercept=mean,  colour=citclass),linetype="dashed", size=1)+scale_color_discrete(name='Citation class')+stdtheme
+gp+geom_density()+geom_vline(data=sdat, aes(xintercept=mean,  colour=citclass),linetype="dashed", size=1)+xlab("Semantic originality")+scale_color_discrete(name='Citation class')+stdtheme
 ggsave(paste0(figdir,'originalities_citclass.png'),width=30,height=20,units='cm')
 
 
@@ -107,6 +107,45 @@ ggsave(file=paste0(figdir,'compo_proportion.png'),width=20,height=10,units = 'cm
 
 
 
+#####
+## correlations
+
+
+source('corrs.R')
+
+citprobas = Matrix(0,nrow=vcount(citationcore),ncol=length(unique(V(citationcore)$citclass)))
+colnames(citprobas)<-unique(V(citationcore)$citclass);rownames(citprobas)<-V(citationcore)$name
+for(citclass in unique(V(citationcore)$citclass)){
+  #show(length(which(V(citationcore)$citclass==citclass)))
+  citprobas[V(citationcore)$name[which(V(citationcore)$citclass==citclass)],citclass]=1
+}
+
+rho = corrMat(probas,citprobas)
+mean(abs(rho))
+
+
+##
+# citation diversity
+
+citadjacency = get.adjacency(citationcore,sparse=TRUE)#[vertices$name,vertices$name]
+
+citprobas = Matrix(0,nrow=vcount(citationcore),ncol=length(unique(V(citationcore)$citclass)))
+colnames(citprobas)<-unique(V(citationcore)$citclass);rownames(citprobas)<-V(citationcore)$name
+for(citclass in unique(V(citationcore)$citclass)){
+  show(citclass)
+  citprobas[,citclass]=colSums(citadjacency[V(citationcore)$name[V(citationcore)$citclass==citclass],])
+}
+m=Diagonal(nrow(citprobas),1/rowSums(citprobas))
+citprobas=m%*%citprobas
+
+subprobas = citprobas[rowSums(citprobas)>0,]
+originalities=apply(subprobas,MARGIN = 1,FUN = function(r){if(sum(r)==0){return(0)}else{return(1 - sum(r^2))}})
+citclass=V(citationcore)$citclass[rowSums(citprobas)>0]
+dat=data.frame(originality=originalities[citclass!='NA'],citclass=citclass[citclass!='NA'])
+sdat=as.tbl(dat)%>%group_by(citclass)%>%summarise(mean=mean(originality))
+gp=ggplot(dat,aes(x=originality, color=citclass))
+gp+geom_density()+geom_vline(data=sdat, aes(xintercept=mean,  colour=citclass),linetype="dashed", size=1)+xlab("Citation originality")+scale_color_discrete(name='Citation class')+stdtheme
+ggsave(paste0(figdir,'citation_originalities_citclass.png'),width=30,height=20,units='cm')
 
 
 ##

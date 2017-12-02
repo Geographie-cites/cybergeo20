@@ -1,0 +1,8 @@
+*.pyc
+
+.DS_Store
+.texpadtmp
+
+.Rhistory
+
+Docs
