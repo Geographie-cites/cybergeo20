@@ -100,6 +100,7 @@ g = ggplot(d[d$freqmin==50&d$freqmax==10000,],aes(x=components,y=modularity,colo
 g+geom_point()+geom_point(aes(x=d$components[d$freqmin==50&d$freqmax==10000&d$edge_th==100&d$degree_max==1200],y=d$modularity[d$freqmin==50&d$freqmax==10000&d$edge_th==100&d$degree_max==1200]),col='red')+stdtheme
 
 
+d[d$freqmin==50&d$freqmax==10000&d$edge_th==100&d$degree_max==1200,]
 
 
 

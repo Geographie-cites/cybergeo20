@@ -122,7 +122,9 @@ for(citclass in unique(V(citationcore)$citclass)){
 
 rho = corrMat(probas,citprobas)
 mean(abs(rho))
-
+summary(as.numeric(rho[,2:ncol(rho)]))
+summary(as.numeric(abs(rho)))
+quantile(as.numeric(rho[,2:ncol(rho)]),(1:10)/10)
 
 ##
 # citation diversity

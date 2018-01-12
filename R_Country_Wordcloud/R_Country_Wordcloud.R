@@ -14,12 +14,12 @@ Years = 1996:2015
 
 
 path = "/Users/clementinecottineau/Documents/cybergeo20/R_Country_Wordcloud/"
-# REG = readOGR(dsn=paste(path, "FRA_adm/FRA_adm1.shp", sep=""),
+#REG = readOGR(dsn=paste(path, "FRA_adm/FRA_adm1.shp", sep=""),
 #               layer = "FRA_adm1", encoding="utf8")
-b
+
 #plot(world)
-world = readOGR(dsn="data/world_withZoom.shp",
-                layer = "world_withZoom", encoding="utf8", verbose = F)
+world = readOGR(dsn=".",layer = "world_withZoom", encoding="utf8", verbose = F)
+#world = readOGR(dsn="world",layer = "world", encoding="utf8", verbose = F)
 
 REG = world
  
@@ -91,7 +91,7 @@ for(j in 1:16){
 # articlesToSave$textauthor2 = NULL 
 # write.csv(articlesToSave, "/Users/clementinecottineau/Documents/cybergeo20/R_Country_Wordcloud/articles_Contingency.csv")
 
-articles = read.csv("/Users/clementinecottineau/Documents/cybergeo20/R_Country_Wordcloud/articles_Contingency.csv", sep=",", dec=".")
+articles = read.csv("articles_Contingency.csv", sep=",", dec=".")
 # head(articles)
 # 
 #Year = 1998
@@ -454,7 +454,7 @@ rownames(country_Mat) = countries
 country_Mat_df = country_Mat
 country_Mat = as.matrix(country_Mat)
 
-write.csv(country_Mat_df, paste0(path, "matrix_countryAuthoringToCountryStudied.csv"))
+#write.csv(country_Mat_df, paste0(path, "matrix_countryAuthoringToCountryStudied.csv"))
 
 tabflow<-melt(country_Mat)
 names(tabflow)=c("A","S","Articles")
@@ -465,7 +465,7 @@ lookup = data.frame(countries)
 
 x=c()
 y=c()
-for (i in 1:256) {
+for (i in 1:length(REG@polygons)) {
   x[[i]] = REG@polygons[[i]]@labpt[[1]] # Barycentre
   y[[i]] = REG@polygons[[i]]@labpt[[2]]
 }
@@ -481,7 +481,7 @@ tabflow = subset(tabflow, Authoring != Studied)
 
 par(mfrow=c(1,1), mar = c(0,0,1,0))
 plot(REG, col="lightgrey", border=F)
-Arrows(tabflow$X_A,tabflow$Y_A,tabflow$X_S,tabflow$Y_S, lwd = 0.5, col = "#df691a", code=2, arr.adj = 1 ,arr.type = "curved")
+Arrows(tabflow$X_A,tabflow$Y_A,tabflow$X_S,tabflow$Y_S, lwd = 0.5, col = "#df691a", code=2, arr.adj = 1 ,arr.type = "curved",arr.width = 0.1,arr.length = 0.2)
 title("Who studies who? | 1996-2015", col.main = "white")
  
 write.csv(tabflow, paste0(path, "df_countryAuthoringToCountryStudied.csv"))
