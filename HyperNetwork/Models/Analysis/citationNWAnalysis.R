@@ -111,9 +111,26 @@ directedmodularity(com$membership,as_adjacency_matrix(gdel,sparse = T))
 
 
 
+########
+## Role of time -> communities each year
 
+years = 2001:2011
 
+induced.subgraph(core,V(core)$year%in%years)
 
+mods=c();ns=c();es=c()
+for(year in years){
+  set.seed(0)
+  subcore = induced.subgraph(core,abs(V(core)$year-year)<5)
+  A = as_adjacency_matrix(subcore,sparse = T)
+  M = A+Matrix::t(A)
+  undirected_subcore = graph_from_adjacency_matrix(M,mode="undirected")
+  com = cluster_louvain(undirected_subcore)
+  show(paste0("|E| = ",length(E(undirected_subcore))," ; |V| = ",length(V(undirected_subcore))))
+  show(modularity(com))
+  mods=append(mods,modularity(com));ns=append(ns,length(V(undirected_subcore)));es=append(es,length(E(undirected_subcore)))
+}
+summary(data.frame(mods,ns,es))
 
 #########
 ## content of citations communities
