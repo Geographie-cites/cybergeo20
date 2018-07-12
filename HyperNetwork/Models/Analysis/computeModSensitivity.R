@@ -13,7 +13,7 @@ load(citnwfile)
 
 set.seed(0)
 
-raw = induced_subgraph(gcitation,which(components(gcitation)$membership==1))
+core = induced_subgraph(gcitation,which(components(gcitation)$membership==1))
 while(min(degree(core))<=1){core = induced_subgraph(core,which(degree(core)>1))}
 
 A = as_adjacency_matrix(core,sparse = T)
