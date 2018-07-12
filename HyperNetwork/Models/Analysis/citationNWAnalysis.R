@@ -84,10 +84,39 @@ directedmodularity(com$membership[nodesid],A[nodesid,nodesid])
 # considered as undirected -> differs very slightly
 
 # test link removal
+affected = 0.2
+gdel=subgraph.edges(core,sample.int(length(E(core)),size=floor((1-affected)*length(E(core))),replace=F),delete.vertices = F)
+Adel = as_adjacency_matrix(gdel,sparse = T)
+directedmodularity(com$membership,Adel)
+
+# test node rewiring (column shuffling)
+affected = 0.2
+nodesid = sample.int(ncol(A),size=floor((1 - affected)*ncol(A)),replace = F)
+cols = 1:ncol(A);cols[nodesid]=sample(cols[nodesid],size = length(nodesid),replace=F)
+directedmodularity(com$membership,A[,cols])
+# -> logically strongly sensitive (rewire several links at the same time)
+
+# test link rewiring
+affected = 0.2
+linksid = sample.int(length(E(core)),size=floor((1-affected)*length(E(core))),replace=F)
+gdel=subgraph.edges(core,linksid,delete.vertices = F)
+gdel=add.edges(gdel,sample.int(nrow(A),size=2*floor(affected*length(E(core))),replace = T))
+directedmodularity(com$membership,as_adjacency_matrix(gdel,sparse = T))
+
+# note : each operation has its own thematic sense.
+
+# compute on randoms for now
+#  -> see specific script computeModSensitivity.R
 
 
 
-## content
+
+
+
+
+
+#########
+## content of citations communities
 
 d=degree(citationcore,mode='in')
 for(c in unique(com$membership)){#  c(17,3,22)
