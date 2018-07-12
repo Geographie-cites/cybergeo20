@@ -3,7 +3,7 @@
 # compute sensitivity of modularities of the citation network to attacks
 
 library(igraph)
-library(dplyr)
+#library(dplyr)
 library(Matrix)
 
 setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Models/Analysis'))
@@ -28,6 +28,7 @@ com = cluster_louvain(undirected_rawcore)
 
 # sensitivity function
 modSensitivity <- function(A,core,membs,affected,target,type){
+  #show(affected)
   if(target == "node"){
     if(type == "removal"){
       nodesid = sample.int(nrow(A),size = floor((1 - affected)*nrow(A)),replace = F)
@@ -36,7 +37,7 @@ modSensitivity <- function(A,core,membs,affected,target,type){
     if(type == "rewiring"){
       nodesid = sample.int(ncol(A),size=floor((1 - affected)*ncol(A)),replace = F)
       cols = 1:ncol(A);cols[nodesid]=sample(cols[nodesid],size = length(nodesid),replace=F)
-      directedmodularity(membs,A[,cols])
+      return(directedmodularity(membs,A[,cols]))
     }
   }
   if(target == "edge"){
@@ -55,7 +56,7 @@ modSensitivity <- function(A,core,membs,affected,target,type){
 }
 
 # test
-#modSensitivity(A,core,com$membership,0.3,"node","removal")
+#modSensitivity(A,core,com$membership,0.3,"node","rewiring")
 
 
 # define parameters
@@ -70,14 +71,19 @@ for(k in 1:nreps){for(f in affected){for(trgt in target){for(tp in type){
 
 library(doParallel)
 cl <- makeCluster(50,outfile='log')
+#cl <- makeCluster(4,outfile='log')
 registerDoParallel(cl)
 
 startTime = proc.time()[3]
 
 res <- foreach(i=1:nrow(params)) %dopar% {
+#res <- foreach(i=sample.int(nrow(params),size=8)) %dopar% {
+  library(igraph);library(Matrix)
   source('corrs.R')
   show(paste0('row : ',i,'/',nrow(params)))
-  mod = modSensitivity(A,core,com$membership,params[i,2],params[i,3],params[i,4])
+  show(paste0("affected = ",params[i,2]," ; target  ",params[i,3]," ; type = ",params[i,4]))
+  #show(dim(A));show(length(com$membership))
+  mod = modSensitivity(A,core,com$membership,as.numeric(params[i,2]),params[i,3],params[i,4])
   return(mod)
 }
 
