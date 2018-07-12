@@ -137,9 +137,10 @@ recflows = rawtabflow[which(country_Mat>0&t(country_Mat)>0),];
 recflows$id = paste0(recflows[,1],recflows[,2])
 tabflow$rec = paste0(tabflow$Authoring,tabflow$Studied)%in%recflows$id
 
-png(filename='who-who.png',width = 30,height = 25,units = 'cm',res = 600)
+#png(filename='who-who.png',width = 30,height = 25,units = 'cm',res = 600)
+jpeg(filename='who-who.jpg',width = 30,height = 25,units = 'cm',res = 200,quality = 0.3)
 par(mfrow=c(1,1), mar = c(0,0,1,0))
-plot(REG, col="lightgrey", border=F)
+plot(REG, col="lightgrey", border="white")
 Arrows(tabflow$X_A[tabflow$rec==F],tabflow$Y_A[tabflow$rec==F],tabflow$X_S[tabflow$rec==F],tabflow$Y_S[tabflow$rec==F], lwd = 0.5, col = "#df691a", code=2, arr.adj = 1 ,arr.type = "curved",arr.width = 0.1,arr.length = 0.2)
 Arrows(tabflow$X_A[tabflow$rec==T],tabflow$Y_A[tabflow$rec==T],tabflow$X_S[tabflow$rec==T],tabflow$Y_S[tabflow$rec==T], lwd = 0.8, col = "blue",arr.length = 0)
 dev.off()

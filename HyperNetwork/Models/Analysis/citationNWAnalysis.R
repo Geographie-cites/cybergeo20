@@ -10,7 +10,7 @@ setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Mod
 citnwfile=paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/citationNetwork.RData')
 load(citnwfile)
 
-load(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/citationNetworkStats.RData'))
+#load(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Data/nw/citationNetworkStats.RData'))
 
 # intersections ! -> USE IDS : does not work
 #  sort and setdiff ?
@@ -61,6 +61,8 @@ com = cluster_louvain(undirected_rawcore)
 
 directedmodularity(com$membership,A)
 
+
+#### significance compared to shuffled network
 nreps = 100
 mods = c()
 for(i in 1:nreps){
@@ -69,6 +71,19 @@ for(i in 1:nreps){
 }
 show(paste0(mean(mods)," +- ",sd(mods)))
 
+
+
+######
+#### sensitivity analysis to corpus
+
+# test node removal
+affected = 0.99
+nodesid = sample.int(nrow(A),size = floor((1 - affected)*nrow(A)),replace = F)
+directedmodularity(com$membership[nodesid],A[nodesid,nodesid])
+#modularity(graph_from_adjacency_matrix(A[nodesid,nodesid]),com$membership[nodesid])
+# considered as undirected -> differs very slightly
+
+# test link removal
 
 
 
