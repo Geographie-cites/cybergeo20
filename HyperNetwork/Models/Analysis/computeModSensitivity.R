@@ -3,7 +3,7 @@
 # compute sensitivity of modularities of the citation network to attacks
 
 library(igraph)
-library(dplyr)
+#library(dplyr)
 library(Matrix)
 
 setwd(paste0(Sys.getenv('CS_HOME'),'/Cybergeo/Models/cybergeo20/HyperNetwork/Models/Analysis'))
@@ -13,7 +13,7 @@ load(citnwfile)
 
 set.seed(0)
 
-raw = induced_subgraph(gcitation,which(components(gcitation)$membership==1))
+core = induced_subgraph(gcitation,which(components(gcitation)$membership==1))
 while(min(degree(core))<=1){core = induced_subgraph(core,which(degree(core)>1))}
 
 A = as_adjacency_matrix(core,sparse = T)
@@ -77,6 +77,7 @@ startTime = proc.time()[3]
 res <- foreach(i=1:nrow(params)) %dopar% {
   source('corrs.R')
   show(paste0('row : ',i,'/',nrow(params)))
+  show(paste0("affected = ",params[i,2]," ; target = ",params[i,3]," ; type = ",params[i,4]))
   mod = modSensitivity(A,core,com$membership,params[i,2],params[i,3],params[i,4])
   return(mod)
 }
