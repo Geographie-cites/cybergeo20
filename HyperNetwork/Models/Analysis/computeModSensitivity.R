@@ -60,7 +60,7 @@ modSensitivity <- function(A,core,membs,affected,target,type){
 
 
 # define parameters
-nreps = 100
+nreps = 1000
 affected = seq(0.05,0.5,0.05)
 target=c("node","edge")
 type = c("removal","rewiring")
