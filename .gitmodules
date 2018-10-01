@@ -1,0 +1,3 @@
+[submodule "HyperNetwork"]
+	path = HyperNetwork
+	url = git@github.com:JusteRaimbault/HyperNetwork.git
