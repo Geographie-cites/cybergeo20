@@ -1,4 +1,0 @@
-\beamer@endinputifotherversion {3.33pt}
-\beamer@sectionintoc {1}{Collections des données}{2}{0}{1}
-\beamer@sectionintoc {2}{Résultats}{3}{0}{2}
-\beamer@sectionintoc {3}{Suite de l'étude}{7}{0}{3}
